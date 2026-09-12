@@ -114,6 +114,11 @@ export const COPY = {
   trashEmpty: 'Trash is empty.',
   noMatches: (q: string): string => `Nothing matches "${q}".`,
   askNothing: "Couldn't find anything about that.",
+  askScanning: 'Looking through your library',
+  askScanCaption: 'Text, pages and pictures — all of it on this Mac',
+  askReading: (n: number): string => (n === 1 ? 'Reading 1 match' : `Reading ${n} matches`),
+  askFound: (n: number): string => (n === 1 ? 'Found it in 1 thing you kept' : `Found it in ${n} things you kept`),
+  askAnswered: 'Answered from your library',
   dropHint: 'Drop anywhere',
   /** The shelf's own headline: it exists to be dropped on, so it says so. */
   dropHere: 'Drop here',
@@ -131,10 +136,14 @@ export const DEFAULT_BASE_URL = 'https://api.gmi-serving.com/v1'
 
 export const AI_PROVIDER_DEFAULTS = {
   gmi: { model: DEFAULT_MODEL, baseUrl: DEFAULT_BASE_URL },
-  openrouter: { model: 'minimax/minimax-m3:free', baseUrl: 'https://openrouter.ai/api/v1' }
+  openrouter: { model: 'minimax/minimax-m3', baseUrl: 'https://openrouter.ai/api/v1' }
 } as const
 
 export const AI_PROVIDER_LABEL = { gmi: 'GMI', openrouter: 'OpenRouter' } as const
+
+/** Markers FTS5 wraps around the matched words of a `SearchHit.snippet`; the renderer highlights them. */
+export const SNIPPET_OPEN = '[['
+export const SNIPPET_CLOSE = ']]'
 
 /** Local embedding model id (Hugging Face hub layout under `models/`). */
 export const EMBEDDING_MODEL_ID = 'Xenova/bge-small-en-v1.5'

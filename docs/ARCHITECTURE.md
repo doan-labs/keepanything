@@ -119,7 +119,7 @@ src/
       shell/      Sidebar  Toolbar  StatusStack  DropOverlay  LocalStatusFooter
       library/    MasonryGrid (JS-positioned)  ItemCard + bodies (Image, Video, Url, Github, Pdf, Text, Folder, Note, File)  ItemRow  EmptyState  TrashHeader
       detail/     ItemDetail (hero, Understanding [editable], Related, Collections, Actions, footer)  NoteView  AgentActivity ("Activity")
-      palette/    CommandPalette (cmdk; local hits first; Ask row rules)  AskResult (evidence header + sources)  RunProgress
+      palette/    CommandPalette (cmdk; local hits first; Ask row rules)  AskRun (scan strip -> matches with quotes -> answer)
       selection/  SelectionBar
       collections/ CollectionsGrid  CollectionCard  CollectionHeader  NewCollectionDialog  RenameInline
       settings/   SettingsView (key, model, import mode, theme, privacy, embeddings status, reprocess all)
@@ -500,9 +500,15 @@ marker), Why useful, Related (relationship label chips with × on hover + eviden
 **Palette (⌘K, cmdk)**: empty → 5 recent items + 3 suggestions (plus a dev-only "Dev" group: seed sample data, copy library
 snapshot); typing → an "Ask: …" bar pinned between the input and the list (badged `⌘↩`, outside cmdk so the hits keep the
 default selection and ↩ still opens), then local hits (grouped, thumbs); plain ↩ asks only when the settled search left
-nothing to open; Ask → `agent:command` → `RunProgress` (quiet list of completed steps from `agent:run`, static dots, referenced thumbs,
-Esc cancels) → `AskResult` inside the palette (evidence header from structured data: "Looked at 7 recent items · Read 3 ·
-Theme: inference provider cost"; answer; source cards captioned by `why`; "Save as note"). No history, no regenerate, no ratings.
+nothing to open; Ask → `agent:command` → `AskRun` inside the palette: the question stays where the input was (click it or Esc
+to go back, cancelling a run in flight), one status line (pulsing dot, "Looking through your library" → "Reading 2 matches" →
+"Found it in 2 things you kept", elapsed in mono). Under it the library as a scan strip — real thumbnails, a head sweeping
+across them, progress bar, `n / total`, hover a tile for its title, click to open it — until the run opens something; then
+match cards (thumb, title, where, and the line that matched, with the FTS `[[…]]` markers drawn as a highlighter), a rule,
+and the answer under an "Answer" eyebrow with amounts, times and dates in accent. Quote and answer land word by word out of
+a blur — a CSS stagger, never a typewriter. Evidence header from
+structured data ("Looked at 7 recent items · Read 3 · Theme: inference provider cost") under the answer, then proposals;
+"Save as note" and Retry in the footer, follow-up above it. No history, no regenerate, no ratings.
 Multi-item: `SelectionBar` "3 selected · Compare · What do these have in common? · Summarize · Add to collection · Trash"
 → `agent:command` with template + itemIds; on `note` result open the note (or toast "Created … · Show").
 

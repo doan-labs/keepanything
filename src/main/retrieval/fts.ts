@@ -3,8 +3,11 @@
  * highlighted excerpt and per-column `highlight()` markers to report which fields matched.
  */
 
+import { SNIPPET_CLOSE, SNIPPET_OPEN } from '../../shared/constants'
 import type { Db } from '../storage/db'
 import type { Row } from '../storage/repositories/rows'
+
+export { SNIPPET_CLOSE, SNIPPET_OPEN }
 
 /** One FTS hit. `bm25` is SQLite's rank (negative, more negative = better). */
 export interface FtsHit {
@@ -33,10 +36,6 @@ export const FTS_COLUMNS = [
 
 /** BM25 weights per column (title 8, hints 6, topics/entities 4, understanding/why/vision 3, meta 2, text 1, domain 2, kind 2). */
 export const BM25_WEIGHTS = [0, 8, 6, 4, 4, 3, 3, 3, 2, 1, 2, 2] as const
-
-/** Markers wrapped around matches in snippets (the renderer turns them into emphasis). */
-export const SNIPPET_OPEN = '[['
-export const SNIPPET_CLOSE = ']]'
 
 const MARK = ''
 

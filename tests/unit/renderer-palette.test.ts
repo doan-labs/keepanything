@@ -1,14 +1,24 @@
 import { describe, expect, it } from 'vitest'
 import {
+  askMatched,
+  askPhase,
+  askScanned,
+  askStatus,
   evidenceHeader,
+  factSpans,
   formatElapsed,
   groupHits,
   hitSnippet,
   noteBodyFor,
   noteTitleFor,
+  snippetSpans,
   toolLabel
 } from '../../src/renderer/src/lib/palette'
 import type { AgentStep, SearchHit } from '../../src/shared/types'
+
+function askStep(n: number, kind: AgentStep['kind'], itemIds: string[], status: AgentStep['status'] = 'ok'): AgentStep {
+  return { n, tool: 't', kind, label: '', itemIds, status, durationMs: 1 }
+}
 
 function hit(id: string, type: SearchHit['type'], extra: Partial<SearchHit> = {}): SearchHit {
   return {
@@ -56,6 +66,10 @@ describe('groupHits', () => {
 })
 
 describe('hitSnippet', () => {
+  it('strips the FTS markers from the snippet it shows', () => {
+    expect(hitSnippet({ snippet: 'the [[deposit]] is due', understanding: 'x' })).toBe('the deposit is due')
+  })
+
   it('prefers the FTS snippet, then understanding, then domain', () => {
     expect(hitSnippet({ snippet: ' batching ', understanding: 'x', domain: 'y' })).toBe('batching')
     expect(hitSnippet({ understanding: 'An article', domain: 'y' })).toBe('An article')
@@ -114,6 +128,66 @@ describe('evidenceHeader', () => {
   it('is empty when nothing is known', () => {
     expect(evidenceHeader([])).toBe('')
     expect(evidenceHeader([step(1, 'read', ['x'])])).toBe('Looked at 1 item · Read 1')
+  })
+})
+
+describe('ask run view', () => {
+  it('reads the phase off the steps and the result', () => {
+    expect(askPhase(undefined)).toBe('scanning')
+    expect(askPhase({ status: 'running', steps: [], answered: false })).toBe('scanning')
+    expect(askPhase({ status: 'running', steps: [askStep(1, 'search', ['a'])], answered: false })).toBe('scanning')
+    expect(askPhase({ status: 'running', steps: [askStep(1, 'read', ['a'])], answered: false })).toBe('reading')
+    // A rejected read is not a match, so the strip keeps sweeping.
+    expect(askPhase({ status: 'running', steps: [askStep(1, 'read', ['a'], 'rejected')], answered: false })).toBe(
+      'scanning'
+    )
+    expect(askPhase({ status: 'succeeded', steps: [], answered: true })).toBe('answered')
+    expect(askPhase({ status: 'cancelled', steps: [], answered: false })).toBe('failed')
+  })
+
+  it('separates what was scanned from what was opened, first seen first, without repeats', () => {
+    const steps = [askStep(1, 'search', ['a', 'b']), askStep(2, 'inspect', ['b', 'c']), askStep(3, 'read', ['c'])]
+    expect(askScanned(steps)).toEqual(['a', 'b', 'c'])
+    expect(askMatched(steps)).toEqual(['b', 'c'])
+    expect(askScanned([askStep(1, 'search', ['a'], 'rejected')])).toEqual([])
+  })
+
+  it('says what is happening in product voice', () => {
+    expect(askStatus('scanning', 0)).toBe('Looking through your library')
+    expect(askStatus('reading', 1)).toBe('Reading 1 match')
+    expect(askStatus('reading', 2)).toBe('Reading 2 matches')
+    expect(askStatus('answered', 2)).toBe('Found it in 2 things you kept')
+    expect(askStatus('answered', 0)).toBe('Answered')
+    expect(askStatus('failed', 0)).toBe('Stopped')
+  })
+})
+
+describe('highlight spans', () => {
+  it('splits a snippet on its FTS markers', () => {
+    expect(snippetSpans('a [[deposit]] of two')).toEqual([
+      { text: 'a ', hot: false },
+      { text: 'deposit', hot: true },
+      { text: ' of two', hot: false }
+    ])
+    expect(snippetSpans('nothing marked')).toEqual([{ text: 'nothing marked', hot: false }])
+    expect(snippetSpans('')).toEqual([])
+  })
+
+  it('picks out amounts, times and dates in an answer, and nothing else', () => {
+    const spans = factSpans('Two months — 2 900 € — and the keys on 14 March at 11:00, at the door.')
+    expect(spans.filter((s) => s.hot).map((s) => s.text)).toEqual(['2 900 €', '14 March', '11:00'])
+    expect(spans.map((s) => s.text).join('')).toBe(
+      'Two months — 2 900 € — and the keys on 14 March at 11:00, at the door.'
+    )
+    expect(factSpans('Mostly notes about serving cost.')).toEqual([
+      { text: 'Mostly notes about serving cost.', hot: false }
+    ])
+  })
+
+  it('stops highlighting after the cap', () => {
+    const spans = factSpans('1 item 2 items 3 items 4 items', 2)
+    expect(spans.filter((s) => s.hot)).toHaveLength(2)
+    expect(spans.map((s) => s.text).join('')).toBe('1 item 2 items 3 items 4 items')
   })
 })
 

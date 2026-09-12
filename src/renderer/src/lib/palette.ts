@@ -1,9 +1,9 @@
 /**
- * Pure helpers for the command palette: grouping quick-search hits by type, deciding when the
- * "Ask" row shows, and turning agent steps into the evidence header. No DOM, unit-tested.
+ * Pure helpers for the command palette: grouping quick-search hits by type, reading the phase of an
+ * Ask run off its steps, and the spans the run view highlights. No DOM, unit-tested.
  */
-import { isProbablyNaturalLanguage } from '../../../shared/text'
-import type { AgentCues, AgentStep, ItemType, SearchHit } from '../../../shared/types'
+import { COPY, SNIPPET_CLOSE, SNIPPET_OPEN } from '../../../shared/constants'
+import type { AgentCues, AgentRunStatus, AgentStep, ItemType, SearchHit } from '../../../shared/types'
 
 /** Display groups for palette hits, in order. */
 export type HitGroupId = 'links' | 'images' | 'documents' | 'files' | 'notes'
@@ -68,17 +68,121 @@ export function groupHits(hits: readonly SearchHit[]): HitGroup[] {
  * otherwise the domain. Never empty when the hit has any of them.
  */
 export function hitSnippet(hit: { snippet?: string; understanding?: string | null; domain?: string | null }): string {
-  return hit.snippet?.trim() || hit.understanding?.trim() || hit.domain || ''
+  return stripSnippetMarkers(hit.snippet ?? '').trim() || hit.understanding?.trim() || hit.domain || ''
 }
 
+/** A run of answer or quote text; `hot` spans are drawn in accent. */
+export interface TextSpan {
+  text: string
+  hot: boolean
+}
+
+const escapeRe = (s: string): string => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+const MARKED = new RegExp(`${escapeRe(SNIPPET_OPEN)}(.*?)${escapeRe(SNIPPET_CLOSE)}`, 'g')
+
+export function stripSnippetMarkers(snippet: string): string {
+  return snippet.split(SNIPPET_OPEN).join('').split(SNIPPET_CLOSE).join('')
+}
+
+/** Split an FTS snippet on its `[[match]]` markers, so the matched words can be highlighted. */
+export function snippetSpans(snippet: string): TextSpan[] {
+  const spans: TextSpan[] = []
+  let last = 0
+  for (const m of snippet.matchAll(MARKED)) {
+    if (m.index === undefined) continue
+    if (m.index > last) spans.push({ text: snippet.slice(last, m.index), hot: false })
+    if (m[1]) spans.push({ text: m[1], hot: true })
+    last = m.index + m[0].length
+  }
+  if (last < snippet.length) spans.push({ text: stripSnippetMarkers(snippet.slice(last)), hot: false })
+  return spans.filter((s) => s.text.length > 0)
+}
+
+const MONTH = '(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*'
+const NUM = String.raw`\d(?:[\d\u00a0\u202f .,]*\d)?`
+/** Amounts, clock times, dates and counted things: the parts of an answer worth writing down. */
+const FACT = new RegExp(
+  [
+    String.raw`[€$£]\s?${NUM}`,
+    String.raw`${NUM}\s?(?:€|£|\$|%|EUR|USD|GBP)`,
+    String.raw`\b\d{1,2}:\d{2}\b`,
+    String.raw`\b\d{1,2}(?:st|nd|rd|th)?\s${MONTH}\b`,
+    String.raw`\b${MONTH}\s\d{1,2}\b`,
+    String.raw`\b\d{4}-\d{2}-\d{2}\b`,
+    String.raw`\b\d+\s?(?:pages?|items?|minutes?|hours?|days?|weeks?|months?|years?)\b`
+  ].join('|'),
+  'g'
+)
+
 /**
- * The "Ask" row shows for a non-empty query when there are no local hits, or when the query reads
- * like natural language.
+ * Split an answer so the facts in it can be drawn in accent, the way a person underlines the number
+ * they were after. Capped so an answer full of figures does not turn into a highlighter test.
  */
-export function shouldOfferAsk(query: string, hitCount: number): boolean {
-  const q = query.trim()
-  if (q.length === 0) return false
-  return hitCount === 0 || isProbablyNaturalLanguage(q)
+export function factSpans(answer: string, max = 6): TextSpan[] {
+  const spans: TextSpan[] = []
+  let last = 0
+  let hot = 0
+  for (const m of answer.matchAll(FACT)) {
+    if (hot >= max || m.index === undefined) break
+    if (m.index > last) spans.push({ text: answer.slice(last, m.index), hot: false })
+    spans.push({ text: m[0], hot: true })
+    last = m.index + m[0].length
+    hot += 1
+  }
+  if (last < answer.length) spans.push({ text: answer.slice(last), hot: false })
+  return spans
+}
+
+/** Where an Ask run is: sweeping the library, reading what it found, done, or stopped. */
+export type AskPhase = 'scanning' | 'reading' | 'answered' | 'failed'
+
+export interface AskRunFacts {
+  status: AgentRunStatus
+  steps: readonly AgentStep[]
+  /** The run produced a `command` result (answer or note). */
+  answered: boolean
+}
+
+const OPENED: readonly AgentStep['kind'][] = ['read', 'inspect', 'compare']
+
+export function askPhase(run: AskRunFacts | undefined): AskPhase {
+  if (!run) return 'scanning'
+  if (run.answered) return 'answered'
+  if (run.status === 'failed' || run.status === 'cancelled') return 'failed'
+  return run.steps.some((s) => s.status === 'ok' && OPENED.includes(s.kind)) ? 'reading' : 'scanning'
+}
+
+function idsFrom(steps: readonly AgentStep[], kinds?: readonly AgentStep['kind'][]): string[] {
+  const ids: string[] = []
+  for (const step of steps) {
+    if (step.status !== 'ok' || (kinds && !kinds.includes(step.kind))) continue
+    for (const id of step.itemIds ?? []) if (!ids.includes(id)) ids.push(id)
+  }
+  return ids
+}
+
+/** Everything the run has touched, first seen first: how far the scan strip has got. */
+export function askScanned(steps: readonly AgentStep[]): string[] {
+  return idsFrom(steps)
+}
+
+/** What the run opened rather than merely listed: the matches it is reading. */
+export function askMatched(steps: readonly AgentStep[]): string[] {
+  return idsFrom(steps, OPENED)
+}
+
+/** The line beside the status dot. `n` is the number of matches (or cited sources once answered). */
+export function askStatus(phase: AskPhase, n: number): string {
+  switch (phase) {
+    case 'reading':
+      return COPY.askReading(n)
+    case 'answered':
+      return n > 0 ? COPY.askFound(n) : 'Answered'
+    case 'failed':
+      return 'Stopped'
+    default:
+      return COPY.askScanning
+  }
 }
 
 /** Short human verb for a tool name; falls back to a cleaned-up tool id. */

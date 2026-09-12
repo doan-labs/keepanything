@@ -1,0 +1,62 @@
+[
+  {
+    "label": "note:Reading list",
+    "title": "Reading list",
+    "understanding": "A short markdown note headed \"Reading list\" with a \"Queue\" section holding three sample entries, two of which are one-liners and one that wraps to a second line. The note states outright that it is a placeholder so the library has a markdown item.",
+    "whyUseful": "Kept as a test fixture rather than for its content — useful when checking that markdown notes render, index and excerpt correctly, or as a blank template for a real reading queue."
+  },
+  {
+    "label": "note:Project kickoff",
+    "title": "Project kickoff",
+    "understanding": "Short markdown note headed \"Project kickoff\" with a three-item agenda — scope, milestones, open questions — followed by a filler paragraph that says nothing in it refers to anything real. Reads as sample content rather than a working document.",
+    "whyUseful": "Kept as test material for how the app renders a note: headings, a numbered list and a paragraph long enough to produce an excerpt instead of a single line."
+  },
+  {
+    "label": "note:Weekly summary",
+    "title": "Weekly summary",
+    "understanding": "A short markdown note in three sections — Shipped, In progress, Blocked — with placeholder entries (sample item A, B, C) plus a second paragraph kept so the card preview shows more than one line.",
+    "whyUseful": "Kept as a scratch status note or as a template for a shipped/in-progress/blocked update; reached for when writing a weekly roundup or checking what was said last week."
+  },
+  {
+    "label": "note:Todo",
+    "title": "Placeholder task list",
+    "understanding": "A three-line markdown file containing only the placeholder strings \"placeholder task one\", \"placeholder task two\" and \"placeholder task three\". No real content, links or context.",
+    "whyUseful": "Kept only if you need to check what an empty test note looks like in the library, or to confirm a capture worked. Nothing here is worth returning to for its own sake."
+  },
+  {
+    "label": "image:Sample wide.png",
+    "title": "Sample wide — two-tone blue test image (1200×700)",
+    "understanding": "A flat 1200×700 PNG made of two solid blue bands: a darker navy upper section covering roughly two thirds, and a lighter, greyer blue lower section. No text, shapes or detail; the filename is \"Sample wide.png\".",
+    "whyUseful": "Kept as a placeholder or test asset — the kind of neutral wide image you drop into a layout, mockup or upload test when the real picture isn't ready."
+  },
+  {
+    "label": "image:Sample tall.png",
+    "title": "Two-tone purple colour swatch (Sample tall.png)",
+    "understanding": "A tall 620×900 PNG split into two flat horizontal bands: a darker muted violet across the top roughly 57% and a lighter dusty lavender filling the rest. No text, no gradient, no border.",
+    "whyUseful": "Kept as a colour reference — pull it up when picking a dark/light purple pair for a UI, slide background or palette."
+  },
+  {
+    "label": "image:Sample square.png",
+    "title": "Two-tone green colour swatch, 800×800",
+    "understanding": "A square image split horizontally into two flat green bands: a darker pine-teal green on top and a lighter, greyer sage green below. No text, no gradient, just two solid fills.",
+    "whyUseful": "Kept as a palette reference — the exact green pair to reuse when picking colours for a UI, a slide deck or a print piece, without hunting for the original file again."
+  },
+  {
+    "label": "link:https://www.electronjs.org/docs/latest",
+    "title": "What is Electron? — Electron documentation introduction",
+    "understanding": "Landing page of the Electron docs, explaining that Electron is a framework for desktop apps built with JavaScript, HTML and CSS by embedding Chromium and Node.js. Includes a minimal main.js snippet with app, BrowserWindow and a preload script, plus pointers to the tutorial, examples, API docs and the Electron Fiddle sandbox.",
+    "whyUseful": "Kept as the entry point for building a cross-platform desktop app in JavaScript; reach for it when setting up a first Electron window or when deciding between Fiddle, the tutorial and the API reference."
+  },
+  {
+    "label": "link:https://vitejs.dev/guide/",
+    "title": "Vite Getting Started guide",
+    "understanding": "Official Vite guide page covering what Vite is (dev server with fast HMR plus a build command bundling with Rolldown), browser support targets, and how to scaffold a project with npm create vite@latest across vanilla, Vue, React, Preact, Lit, Svelte, Solid and Qwik templates. Also covers manual install, index.html as entry point, project root, CLI commands (vite, vite build, vite preview) and installing unreleased commits via pkg.pr.new.",
+    "whyUseful": "Kept as the reference for starting a new frontend project or explaining Vite's setup to someone; reach for it when scaffolding an app, checking the required Node version, or working out why index.html sits at the project root."
+  },
+  {
+    "label": "link:https://react.dev/learn",
+    "title": "Quick Start – React",
+    "understanding": "The react.dev Learn landing page — a single-page tour of core React: components, JSX, styling, displaying data with curly braces, conditional rendering, list rendering with map() and keys, event handlers, useState, Hooks rules, and lifting state up via props. Code samples use a MyButton counter and a ShoppingList of Cabbage, Garlic and Apple, plus a profile example with Hedy Lamarr.",
+    "whyUseful": "Worth keeping as the one-page refresher when returning to React after a break or onboarding onto a React codebase — it covers the 80% of concepts used daily and links onward to the Tic-Tac-Toe tutorial."
+  }
+]

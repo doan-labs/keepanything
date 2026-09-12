@@ -1,5 +1,5 @@
 import * as stylex from '@stylexjs/stylex'
-import { colors, motion, radii, shadows, space, text, weight, zIndex } from '../../../styles/tokens.stylex'
+import { colors, motion, radii, shadows, space, text, zIndex } from '../../../styles/tokens.stylex'
 
 const fade = stylex.keyframes({ from: { opacity: 0 } })
 const rise = stylex.keyframes({ from: { opacity: 0, transform: 'translateY(-6px)' } })
@@ -66,6 +66,24 @@ export const styles = stylex.create({
     fontSize: text.t12,
     whiteSpace: 'nowrap'
   },
+  // Pinned between the input and the list so a long hit list can never push Ask out of sight.
+  // The 16px column puts its icon under the search icon and its label under the query.
+  askBar: {
+    display: 'grid',
+    gridTemplateColumns: '16px 1fr auto',
+    alignItems: 'center',
+    gap: space.s3,
+    minHeight: 40,
+    paddingBlock: 6,
+    paddingInline: space.s5,
+    borderBottomWidth: 1,
+    borderBottomStyle: 'solid',
+    borderBottomColor: colors.hairline,
+    textAlign: 'left',
+    color: colors.fg1,
+    fontSize: text.t13,
+    backgroundColor: { default: 'transparent', ':hover': colors.bgHover }
+  },
   list: { overflowY: 'auto', paddingTop: space.s2, paddingInline: space.s2, paddingBottom: space.s2 },
   heading: {
     display: 'block',
@@ -100,82 +118,6 @@ export const styles = stylex.create({
     textAlign: 'center',
     color: colors.fg3,
     fontSize: text.t13
-  },
-  run: {
-    paddingTop: space.s5,
-    paddingInline: space.s5,
-    paddingBottom: space.s4,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: space.s4,
-    overflowY: 'auto',
-    // Scritto's leaving glyphs sit outside the host box mid-roll; without this the
-    // auto-x that overflowY implies flashes a horizontal scrollbar every tick.
-    overflowX: 'hidden'
-  },
-  question: { fontSize: text.t15, color: colors.fg1, lineHeight: 1.4 },
-  steps: { display: 'flex', flexDirection: 'column', gap: 6 },
-  step: {
-    display: 'grid',
-    gridTemplateColumns: '14px 72px 1fr auto',
-    alignItems: 'baseline',
-    columnGap: space.s2,
-    fontSize: text.t13,
-    color: colors.fg2
-  },
-  stepDot: { display: 'inline-flex', alignItems: 'center', height: 16 },
-  stepTool: { fontSize: text.t12, color: colors.fg4 },
-  stepLabel: { minWidth: 0 },
-  stepRejected: { textDecorationLine: 'line-through', color: colors.fg4 },
-  stepTime: { fontSize: text.t12, color: colors.fg4, fontVariantNumeric: 'tabular-nums' },
-  evidence: { fontSize: text.t12, color: colors.fg3 },
-  answer: { color: colors.fg1, lineHeight: 1.6, fontSize: 14, whiteSpace: 'pre-wrap' },
-  sources: { display: 'flex', flexDirection: 'column', gap: 2 },
-  source: {
-    display: 'grid',
-    gridTemplateColumns: '40px 1fr auto',
-    gap: space.s3,
-    alignItems: 'center',
-    paddingBlock: 6,
-    paddingInline: 6,
-    marginInline: -6,
-    borderRadius: radii.r1,
-    textAlign: 'left',
-    backgroundColor: { default: 'transparent', ':hover': colors.bgHover }
-  },
-  sourceThumb: { width: 40, height: 30, borderRadius: 4, overflow: 'hidden' },
-  why: { fontSize: text.t12, color: colors.fg3 },
-  role: { fontSize: text.t11, color: colors.fg4, textTransform: 'uppercase', letterSpacing: '0.06em' },
-  noteCard: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: space.s3,
-    paddingBlock: space.s3,
-    paddingInline: space.s4,
-    borderRadius: radii.r2,
-    backgroundColor: colors.paper,
-    color: colors.ink
-  },
-  noteTitle: { fontWeight: weight.medium, flexGrow: 1, minWidth: 0 },
-  followUp: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: space.s3,
-    paddingInline: space.s5,
-    borderTopWidth: 1,
-    borderTopStyle: 'solid',
-    borderTopColor: colors.hairline,
-    color: colors.fg4
-  },
-  followUpInput: {
-    flexGrow: 1,
-    height: 40,
-    fontSize: text.t13,
-    color: colors.fg1,
-    backgroundColor: 'transparent',
-    borderStyle: 'none',
-    outline: { default: 'none', ':focus-visible': 'none' },
-    '::placeholder': { color: colors.fg4 }
   },
   footer: {
     display: 'flex',
