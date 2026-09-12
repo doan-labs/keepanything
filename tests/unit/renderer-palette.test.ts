@@ -6,7 +6,6 @@ import {
   hitSnippet,
   noteBodyFor,
   noteTitleFor,
-  shouldOfferAsk,
   toolLabel
 } from '../../src/renderer/src/lib/palette'
 import type { AgentStep, SearchHit } from '../../src/shared/types'
@@ -56,20 +55,12 @@ describe('groupHits', () => {
   })
 })
 
-describe('hitSnippet / shouldOfferAsk', () => {
+describe('hitSnippet', () => {
   it('prefers the FTS snippet, then understanding, then domain', () => {
     expect(hitSnippet({ snippet: ' batching ', understanding: 'x', domain: 'y' })).toBe('batching')
     expect(hitSnippet({ understanding: 'An article', domain: 'y' })).toBe('An article')
     expect(hitSnippet({ domain: 'anyscale.com' })).toBe('anyscale.com')
     expect(hitSnippet({ domain: null })).toBe('')
-  })
-
-  it('offers Ask for natural language or when nothing matched', () => {
-    expect(shouldOfferAsk('', 0)).toBe(false)
-    expect(shouldOfferAsk('minimax', 3)).toBe(false)
-    expect(shouldOfferAsk('minimax', 0)).toBe(true)
-    expect(shouldOfferAsk('what did I save about inference', 5)).toBe(true)
-    expect(shouldOfferAsk('globe animation?', 2)).toBe(true)
   })
 })
 

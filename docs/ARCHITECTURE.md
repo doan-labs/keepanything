@@ -497,9 +497,10 @@ marker), Why useful, Related (relationship label chips with × on hover + eviden
 × on hover), Actions (Open, Reveal in Finder, Quick Look, Reprocess, Move to Trash),
 "Activity" → `AgentActivity` (steps in product voice), footer (captured, path, Reveal in Finder, Open, Quick Look).
 
-**Palette (⌘K, cmdk)**: empty → 5 recent items + 3 suggestions; typing → local hits first (grouped, thumbs); "Ask: …" row only
-after hits and only when the query looks like natural language (≥4 words / question word / "?") or when there are zero hits;
-Enter on Ask → `agent:command` → `RunProgress` (quiet list of completed steps from `agent:run`, static dots, referenced thumbs,
+**Palette (⌘K, cmdk)**: empty → 5 recent items + 3 suggestions (plus a dev-only "Dev" group: seed sample data, copy library
+snapshot); typing → an "Ask: …" bar pinned between the input and the list (badged `⌘↩`, outside cmdk so the hits keep the
+default selection and ↩ still opens), then local hits (grouped, thumbs); plain ↩ asks only when the settled search left
+nothing to open; Ask → `agent:command` → `RunProgress` (quiet list of completed steps from `agent:run`, static dots, referenced thumbs,
 Esc cancels) → `AskResult` inside the palette (evidence header from structured data: "Looked at 7 recent items · Read 3 ·
 Theme: inference provider cost"; answer; source cards captioned by `why`; "Save as note"). No history, no regenerate, no ratings.
 Multi-item: `SelectionBar` "3 selected · Compare · What do these have in common? · Summarize · Add to collection · Trash"

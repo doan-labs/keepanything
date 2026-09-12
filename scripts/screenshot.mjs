@@ -3,7 +3,8 @@
  * with macOS `screencapture` into `.artifacts/screenshot.png` (gitignored). The terminal may need
  * Screen Recording permission for window contents to appear.
  *
- * Usage: pnpm run screenshot [-- --theme dark|light] [--out <file>] [--reset] [--empty] [--settings] [--activity] [--page]
+ * Usage: pnpm run screenshot [-- --theme dark|light] [--out <file>] [--reset] [--empty] [--settings] [--activity]
+ *                            [--palette <query>] [--page]
  *
  *   --theme   Force the appearance for the shot (default: dark). Sets `nativeTheme.themeSource`
  *             in the running app only; nothing is persisted.
@@ -11,6 +12,7 @@
  *             `.artifacts/screenshot-light.png`).
  *   --reset   Wipe the E2E profile first. Without it the existing profile is reused.
  *   --empty   Skip seeding, so the empty state is what gets captured.
+ *   --palette Open ⌘K and type the query, so the palette is what gets captured.
  *
  * Either way an empty library is filled with `scripts/seed-library.mjs` placeholder content, so the
  * masonry always has something to lay out; a profile that already has items is left alone.
@@ -91,6 +93,12 @@ if (args.includes('--settings')) {
 if (args.includes('--activity')) {
   await page.getByRole('button', { name: 'Activity' }).click()
   await page.waitForTimeout(400)
+}
+const paletteQuery = option('--palette', null)
+if (paletteQuery !== null) {
+  await page.keyboard.press('Meta+k')
+  await page.keyboard.type(paletteQuery)
+  await page.waitForTimeout(600)
 }
 await page.waitForTimeout(600)
 try {
