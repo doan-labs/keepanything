@@ -201,7 +201,7 @@ describe('settings store', () => {
     store.update({ provider: 'openrouter' })
     expect(store.apiKey()).toBe('openrouter-stored-1234567890abcdef')
     store.update({ model: '', provider: 'openrouter' })
-    expect(store.get().model).toBe('minimax/minimax-m3:free')
+    expect(store.get().model).toBe('minimax/minimax-m3')
     store.update({ provider: 'gmi' })
     expect(store.get().model).toBe('legacy-model')
 
