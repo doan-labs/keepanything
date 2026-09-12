@@ -17,6 +17,7 @@
       "!docs",
       "!assets",
       "!tests/fixtures",
+      "!.agents/skills",
       "!**/routeTree.gen.ts",
       "!**/*.md"
     ]

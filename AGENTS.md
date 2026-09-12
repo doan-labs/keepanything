@@ -83,6 +83,9 @@ scripts/        fetch-models, build-native, screenshot, seed-library, eval-retri
 tests/unit/     Vitest.   tests/e2e/  Playwright smoke.   tests/fixtures/corpus/  test corpus + eval queries.
 assets/         fonts, tray template PNGs.   build/  app icon, icns, models (gitignored).   docs/  brief, architecture, notes.
 web/            Marketing site. Separate project, see below.
+video/          Remotion videos, one standalone pnpm project per folder (like web/): update-dmg/ (signed-DMG launch post,
+                `pnpm render` -> release/keepanything-launch.mp4) and intro/ (homepage intro, -> release/keepanything-intro.mp4).
+                `pnpm dev` in either folder opens the studio.
 ```
 
 ### web/
