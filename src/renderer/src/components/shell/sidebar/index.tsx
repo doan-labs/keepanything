@@ -10,11 +10,12 @@ import { getPathForFile, invoke } from '../../../lib/ipc-client'
 import { useCollections } from '../../../state/collections'
 import { useJobs } from '../../../state/jobs'
 import { useLibrary } from '../../../state/library'
+import { useRuns } from '../../../state/runs'
 import { useSettings } from '../../../state/settings'
 import { useToasts } from '../../../state/toasts'
 import { type Section, useUi } from '../../../state/ui'
 import { shared } from '../../../styles/shared'
-import { BrandMark } from '../../common'
+import { BrandMark, Dot } from '../../common'
 import { GmiCloudLogo, OpenRouterLogo } from '../../settings'
 import { AnimatedSidebarIcon, type AnimatedSidebarIconName } from '../animated-icons'
 import { styles } from './styles'
@@ -25,6 +26,8 @@ interface RowProps {
   label: string
   count?: number
   current: boolean
+  /** Work is going on behind this section: a breathing dot beside the count. */
+  busy?: boolean
   onClick: () => void
   onContextMenu?: (e: React.MouseEvent) => void
   /** Accept drops (internal items and external payloads) into this collection. */
@@ -36,6 +39,7 @@ function Row({
   label,
   count: n,
   current,
+  busy,
   onClick,
   onContextMenu,
   dropCollectionId
@@ -117,7 +121,8 @@ function Row({
         </span>
       ) : null}
       <span {...stylex.props(styles.label, shared.ellipsis)}>{label}</span>
-      {n !== undefined && n > 0 ? <span {...stylex.props(styles.count)}>{n}</span> : null}
+      {busy ? <Dot tone="processing" title="Working on something" /> : null}
+      {n !== undefined && n > 0 ? <span {...stylex.props(styles.count)}>{n > 999 ? '999+' : n}</span> : null}
     </button>
   )
 }
@@ -134,6 +139,10 @@ export function Sidebar(): React.JSX.Element {
   const stats = useSettings((s) => s.stats)
   const provider = useSettings((s) => s.settings?.provider ?? 'gmi')
   const inFlight = useJobs((s) => Object.values(s.byItem).filter((j) => j.jobStatus !== 'failed').length)
+  // Both stores drop an entry once its work settles, so anything left is still going. Agent runs are
+  // counted separately: an Ask has no item behind it, so it never shows up as a job.
+  const batchJobs = useJobs((s) => Object.keys(s.byBatch).length)
+  const agentRunning = useRuns((s) => s.order.some((id) => s.runs[id]?.status === 'running'))
   const aiStatus: AiStatus = stats?.aiStatus ?? 'unconfigured'
 
   const go = (next: Section, collectionId: string | null = null): void => {
@@ -182,6 +191,7 @@ export function Sidebar(): React.JSX.Element {
           icon={<Activity size={16} strokeWidth={1.5} />}
           label="Activity"
           count={inFlight}
+          busy={inFlight > 0 || batchJobs > 0 || agentRunning}
           current={section === 'activity'}
           onClick={() => go('activity')}
         />
