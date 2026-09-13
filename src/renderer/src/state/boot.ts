@@ -22,6 +22,7 @@ export function bootRenderer(): void {
   unsubscribers.push(
     on(IPC_EVENTS.itemsChanged, (event) => {
       useLibrary.getState().applyItemsChanged(event)
+      if (event.summaries) useJobs.getState().applySettled(event.summaries)
       void useSettings.getState().loadStats()
       // Collection counts exclude trashed items but main only emits `collections:changed` for
       // membership edits, so membership-preserving lifecycle changes must refresh them here.

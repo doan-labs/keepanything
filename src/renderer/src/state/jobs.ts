@@ -4,7 +4,7 @@
  */
 import { create } from 'zustand'
 import { isTerminal } from '../../../shared/status'
-import type { JobProgress } from '../../../shared/types'
+import type { ItemSummary, JobProgress } from '../../../shared/types'
 import { invoke } from '../lib/ipc-client'
 
 export interface JobsState {
@@ -14,6 +14,8 @@ export interface JobsState {
   byBatch: Record<string, JobProgress>
   load: () => Promise<void>
   applyProgress: (progress: JobProgress) => void
+  /** Forget items that have settled, whatever finished them. */
+  applySettled: (items: readonly Pick<ItemSummary, 'id' | 'processingStatus'>[]) => void
   inFlight: () => number
 }
 
@@ -50,6 +52,21 @@ export const useJobs = create<JobsState>((set, get) => ({
         return { byBatch }
       }
       return {}
+    })
+  },
+
+  /**
+   * A batch stage (`organize_batch`) settles the items it worked on without a per-item progress
+   * event, so the last thing this store hears about them is `RELATING`. `items:changed` carries the
+   * status they landed on; without this the entries — and the Activity count — would never clear.
+   */
+  applySettled(items) {
+    set((s) => {
+      const done = items.filter((i) => isTerminal(i.processingStatus) && s.byItem[i.id])
+      if (done.length === 0) return s
+      const byItem = { ...s.byItem }
+      for (const item of done) delete byItem[item.id]
+      return { byItem }
     })
   },
 
