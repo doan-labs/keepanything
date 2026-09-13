@@ -9,6 +9,9 @@ type SystemHandlers = Pick<
   | 'system:openExternal'
   | 'system:chooseFiles'
   | 'system:revealLibrary'
+  | 'system:updateStatus'
+  | 'system:checkForUpdates'
+  | 'system:installUpdate'
   | 'jobs:status'
 >
 
@@ -25,6 +28,9 @@ export function createSystemHandlers(deps: HandlerDeps): SystemHandlers {
       // Main-only: the renderer never learns or sends a path.
       deps.desktop.showItemInFolder(deps.paths.userData)
     },
+    'system:updateStatus': () => deps.updater.status(),
+    'system:checkForUpdates': () => deps.updater.check(),
+    'system:installUpdate': () => deps.updater.install(),
     'jobs:status': () => deps.queue.progress()
   }
 }

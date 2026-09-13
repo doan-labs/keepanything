@@ -42,7 +42,8 @@ export function bootRenderer(): void {
       useToasts.getState().push({ text: n === 1 ? 'Saved.' : `Saved ${n} things.` })
     }),
     on(IPC_EVENTS.settingsChanged, ({ settings }) => useSettings.getState().applyChanged(settings)),
-    on(IPC_EVENTS.themeChanged, ({ theme }) => useUi.getState().setTheme(theme))
+    on(IPC_EVENTS.themeChanged, ({ theme }) => useUi.getState().setTheme(theme)),
+    on(IPC_EVENTS.updateStatus, (status) => useSettings.getState().applyUpdater(status))
   )
 
   // Initial theme from the OS until main says otherwise.
@@ -56,6 +57,7 @@ export function bootRenderer(): void {
   const route = useUi.getState().route
   void useSettings.getState().load()
   void useSettings.getState().loadStats()
+  void useSettings.getState().loadUpdater()
   if (route === 'library') {
     void useLibrary.getState().load()
     void useCollections.getState().load()

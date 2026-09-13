@@ -3,7 +3,7 @@
  * with macOS `screencapture` into `.artifacts/screenshot.png` (gitignored). The terminal may need
  * Screen Recording permission for window contents to appear.
  *
- * Usage: pnpm run screenshot [-- --theme dark|light] [--out <file>] [--reset] [--empty] [--settings] [--activity]
+ * Usage: pnpm run screenshot [-- --theme dark|light] [--out <file>] [--reset] [--empty] [--settings [--settings-section <title>]] [--activity]
  *                            [--palette <query>] [--page]
  *
  *   --theme   Force the appearance for the shot (default: dark). Sets `nativeTheme.themeSource`
@@ -89,6 +89,12 @@ const bounds = await app.evaluate(({ BrowserWindow }) => {
 if (args.includes('--settings')) {
   await page.getByRole('button', { name: 'Settings' }).click()
   await page.waitForTimeout(400)
+  // --settings-section <title> scrolls that section (its aria-label) to the top of the sheet.
+  const section = option('--settings-section', null)
+  if (section !== null) {
+    await page.getByRole('region', { name: section }).evaluate((el) => el.scrollIntoView({ block: 'start' }))
+    await page.waitForTimeout(200)
+  }
 }
 if (args.includes('--activity')) {
   await page.getByRole('button', { name: 'Activity' }).click()

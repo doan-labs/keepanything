@@ -29,7 +29,8 @@ import type {
   JobProgress,
   ProcessingStatus,
   SearchHit,
-  Settings
+  Settings,
+  UpdateStatus
 } from '../../../shared/types'
 import {
   FIXTURE_COLLECTIONS,
@@ -53,6 +54,7 @@ interface MockState {
   runs: Map<string, AgentRunDetail>
   settings: Settings
   jobs: JobProgress[]
+  updater: UpdateStatus
 }
 
 const ok = <T>(data: T): IpcEnvelope<T> => ({ ok: true, data })
@@ -79,7 +81,8 @@ export function createMockBridge(): KeepAnythingApi {
     membership: new Map(),
     runs: new Map([[FIXTURE_RUN.id, FIXTURE_RUN]]),
     settings: { ...FIXTURE_SETTINGS },
-    jobs: [...FIXTURE_JOBS]
+    jobs: [...FIXTURE_JOBS],
+    updater: { version: 'dev', state: 'idle' }
   }
   for (const item of state.items.values()) {
     for (const cid of item.collectionIds) {
@@ -749,6 +752,20 @@ export function createMockBridge(): KeepAnythingApi {
       }
       case 'system:contextMenu':
         return respond({} as IpcResponseMap[C])
+      case 'system:updateStatus':
+        return respond(state.updater as IpcResponseMap[C])
+      case 'system:checkForUpdates': {
+        // Mock: a check that finds nothing, so the Settings row can be exercised without a build.
+        const step = (next: UpdateStatus): void => {
+          state.updater = next
+          emit('update:status', next)
+        }
+        step({ ...state.updater, state: 'checking' })
+        setTimeout(() => step({ ...state.updater, state: 'current' }), 900)
+        return respond(undefined as IpcResponseMap[C])
+      }
+      case 'system:installUpdate':
+        return respond(undefined as IpcResponseMap[C])
       case 'system:chooseFiles':
         return respond({ paths: [] as string[] } as unknown as IpcResponseMap[C])
       case 'jobs:status':

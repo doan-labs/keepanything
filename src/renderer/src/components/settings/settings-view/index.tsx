@@ -1,14 +1,28 @@
 import * as stylex from '@stylexjs/stylex'
-import { Check, Copy, FolderOpen, KeyRound, PlugZap, RotateCw, Trash2, X } from 'lucide-react'
+import {
+  Check,
+  ChevronRight,
+  Copy,
+  Download,
+  FolderOpen,
+  KeyRound,
+  PlugZap,
+  RefreshCw,
+  RotateCw,
+  Trash2,
+  X
+} from 'lucide-react'
 import { type ReactNode, useEffect, useRef, useState } from 'react'
+import changelog from '../../../../../../CHANGELOG.md?raw'
 import {
   AI_PROVIDER_DEFAULTS,
   DEFAULT_BASE_URL,
   DEFAULT_MODEL,
   EMBEDDING_MODEL_ID
 } from '../../../../../shared/constants'
-import type { AiProviderId, CaptureMode, Theme } from '../../../../../shared/types'
+import type { AiProviderId, CaptureMode, Theme, UpdateStatus } from '../../../../../shared/types'
 import { describeError, invoke } from '../../../lib/ipc-client'
+import { confirm } from '../../../state/confirm'
 import { useSettings } from '../../../state/settings'
 import { useToasts } from '../../../state/toasts'
 import { useUi } from '../../../state/ui'
@@ -17,10 +31,10 @@ import { Button } from '../../common'
 import { GmiCloudLogo, OpenRouterLogo } from '../provider-logo'
 import { styles } from './styles'
 
-function Row({ label, children }: { label: string; children: ReactNode }): React.JSX.Element {
+function Row({ label, top, children }: { label: string; top?: boolean; children: ReactNode }): React.JSX.Element {
   return (
     <div {...stylex.props(styles.row)}>
-      <span {...stylex.props(styles.label)}>{label}</span>
+      <span {...stylex.props(styles.label, top && styles.labelTop)}>{label}</span>
       {children}
     </div>
   )
@@ -65,6 +79,82 @@ function Seg<T extends string>({
       ))}
     </div>
   )
+}
+
+// `## <version> · <date>` headings and `- ` bullets; anything else in the file is ignored.
+const RELEASES = (() => {
+  const releases: { version: string; date: string; items: string[] }[] = []
+  for (const line of changelog.split('\n')) {
+    const heading = /^## (\S+)(?: · (.+))?$/.exec(line)
+    if (heading) releases.push({ version: heading[1] ?? '', date: heading[2] ?? '', items: [] })
+    else if (line.startsWith('- ')) releases.at(-1)?.items.push(line.slice(2).replace(/`/g, ''))
+  }
+  return releases
+})()
+
+function Changelog({ current }: { current?: string }): React.JSX.Element {
+  const [open, setOpen] = useState(() => new Set<string>())
+  const toggle = (v: string): void =>
+    setOpen((prev) => {
+      const next = new Set(prev)
+      if (!next.delete(v)) next.add(v)
+      return next
+    })
+  return (
+    <div {...stylex.props(styles.log)}>
+      {RELEASES.map((r) => {
+        const isOpen = open.has(r.version)
+        return (
+          <div key={r.version}>
+            <button
+              type="button"
+              aria-expanded={isOpen}
+              {...stylex.props(styles.logToggle)}
+              onClick={() => toggle(r.version)}
+            >
+              <ChevronRight
+                size={14}
+                strokeWidth={1.5}
+                {...stylex.props(styles.logChevron, isOpen && styles.logChevronOpen)}
+              />
+              <span {...stylex.props(styles.logVersion)}>{r.version}</span>
+              <span {...stylex.props(styles.logDate)}>{r.date}</span>
+              {r.version === current ? <span {...stylex.props(styles.badge)}>Installed</span> : null}
+            </button>
+            {isOpen ? (
+              <ul {...stylex.props(styles.logList)}>
+                {r.items.map((item) => (
+                  <li key={item} {...stylex.props(styles.logItem)}>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+function describeUpdate(u: UpdateStatus | null): { text: string; hint?: string; busy: boolean } {
+  if (!u) return { text: '…', busy: false }
+  switch (u.state) {
+    case 'unavailable':
+      return { text: `${u.version} · development build`, busy: false }
+    case 'checking':
+      return { text: 'Checking…', busy: true }
+    case 'downloading':
+      return { text: `Downloading ${u.latest ?? ''} · ${u.percent ?? 0}%`, busy: true }
+    case 'ready':
+      return { text: `${u.latest ?? ''} is ready`, hint: 'Installs when you quit, or restart now.', busy: false }
+    case 'current':
+      return { text: `${u.version} · up to date`, busy: false }
+    case 'error':
+      return { text: u.version, hint: u.error, busy: false }
+    default:
+      return { text: u.version, busy: false }
+  }
 }
 
 const THEMES = [
@@ -116,6 +206,9 @@ export function SettingsView(): React.JSX.Element {
   const lastTest = useSettings((s) => s.lastTest)
   const testConnection = useSettings((s) => s.testConnection)
   const reprocessAll = useSettings((s) => s.reprocessAll)
+  const updater = useSettings((s) => s.updater)
+  const checkForUpdates = useSettings((s) => s.checkForUpdates)
+  const installUpdate = useSettings((s) => s.installUpdate)
   const pop = useUi((s) => s.pop)
   const push = useToasts((s) => s.push)
   const [key, setKey] = useState('')
@@ -174,6 +267,16 @@ export function SettingsView(): React.JSX.Element {
     if (!r.ok) push({ text: describeError(r.error) })
   }
 
+  const restartToUpdate = async (): Promise<void> => {
+    const ok = await confirm({
+      title: 'Restart to update?',
+      body: `KeepAnything quits and reopens as version ${updater?.latest ?? ''}. Anything still processing picks up afterwards.`,
+      confirmLabel: 'Restart'
+    })
+    if (ok) await installUpdate()
+  }
+
+  const release = describeUpdate(updater)
   const hasKey = settings?.hasApiKey ?? false
   const showKeyField = editingKey || !hasKey
 
@@ -397,22 +500,37 @@ export function SettingsView(): React.JSX.Element {
           </div>
         </Section>
 
-        <Section title="Privacy">
-          <div {...stylex.props(styles.privacy)}>
-            <div {...stylex.props(styles.privacyCol)}>
-              <h4 {...stylex.props(shared.eyebrow, styles.privacyHead)}>Stays on this Mac</h4>
-              Originals, thumbnails, extracted text, the search index, embeddings, collections, relationships and the
-              run log.
+        <Section title="About">
+          <Row label="Version">
+            <div {...stylex.props(styles.control, styles.controlStart)}>
+              <span {...stylex.props(styles.value, styles.grow)} aria-live="polite">
+                {release.text}
+              </span>
+              {updater?.state === 'ready' ? (
+                <Button variant="primary" small onClick={() => void restartToUpdate()}>
+                  <Download size={14} strokeWidth={1.5} />
+                  Restart to update
+                </Button>
+              ) : (
+                <Button
+                  variant="quiet"
+                  small
+                  disabled={release.busy || updater?.state === 'unavailable'}
+                  aria-busy={release.busy}
+                  onClick={() => void checkForUpdates()}
+                >
+                  <RefreshCw size={14} strokeWidth={1.5} />
+                  Check for updates
+                </Button>
+              )}
             </div>
-            <div {...stylex.props(styles.privacyCol)}>
-              <h4 {...stylex.props(shared.eyebrow, styles.privacyHead)}>Sent to the provider</h4>
-              Only while understanding: a trimmed excerpt of one item at a time (or a downscaled image), plus one-line
-              summaries of related items. Never the whole library.
-              {selectedProvider === 'openrouter' ? (
-                <> Requests go through OpenRouter to the selected model's upstream provider.</>
-              ) : null}
-            </div>
-          </div>
+            {release.hint ? (
+              <span {...stylex.props(styles.hint, updater?.state === 'error' && styles.bad)}>{release.hint}</span>
+            ) : null}
+          </Row>
+          <Row label="What's new" top>
+            <Changelog current={updater?.version} />
+          </Row>
         </Section>
 
         <Section title="Danger zone">
@@ -446,7 +564,7 @@ export function SettingsView(): React.JSX.Element {
             </Button>
           </div>
           {resetError ? (
-            <p role="alert" {...stylex.props(styles.privacyCol, styles.bad)}>
+            <p role="alert" {...stylex.props(styles.resetError, styles.bad)}>
               {resetError}
             </p>
           ) : null}

@@ -212,6 +212,9 @@ export const REQUEST_SCHEMAS = {
   'system:openExternal': z.object({ url: httpUrl }).strict() satisfies z.ZodType<IpcRequest<'system:openExternal'>>,
   'system:chooseFiles': empty satisfies z.ZodType<IpcRequest<'system:chooseFiles'>>,
   'system:revealLibrary': empty satisfies z.ZodType<IpcRequest<'system:revealLibrary'>>,
+  'system:updateStatus': empty satisfies z.ZodType<IpcRequest<'system:updateStatus'>>,
+  'system:checkForUpdates': empty satisfies z.ZodType<IpcRequest<'system:checkForUpdates'>>,
+  'system:installUpdate': empty satisfies z.ZodType<IpcRequest<'system:installUpdate'>>,
   'jobs:status': empty satisfies z.ZodType<IpcRequest<'jobs:status'>>
 } as const satisfies { [C in IpcChannel]: z.ZodType<IpcRequest<C>> }
 

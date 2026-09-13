@@ -688,6 +688,20 @@ export interface SettingsPatch {
   theme?: Theme
 }
 
+/** `system:updateStatus` payload and `update:status` event. */
+export interface UpdateStatus {
+  /** Version of the running app. */
+  version: string
+  /** `unavailable`: not a packaged build, so there is nothing to update. */
+  state: 'unavailable' | 'idle' | 'checking' | 'downloading' | 'ready' | 'current' | 'error'
+  /** Version on the release feed (`downloading`, `ready`). */
+  latest?: string
+  /** 0..100 while `downloading`. */
+  percent?: number
+  /** User-safe message (`error`). */
+  error?: string
+}
+
 /** `system:stats` payload. */
 export interface SystemStats {
   items: number

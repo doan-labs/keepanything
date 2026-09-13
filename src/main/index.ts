@@ -1,6 +1,7 @@
 import { join } from 'node:path'
 import { app, BrowserWindow, dialog, ipcMain, protocol, session, utilityProcess, webContents } from 'electron'
 import { autoUpdater } from 'electron-updater'
+import { version as packageVersion } from '../../package.json'
 import { MEDIA_SCHEME } from '../shared/constants'
 import type { TestConnectionResult } from '../shared/ipc'
 import { createAgentService } from './agent'
@@ -21,6 +22,7 @@ import { registerMediaProtocol } from './desktop/media-protocol'
 import { registerShortcuts } from './desktop/shortcuts'
 import { installTheme } from './desktop/theme'
 import { createTray } from './desktop/tray'
+import { createUpdater } from './desktop/updater'
 import { createWindowManager } from './desktop/windows'
 import { debugMode, e2eMode, envAiMode, isDev, loadDotEnv } from './env'
 import { bridgeDomainEvents, createIpcPush } from './ipc/events'
@@ -97,7 +99,9 @@ async function bootstrap(): Promise<void> {
     sinks,
     secrets: Object.values(envDefaults.providers ?? {}).flatMap((p) => (p.apiKey ? [p.apiKey] : []))
   })
-  logger.info('starting', { version: app.getVersion(), userData: paths.userData, dev: isDev, e2e: e2eMode })
+  // Unpackaged, `app.getVersion()` falls back to Electron's own version when the entry is not next to package.json.
+  const appVersion = app.isPackaged ? app.getVersion() : packageVersion
+  logger.info('starting', { version: appVersion, userData: paths.userData, dev: isDev, e2e: e2eMode })
 
   const envMode = envAiMode()
   const settings = createConfig(paths, envMode ? { ...envDefaults, aiMode: envMode } : envDefaults, logger)
@@ -256,6 +260,16 @@ async function bootstrap(): Promise<void> {
   }
 
   const desktop = createDesktopActions(windows, repos)
+  // Packaged only: dev and E2E runs have no app-update.yml. Updates download in the background,
+  // post a native notification and install on quit (or from Settings).
+  const updaterLog = logger.child({ scope: 'updater' })
+  if (app.isPackaged) autoUpdater.logger = updaterLog
+  const updater = createUpdater({
+    engine: app.isPackaged ? autoUpdater : null,
+    version: appVersion,
+    push,
+    logger: updaterLog
+  })
   let resetting = false
   const handlers = createHandlers({
     items,
@@ -270,6 +284,7 @@ async function bootstrap(): Promise<void> {
     clock,
     logger: logger.child({ scope: 'ipc' }),
     desktop,
+    updater,
     push,
     intake,
     retrieval,
@@ -394,17 +409,9 @@ async function bootstrap(): Promise<void> {
     .catch((error: unknown) => logger.warn('retrieval warm-up failed', { error }))
   logger.info('ready')
 
-  // Packaged only: dev and E2E runs have no app-update.yml. The update downloads in the background,
-  // posts a native notification and installs on quit. A tray app rarely quits, so keep checking.
-  if (app.isPackaged) {
-    const updaterLog = logger.child({ scope: 'updater' })
-    autoUpdater.logger = updaterLog
-    // Without a listener an emitted 'error' throws out of the updater's internals and takes main down.
-    autoUpdater.on('error', (error) => updaterLog.warn('update failed', { error }))
-    const checkForUpdates = (): void => void autoUpdater.checkForUpdatesAndNotify().catch(() => {})
-    checkForUpdates()
-    setInterval(checkForUpdates, 4 * 60 * 60 * 1000)
-  }
+  // A tray app rarely quits, so keep checking.
+  void updater.check()
+  setInterval(() => void updater.check(), 4 * 60 * 60 * 1000)
 
   shutdown = async () => {
     logger.info('shutting down')

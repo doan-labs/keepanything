@@ -45,7 +45,8 @@ import type {
   Settings,
   SettingsPatch,
   Stage,
-  SystemStats
+  SystemStats,
+  UpdateStatus
 } from './types'
 
 /** Every request channel. Keys are for code, values are the wire names. */
@@ -94,6 +95,9 @@ export const IPC_CHANNELS = {
   systemOpenExternal: 'system:openExternal',
   systemChooseFiles: 'system:chooseFiles',
   systemRevealLibrary: 'system:revealLibrary',
+  systemUpdateStatus: 'system:updateStatus',
+  systemCheckForUpdates: 'system:checkForUpdates',
+  systemInstallUpdate: 'system:installUpdate',
   jobsStatus: 'jobs:status'
 } as const
 
@@ -116,7 +120,8 @@ export const IPC_EVENTS = {
   shelfPresence: 'shelf:presence',
   shelfDrag: 'shelf:drag',
   settingsChanged: 'settings:changed',
-  themeChanged: 'theme:changed'
+  themeChanged: 'theme:changed',
+  updateStatus: 'update:status'
 } as const
 
 /** Wire name of a push event. */
@@ -268,6 +273,11 @@ export interface IpcRequestMap {
   'system:chooseFiles': void
   /** Reveal the library folder (`userData`) in Finder. */
   'system:revealLibrary': void
+  'system:updateStatus': void
+  /** Packaged builds only; elsewhere a no-op. Progress arrives as `update:status` events. */
+  'system:checkForUpdates': void
+  /** Quit and relaunch on the downloaded version. The renderer confirms first. */
+  'system:installUpdate': void
   'jobs:status': void
 }
 
@@ -317,6 +327,9 @@ export interface IpcResponseMap {
   'system:openExternal': void
   'system:chooseFiles': { paths: string[] }
   'system:revealLibrary': void
+  'system:updateStatus': UpdateStatus
+  'system:checkForUpdates': void
+  'system:installUpdate': void
   'jobs:status': JobProgress[]
 }
 
@@ -364,6 +377,7 @@ export interface IpcEventMap {
   'shelf:drag': { folders: number }
   'settings:changed': { settings: Settings }
   'theme:changed': { theme: ResolvedTheme }
+  'update:status': UpdateStatus
 }
 
 export type IpcEvent<E extends IpcEventName> = IpcEventMap[E]

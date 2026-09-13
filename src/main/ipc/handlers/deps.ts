@@ -4,6 +4,7 @@ import type { AuditService } from '../../core/audit'
 import type { CollectionService } from '../../core/collection-service'
 import type { ItemService } from '../../core/item-service'
 import type { RelationshipService } from '../../core/relationship-service'
+import type { UpdaterActions } from '../../desktop/updater'
 import type { SettingsStore } from '../../lib/settings'
 import type { Queue } from '../../pipeline/queue'
 import type { AgentService, AIProvider, Clock, EmbeddingProvider, Intake, Logger, Paths, Retrieval } from '../../ports'
@@ -37,6 +38,7 @@ export interface HandlerDeps {
   clock: Clock
   logger: Logger
   desktop: DesktopActions
+  updater: UpdaterActions
   push: IpcPush
   intake?: Intake
   retrieval?: Retrieval

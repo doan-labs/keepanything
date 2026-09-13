@@ -123,6 +123,7 @@ export const styles = stylex.create({
     borderTopColor: colors.hairline
   },
   label: { color: colors.fg1, fontSize: text.t13 },
+  labelTop: { alignSelf: 'start', paddingTop: space.s3 },
   control: { display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: space.s2, minWidth: 0 },
   field: {
     flexGrow: 1,
@@ -141,6 +142,8 @@ export const styles = stylex.create({
   },
   mono: { fontFamily: fonts.mono, fontSize: text.t12 },
   hint: { gridColumn: 2, fontSize: text.t12, color: colors.fg4, lineHeight: 1.5 },
+  controlStart: { justifyContent: 'flex-start' },
+  grow: { flexGrow: 1, textAlign: 'left' },
   ok: { color: colors.ok },
   bad: { color: colors.danger },
   seg: {
@@ -167,6 +170,34 @@ export const styles = stylex.create({
   },
   segOn: { color: colors.fg1, backgroundColor: colors.bgActive },
   value: { fontSize: text.t12, color: colors.fg2, textAlign: 'right' },
+  log: { display: 'flex', flexDirection: 'column', gap: 2, fontSize: text.t12, lineHeight: 1.5, color: colors.fg2 },
+  logToggle: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: space.s2,
+    width: '100%',
+    height: 28,
+    paddingInline: 0,
+    color: { default: colors.fg1, ':hover': colors.fg1 },
+    backgroundColor: 'transparent',
+    borderWidth: 0,
+    borderRadius: radii.r1,
+    cursor: 'default',
+    textAlign: 'left'
+  },
+  logChevron: {
+    flexShrink: 0,
+    color: colors.fg4,
+    transitionProperty: 'transform',
+    transitionDuration: motion.fast,
+    transitionTimingFunction: motion.easeOut,
+    transform: 'rotate(0deg)'
+  },
+  logChevronOpen: { transform: 'rotate(90deg)' },
+  logVersion: { fontWeight: weight.medium, fontVariantNumeric: 'tabular-nums' },
+  logDate: { color: colors.fg4 },
+  logList: { paddingLeft: space.s5, paddingBottom: space.s2, listStyleType: 'disc' },
+  logItem: { marginBottom: 2 },
   path: {
     fontFamily: fonts.mono,
     fontSize: text.t11,
@@ -194,21 +225,7 @@ export const styles = stylex.create({
     fontVariantNumeric: 'tabular-nums'
   },
   statLabel: { fontSize: text.t11, color: colors.fg3 },
-  privacy: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    fontSize: text.t12,
-    color: colors.fg2,
-    lineHeight: 1.5
-  },
-  privacyCol: {
-    paddingBlock: space.s3,
-    paddingInline: space.s4,
-    borderLeftWidth: { default: 1, ':first-child': 0 },
-    borderLeftStyle: 'solid',
-    borderLeftColor: colors.hairline
-  },
-  privacyHead: { marginBottom: space.s1 },
+  resetError: { paddingBlock: space.s3, paddingInline: space.s4, fontSize: text.t12, lineHeight: 1.5 },
   dangerBox: { display: 'flex', alignItems: 'center', gap: space.s3, paddingBlock: space.s3, paddingInline: space.s4 },
   dangerText: { flexGrow: 1, minWidth: 0, fontSize: text.t12, color: colors.fg3, lineHeight: 1.5 },
   dangerTitle: { color: colors.fg1, fontSize: text.t13, display: 'block' },
