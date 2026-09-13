@@ -12,7 +12,7 @@ conservative semantic collections. Search is local (SQLite FTS5 + local bge-smal
 "Ask My Stuff" adds the agent on top of the same retrieval. Product spec: `docs/PRODUCT_BRIEF.md`.
 Design and implementation contract: `docs/ARCHITECTURE.md` (read it before changing anything).
 
-Non-goals: cloud sync, accounts, telemetry, auto-update, Windows/Linux, scraping behind logins.
+Non-goals: cloud sync, accounts, telemetry, Windows/Linux, scraping behind logins.
 
 ## Stack
 
@@ -30,7 +30,8 @@ Non-goals: cloud sync, accounts, telemetry, auto-update, Windows/Linux, scraping
   that change in place (live counters, statuses); it renders each glyph in its own span, so only short
   labels, never prose. Static text stays plain.
 - Tests: Vitest (unit), Playwright `_electron` (smoke). Packaging: electron-builder, arm64 + x64 DMGs, Developer ID
-  optionally signed + notarized via `APPLE_KEYCHAIN_PROFILE`.
+  optionally signed + notarized via `APPLE_KEYCHAIN_PROFILE`. Auto-update: `electron-updater` reading
+  `latest-mac.yml` + per-arch zips from GitHub Releases; only signed builds can update, packaged builds only.
 - Package manager: pnpm only. Never npm or yarn. Commit `pnpm-lock.yaml`.
 
 ## Commands
@@ -51,6 +52,7 @@ Non-goals: cloud sync, accounts, telemetry, auto-update, Windows/Linux, scraping
 | Comment hygiene metrics (`--list` ranks docs that only restate the identifier) | `pnpm run audit:comments` |
 | Unsigned `.dmg` (arm64 + x64, drag-to-Applications window) to `release/` | `pnpm run package:mac` |
 | Signed + notarized `.dmg` | `APPLE_KEYCHAIN_PROFILE=keepanything pnpm run package:mac:dmg` |
+| Same, plus `.zip` + `latest-mac.yml` uploaded to a draft GitHub release | `GH_TOKEN=… APPLE_KEYCHAIN_PROFILE=keepanything pnpm run release:mac` |
 
 Before finishing any change: `pnpm run typecheck && pnpm run test`. Run the screenshot script when
 touching layout or CSS and look at the image.

@@ -1,5 +1,6 @@
 import { join } from 'node:path'
 import { app, BrowserWindow, dialog, ipcMain, protocol, session, utilityProcess, webContents } from 'electron'
+import { autoUpdater } from 'electron-updater'
 import { MEDIA_SCHEME } from '../shared/constants'
 import type { TestConnectionResult } from '../shared/ipc'
 import { createAgentService } from './agent'
@@ -392,6 +393,18 @@ async function bootstrap(): Promise<void> {
     })
     .catch((error: unknown) => logger.warn('retrieval warm-up failed', { error }))
   logger.info('ready')
+
+  // Packaged only: dev and E2E runs have no app-update.yml. The update downloads in the background,
+  // posts a native notification and installs on quit. A tray app rarely quits, so keep checking.
+  if (app.isPackaged) {
+    const updaterLog = logger.child({ scope: 'updater' })
+    autoUpdater.logger = updaterLog
+    // Without a listener an emitted 'error' throws out of the updater's internals and takes main down.
+    autoUpdater.on('error', (error) => updaterLog.warn('update failed', { error }))
+    const checkForUpdates = (): void => void autoUpdater.checkForUpdatesAndNotify().catch(() => {})
+    checkForUpdates()
+    setInterval(checkForUpdates, 4 * 60 * 60 * 1000)
+  }
 
   shutdown = async () => {
     logger.info('shutting down')

@@ -36,6 +36,10 @@ mac:
   target:
     - target: dmg
       arch: [arm64, x64]
+    # What electron-updater downloads; the build also writes latest-mac.yml and blockmaps next to it.
+    # Keep `arm64` in the name: the updater picks the Apple Silicon file by that substring.
+    - target: zip
+      arch: [arm64, x64]
   artifactName: ${productName}-${version}-${arch}.${ext}
   hardenedRuntime: true
   # Without this a missing identity is a warning, not an error, and the .dmg ships unsigned.
@@ -47,3 +51,9 @@ mac:
     NSHumanReadableCopyright: Copyright © 2026 mnismt
 dmg:
   sign: false
+# Uploads only with `--publish always` (`pnpm run release:mac`, needs GH_TOKEN), as a draft release.
+# Without the flag a package run still embeds app-update.yml and writes latest-mac.yml locally.
+publish:
+  provider: github
+  owner: mnismt
+  repo: keepanything

@@ -15,13 +15,8 @@ bge-small-en-v1.5 embeddings.
 ## Install
 
 Download the latest `.dmg` from [Releases](https://github.com/mnismt/keepanything/releases/latest)
-(`-arm64` for Apple Silicon, `-x64` for Intel)
-and drag `KeepAnything.app` into `/Applications`. The build is not notarized, so if macOS reports the
-app as "damaged", clear the quarantine flag once:
-
-```bash
-xattr -dr com.apple.quarantine /Applications/KeepAnything.app
-```
+(`-arm64` for Apple Silicon, `-x64` for Intel), open it, and drag `KeepAnything.app` onto the
+`Applications` folder shown next to it. The DMGs are signed with a Developer ID and notarized by Apple.
 
 Requires macOS 13+ (Apple Silicon or Intel). Add a GMI Cloud (or OpenRouter) API key in Settings; without
 one, items are still kept and searchable but summaries are heuristic and no collections form.
@@ -41,6 +36,7 @@ pnpm run dev
 | Type-check + unit tests | `pnpm run typecheck && pnpm run test` |
 | Electron smoke test | `pnpm run test:e2e` |
 | Unsigned / signed `.dmg` (arm64 + x64) | `pnpm run package:mac` / `pnpm run package:mac:dmg` |
+| Signed `.dmg` + `.zip` uploaded to a draft GitHub release (needs `GH_TOKEN`) | `pnpm run release:mac` |
 | Seed an empty dev library | `pnpm run seed:library` |
 
 Keys can also go in a gitignored `.env` (see `.env.example`): `KEEPANYTHING_GMI_API_KEY`,
