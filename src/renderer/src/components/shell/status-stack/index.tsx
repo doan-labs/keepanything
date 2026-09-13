@@ -1,14 +1,17 @@
 import * as stylex from '@stylexjs/stylex'
 import { useEffect, useRef } from 'react'
-import { runOutcome, runTitle } from '../../../lib/activity'
+import { useShallow } from 'zustand/react/shallow'
+import { runOutcome } from '../../../lib/activity'
 import { undoRun } from '../../../lib/agent-actions'
 import { count } from '../../../lib/format'
-import { describeError, invoke } from '../../../lib/ipc-client'
+import { describeError } from '../../../lib/ipc-client'
+import { askMatched, askPhase, askStatus } from '../../../lib/palette'
 import { useLibrary } from '../../../state/library'
-import { useRuns } from '../../../state/runs'
+import { selectActiveRuns, useRuns } from '../../../state/runs'
 import { useToasts } from '../../../state/toasts'
 import { useUi } from '../../../state/ui'
-import { ToastStack } from '../../common'
+import { shared } from '../../../styles/shared'
+import { Dot, ToastStack } from '../../common'
 import { styles } from './styles'
 
 /**
@@ -74,12 +77,34 @@ function useRunAnnouncements(): void {
   }, [runs, push, openRun, paletteOpen])
 }
 
-/** Bottom-right toasts: finished-run announcements and action feedback. Live progress lives in Activity. */
+/**
+ * An Ask still running after its palette was closed — opening an item from the run closes it, and the
+ * answer would otherwise arrive out of nowhere. Clicking steps back into the run. Only `command`
+ * runs: understand / organize work stays quiet in Activity.
+ */
+function LiveAsk(): React.JSX.Element | null {
+  const active = useRuns(useShallow(selectActiveRuns))
+  const openRun = useUi((s) => s.openRun)
+  const paletteOpen = useUi((s) => s.modalStack.some((m) => m.kind === 'palette'))
+  const run = active.filter((r) => r.task === 'command').at(-1)
+  if (!run || paletteOpen) return null
+  return (
+    <button type="button" {...stylex.props(styles.live)} onClick={() => openRun(run.runId)} title="Back to the search">
+      <Dot tone="processing" />
+      <span {...stylex.props(shared.ellipsis)}>
+        {askStatus(askPhase({ status: run.status, steps: run.steps, answered: false }), askMatched(run.steps).length)}
+      </span>
+    </button>
+  )
+}
+
+/** Bottom-right: the live Ask, finished-run announcements and action feedback. */
 export function StatusStack(): React.JSX.Element {
   useRunAnnouncements()
   return (
     <div {...stylex.props(styles.stack)} aria-live="polite">
       <ToastStack />
+      <LiveAsk />
     </div>
   )
 }
