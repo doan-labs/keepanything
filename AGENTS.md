@@ -138,6 +138,8 @@ icon's folder containing only `index.tsx` and the category `index.ts` re-exporti
   snapshot to `capture:drop`.
 - Pipeline stages return a `StagePatch`; only the scheduler writes `items.status`. Stage bodies are
   idempotent. Status transitions come from `status.next()` in `src/shared/status.ts`.
+- Anything that interrupts or discards work in progress (a live Ask run, an import, an unsaved edit) asks first
+  via `confirm()` from `renderer/state/confirm.ts`; never an inline "are you sure" row, never `window.confirm`.
 - The agent mutates state only through services with audit rows; every agent action is undoable and
   user removals write suppressions so the agent does not redo them.
 - Security baseline: `contextIsolation`, `sandbox`, no `nodeIntegration`, CSP,

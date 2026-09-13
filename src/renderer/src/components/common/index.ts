@@ -1,6 +1,7 @@
 export { BrandMark } from './brand-mark'
 export type { ButtonProps, ButtonVariant } from './button'
 export { Button } from './button'
+export { ConfirmDialog } from './confirm-dialog'
 export type { DotTone } from './dot'
 export { Dot, toneForStatus } from './dot'
 export type { InlineEditProps } from './inline-edit'

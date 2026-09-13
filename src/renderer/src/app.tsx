@@ -3,6 +3,7 @@ import { useCallback, useRef } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import { ActivityView } from './components/activity'
 import { CollectionDialog, CollectionHeader, CollectionsGrid } from './components/collections'
+import { ConfirmDialog } from './components/common'
 import { ItemDetail } from './components/detail'
 import { type EmptyKind, EmptyState, MasonryGrid, TrashHeader } from './components/library'
 import { CommandPalette } from './components/palette'
@@ -58,6 +59,7 @@ export function App(): React.JSX.Element {
       data-theme={theme ?? 'system'}
     >
       {route === 'shelf' ? <ShelfView /> : <LibraryApp />}
+      <ConfirmDialog />
     </div>
   )
 }

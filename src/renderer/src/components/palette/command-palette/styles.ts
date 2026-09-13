@@ -32,6 +32,8 @@ export const styles = stylex.create({
     borderColor: colors.hairline,
     boxShadow: shadows.sheet,
     overflow: 'hidden',
+    // The run view has no input to hold focus, so the dialog itself takes it to keep Escape inside.
+    outlineStyle: 'none',
     animationName: rise,
     animationDuration: motion.base,
     animationTimingFunction: motion.easeOut

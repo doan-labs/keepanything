@@ -17,7 +17,7 @@ import { librarySnapshotSource, seedDevLibrary } from '../../../lib/dev-seed'
 import { count } from '../../../lib/format'
 import { describeError, invoke } from '../../../lib/ipc-client'
 import { addToCollection } from '../../../lib/library-actions'
-import { groupHits, hitSnippet } from '../../../lib/palette'
+import { confirmStop, groupHits, hitSnippet } from '../../../lib/palette'
 import { useCollections } from '../../../state/collections'
 import { useLibrary } from '../../../state/library'
 import { useRuns } from '../../../state/runs'
@@ -65,15 +65,18 @@ export function CommandPalette(): React.JSX.Element {
   const [askError, setAskError] = useState<string | null>(null)
   const [snippets, setSnippets] = useState<Map<string, string>>(new Map())
   const [busy, setBusy] = useState<'' | 'seed' | 'snapshot'>('')
-  const [confirmCancel, setConfirmCancel] = useState(false)
   const run = useRuns((s) => (runId ? s.runs[runId] : undefined))
   const inputRef = useRef<HTMLInputElement>(null)
+  const dialogRef = useRef<HTMLDivElement>(null)
   const seq = useRef(0)
   const openedIntoRun = useRef(Boolean(initialRunId))
   const selected = useMemo(() => [...selection], [selection])
 
+  // Focus has to stay inside the dialog or the window-level shell keys get Escape first and pop the
+  // palette. The run view has no input, so the dialog holds focus itself.
   useEffect(() => {
-    if (!runId) inputRef.current?.focus()
+    if (runId) dialogRef.current?.focus()
+    else inputRef.current?.focus()
   }, [runId, mode])
 
   useEffect(() => {
@@ -112,7 +115,6 @@ export function CommandPalette(): React.JSX.Element {
 
   const start = async (request: AgentCommandRequest): Promise<void> => {
     setAskError(null)
-    setConfirmCancel(false)
     setLastRequest(request)
     setQuestion(request.question)
     // The same local FTS the list above runs, kept for the run view: it gives every match the line
@@ -137,15 +139,11 @@ export function CommandPalette(): React.JSX.Element {
     openDetail(id, id)
   }
 
-  // Leaving a live run throws away work that is already paid for, so the first press only arms the
-  // confirm in the footer and the second one is the one that stops it.
-  const back = (): void => {
-    if (run?.status === 'running' && !confirmCancel) {
-      setConfirmCancel(true)
-      return
+  const back = async (): Promise<void> => {
+    if (run && run.status === 'running') {
+      if (!(await confirmStop())) return
+      void invoke('agent:cancel', { runId: run.runId })
     }
-    setConfirmCancel(false)
-    if (run && run.status === 'running') void invoke('agent:cancel', { runId: run.runId })
     if (openedIntoRun.current) {
       closePalette()
       return
@@ -168,7 +166,7 @@ export function CommandPalette(): React.JSX.Element {
     if (e.key !== 'Escape') return
     e.stopPropagation()
     if (runId) {
-      back()
+      void back()
       return
     }
     if (mode === 'addToCollection') {
@@ -243,6 +241,8 @@ export function CommandPalette(): React.JSX.Element {
       onMouseDown={(e) => e.target === e.currentTarget && closePalette()}
     >
       <Command
+        ref={dialogRef}
+        tabIndex={-1}
         {...stylex.props(styles.dialog)}
         label="Search anything"
         shouldFilter={false}
@@ -258,9 +258,7 @@ export function CommandPalette(): React.JSX.Element {
             snippets={snippets}
             onOpenItem={open}
             onRetry={lastRequest ? () => void start(lastRequest) : null}
-            onBack={back}
-            confirmingCancel={confirmCancel}
-            onKeepGoing={() => setConfirmCancel(false)}
+            onBack={() => void back()}
             onFollowUp={priorTurn ? (text) => void start(buildFollowUp(text, priorTurn)) : null}
           />
         ) : (

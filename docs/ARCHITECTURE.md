@@ -112,11 +112,12 @@ src/
   renderer/src/
     main.tsx app.tsx (route by ?view=library|shelf; mounts fixed component slots)
     styles/ tokens.stylex.ts (defineVars for colours/radii/durations/shadows — contract)  shared.ts (shared stylex.create blocks)  themes.ts (createTheme light/dark for the shadow set)  global.css (reset + @font-face, the only plain CSS, lives in `@layer reset`)
-    state/  library.ts (items, filters, selection, focus, sort/layout/density)  collections.ts  runs.ts (agent runs keyed by runId, subscribed at boot)  ui.ts (route, modalStack, palette, theme, paletteRunId)  toasts.ts  settings.ts  jobs.ts  boot.ts (renderer startup)
+    state/  library.ts (items, filters, selection, focus, sort/layout/density)  collections.ts  runs.ts (agent runs keyed by runId, subscribed at boot)  ui.ts (route, modalStack, palette, theme, paletteRunId)  confirm.ts (`confirm(req): Promise<boolean>` — the one ask-before-interrupting API; `ConfirmDialog` renders it)  toasts.ts  settings.ts  jobs.ts  boot.ts (renderer startup)
     lib/    ipc-client.ts (typed invoke/on + dev MockBridge when window.keepAnything is absent)  keyboard.ts (focus-zone scoped map)  format.ts  dnd.ts (internal MIME; uses `INTERNAL_DND_MIME` from shared/constants)
     hooks/  use-shell-keys.ts  use-window-capture.ts
     components/
       shell/      Sidebar  Toolbar  StatusStack  DropOverlay  LocalStatusFooter
+      common/     Button  Kbd  Dot  Thumb  ConfirmDialog (mounted once in App at `zIndex.confirm`, above the palette; Esc/scrim → false, ↩ → true, focus restored)
       library/    MasonryGrid (JS-positioned)  ItemCard + bodies (Image, Video, Url, Github, Pdf, Text, Folder, Note, File)  ItemRow  EmptyState  TrashHeader
       detail/     ItemDetail (hero, Understanding [editable], Related, Collections, Actions, footer)  NoteView  AgentActivity ("Activity")
       palette/    CommandPalette (cmdk; local hits first; Ask row rules)  AskRun (scan strip -> matches with quotes -> answer)
@@ -501,7 +502,7 @@ marker), Why useful, Related (relationship label chips with × on hover + eviden
 snapshot); typing → an "Ask: …" bar pinned between the input and the list (badged `⌘↩`, outside cmdk so the hits keep the
 default selection and ↩ still opens), then local hits (grouped, thumbs); plain ↩ asks only when the settled search left
 nothing to open; Ask → `agent:command` → `AskRun` inside the palette: the question stays where the input was (click it or Esc
-to go back, cancelling a run in flight), one status line (pulsing dot, "Looking through your library" → "Reading 2 matches" →
+to go back; while the run is live Esc, Back and Cancel all go through `confirmStop()` → `confirm()` first, so a search is never dropped by a stray keypress), one status line (pulsing dot, "Looking through your library" → "Reading 2 matches" →
 "Found it in 2 things you kept", elapsed in mono). Under it the library as a scan strip — real thumbnails, a head sweeping
 across them, progress bar, `n / total`, hover a tile for its title, click to open it — until the run opens something; then
 match cards (thumb, title, where, and the line that matched, with the FTS `[[…]]` markers drawn as a highlighter), a rule,

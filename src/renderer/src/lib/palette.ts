@@ -4,6 +4,18 @@
  */
 import { COPY, SNIPPET_CLOSE, SNIPPET_OPEN } from '../../../shared/constants'
 import type { AgentCues, AgentRunStatus, AgentStep, ItemType, SearchHit } from '../../../shared/types'
+import { confirm } from '../state/confirm'
+
+/** Both ways out of a live Ask run (Escape/Back and the Cancel button) ask the same question. */
+export function confirmStop(): Promise<boolean> {
+  return confirm({
+    title: COPY.askStopTitle,
+    body: COPY.askStopBody,
+    confirmLabel: 'Stop',
+    cancelLabel: 'Keep going',
+    danger: true
+  })
+}
 
 /** Display groups for palette hits, in order. */
 export type HitGroupId = 'links' | 'images' | 'documents' | 'files' | 'notes'

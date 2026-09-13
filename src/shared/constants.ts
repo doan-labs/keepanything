@@ -119,7 +119,8 @@ export const COPY = {
   askReading: (n: number): string => (n === 1 ? 'Reading 1 match' : `Reading ${n} matches`),
   askFound: (n: number): string => (n === 1 ? 'Found it in 1 thing you kept' : `Found it in ${n} things you kept`),
   askAnswered: 'Answered from your library',
-  askCancelConfirm: 'Still looking. Stop the search?',
+  askStopTitle: 'Stop the search?',
+  askStopBody: 'It is still looking through your library. Whatever it has found so far stays on screen.',
   dropHint: 'Drop anywhere',
   /** The shelf's own headline: it exists to be dropped on, so it says so. */
   dropHere: 'Drop here',

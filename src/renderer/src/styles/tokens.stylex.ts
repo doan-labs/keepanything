@@ -128,7 +128,9 @@ export const zIndex = stylex.defineConsts({
   dialog: '25',
   drop: '30',
   status: '35',
-  palette: '50'
+  palette: '50',
+  /** Confirm sits above the palette: an Ask run is the most likely thing it interrupts. */
+  confirm: '60'
 })
 
 /** Media queries shared by components. */
