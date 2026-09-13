@@ -1,7 +1,7 @@
 import type { ItemsListRequest, ItemUpdatePatch } from '../../shared/ipc'
 import { relationshipLabel } from '../../shared/kinds'
 import { toMediaUrl } from '../../shared/media'
-import { isTerminal } from '../../shared/status'
+import { isFailed, isTerminal } from '../../shared/status'
 import type {
   Item,
   ItemDetail,
@@ -330,6 +330,14 @@ export function createItemService(deps: ItemServiceDeps): ItemService {
         if (existing.length === 0) return
         const targetIds = existing.map((i) => i.id)
         pipeline.cancelForItems(targetIds)
+        // The jobs are gone, so a running status would leave the card pulsing "Reading" for good.
+        // Settle it the way cancelProcessing does: PARTIAL reads as "kept, we stopped short".
+        // Failures keep their status: they already read as stopped, and the reason is worth keeping.
+        for (const item of existing) {
+          const status = item.processingStatus
+          if (isTerminal(status) || isFailed(status)) continue
+          items.update(item.id, { processingStatus: 'PARTIAL', modifiedAt: now })
+        }
         items.setDeleted(targetIds, now)
         audit.record({
           actor: 'user',

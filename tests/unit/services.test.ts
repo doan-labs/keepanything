@@ -74,6 +74,8 @@ describe('item service', () => {
     h.items.trash([item.id])
     expect(h.repos.jobs.activeForItem(item.id)).toEqual([])
     expect(h.repos.items.get(item.id)?.deletedAt).not.toBeNull()
+    // Nothing is processing it any more, so the card must not keep claiming work is in flight.
+    expect(h.repos.items.get(item.id)?.processingStatus).toBe('PARTIAL')
     expect(h.eventsNamed('item.trashed')).toHaveLength(1)
     const trashAudit = h.repos.audit.forEntity('item', item.id)[0]
     expect(trashAudit?.action).toBe('trash_item')

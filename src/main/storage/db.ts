@@ -1,6 +1,7 @@
 import { DatabaseSync, type SQLInputValue, type StatementSync } from 'node:sqlite'
 import INIT_SQL from './migrations/001-init.sql?raw'
 import ONE_SHAPE_SQL from './migrations/002-one-collection-shape.sql?raw'
+import SETTLE_TRASHED_SQL from './migrations/003-settle-trashed-items.sql?raw'
 
 /**
  * Thin wrapper over `node:sqlite` `DatabaseSync`: PRAGMAs, versioned migrations and a nesting
@@ -37,7 +38,8 @@ export interface Migration {
 /** Every migration, ascending. New ones are appended here and as `migrations/NNN_name.sql`. */
 export const MIGRATIONS: readonly Migration[] = [
   { version: 1, name: '001-init', sql: INIT_SQL },
-  { version: 2, name: '002-one-collection-shape', sql: ONE_SHAPE_SQL }
+  { version: 2, name: '002-one-collection-shape', sql: ONE_SHAPE_SQL },
+  { version: 3, name: '003-settle-trashed-items', sql: SETTLE_TRASHED_SQL }
 ]
 
 export interface OpenDatabaseOptions {
