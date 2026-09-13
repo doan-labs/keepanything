@@ -99,6 +99,14 @@ export function CommandPalette(): React.JSX.Element {
   }, [query, mode])
 
   const groups = useMemo(() => groupHits(hits), [hits])
+
+  // cmdk keeps the highlight on whichever item is still mounted, so the hit selected two keystrokes
+  // ago holds it while the list reorders under it. Every new result set puts it back on the top hit.
+  useEffect(() => {
+    const first = groups[0]?.hits[0]
+    if (first) setActive(`hit-${first.id}`)
+  }, [groups])
+
   const trimmed = query.trim()
   // Follow-ups only after a free-form Ask that produced an answer; `run` belongs to `lastRequest`
   // because `start` sets both, so the pair is always consistent.
