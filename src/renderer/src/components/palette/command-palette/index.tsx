@@ -65,6 +65,7 @@ export function CommandPalette(): React.JSX.Element {
   const [askError, setAskError] = useState<string | null>(null)
   const [snippets, setSnippets] = useState<Map<string, string>>(new Map())
   const [busy, setBusy] = useState<'' | 'seed' | 'snapshot'>('')
+  const [confirmCancel, setConfirmCancel] = useState(false)
   const run = useRuns((s) => (runId ? s.runs[runId] : undefined))
   const inputRef = useRef<HTMLInputElement>(null)
   const seq = useRef(0)
@@ -111,6 +112,7 @@ export function CommandPalette(): React.JSX.Element {
 
   const start = async (request: AgentCommandRequest): Promise<void> => {
     setAskError(null)
+    setConfirmCancel(false)
     setLastRequest(request)
     setQuestion(request.question)
     // The same local FTS the list above runs, kept for the run view: it gives every match the line
@@ -135,7 +137,14 @@ export function CommandPalette(): React.JSX.Element {
     openDetail(id, id)
   }
 
+  // Leaving a live run throws away work that is already paid for, so the first press only arms the
+  // confirm in the footer and the second one is the one that stops it.
   const back = (): void => {
+    if (run?.status === 'running' && !confirmCancel) {
+      setConfirmCancel(true)
+      return
+    }
+    setConfirmCancel(false)
     if (run && run.status === 'running') void invoke('agent:cancel', { runId: run.runId })
     if (openedIntoRun.current) {
       closePalette()
@@ -250,6 +259,8 @@ export function CommandPalette(): React.JSX.Element {
             onOpenItem={open}
             onRetry={lastRequest ? () => void start(lastRequest) : null}
             onBack={back}
+            confirmingCancel={confirmCancel}
+            onKeepGoing={() => setConfirmCancel(false)}
             onFollowUp={priorTurn ? (text) => void start(buildFollowUp(text, priorTurn)) : null}
           />
         ) : (

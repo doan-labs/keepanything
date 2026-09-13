@@ -213,7 +213,10 @@ export interface AskRunProps {
   snippets: Map<string, string>
   onOpenItem: (id: string) => void
   onRetry: (() => void) | null
+  /** While the run is live this only arms the confirm below; a second call is the one that leaves. */
   onBack: () => void
+  confirmingCancel: boolean
+  onKeepGoing: () => void
   /** Null when follow-ups are not supported (template/action runs, or no prior answer). */
   onFollowUp: ((text: string) => void) | null
 }
@@ -229,6 +232,8 @@ export function AskRun({
   onOpenItem,
   onRetry,
   onBack,
+  confirmingCancel,
+  onKeepGoing,
   onFollowUp
 }: AskRunProps): React.JSX.Element {
   const [followUp, setFollowUp] = useState('')
@@ -399,9 +404,27 @@ export function AskRun({
         </Button>
         <span {...stylex.props(styles.footerSpacer)} />
         {running && run ? (
-          <Button small variant="quiet" onClick={() => void invoke('agent:cancel', { runId: run.runId })}>
-            Cancel
-          </Button>
+          confirmingCancel ? (
+            <>
+              <span {...stylex.props(styles.provenance, shared.ellipsis)}>{COPY.askCancelConfirm}</span>
+              <Button small variant="quiet" onClick={onKeepGoing}>
+                Keep going
+              </Button>
+              <Button
+                small
+                onClick={() => {
+                  void invoke('agent:cancel', { runId: run.runId })
+                  onKeepGoing()
+                }}
+              >
+                Stop
+              </Button>
+            </>
+          ) : (
+            <Button small variant="quiet" onClick={onBack}>
+              Cancel
+            </Button>
+          )
         ) : (
           <>
             {answer ? <span {...stylex.props(styles.provenance, shared.ellipsis)}>{COPY.askAnswered}</span> : null}
