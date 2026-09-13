@@ -30,6 +30,18 @@ import { styles } from './styles'
 
 const MAX_TILES = 12
 
+/** A settled tile has done its job: it stays long enough to be read, then shows itself out. */
+const TILE_SETTLED_MS = 3000
+
+/** Cap for a tile that never settles (failed, or parked with no AI): the shelf is not an inbox. */
+const TILE_MAX_MS = 10 * 60_000
+
+/** Matches the tile's exit transition in `styles.ts` (`motion.slow`). */
+const TILE_EXIT_MS = 260
+
+/** Tiles leave one after another rather than all in the same frame. */
+const TILE_STAGGER_MS = 90
+
 const PEEK_ICON: Record<DragPeekKind, LucideIcon> = {
   link: Link,
   pdf: FileText,
@@ -44,8 +56,10 @@ const PEEK_ICON: Record<DragPeekKind, LucideIcon> = {
 
 /**
  * ShelfView (`?view=shelf`): a notch that grows out of the screen edge. Things dropped here are
- * kept immediately and stay as compact tiles until cleared. Tiles are draggable (internal item
- * drag) and can be Quick-Looked; the strip follows `items:changed` so status settles in place.
+ * kept immediately and appear as compact tiles, which retire themselves once the item is
+ * understood — the library has it, so the strip empties back to a drop target. Tiles are draggable
+ * (internal item drag) and can be Quick-Looked; the strip follows `items:changed` so status
+ * settles in place.
  * Main announces `shelf:presence` around every show and hide so the panel can slide in from the
  * edge, and slide back out before the window disappears.
  */
@@ -84,6 +98,10 @@ export function ShelfView(): React.JSX.Element {
   const draggedFolders = useRef(0)
   const [flash, setFlash] = useState<string | null>(null)
   const flashTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  /** Tiles playing their exit; still in `items` until the transition is over. */
+  const [leaving, setLeaving] = useState<string[]>([])
+  /** The pointer is on the strip, or a tile has focus: nothing retires under it. */
+  const [held, setHeld] = useState(false)
 
   const say = (message: string): void => {
     setFlash(message)
@@ -109,6 +127,8 @@ export function ShelfView(): React.JSX.Element {
       void invoke('items:list', { view: 'library', sort: 'captured', limit: 40 }).then((r) => {
         if (!r.ok) return
         const fresh = ids.map((id) => r.data.find((i) => i.id === id)).filter((i): i is ItemSummary => Boolean(i))
+        // Dropped again while its tile was retiring: it stays.
+        setLeaving((prev) => (prev.length === 0 ? prev : prev.filter((id) => !ids.includes(id))))
         setItems((prev) => {
           const map = new Map(prev.map((i) => [i.id, i]))
           for (const f of fresh) map.set(f.id, f)
@@ -120,11 +140,18 @@ export function ShelfView(): React.JSX.Element {
     })
     const offChanged = on('items:changed', (event) => {
       setItems((prev) => {
-        if (prev.length === 0) return prev
         const map = new Map(prev.map((i) => [i.id, i]))
-        for (const s of event.summaries ?? []) if (map.has(s.id)) map.set(s.id, s)
-        if (event.reason === 'trashed' || event.reason === 'deleted') for (const id of event.ids) map.delete(id)
-        return [...map.values()]
+        // Same array back when the event was about items the shelf does not hold: this fires for
+        // the whole library, and a new array would restart every tile's retirement timer.
+        let touched = false
+        for (const s of event.summaries ?? [])
+          if (map.has(s.id)) {
+            map.set(s.id, s)
+            touched = true
+          }
+        if (event.reason === 'trashed' || event.reason === 'deleted')
+          for (const id of event.ids) touched = map.delete(id) || touched
+        return touched ? [...map.values()] : prev
       })
     })
     return () => {
@@ -134,6 +161,31 @@ export function ShelfView(): React.JSX.Element {
       offChanged()
     }
   }, [])
+
+  // A tile is a receipt, not a to-do: once the item is understood it leaves by itself, and nothing
+  // outstays TILE_MAX_MS. Held tiles wait — one must never slide out from under a hand reaching
+  // for it — and the timers restart when the pointer leaves, so a held tile gets its full beat.
+  useEffect(() => {
+    if (held || items.length === 0) return
+    const timers = items.map((item, i) =>
+      setTimeout(
+        () => setLeaving((prev) => (prev.includes(item.id) ? prev : [...prev, item.id])),
+        (isTerminal(item.processingStatus) ? TILE_SETTLED_MS : TILE_MAX_MS) + i * TILE_STAGGER_MS
+      )
+    )
+    return () => {
+      for (const t of timers) clearTimeout(t)
+    }
+  }, [items, held])
+
+  useEffect(() => {
+    if (leaving.length === 0) return
+    const timer = setTimeout(() => {
+      setItems((prev) => prev.filter((i) => !leaving.includes(i.id)))
+      setLeaving([])
+    }, TILE_EXIT_MS)
+    return () => clearTimeout(timer)
+  }, [leaving])
 
   const onDrop = async (e: DragEvent): Promise<void> => {
     e.preventDefault()
@@ -240,9 +292,20 @@ export function ShelfView(): React.JSX.Element {
             return (
               <div
                 key={i.id}
-                {...stylex.props(shared.hoverFade, styles.tile, styles.tileFocus, stylex.defaultMarker())}
+                {...stylex.props(
+                  styles.tile,
+                  styles.tileFocus,
+                  leaving.includes(i.id) && styles.tileOut,
+                  stylex.defaultMarker()
+                )}
                 draggable
                 onDragStart={(e) => onDragStart(i, e)}
+                onMouseEnter={() => setHeld(true)}
+                onMouseLeave={() => setHeld(false)}
+                onFocus={() => setHeld(true)}
+                onBlur={() => setHeld(false)}
+                // A drag can end with the pointer anywhere; `mouseleave` may never come.
+                onDragEnd={() => setHeld(false)}
                 onDoubleClick={() => void invoke('items:quickLook', { id: i.id })}
                 title="Drag into a collection, or double-click to Quick Look"
                 tabIndex={0}

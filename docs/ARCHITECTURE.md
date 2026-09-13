@@ -123,7 +123,7 @@ src/
       selection/  SelectionBar
       collections/ CollectionsGrid  CollectionCard  CollectionHeader  NewCollectionDialog  RenameInline
       settings/   SettingsView (key, model, import mode, theme, privacy, embeddings status, reprocess all)
-      shelf/      ShelfView
+      shelf/      ShelfView (tiles retire themselves once the item is understood; nothing outstays 10 min)
       common/     Button  Kbd  Thumb  Dot  Menu triggers  Toast
 ```
 

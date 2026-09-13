@@ -302,7 +302,22 @@ export const styles = stylex.create({
     animationName: rise,
     animationDuration: motion.base,
     animationTimingFunction: motion.easeOut,
-    outline: 'none'
+    outline: 'none',
+    // `rise` owns animation on this element, so leaving is a transition instead: colour while the
+    // pointer is on it, the rest when the tile is retired.
+    transitionProperty: 'color, background-color, opacity, transform, height',
+    transitionDuration: `${motion.base}, ${motion.base}, ${motion.slow}, ${motion.slow}, ${motion.slow}`,
+    transitionTimingFunction: `${motion.easeOut}, ${motion.easeOut}, ${motion.easeLeave}, ${motion.easeLeave}, ${motion.easeLeave}`
+  },
+  // Retired: the row closes up and hands its space back to the drop target. `minHeight` because a
+  // column flex item will not shrink past its content without it.
+  tileOut: {
+    height: 0,
+    minHeight: 0,
+    opacity: 0,
+    transform: 'translateY(-4px) scale(0.97)',
+    overflow: 'hidden',
+    pointerEvents: 'none'
   },
   // `box-shadow` is left untransitioned on purpose: it is the focus ring here.
   tileFocus: {
