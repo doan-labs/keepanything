@@ -1,6 +1,9 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "keepanything",
+  // Builds run only for pushes touching web/* or src/renderer/src/styles/* (tokens.stylex.ts and
+  // shared.ts are symlinked from there). That is a dashboard setting, Settings > Build > Build watch
+  // paths, wrangler has no key for it.
   // Wraps the TanStack Start handler with the canonical-host redirect and the PostHog proxy.
   "main": "./src/server.ts",
   // The vanity host is here only so the worker's canonical-host redirect answers it; attaching it
