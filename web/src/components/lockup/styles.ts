@@ -5,7 +5,7 @@ const MOBILE = '@media (max-width: 800px)'
 const REDUCED = '@media (prefers-reduced-motion: reduce)'
 
 // Wipes the lockup in left to right. `inset()` clips from the right edge inward, so 100% -> 0
-// uncovers the MiniMax mark first and lands on GMI.
+// uncovers the MiniMax mark first and lands on the wordmark.
 const wipe = stylex.keyframes({
   from: { clipPath: 'inset(0 100% 0 0)' },
   to: { clipPath: 'inset(0 0 0 0)' }
@@ -18,7 +18,7 @@ const fade = stylex.keyframes({
 
 export const styles = stylex.create({
   svg: {
-    // 286:38 intrinsic; height drives the width.
+    // 147:38 intrinsic; height drives the width.
     height: 15,
     width: 'auto',
     display: 'block',
