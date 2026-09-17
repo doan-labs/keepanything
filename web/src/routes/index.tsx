@@ -1,7 +1,7 @@
 import * as stylex from '@stylexjs/stylex'
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useState } from 'react'
-import { ARCH_LABEL, ArchBadge, Brand, Button, Icon, type MacArch, MiniMaxWeek, Shot } from '../components'
+import { ARCH_LABEL, ArchBadge, Brand, Button, Icon, type MacArch, Shot } from '../components'
 import type { IconName } from '../components/icon'
 import { shared } from '../styles/shared'
 import { colors, fonts, radii, space, text, weight } from '../styles/tokens.stylex'
@@ -266,13 +266,6 @@ const styles = stylex.create({
     flexDirection: { default: 'row', [MOBILE]: 'column' },
     alignItems: { default: 'center', [MOBILE]: 'flex-start' }
   },
-  footerSide: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    columnGap: space.s4,
-    justifyContent: { default: 'flex-start', [MOBILE]: 'space-between' },
-    inlineSize: { default: 'auto', [MOBILE]: '100%' }
-  },
   authorCenter: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -304,11 +297,6 @@ const styles = stylex.create({
     alignItems: 'center',
     columnGap: space.s2,
     color: { default: colors.fg4, ':hover': colors.fg1 }
-  },
-  brandRow: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    columnGap: space.s4
   },
   footerTail: {
     display: { default: 'contents', [MOBILE]: 'flex' },
@@ -344,12 +332,7 @@ function Home() {
   return (
     <>
       <header {...stylex.props(styles.wrap, styles.nav)}>
-        <span {...stylex.props(styles.brandRow)}>
-          <Brand />
-          <span {...stylex.props(styles.navQuiet)}>
-            <MiniMaxWeek label={false} />
-          </span>
-        </span>
+        <Brand />
         <nav {...stylex.props(styles.navLinks)}>
           <span {...stylex.props(styles.navQuiet)}>
             <Button href={GITHUB} icon="github">
@@ -409,10 +392,7 @@ function Home() {
         </section>
       </main>
       <footer {...stylex.props(styles.wrap, styles.footer)}>
-        <span {...stylex.props(styles.footerSide)}>
-          <Brand />
-          <MiniMaxWeek />
-        </span>
+        <Brand />
         <span {...stylex.props(styles.footerTail)}>
           <a
             href={AUTHOR}
