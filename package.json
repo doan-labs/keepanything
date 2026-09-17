@@ -5,7 +5,10 @@
   "description": "Keep anything. We'll figure out the rest. Local-first macOS library with a reasoning agent.",
   "private": true,
   "main": "./out/main/index.js",
-  "author": "mnismt",
+  "author": {
+    "name": "Doan Labs",
+    "url": "https://doan-labs.com"
+  },
   "license": "MIT",
   "packageManager": "pnpm@11.22.0",
   "engines": {

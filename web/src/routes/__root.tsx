@@ -24,6 +24,7 @@ export const Route = createRootRoute({
       { name: 'color-scheme', content: 'light dark' },
       { title: TITLE },
       { name: 'description', content: DESCRIPTION },
+      { name: 'author', content: 'Doan Labs' },
       { property: 'og:title', content: TITLE },
       { property: 'og:description', content: DESCRIPTION },
       { property: 'og:type', content: 'website' },

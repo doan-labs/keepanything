@@ -3,7 +3,7 @@
 # (or APPLE_ID + APPLE_APP_SPECIFIC_PASSWORD + APPLE_TEAM_ID) is set. See README for setup.
 appId: com.mnismt.keepanything
 productName: KeepAnything
-copyright: Copyright © 2026 mnismt
+copyright: Copyright © 2026 Doan Labs
 electronLanguages: [en]
 directories:
   output: release

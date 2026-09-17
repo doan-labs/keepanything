@@ -76,6 +76,16 @@ const PATHS: Record<string, ReactNode> = {
       <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
       <circle cx="12" cy="7" r="4" />
     </>
+  ),
+  // The Doan lab mark, from doan-labs.com's handoff file: filled, with the ring and square
+  // outlined rather than stroked so the weight holds at any size. Change it there first.
+  doan: (
+    <g fill="currentColor" stroke="none">
+      <path d="M5.6 3.4A4.1 4.1 0 0 1 5.6 11.6Z" />
+      <path d="M21 7.5A4.5 4.5 0 1 1 12 7.5A4.5 4.5 0 1 1 21 7.5ZM19.2 7.5A2.7 2.7 0 1 0 13.8 7.5A2.7 2.7 0 1 0 19.2 7.5Z" />
+      <path d="M7.5 12.9L3.5 20.1L11.5 20.1Z" />
+      <path d="M16.5 11.586L21.414 16.5L16.5 21.414L11.586 16.5ZM16.5 14.061L14.061 16.5L16.5 18.939L18.939 16.5Z" />
+    </g>
   )
 }
 

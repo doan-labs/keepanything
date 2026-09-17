@@ -27,7 +27,7 @@ import { useSettings } from '../../../state/settings'
 import { useToasts } from '../../../state/toasts'
 import { useUi } from '../../../state/ui'
 import { shared } from '../../../styles/shared'
-import { Button } from '../../common'
+import { Button, DoanMark } from '../../common'
 import { GmiCloudLogo, OpenRouterLogo } from '../provider-logo'
 import { styles } from './styles'
 
@@ -527,6 +527,16 @@ export function SettingsView(): React.JSX.Element {
             {release.hint ? (
               <span {...stylex.props(styles.hint, updater?.state === 'error' && styles.bad)}>{release.hint}</span>
             ) : null}
+          </Row>
+          <Row label="Built by">
+            <Button
+              variant="quiet"
+              small
+              onClick={() => void invoke('system:openExternal', { url: 'https://doan-labs.com' })}
+            >
+              <DoanMark size={14} />
+              Doan Labs
+            </Button>
           </Row>
           <Row label="What's new" top>
             <Changelog current={updater?.version} />

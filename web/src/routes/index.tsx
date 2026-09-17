@@ -44,7 +44,7 @@ function useMacArch() {
   }, [])
   return arch
 }
-const AUTHOR = 'https://x.com/capythanh'
+const LAB = 'https://doan-labs.com'
 const MOBILE = '@media (max-width: 800px)'
 const TABLET = '@media (max-width: 1000px)'
 
@@ -266,45 +266,18 @@ const styles = stylex.create({
     flexDirection: { default: 'row', [MOBILE]: 'column' },
     alignItems: { default: 'center', [MOBILE]: 'flex-start' }
   },
-  authorCenter: {
+  footerLead: {
     display: 'inline-flex',
     alignItems: 'center',
-    columnGap: space.s3,
-    fontSize: text.t13,
-    color: { default: colors.fg4, ':hover': colors.fg1 },
-    textDecoration: 'none',
-    position: { default: 'absolute', [MOBILE]: 'static' },
-    insetBlockStart: { default: '50%', [MOBILE]: 'auto' },
-    insetInlineStart: { default: '50%', [MOBILE]: 'auto' },
-    transform: { default: 'translate(-50%, -50%)', [MOBILE]: 'none' }
-  },
-  authorAvatar: {
-    width: 28,
-    height: 28,
-    borderRadius: '50%',
-    objectFit: 'cover',
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: colors.hairline
-  },
-  authorHandle: {
-    fontWeight: weight.medium,
-    color: colors.fg1,
-    letterSpacing: 0.1
+    flexWrap: 'wrap',
+    columnGap: space.s6,
+    rowGap: space.s3
   },
   link: {
     display: 'inline-flex',
     alignItems: 'center',
     columnGap: space.s2,
     color: { default: colors.fg4, ':hover': colors.fg1 }
-  },
-  footerTail: {
-    display: { default: 'contents', [MOBILE]: 'flex' },
-    flexDirection: { default: 'row', [MOBILE]: 'row' },
-    alignItems: { default: 'center', [MOBILE]: 'center' },
-    justifyContent: { default: 'flex-start', [MOBILE]: 'space-between' },
-    columnGap: { default: space.s6, [MOBILE]: space.s10 },
-    inlineSize: { default: 'auto', [MOBILE]: '100%' }
   }
 })
 
@@ -392,23 +365,17 @@ function Home() {
         </section>
       </main>
       <footer {...stylex.props(styles.wrap, styles.footer)}>
-        <Brand />
-        <span {...stylex.props(styles.footerTail)}>
-          <a
-            href={AUTHOR}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="@capythanh on X"
-            {...stylex.props(shared.hoverFade, styles.authorCenter)}
-          >
-            <img {...stylex.props(styles.authorAvatar)} src="/avatars/capythanh.jpg" alt="" />
-            <strong {...stylex.props(styles.authorHandle)}>@capythanh</strong>
-          </a>
-          <a href={GITHUB} target="_blank" rel="noopener noreferrer" {...stylex.props(shared.hoverFade, styles.link)}>
-            <Icon name="github" size={14} />
-            GitHub
+        <span {...stylex.props(styles.footerLead)}>
+          <Brand />
+          <a href={LAB} target="_blank" rel="noopener noreferrer" {...stylex.props(shared.hoverFade, styles.link)}>
+            <Icon name="doan" size={14} />
+            Built by Doan Labs
           </a>
         </span>
+        <a href={GITHUB} target="_blank" rel="noopener noreferrer" {...stylex.props(shared.hoverFade, styles.link)}>
+          <Icon name="github" size={14} />
+          GitHub
+        </a>
       </footer>
     </>
   )
