@@ -8,7 +8,7 @@ import { colors, fonts, radii, space, text, weight } from '../styles/tokens.styl
 
 export const Route = createFileRoute('/')({ component: Home })
 
-const GITHUB = 'https://github.com/mnismt/keepanything'
+const GITHUB = 'https://github.com/doan-labs/keepanything'
 const DOWNLOAD = `${GITHUB}/releases/tag/v0.1.0`
 
 const dmg = (arch: MacArch) => `${GITHUB}/releases/download/v0.1.0/KeepAnything-0.1.0-${arch}.dmg`
