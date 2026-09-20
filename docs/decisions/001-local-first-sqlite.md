@@ -5,7 +5,7 @@
 ## Context
 
 The library holds a person's files, screenshots, receipts and half-remembered links. Anything that
-leaves the machine is a liability, and a hackathon has no room for accounts, sync or a server.
+leaves the machine is a liability, and a local-first app has no room for accounts, sync or a server.
 
 ## Decision
 

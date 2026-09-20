@@ -22,10 +22,10 @@ working. Everything after that is automatic. Over time it becomes a semantic mem
 humans remember: "that open-source macOS app I saved a few weeks ago", "the website with the globe animation",
 "something I saved about cheap inference providers", "show me everything that influenced the mnismt website".
 
-## 2. Hackathon context (MiniMax Week, Reasoning track)
+## 2. What the reasoning has to do
 The AI must not merely do input → classification → tags. The reasoning component must visibly perform useful multi-step
 decisions: inspect incoming items, understand them, compare with the existing library, determine relationships, decide
-whether collections/themes should be created, and perform multi-item tasks. Demo must show:
+whether collections/themes should be created, and perform multi-item tasks. The whole arc has to hold:
 capture → understanding → reasoning → organisation → retrieval → useful action. Not a superficial AI bookmark manager.
 
 ## 3. Platform
@@ -37,7 +37,7 @@ filesystem access, drag/drop, low idle resource usage, fast startup, easy packag
 ## 4. Local-first principle
 Originals belong to the user. Do NOT aggressively reorganise, rename, move or mutate files. Preserve either a safe
 reference to the original or a controlled local copy inside the managed object store depending on import mode.
-Semantic organisation exists inside KeepAnything: one PDF may belong to AI Research, MiniMax, Hackathon, Things to
+Semantic organisation exists inside KeepAnything: one PDF may belong to AI Research, MiniMax, Things to
 Read, Agent Architecture without duplication. Internal architecture must make this explicit:
 Physical object → KeepAnything object record → extracted content → AI understanding → semantic relationships →
 collections.
@@ -113,7 +113,7 @@ continuation_of, contradicts, duplicate_of, created_from, belongs_to, AI-generat
 Semantic views; items belong to many without duplication. Created by a person or the agent, both kinds work the same
 way: the description tells the agent what belongs there, and every membership is a row in the table. Good names are
 ongoing contexts ("mnismt visual direction", "Local LLM inference research", "macOS utility references", "MiniMax
-Hackathon"). The agent is conservative: avoid "Technology / Websites / Software / Internet" and any single topic word;
+M3 evaluation"). The agent is conservative: avoid "Technology / Websites / Software / Internet" and any single topic word;
 prefer adding to an existing collection over creating a similar one, and prefer doing nothing over creating something
 vague.
 

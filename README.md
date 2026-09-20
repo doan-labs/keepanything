@@ -9,12 +9,11 @@ preserved. A reasoning agent (MiniMax-M3 via GMI Cloud) understands each item an
 items into collections. Search and embeddings run on the Mac; only what a specific AI task needs
 leaves the machine.
 
-Built for **MiniMax Week** (Reasoning track). Electron 44 · React 19 · TypeScript · `node:sqlite` FTS5 ·
-bge-small-en-v1.5 embeddings.
+Electron 44 · React 19 · TypeScript · `node:sqlite` FTS5 · bge-small-en-v1.5 embeddings.
 
 ## Install
 
-Download the latest `.dmg` from [Releases](https://github.com/mnismt/keepanything/releases/latest)
+Download the latest `.dmg` from [Releases](https://github.com/doan-labs/keepanything/releases/latest)
 (`-arm64` for Apple Silicon, `-x64` for Intel), open it, and drag `KeepAnything.app` onto the
 `Applications` folder shown next to it. The DMGs are signed with a Developer ID and notarized by Apple.
 
