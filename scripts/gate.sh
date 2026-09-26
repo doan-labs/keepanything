@@ -66,6 +66,21 @@ lint() {
       grep -rn --include='*.swift' -E 'ProcessInfo\.processInfo\.environment|UserDefaults\.|SecItem(Add|CopyMatching|Update|Delete)\(' Sources >&2
       bad=1
     fi
+    # KALibrary must not depend on UI: no `import KAUI` outside Sources/KAUI and App/.
+    if grep -rln --include='*.swift' -E '^\s*import KAUI' Sources | grep -v '^Sources/KAUI/' | grep -q .; then
+      echo "import rule: KAUI imported outside Sources/KAUI (and App/):" >&2
+      grep -rln --include='*.swift' -E '^\s*import KAUI' Sources | grep -v '^Sources/KAUI/' >&2
+      bad=1
+    fi
+    # Apple-only frameworks must sit behind `#if canImport(<Framework>)`.
+    apple_fws='PDFKit|WebKit|QuickLookThumbnailing|AppKit|CoreServices'
+    for f in $(grep -rln --include='*.swift' -E "^\s*import ($apple_fws)" Sources || true); do
+      if ! grep -q '#if canImport(' "$f"; then
+        echo "import rule: Apple framework imported without a canImport guard:" >&2
+        echo "$f" >&2
+        bad=1
+      fi
+    done
   fi
   if [ -d electron/src ]; then
     # Electron testability rule: nothing under these folders imports electron or reads process.env.

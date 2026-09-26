@@ -10,6 +10,7 @@ node_modules
 
 # SwiftPM / Xcode build output for the Swift rewrite (see docs/swift_rewrite/PLAN.md).
 .build/
+.swiftpm/
 *.xcuserdata
 xcuserdata/
 
