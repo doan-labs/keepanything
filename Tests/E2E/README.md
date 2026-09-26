@@ -3,7 +3,8 @@
 Hand-written scenarios in `scenarios/<name>.json`, expected output in `expected/<name>.json`
 written by `cd electron && pnpm run scenarios:export` and never edited by hand. `compare.json`
 lists the only allowed differences between the Electron and Swift runners (`ignore`,
-`float:1e-4`, `tokens:0.95`).
+`float:1e-4`, `tokens:0.95`). A rule with a `scenarios` list applies only to those scenarios;
+`tokens:0.95` is limited to the scenarios whose text comes from a different extractor (PDF, live pages).
 
 ## Ops
 

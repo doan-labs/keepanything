@@ -8,7 +8,7 @@
     { "path": "$..score", "rule": "float:1e-4" },
     { "path": "$..cosine", "rule": "float:1e-4" },
     { "path": "$..confidence", "rule": "float:1e-4" },
-    { "path": "$..extracted_text", "rule": "tokens:0.95" },
-    { "path": "$..extractedText", "rule": "tokens:0.95" }
+    { "path": "$..extracted_text", "rule": "tokens:0.95", "scenarios": ["capture-pdf", "capture-urls", "full-library"] },
+    { "path": "$..extractedText", "rule": "tokens:0.95", "scenarios": ["capture-pdf", "capture-urls", "full-library"] }
   ]
 }
