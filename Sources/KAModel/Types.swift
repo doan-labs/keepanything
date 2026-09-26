@@ -414,6 +414,13 @@ public struct ItemSummary: Codable, Sendable, Equatable {
 
 /// A relationship as seen from one item, with the other side resolved.
 public struct ItemDetailRelationship: Codable, Sendable, Equatable {
+  public init(relationship: Relationship, direction: RelationshipDirection, label: String, other: ItemSummary) {
+    self.relationship = relationship
+    self.direction = direction
+    self.label = label
+    self.other = other
+  }
+
   public var relationship: Relationship
   /// `.out` when this item is the source, `.in` when it is the target.
   public var direction: RelationshipDirection
@@ -424,6 +431,16 @@ public struct ItemDetailRelationship: Codable, Sendable, Equatable {
 
 /// Collection membership of one item, including why it was added.
 public struct ItemDetailCollection: Codable, Sendable, Equatable {
+  public init(collection: Collection, confidence: Double? = nil, reason: String? = nil,
+              addedBy: MembershipActor, agentRunId: String? = nil, addedAt: String) {
+    self.collection = collection
+    self.confidence = confidence
+    self.reason = reason
+    self.addedBy = addedBy
+    self.agentRunId = agentRunId
+    self.addedAt = addedAt
+  }
+
   public var collection: Collection
   public var confidence: Double?
   public var reason: String?
@@ -434,6 +451,18 @@ public struct ItemDetailCollection: Codable, Sendable, Equatable {
 
 /// `items:get` payload.
 public struct ItemDetail: Codable, Sendable, Equatable {
+  public init(item: Item, summary: ItemSummary, originalUrl: String? = nil,
+              relationships: [ItemDetailRelationship], collections: [ItemDetailCollection],
+              latestRuns: [AgentRunSummary], children: [ItemSummary]? = nil) {
+    self.item = item
+    self.summary = summary
+    self.originalUrl = originalUrl
+    self.relationships = relationships
+    self.collections = collections
+    self.latestRuns = latestRuns
+    self.children = children
+  }
+
   public var item: Item
   /// Card payload with the resolved media URLs.
   public var summary: ItemSummary
@@ -734,6 +763,21 @@ public struct JobProgress: Codable, Sendable, Equatable {
 
 /// Structured output of the `understand` task.
 public struct Understanding: Codable, Sendable, Equatable {
+  public init(kind: Kind, title: String, summary: String, whyUseful: String,
+              topics: [String], entities: [String], visualDescription: String? = nil,
+              visibleText: String? = nil, retrievalHints: [String], confidence: Double) {
+    self.kind = kind
+    self.title = title
+    self.summary = summary
+    self.whyUseful = whyUseful
+    self.topics = topics
+    self.entities = entities
+    self.visualDescription = visualDescription
+    self.visibleText = visibleText
+    self.retrievalHints = retrievalHints
+    self.confidence = confidence
+  }
+
   public var kind: Kind
   public var title: String
   /// One or two specific sentences: what this is and what it contains.

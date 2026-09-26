@@ -116,3 +116,86 @@ public enum IpcEnvelope<T> {
     return nil
   }
 }
+
+/// `items:list` request.
+public struct ItemsListRequest: Codable, Sendable, Equatable {
+  public var view: ItemsView
+  /// Required when `view == .collection`.
+  public var collectionId: String?
+  public var types: [ItemType]?
+  public var sort: ItemsSort?
+  public var limit: Int?
+  public var offset: Int?
+
+  public init(view: ItemsView, collectionId: String? = nil, types: [ItemType]? = nil,
+              sort: ItemsSort? = nil, limit: Int? = nil, offset: Int? = nil) {
+    self.view = view
+    self.collectionId = collectionId
+    self.types = types
+    self.sort = sort
+    self.limit = limit
+    self.offset = offset
+  }
+}
+
+/// `items:update` editable fields (sets `user_overrides`, re-indexes).
+public struct ItemUpdatePatch: Codable, Sendable, Equatable {
+  public var title: String?
+  public var understanding: String?
+  public var whyUseful: String?
+
+  public init(title: String? = nil, understanding: String? = nil, whyUseful: String? = nil) {
+    self.title = title
+    self.understanding = understanding
+    self.whyUseful = whyUseful
+  }
+}
+
+/// Why `items:changed` fired.
+public enum ItemsChangedReason: String, Codable, Sendable {
+  case created, updated, trashed, restored, deleted
+}
+
+/// `items:changed` payload. `summaries` is sent when main already has them (created/updated).
+public struct ItemsChangedEvent: Codable, Sendable, Equatable {
+  public var reason: ItemsChangedReason
+  public var ids: [String]
+  public var summaries: [ItemSummary]?
+
+  public init(reason: ItemsChangedReason, ids: [String], summaries: [ItemSummary]? = nil) {
+    self.reason = reason
+    self.ids = ids
+    self.summaries = summaries
+  }
+}
+
+/// `agent:run` payload: emitted on start (before the invoke resolves), after every step, at the end.
+public struct AgentRunEvent: Codable, Sendable, Equatable {
+  public var runId: String
+  public var task: AgentTask
+  public var status: AgentRunStatus
+  public var itemId: String?
+  public var batchId: String?
+  /// The step that just completed (step events only).
+  public var step: AgentStep?
+  /// Final result (terminal `succeeded` event only).
+  public var result: AgentResult?
+  /// Terminal `succeeded` only: the run wrote audit rows, so `agent:undoRun` can revert it.
+  public var undoable: Bool?
+  /// Failure (terminal `failed` / `cancelled` events).
+  public var error: IpcError?
+
+  public init(runId: String, task: AgentTask, status: AgentRunStatus, itemId: String? = nil,
+              batchId: String? = nil, step: AgentStep? = nil, result: AgentResult? = nil,
+              undoable: Bool? = nil, error: IpcError? = nil) {
+    self.runId = runId
+    self.task = task
+    self.status = status
+    self.itemId = itemId
+    self.batchId = batchId
+    self.step = step
+    self.result = result
+    self.undoable = undoable
+    self.error = error
+  }
+}

@@ -82,7 +82,11 @@ let package = Package(
       dependencies: ["KAStorage", "KATestSupport"],
       path: "Tests/KAStorageTests"
     ),
-    .testTarget(name: "KACoreTests", dependencies: ["KACore"], path: "Tests/KACoreTests"),
+    .testTarget(
+      name: "KACoreTests",
+      dependencies: ["KACore", "KAPipeline", "KATestSupport"],
+      path: "Tests/KACoreTests"
+    ),
     .testTarget(name: "KACaptureTests", dependencies: ["KACapture"], path: "Tests/KACaptureTests"),
     .testTarget(name: "KAExtractionTests", dependencies: ["KAExtraction"], path: "Tests/KAExtractionTests"),
     .testTarget(name: "KAPreviewsTests", dependencies: ["KAPreviews"], path: "Tests/KAPreviewsTests"),

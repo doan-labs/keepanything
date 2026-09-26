@@ -73,7 +73,7 @@ private let lock = NSLock()
 
 /// `JSON.stringify(v)`: compact, no escaping slashes. Declaration-order keys when `T` is a
 /// KAModel struct (JSONEncoder emits CodingKeys order, which mirrors field declaration order).
-func jsonEncode<T: Encodable>(_ v: T) -> String {
+public func jsonEncode<T: Encodable>(_ v: T) -> String {
   lock.lock()
   defer { lock.unlock() }
   let data = try! jsonEncoder.encode(v)
@@ -81,6 +81,6 @@ func jsonEncode<T: Encodable>(_ v: T) -> String {
 }
 
 /// `JSON.stringify(value ?? null)` for optional encodables.
-func jsonEncodeOrNull<T: Encodable>(_ v: T?) -> String {
+public func jsonEncodeOrNull<T: Encodable>(_ v: T?) -> String {
   jsonEncode(v)
 }
