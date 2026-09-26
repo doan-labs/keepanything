@@ -48,7 +48,7 @@
       "electron/tests/unit/db.test.ts"
     ],
     "gate": "cd electron && pnpm exec vitest run tests/unit/db.test.ts",
-    "passes": false,
+    "passes": true,
     "blocked": null,
     "notes": ""
   },
@@ -66,7 +66,7 @@
       "electron/src/main/storage/db.ts"
     ],
     "gate": "cd electron && pnpm exec vitest run tests/unit/library-lock.test.ts",
-    "passes": false,
+    "passes": true,
     "blocked": null,
     "notes": ""
   },

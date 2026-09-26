@@ -15,3 +15,18 @@ Newest last. Format: see PLAN.md#agent-protocol.
 - `scripts/gate.sh`: `linux | macos | lint | <id>`; reads features.json and re-runs every passing feature's gate (regression rule). `lint` greps the PLAN.md import rules for Sources/ and the Electron testability rule.
 - Evidence: `bash scripts/gate.sh linux` locally; CI linux + macos green on 03c14aa, https://github.com/doan-labs/keepanything/pull/1/checks
 - Notes: macos-26 runner reports Swift 6.3.3 (arm64-apple-macosx26.0); Linux is pinned to the same.
+
+## 2026-09-26 CI dropped (owner decision)
+- Owner asked to stop using GitHub Actions until the rewrite is final. `.github/workflows/ci.yml` removed in dd79793; from here a feature passes on its local gate run on the owner's Mac (`scripts/gate.sh <id>` / `linux` / `macos`). REVIEW: re-add the workflow before the final PR.
+- E-02/E-03 CI on 67fd663 failed only on `tests/unit/agent-command.test.ts` "charges the model wait to the step it produced" (`expected 14 to be >= 15`): a real-timer `setTimeout(15)` firing ~1 ms early on the runners. Not related to E-02/E-03; passes locally. REVIEW: the test needs a margin or fake timers when CI returns.
+
+## 2026-09-26 E-02 passes
+- `electron/src/main/storage/db.ts`: `SchemaTooNewError(found, supported)`; `migrate()` throws it before applying anything when `schema_migrations` records a version above the newest known migration. `openDatabase({ readOnly })` (used by E-03).
+- `electron/tests/unit/db.test.ts`: future-version row + future-only table stay untouched, error fields checked.
+- Evidence: `bash scripts/gate.sh E-02` (9 passed) locally.
+- Notes: the `migrate()` guard hunk landed in commit 67fd663 (E-03) instead of ffb94c9 by a staging slip; the gate is green from 67fd663 onward.
+
+## 2026-09-26 E-03 passes
+- `electron/src/main/storage/library-lock.ts`: `library.lock` JSON `{pid, app, version, since}` in userData, created with `wx`; live owner → `{ readOnly: true }`; dead pid / unreadable file → taken over via temp file + rename; `release()` only removes a lock the same pid still owns.
+- `electron/src/main/index.ts`: acquire before opening SQLite; read-only mode opens with `SQLITE_OPEN_READONLY`, skips `migrate()` and the scheduler; released on shutdown.
+- Evidence: `bash scripts/gate.sh E-03` (7 passed) locally; `pnpm run typecheck` clean.
