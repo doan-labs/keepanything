@@ -148,9 +148,9 @@
       "electron/electron-builder.yml"
     ],
     "gate": "cd electron && pnpm run build && pnpm run package:mac",
-    "passes": false,
+    "passes": true,
     "blocked": null,
-    "notes": ""
+    "notes": "verified on macOS; build/models absent so the DMGs ship without the embedding model"
   },
   {
     "id": "S-PKG-01",
