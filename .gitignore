@@ -24,3 +24,6 @@ assets/fonts/build/
 .probe-lint-staged.js
 .tmp-live-run.mjs
 
+
+# HyperFrames video projects, local only.
+/video/

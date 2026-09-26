@@ -1,0 +1,1256 @@
+[
+  {
+    "id": "E-00",
+    "milestone": "M0",
+    "title": "Move the Electron project into electron/ (symlinks in web/ become real files; scripts, skills, hooks, AGENTS.md and README paths repointed)",
+    "runs_on": "linux",
+    "depends": [],
+    "spec": [
+      "AGENTS.md",
+      "package.json",
+      "web/src/styles/",
+      "scripts/",
+      ".claude/",
+      "docs/swift_rewrite/PLAN.md#repo-layout"
+    ],
+    "gate": "cd electron && pnpm install --frozen-lockfile && pnpm run typecheck && pnpm run test",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "E-01",
+    "milestone": "M0",
+    "title": "CI (.github/workflows/ci.yml, linux + macos jobs) and scripts/gate.sh (linux | macos | lint | <id>); macos job also runs cd electron && pnpm run build",
+    "runs_on": "linux",
+    "depends": [
+      "E-00"
+    ],
+    "spec": [
+      "docs/swift_rewrite/PLAN.md#gates",
+      "docs/swift_rewrite/features.json"
+    ],
+    "gate": "bash scripts/gate.sh linux",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "E-02",
+    "milestone": "M0",
+    "title": "Schema guard: migrate() refuses a database whose schema version is newer than the newest known migration",
+    "runs_on": "linux",
+    "depends": [
+      "E-00"
+    ],
+    "spec": [
+      "electron/src/main/storage/db.ts",
+      "electron/tests/unit/db.test.ts"
+    ],
+    "gate": "cd electron && pnpm exec vitest run tests/unit/db.test.ts",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "E-03",
+    "milestone": "M0",
+    "title": "library.lock in the library folder: second app to start opens read-only; stale lock (dead pid) is taken over",
+    "runs_on": "linux",
+    "depends": [
+      "E-00"
+    ],
+    "spec": [
+      "electron/src/main/index.ts",
+      "electron/src/main/storage/paths.ts",
+      "electron/src/main/storage/db.ts"
+    ],
+    "gate": "cd electron && pnpm exec vitest run tests/unit/library-lock.test.ts",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "E-04",
+    "milestone": "M0",
+    "title": "export-parity: vocab, limits, status table, migrations, rendered prompts, structured-output cases, URL canonicalization, query/cue parsing, classify table, hash vectors, masonry layouts, design tokens, 25 Lucide SVGs, fonts, retrieval eval rankings (hash; bge when the model is present) into Tests/Fixtures/parity/",
+    "runs_on": "linux",
+    "depends": [
+      "E-00"
+    ],
+    "spec": [
+      "electron/src/shared/",
+      "electron/src/main/ai/prompts/",
+      "electron/src/main/ai/structured.ts",
+      "electron/src/main/capture/",
+      "electron/src/main/retrieval/query.ts",
+      "electron/src/main/ai/embeddings/hash.ts",
+      "electron/src/renderer/src/lib/masonry.ts",
+      "electron/src/renderer/src/styles/",
+      "electron/tests/unit/retrieval-eval.test.ts"
+    ],
+    "gate": "cd electron && pnpm run parity:export && git diff --exit-code -- ../Tests/Fixtures/parity",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "E-05",
+    "milestone": "M0",
+    "title": "Scenario runner (electron/tests/scenarios/run.test.ts), the scenario files and compare.json from PLAN.md, expected results, and --keep-library output for library-compat",
+    "runs_on": "linux",
+    "depends": [
+      "E-04"
+    ],
+    "spec": [
+      "docs/swift_rewrite/PLAN.md#end-to-end-scenarios",
+      "electron/src/main/index.ts",
+      "electron/src/main/ports.ts",
+      "electron/tests/unit/helpers/harness.ts",
+      "electron/src/main/ai/mock-provider.ts",
+      "electron/src/main/ai/scripted-provider.ts"
+    ],
+    "gate": "cd electron && pnpm run scenarios:export && git diff --exit-code -- ../Tests/E2E/expected",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "E-06",
+    "milestone": "M0",
+    "title": "Design references: design/surfaces.json and electron/scripts/capture-references.mjs capturing every surface in both themes from the design-seed library; design-reference CI job (workflow_dispatch)",
+    "runs_on": "macos",
+    "depends": [
+      "E-01",
+      "E-05"
+    ],
+    "spec": [
+      "docs/swift_rewrite/PLAN.md#keeping-the-design",
+      "electron/scripts/screenshot.mjs",
+      "electron/src/renderer/src/components/"
+    ],
+    "gate": "node electron/scripts/capture-references.mjs --check",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "E-07",
+    "milestone": "M0",
+    "title": "Electron production build still packages from electron/",
+    "runs_on": "macos",
+    "depends": [
+      "E-00",
+      "E-01"
+    ],
+    "spec": [
+      "electron/package.json",
+      "electron/electron-builder.yml"
+    ],
+    "gate": "cd electron && pnpm run build && pnpm run package:mac",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-PKG-01",
+    "milestone": "M1",
+    "title": "Package.swift with every module and test target, GRDB, zlib system library, platform-conditioned ORT; import-rule lint",
+    "runs_on": "linux",
+    "depends": [
+      "E-01"
+    ],
+    "spec": [
+      "docs/swift_rewrite/PLAN.md#modules"
+    ],
+    "gate": "swift build && bash scripts/gate.sh lint",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-MODEL-01",
+    "milestone": "M1",
+    "title": "KAModel: types, kinds, status table and next(), constants, text helpers, media URLs, layout; parity with vocab/limits/status fixtures; ports status, text, vocabulary, media tests",
+    "runs_on": "linux",
+    "depends": [
+      "S-PKG-01",
+      "E-04"
+    ],
+    "spec": [
+      "electron/src/shared/"
+    ],
+    "gate": "swift test --filter KAModelTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-STORE-01",
+    "milestone": "M1",
+    "title": "KAStorage: open DatabasePool (WAL), run bundled migrations verbatim, schema_migrations, schema guard; sqlite_master dump equals the Electron fixture; ports db, schema tests",
+    "runs_on": "linux",
+    "depends": [
+      "S-MODEL-01"
+    ],
+    "spec": [
+      "electron/src/main/storage/db.ts",
+      "electron/src/main/storage/migrations/"
+    ],
+    "gate": "swift test --filter KAStorageTests.Database",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-STORE-02",
+    "milestone": "M1",
+    "title": "KAStorage repositories, object store, paths, reset-data, vector blobs; ports repositories and reset-data tests",
+    "runs_on": "linux",
+    "depends": [
+      "S-STORE-01"
+    ],
+    "spec": [
+      "electron/src/main/storage/"
+    ],
+    "gate": "swift test --filter KAStorageTests.Repositories",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-STORE-03",
+    "milestone": "M1",
+    "title": "Open the Electron-made library (Tests/Fixtures/parity/library) and dump a snapshot equal to the Electron one; library.lock honored",
+    "runs_on": "linux",
+    "depends": [
+      "S-STORE-02",
+      "E-05",
+      "E-03"
+    ],
+    "spec": [
+      "electron/src/main/storage/",
+      "Tests/E2E/expected/library-compat.json"
+    ],
+    "gate": "swift test --filter KAStorageTests.Compat",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-CORE-01",
+    "milestone": "M2",
+    "title": "KACore: item, collection, relationship services, audit, event bus, errors, ids; ports services tests",
+    "runs_on": "linux",
+    "depends": [
+      "S-STORE-02"
+    ],
+    "spec": [
+      "electron/src/main/core/"
+    ],
+    "gate": "swift test --filter KACoreTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-AI-01",
+    "milestone": "M2",
+    "title": "KAAI messages and structured output (extraction order, <think> strip, length rejection, one retry with errors); structured-output parity cases",
+    "runs_on": "linux",
+    "depends": [
+      "S-MODEL-01"
+    ],
+    "spec": [
+      "electron/src/main/ai/structured.ts",
+      "electron/src/main/ai/messages.ts"
+    ],
+    "gate": "swift test --filter KAAITests.Structured",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-AI-02",
+    "milestone": "M2",
+    "title": "KAAI prompts byte-equal to rendered fixtures; schemas as Codable + validate(); ports ai-schemas tests",
+    "runs_on": "linux",
+    "depends": [
+      "S-AI-01"
+    ],
+    "spec": [
+      "electron/src/main/ai/prompts/",
+      "electron/src/main/ai/schemas/"
+    ],
+    "gate": "swift test --filter KAAITests.Prompts",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-AI-03",
+    "milestone": "M2",
+    "title": "KAAI OpenAI-compatible transport over URLSession with SSE, retries, timeouts, provider selection; ports ai-gmi tests against a local stub server",
+    "runs_on": "linux",
+    "depends": [
+      "S-AI-01"
+    ],
+    "spec": [
+      "electron/src/main/ai/openai-compatible.ts",
+      "electron/src/main/ai/provider.ts",
+      "electron/src/main/ai/index.ts"
+    ],
+    "gate": "swift test --filter KAAITests.Transport",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-AI-04",
+    "milestone": "M2",
+    "title": "KAAI mock and scripted providers, output-identical to Electron's; ports ai-mock tests",
+    "runs_on": "linux",
+    "depends": [
+      "S-AI-02"
+    ],
+    "spec": [
+      "electron/src/main/ai/mock-provider.ts",
+      "electron/src/main/ai/scripted-provider.ts"
+    ],
+    "gate": "swift test --filter KAAITests.Mock",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-EMB-01",
+    "milestone": "M2",
+    "title": "KAEmbeddings hash fallback, vectors byte-equal to fixtures; EmbeddingProvider protocol",
+    "runs_on": "linux",
+    "depends": [
+      "S-MODEL-01"
+    ],
+    "spec": [
+      "electron/src/main/ai/embeddings/hash.ts",
+      "electron/src/main/ai/embeddings/index.ts"
+    ],
+    "gate": "swift test --filter KAEmbeddingsTests.Hash",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-CAP-01",
+    "milestone": "M2",
+    "title": "KACapture classify (ported extension table), URL canonicalization, folder scan; parity with classify and URL fixtures",
+    "runs_on": "linux",
+    "depends": [
+      "S-MODEL-01"
+    ],
+    "spec": [
+      "electron/src/main/capture/classify.ts",
+      "electron/src/main/capture/url.ts",
+      "electron/src/main/capture/folder.ts"
+    ],
+    "gate": "swift test --filter KACaptureTests.Classify",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-EXT-01",
+    "milestone": "M2",
+    "title": "KAExtraction pure parsers: text, front matter, markdown, language guess, image dims, EXIF, ZIP/TAR via zlib, spreadsheet, folder, registry; ports extraction-files/-image/-text tests",
+    "runs_on": "linux",
+    "depends": [
+      "S-MODEL-01"
+    ],
+    "spec": [
+      "electron/src/main/extraction/"
+    ],
+    "gate": "swift test --filter KAExtractionTests.Pure",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-RET-01",
+    "milestone": "M2",
+    "title": "KARetrieval FTS, vector index, RRF hybrid, query and cue parsing, context cards; ports retrieval-query and retrieval-hybrid tests",
+    "runs_on": "linux",
+    "depends": [
+      "S-STORE-02",
+      "S-EMB-01"
+    ],
+    "spec": [
+      "electron/src/main/retrieval/"
+    ],
+    "gate": "swift test --filter KARetrievalTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-RET-02",
+    "milestone": "M2",
+    "title": "Retrieval eval under hash embeddings: identical rankings to the fixture",
+    "runs_on": "linux",
+    "depends": [
+      "S-RET-01"
+    ],
+    "spec": [
+      "electron/tests/unit/retrieval-eval.test.ts",
+      "electron/tests/fixtures/corpus/eval-queries.json"
+    ],
+    "gate": "swift test --filter KARetrievalTests.EvalHash",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-PIPE-01",
+    "milestone": "M2",
+    "title": "KAPipeline graph, queue, state applier, scheduler actor with lanes; ports pipeline-state and scheduler tests",
+    "runs_on": "linux",
+    "depends": [
+      "S-CORE-01"
+    ],
+    "spec": [
+      "electron/src/main/pipeline/"
+    ],
+    "gate": "swift test --filter KAPipelineTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-AGENT-01",
+    "milestone": "M2",
+    "title": "KAAgent orchestrator, tool loop, tools, command runs, undo; ports agent-command tests",
+    "runs_on": "linux",
+    "depends": [
+      "S-AI-04",
+      "S-RET-01",
+      "S-CORE-01"
+    ],
+    "spec": [
+      "electron/src/main/agent/"
+    ],
+    "gate": "swift test --filter KAAgentTests.Command",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-AGENT-02",
+    "milestone": "M2",
+    "title": "KAAgent understand, relate, organize-batch, consolidate tasks; ports stages-ai-tasks tests",
+    "runs_on": "linux",
+    "depends": [
+      "S-AGENT-01",
+      "S-PIPE-01"
+    ],
+    "spec": [
+      "electron/src/main/agent/tasks/"
+    ],
+    "gate": "swift test --filter KAAgentTests.Tasks",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-CAP-02",
+    "milestone": "M2",
+    "title": "KACapture intake (files, url, text, blob, drop) and pipeline stages extract/index/embed; ports intake and extraction-stages tests",
+    "runs_on": "linux",
+    "depends": [
+      "S-CAP-01",
+      "S-EXT-01",
+      "S-PIPE-01"
+    ],
+    "spec": [
+      "electron/src/main/capture/intake.ts",
+      "electron/src/main/pipeline/stages/"
+    ],
+    "gate": "swift test --filter KACaptureTests.Intake",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-LIB-01",
+    "milestone": "M2",
+    "title": "KALibrary facade: one async method per IPC channel (48) and one AsyncStream per push event (10), input validation as in ipc/schemas.ts; ports ipc tests",
+    "runs_on": "linux",
+    "depends": [
+      "S-AGENT-02",
+      "S-CAP-02"
+    ],
+    "spec": [
+      "electron/src/shared/ipc.ts",
+      "electron/src/main/ipc/",
+      "electron/src/main/ports.ts",
+      "electron/src/main/index.ts"
+    ],
+    "gate": "swift test --filter KALibraryTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-E2E-01",
+    "milestone": "M2",
+    "title": "KATestSupport scenario runner, fixture HTTP server, fake thumbnailer/snapshotter, snapshot normalizer, compare.json rules; scenario smoke passes",
+    "runs_on": "linux",
+    "depends": [
+      "S-LIB-01",
+      "E-05"
+    ],
+    "spec": [
+      "docs/swift_rewrite/PLAN.md#end-to-end-scenarios",
+      "electron/tests/scenarios/"
+    ],
+    "gate": "KA_SCENARIO=smoke swift test --filter KAE2ETests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-E2E-capture-files",
+    "milestone": "M2",
+    "title": "Scenario capture-files: every ported-extractor file type in the corpus",
+    "runs_on": "linux",
+    "depends": [
+      "S-E2E-01"
+    ],
+    "spec": [
+      "Tests/E2E/scenarios/capture-files.json"
+    ],
+    "gate": "KA_SCENARIO=capture-files swift test --filter KAE2ETests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-E2E-capture-text",
+    "milestone": "M2",
+    "title": "Scenario capture-text: text, markdown and blob paste",
+    "runs_on": "linux",
+    "depends": [
+      "S-E2E-01"
+    ],
+    "spec": [
+      "Tests/E2E/scenarios/capture-text.json"
+    ],
+    "gate": "KA_SCENARIO=capture-text swift test --filter KAE2ETests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-E2E-capture-folder",
+    "milestone": "M2",
+    "title": "Scenario capture-folder: folder-serving-benchmark",
+    "runs_on": "linux",
+    "depends": [
+      "S-E2E-01"
+    ],
+    "spec": [
+      "Tests/E2E/scenarios/capture-folder.json"
+    ],
+    "gate": "KA_SCENARIO=capture-folder swift test --filter KAE2ETests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-E2E-understand-organize",
+    "milestone": "M2",
+    "title": "Scenario understand-organize: understanding, relationships and collections from the mock provider",
+    "runs_on": "linux",
+    "depends": [
+      "S-E2E-01"
+    ],
+    "spec": [
+      "Tests/E2E/scenarios/understand-organize.json"
+    ],
+    "gate": "KA_SCENARIO=understand-organize swift test --filter KAE2ETests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-E2E-search",
+    "milestone": "M2",
+    "title": "Scenario search: quick search over the eval queries",
+    "runs_on": "linux",
+    "depends": [
+      "S-E2E-01"
+    ],
+    "spec": [
+      "Tests/E2E/scenarios/search.json"
+    ],
+    "gate": "KA_SCENARIO=search swift test --filter KAE2ETests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-E2E-ask",
+    "milestone": "M2",
+    "title": "Scenario ask: agent.command answer, sources and run steps",
+    "runs_on": "linux",
+    "depends": [
+      "S-E2E-01"
+    ],
+    "spec": [
+      "Tests/E2E/scenarios/ask.json"
+    ],
+    "gate": "KA_SCENARIO=ask swift test --filter KAE2ETests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-E2E-undo-suppress",
+    "milestone": "M2",
+    "title": "Scenario undo-suppress: undo a run, remove a member, suppression prevents re-adding on reprocess",
+    "runs_on": "linux",
+    "depends": [
+      "S-E2E-01"
+    ],
+    "spec": [
+      "Tests/E2E/scenarios/undo-suppress.json"
+    ],
+    "gate": "KA_SCENARIO=undo-suppress swift test --filter KAE2ETests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-E2E-trash",
+    "milestone": "M2",
+    "title": "Scenario trash: trash, restore, delete forever",
+    "runs_on": "linux",
+    "depends": [
+      "S-E2E-01"
+    ],
+    "spec": [
+      "Tests/E2E/scenarios/trash.json"
+    ],
+    "gate": "KA_SCENARIO=trash swift test --filter KAE2ETests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-E2E-collections",
+    "milestone": "M2",
+    "title": "Scenario collections: create, rename, add, remove, delete, consolidate",
+    "runs_on": "linux",
+    "depends": [
+      "S-E2E-01"
+    ],
+    "spec": [
+      "Tests/E2E/scenarios/collections.json"
+    ],
+    "gate": "KA_SCENARIO=collections swift test --filter KAE2ETests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-E2E-failures",
+    "milestone": "M2",
+    "title": "Scenario failures: unsupported file, 404 URL, AI unavailable then resumed",
+    "runs_on": "linux",
+    "depends": [
+      "S-E2E-01"
+    ],
+    "spec": [
+      "Tests/E2E/scenarios/failures.json"
+    ],
+    "gate": "KA_SCENARIO=failures swift test --filter KAE2ETests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-E2E-library-compat",
+    "milestone": "M2",
+    "title": "Scenario library-compat: open the Electron-made library and snapshot",
+    "runs_on": "linux",
+    "depends": [
+      "S-E2E-01"
+    ],
+    "spec": [
+      "Tests/E2E/scenarios/library-compat.json"
+    ],
+    "gate": "KA_SCENARIO=library-compat swift test --filter KAE2ETests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-E2E-schema-guard",
+    "milestone": "M2",
+    "title": "Scenario schema-guard: refuse a newer schema, open read-only under a held lock",
+    "runs_on": "linux",
+    "depends": [
+      "S-E2E-01"
+    ],
+    "spec": [
+      "Tests/E2E/scenarios/schema-guard.json"
+    ],
+    "gate": "KA_SCENARIO=schema-guard swift test --filter KAE2ETests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-EXT-02",
+    "milestone": "M3",
+    "title": "PDFKit extraction; scenario capture-pdf (stops after extraction, tokens:0.95 on text only)",
+    "runs_on": "macos",
+    "depends": [
+      "S-E2E-01"
+    ],
+    "spec": [
+      "electron/src/main/extraction/pdf.ts",
+      "electron/src/main/extraction/pdf-core.ts",
+      "electron/tests/unit/extraction-pdf.test.ts"
+    ],
+    "gate": "KA_SCENARIO=capture-pdf swift test --filter KAE2ETests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-EXT-03",
+    "milestone": "M3",
+    "title": "URL extraction: bundled Readability + Turndown in an offscreen WKWebView, metadata, url cache, adapters (github, arxiv, youtube, twitter, generic); scenario capture-urls",
+    "runs_on": "macos",
+    "depends": [
+      "S-E2E-01"
+    ],
+    "spec": [
+      "electron/src/main/extraction/url/",
+      "electron/tests/unit/extraction-url.test.ts",
+      "electron/tests/fixtures/html/"
+    ],
+    "gate": "KA_SCENARIO=capture-urls swift test --filter KAE2ETests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-PREV-01",
+    "milestone": "M3",
+    "title": "KAPreviews: QLThumbnailGenerator thumbnails, vision image, WKWebView snapshots, dominant color (parity on fixture images); ports previews-helpers tests",
+    "runs_on": "macos",
+    "depends": [
+      "S-E2E-01"
+    ],
+    "spec": [
+      "electron/src/main/previews/"
+    ],
+    "gate": "swift test --filter KAPreviewsTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-EMB-02",
+    "milestone": "M3",
+    "title": "bge-small-en-v1.5 q8 on ORT with a tokenizer (decide Tokenizers vs WordPiece port, record it in notes); cosine >= 0.999 per chunk against the JS vectors",
+    "runs_on": "macos",
+    "depends": [
+      "S-EMB-01"
+    ],
+    "spec": [
+      "electron/src/main/ai/embeddings/",
+      "electron/scripts/fetch-models.mjs"
+    ],
+    "gate": "swift test --filter KAEmbeddingsTests.Bge",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-RET-03",
+    "milestone": "M3",
+    "title": "Retrieval eval under bge: identical rankings to the fixture",
+    "runs_on": "macos",
+    "depends": [
+      "S-EMB-02",
+      "S-RET-02"
+    ],
+    "spec": [
+      "electron/tests/unit/retrieval-eval.test.ts"
+    ],
+    "gate": "swift test --filter KARetrievalTests.EvalBge",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "S-E2E-full-library",
+    "milestone": "M3",
+    "title": "Scenario full-library: whole corpus including PDFs and URLs with bge embeddings, through Ask",
+    "runs_on": "macos",
+    "depends": [
+      "S-EXT-02",
+      "S-EXT-03",
+      "S-PREV-01",
+      "S-RET-03"
+    ],
+    "spec": [
+      "Tests/E2E/scenarios/full-library.json"
+    ],
+    "gate": "KA_SCENARIO=full-library swift test --filter KAE2ETests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "U-APP-01",
+    "milestone": "M4",
+    "title": "Xcode project in App/ (thin targets, folder-synced), app launches with -KAScenario, library window shows; UI smoke test",
+    "runs_on": "macos",
+    "depends": [
+      "S-E2E-01"
+    ],
+    "spec": [
+      "docs/swift_rewrite/PLAN.md#ui-end-to-end",
+      "electron/src/main/desktop/windows.ts",
+      "electron/src/main/desktop/library-window.ts"
+    ],
+    "gate": "xcodebuild test -project App/KeepAnything.xcodeproj -scheme KeepAnything -destination 'platform=macOS' -only-testing:MacUITests/SmokeTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "U-THEME-01",
+    "milestone": "M4",
+    "title": "Theme generated from tokens.json (test asserts equality), system/light/dark + accent, Instrument Serif bundled, 25 Lucide vector assets, 5 animated sidebar icons",
+    "runs_on": "macos",
+    "depends": [
+      "U-APP-01"
+    ],
+    "spec": [
+      "electron/src/renderer/src/styles/",
+      "electron/src/renderer/src/components/shell/animated-icons/",
+      "electron/assets/fonts/"
+    ],
+    "gate": "swift test --filter KAUITests.Theme && xcodebuild test -project App/KeepAnything.xcodeproj -scheme KeepAnything -destination 'platform=macOS' -only-testing:MacUITests/ThemeTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "U-LIB-01",
+    "milestone": "M4",
+    "title": "Shell: sidebar, toolbar, library grid with ported masonry (fixture equality) and visible-row rendering; card frames match masonry fixture within 1 pt",
+    "runs_on": "macos",
+    "depends": [
+      "U-THEME-01"
+    ],
+    "spec": [
+      "electron/src/renderer/src/components/shell/",
+      "electron/src/renderer/src/components/library/masonry-grid/",
+      "electron/src/renderer/src/lib/masonry.ts"
+    ],
+    "gate": "swift test --filter KAUITests.Masonry && xcodebuild test -project App/KeepAnything.xcodeproj -scheme KeepAnything -destination 'platform=macOS' -only-testing:MacUITests/LibraryGridTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "U-LIB-02",
+    "milestone": "M4",
+    "title": "Item card per type with thumbnails, status, keyboard navigation (nearestInDirection)",
+    "runs_on": "macos",
+    "depends": [
+      "U-LIB-01"
+    ],
+    "spec": [
+      "electron/src/renderer/src/components/library/item-card/",
+      "electron/src/renderer/src/components/common/thumb/"
+    ],
+    "gate": "xcodebuild test -project App/KeepAnything.xcodeproj -scheme KeepAnything -destination 'platform=macOS' -only-testing:MacUITests/ItemCardTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "U-LIB-03",
+    "milestone": "M4",
+    "title": "Empty state, drop overlay, status stack, paste and file-drop capture from the window",
+    "runs_on": "macos",
+    "depends": [
+      "U-LIB-02"
+    ],
+    "spec": [
+      "electron/src/renderer/src/components/library/empty-state/",
+      "electron/src/renderer/src/components/shell/drop-overlay/",
+      "electron/src/renderer/src/components/shell/status-stack/"
+    ],
+    "gate": "xcodebuild test -project App/KeepAnything.xcodeproj -scheme KeepAnything -destination 'platform=macOS' -only-testing:MacUITests/CaptureTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "U-DET-01",
+    "milestone": "M4",
+    "title": "Detail view: inline edit, agent activity, relationships, open original, reveal, Quick Look",
+    "runs_on": "macos",
+    "depends": [
+      "U-LIB-02"
+    ],
+    "spec": [
+      "electron/src/renderer/src/components/detail/"
+    ],
+    "gate": "xcodebuild test -project App/KeepAnything.xcodeproj -scheme KeepAnything -destination 'platform=macOS' -only-testing:MacUITests/DetailTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "U-PAL-01",
+    "milestone": "M4",
+    "title": "Command palette panel: quick search, actions, keyboard",
+    "runs_on": "macos",
+    "depends": [
+      "U-LIB-02"
+    ],
+    "spec": [
+      "electron/src/renderer/src/components/palette/command-palette/",
+      "electron/src/shared/actions.ts"
+    ],
+    "gate": "xcodebuild test -project App/KeepAnything.xcodeproj -scheme KeepAnything -destination 'platform=macOS' -only-testing:MacUITests/PaletteTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "U-PAL-02",
+    "milestone": "M4",
+    "title": "Ask run in the palette: streamed steps, seen/total counter, sources, cancel with confirm",
+    "runs_on": "macos",
+    "depends": [
+      "U-PAL-01"
+    ],
+    "spec": [
+      "electron/src/renderer/src/components/palette/ask-run/"
+    ],
+    "gate": "xcodebuild test -project App/KeepAnything.xcodeproj -scheme KeepAnything -destination 'platform=macOS' -only-testing:MacUITests/AskTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "U-SEL-01",
+    "milestone": "M4",
+    "title": "Selection bar and multi-item commands",
+    "runs_on": "macos",
+    "depends": [
+      "U-LIB-02",
+      "U-PAL-02"
+    ],
+    "spec": [
+      "electron/src/renderer/src/components/selection/"
+    ],
+    "gate": "xcodebuild test -project App/KeepAnything.xcodeproj -scheme KeepAnything -destination 'platform=macOS' -only-testing:MacUITests/SelectionTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "U-COL-01",
+    "milestone": "M4",
+    "title": "Collections grid, collection header, proposals list and apply",
+    "runs_on": "macos",
+    "depends": [
+      "U-LIB-02"
+    ],
+    "spec": [
+      "electron/src/renderer/src/components/collections/"
+    ],
+    "gate": "xcodebuild test -project App/KeepAnything.xcodeproj -scheme KeepAnything -destination 'platform=macOS' -only-testing:MacUITests/CollectionsTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "U-TRASH-01",
+    "milestone": "M4",
+    "title": "Trash view: restore, delete forever with confirm",
+    "runs_on": "macos",
+    "depends": [
+      "U-LIB-02"
+    ],
+    "spec": [
+      "electron/src/renderer/src/components/library/trash-header/"
+    ],
+    "gate": "xcodebuild test -project App/KeepAnything.xcodeproj -scheme KeepAnything -destination 'platform=macOS' -only-testing:MacUITests/TrashTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "U-ACT-01",
+    "milestone": "M4",
+    "title": "Activity view over jobs and agent runs",
+    "runs_on": "macos",
+    "depends": [
+      "U-LIB-02"
+    ],
+    "spec": [
+      "electron/src/renderer/src/components/activity/"
+    ],
+    "gate": "xcodebuild test -project App/KeepAnything.xcodeproj -scheme KeepAnything -destination 'platform=macOS' -only-testing:MacUITests/ActivityTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "U-SET-01",
+    "milestone": "M4",
+    "title": "Settings: provider and model, API key in Keychain, test connection against a stub, theme, AI on/off, reset data with confirm",
+    "runs_on": "macos",
+    "depends": [
+      "U-APP-01"
+    ],
+    "spec": [
+      "electron/src/renderer/src/components/settings/",
+      "electron/src/main/lib/settings.ts",
+      "electron/src/main/lib/config.ts"
+    ],
+    "gate": "xcodebuild test -project App/KeepAnything.xcodeproj -scheme KeepAnything -destination 'platform=macOS' -only-testing:MacUITests/SettingsTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "U-COMMON-01",
+    "milestone": "M4",
+    "title": "Toasts, confirm dialog (ConfirmModel), context menus, app menu, keyboard shortcuts",
+    "runs_on": "macos",
+    "depends": [
+      "U-LIB-02"
+    ],
+    "spec": [
+      "electron/src/renderer/src/components/common/",
+      "electron/src/renderer/src/state/confirm.ts",
+      "electron/src/main/desktop/context-menu.ts",
+      "electron/src/main/desktop/app-menu.ts",
+      "electron/src/main/desktop/shortcuts.ts"
+    ],
+    "gate": "xcodebuild test -project App/KeepAnything.xcodeproj -scheme KeepAnything -destination 'platform=macOS' -only-testing:MacUITests/CommonTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "U-DESIGN-01",
+    "milestone": "M4",
+    "title": "Screenshot every surface in both themes; macos CI uploads design-review artifact with side-by-side composites and scores for all surfaces in design/surfaces.json",
+    "runs_on": "macos",
+    "depends": [
+      "U-LIB-03",
+      "U-DET-01",
+      "U-PAL-02",
+      "U-SEL-01",
+      "U-COL-01",
+      "U-TRASH-01",
+      "U-ACT-01",
+      "U-SET-01",
+      "U-COMMON-01",
+      "E-06"
+    ],
+    "spec": [
+      "docs/swift_rewrite/PLAN.md#ui-end-to-end",
+      "Tests/Fixtures/design/reference/"
+    ],
+    "gate": "xcodebuild test -project App/KeepAnything.xcodeproj -scheme KeepAnything -destination 'platform=macOS' -only-testing:MacUITests/DesignCaptureTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "U-SHELF-01",
+    "milestone": "M5",
+    "title": "Shelf: non-activating NSPanel, presence and drop policy; ports shelf-policy tests",
+    "runs_on": "macos",
+    "depends": [
+      "U-LIB-03"
+    ],
+    "spec": [
+      "electron/src/main/shelf-policy.ts",
+      "electron/src/main/desktop/shelf-window.ts",
+      "electron/src/renderer/src/components/shelf/",
+      "electron/src/shared/layout.ts"
+    ],
+    "gate": "swift test --filter KAUITests.ShelfPolicy && xcodebuild test -project App/KeepAnything.xcodeproj -scheme KeepAnything -destination 'platform=macOS' -only-testing:MacUITests/ShelfTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "U-MENU-01",
+    "milestone": "M5",
+    "title": "Menubar NSStatusItem, menu, shelf positioning from click bounds; ports positioning and desktop-tray tests",
+    "runs_on": "macos",
+    "depends": [
+      "U-SHELF-01"
+    ],
+    "spec": [
+      "electron/src/main/desktop/tray.ts",
+      "electron/src/main/positioning.ts"
+    ],
+    "gate": "swift test --filter KAUITests.Positioning && xcodebuild test -project App/KeepAnything.xcodeproj -scheme KeepAnything -destination 'platform=macOS' -only-testing:MacUITests/MenubarTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "U-DRAG-01",
+    "milestone": "M5",
+    "title": "In-process drag-watch (global event monitor + drag pasteboard) replacing the sidecar; shelf reveals on external drag",
+    "runs_on": "macos",
+    "depends": [
+      "U-SHELF-01"
+    ],
+    "spec": [
+      "electron/native/drag-watch/main.swift",
+      "electron/src/main/desktop/drag-watch.ts"
+    ],
+    "gate": "xcodebuild test -project App/KeepAnything.xcodeproj -scheme KeepAnything -destination 'platform=macOS' -only-testing:MacUITests/DragWatchTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "U-SHARE-01",
+    "milestone": "M5",
+    "title": "Share extension writes an envelope to <AppGroup>/inbox/; the app's inbox watcher captures and deletes it",
+    "runs_on": "macos",
+    "depends": [
+      "U-APP-01",
+      "S-CAP-02"
+    ],
+    "spec": [
+      "docs/swift_rewrite/PLAN.md#targets"
+    ],
+    "gate": "swift test --filter KALibraryTests.Inbox && xcodebuild test -project App/KeepAnything.xcodeproj -scheme KeepAnything -destination 'platform=macOS' -only-testing:MacUITests/InboxTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "U-ACTIV-01",
+    "milestone": "M5",
+    "title": "Activation: open-with and Dock drops capture files; single instance",
+    "runs_on": "macos",
+    "depends": [
+      "U-LIB-03"
+    ],
+    "spec": [
+      "electron/src/main/desktop/activation.ts"
+    ],
+    "gate": "xcodebuild test -project App/KeepAnything.xcodeproj -scheme KeepAnything -destination 'platform=macOS' -only-testing:MacUITests/ActivationTests",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "H-DESIGN-01",
+    "milestone": "M4",
+    "title": "Owner signs off every surface in the design-review artifact",
+    "runs_on": "human",
+    "depends": [
+      "U-DESIGN-01"
+    ],
+    "spec": [],
+    "gate": "",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "H-REL-01",
+    "milestone": "M6",
+    "title": "Developer ID signing and notarization of the Swift app",
+    "runs_on": "human",
+    "depends": [
+      "U-APP-01"
+    ],
+    "spec": [],
+    "gate": "",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "H-REL-02",
+    "milestone": "M6",
+    "title": "Sparkle 2: EdDSA keys, appcast on GitHub Releases, update check wired",
+    "runs_on": "human",
+    "depends": [
+      "H-REL-01"
+    ],
+    "spec": [],
+    "gate": "",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "H-REL-03",
+    "milestone": "M6",
+    "title": "Cutover dry run: a dummy Swift app signed with the same identity installs over Electron via Squirrel.Mac",
+    "runs_on": "human",
+    "depends": [
+      "H-REL-01"
+    ],
+    "spec": [],
+    "gate": "",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "H-REL-04",
+    "milestone": "M6",
+    "title": "Run the Swift app on a copy of the owner's real library; no data loss, same collections and search",
+    "runs_on": "human",
+    "depends": [
+      "S-E2E-full-library",
+      "U-DESIGN-01"
+    ],
+    "spec": [],
+    "gate": "",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  },
+  {
+    "id": "H-REL-05",
+    "milestone": "M6",
+    "title": "Final Electron release points its feed at the Swift app; tag electron-final",
+    "runs_on": "human",
+    "depends": [
+      "H-REL-02",
+      "H-REL-03",
+      "H-REL-04",
+      "H-DESIGN-01"
+    ],
+    "spec": [],
+    "gate": "",
+    "passes": false,
+    "blocked": null,
+    "notes": ""
+  }
+]
