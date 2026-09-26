@@ -41,6 +41,7 @@
     "parity:export": "KEEPANYTHING_PARITY_EXPORT=1 vitest run tests/parity/export.test.ts",
     "scenarios:export": "KEEPANYTHING_SCENARIOS=1 vitest run tests/scenarios/run.test.ts",
     "scenarios:keep": "KEEPANYTHING_SCENARIOS=1 KEEPANYTHING_KEEP_LIBRARY=../Tests/E2E/library vitest run tests/scenarios/run.test.ts",
+    "parity:library": "KEEPANYTHING_SCENARIOS=1 KA_SCENARIO=library-compat KEEPANYTHING_PARITY_LIBRARY=../Tests/Fixtures/parity/library vitest run tests/scenarios/run.test.ts",
     "design:references": "node scripts/capture-references.mjs",
     "design:references:check": "node scripts/capture-references.mjs --check"
   },

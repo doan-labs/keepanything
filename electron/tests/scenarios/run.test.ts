@@ -1,4 +1,4 @@
-import { cpSync, mkdtempSync, readFileSync, rmSync } from 'node:fs'
+import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
@@ -17,6 +17,11 @@ const enabled = process.env.KEEPANYTHING_SCENARIOS === '1'
 const only = process.env.KA_SCENARIO
 /** `scenarios:keep` sets this; kept libraries land in `<dir>/<name>/` (gitignored). */
 const keepRoot = process.env.KEEPANYTHING_KEEP_LIBRARY ? resolve(process.env.KEEPANYTHING_KEEP_LIBRARY) : null
+/**
+ * `parity:library` sets this: while replaying the compat scenario's source library, the finished
+ * userData is checkpointed and copied here for the Swift compat test, with a markers.json sibling.
+ */
+const parityRoot = process.env.KEEPANYTHING_PARITY_LIBRARY ? resolve(process.env.KEEPANYTHING_PARITY_LIBRARY) : null
 
 /** Replay another scenario's steps against a fresh library (for `open-library {kept}`). */
 async function replayToKeep(
@@ -46,6 +51,29 @@ async function replayToKeep(
     }
     rmSync(keepDir, { recursive: true, force: true })
     cpSync(userData, keepDir, { recursive: true })
+    if (parityRoot && name === 'understand-organize') {
+      // Fold the WAL into library.db and drop runtime files so the committed fixture is portable.
+      ctx.current?.db.raw.exec('PRAGMA wal_checkpoint(TRUNCATE)')
+      await ctx.current?.close()
+      ctx.current = null
+      for (const stray of ['library.lock', 'library.db-wal', 'library.db-shm']) {
+        rmSync(join(userData, stray), { force: true })
+      }
+      rmSync(parityRoot, { recursive: true, force: true })
+      cpSync(userData, parityRoot, { recursive: true })
+      // The Swift compat test normalizes against these recorded prefixes (same order as the runner).
+      writeFileSync(
+        join(parityRoot, 'markers.json'),
+        `${JSON.stringify(
+          [
+            { find: CORPUS_FILES, marker: '{corpus}' },
+            { find: userData, marker: '{library}' }
+          ],
+          null,
+          2
+        )}\n`
+      )
+    }
   } finally {
     await ctx.current?.close()
     cleanupTemps(ctx)

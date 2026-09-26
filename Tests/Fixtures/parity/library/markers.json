@@ -1,0 +1,10 @@
+[
+  {
+    "find": "/Users/devin/repos/keepanything/electron/tests/fixtures/corpus/files",
+    "marker": "{corpus}"
+  },
+  {
+    "find": "/var/folders/2j/fwfzfr5x639f8rbmqc9t9ym40000gn/T/ka-scenario-keep-understand-organize-uhRCAt",
+    "marker": "{library}"
+  }
+]

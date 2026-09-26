@@ -69,11 +69,19 @@ let package = Package(
       path: "Sources/KALibrary"
     ),
     .target(name: "KAUI", dependencies: ["KAModel", "KALibrary"], path: "Sources/KAUI"),
-    .target(name: "KATestSupport", dependencies: ["KALibrary"], path: "Sources/KATestSupport"),
+    .target(
+      name: "KATestSupport",
+      dependencies: ["KALibrary", .product(name: "GRDB", package: "GRDB.swift")],
+      path: "Sources/KATestSupport"
+    ),
     .systemLibrary(name: "CZlib", path: "Sources/CZlib"),
 
     .testTarget(name: "KAModelTests", dependencies: ["KAModel"], path: "Tests/KAModelTests"),
-    .testTarget(name: "KAStorageTests", dependencies: ["KAStorage"], path: "Tests/KAStorageTests"),
+    .testTarget(
+      name: "KAStorageTests",
+      dependencies: ["KAStorage", "KATestSupport"],
+      path: "Tests/KAStorageTests"
+    ),
     .testTarget(name: "KACoreTests", dependencies: ["KACore"], path: "Tests/KACoreTests"),
     .testTarget(name: "KACaptureTests", dependencies: ["KACapture"], path: "Tests/KACaptureTests"),
     .testTarget(name: "KAExtractionTests", dependencies: ["KAExtraction"], path: "Tests/KAExtractionTests"),
