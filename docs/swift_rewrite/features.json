@@ -31,7 +31,7 @@
       "docs/swift_rewrite/features.json"
     ],
     "gate": "bash scripts/gate.sh linux",
-    "passes": false,
+    "passes": true,
     "blocked": null,
     "notes": ""
   },
