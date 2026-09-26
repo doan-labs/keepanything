@@ -249,9 +249,9 @@
       "electron/src/main/core/"
     ],
     "gate": "swift test --filter KACoreTests",
-    "passes": false,
+    "passes": true,
     "blocked": null,
-    "notes": ""
+    "notes": "also ports pipeline/graph.ts + queue.ts (needed by the services harness); macOS only"
   },
   {
     "id": "S-AI-01",
