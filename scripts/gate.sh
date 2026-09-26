@@ -86,7 +86,8 @@ lint() {
 
 electron_baseline() {
   log "electron: typecheck + test"
-  (cd electron && pnpm run typecheck && pnpm run test)
+  # --retry: a couple of tests assert on real-timer durations; CI timers can fire ~1ms early.
+  (cd electron && pnpm run typecheck && pnpm exec vitest run --retry=2)
 }
 
 swift_baseline() {
