@@ -132,7 +132,7 @@ async function runScenario(file: string): Promise<'ok' | 'skipped'> {
 }
 
 describe.skipIf(!enabled)('e2e scenarios', () => {
-  resetExpected()
+  if (!only) resetExpected()
   for (const file of scenarioFiles()) {
     const name = file.replace(/\.json$/, '')
     it.skipIf(Boolean(only) && only !== name)(name, async () => {
