@@ -54,3 +54,8 @@ Newest last. Format: see PLAN.md#agent-protocol.
 - `Package.swift` (tools 6.0, macOS 15, Swift 6 mode): 14 modules + `CZlib` system library + 13 Swift Testing targets with marker enums; GRDB 7.11.1; onnxruntime-swift-package-manager 1.24.2 linked only `.when(platforms: [.macOS])` on KAEmbeddings; `Package.resolved` committed. `scripts/gate.sh lint` gains: no `import KAUI` outside KAUI/App, Apple-only frameworks only in files with `#if canImport(`.
 - Evidence: `swift build` complete (27.8 s), `swift test` 13/13, `bash scripts/gate.sh lint` ok — on macOS only (no Linux run during the local-only phase).
 - REVIEW: commits on this branch carry a `Co-Authored-By: Devin AI` trailer appended by the hosting environment (no local hook/config sets it); PLAN forbids AI attribution — owner may squash-merge with a clean message.
+
+## 2026-09-26 S-MODEL-01 passes
+- `Sources/KAModel/{Types,Kinds,Status,Constants,Text,Media,Layout,IPC}.swift`: file-by-file port of `electron/src/shared/`, camelCase names kept, raw-value enums in TS array order. `Tests/KAModelTests`: ported status/text/vocabulary/media tests plus parity sweeps over vocab.json, limits.json, status-table.json (594 transitions, 108 stageEntryStatus rows) and text.json (64 cases).
+- Evidence: `swift test --filter KAModelTests` 45/45; `swift build`, `bash scripts/gate.sh lint` ok (macOS only).
+- Notes: JS `encodeURIComponent`/`Math.round`/NFKD reproduced by hand and fixture-checked; `Date.parse` is a strict ISO8601 parser (all app-written timestamps are ISO). `ItemSubtype` is a tagged enum encoding to the same wire string; `AgentResult`/`AgentProposal` are flat optional structs; numeric JSON fields are `Double`.

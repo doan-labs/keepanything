@@ -181,9 +181,9 @@
       "electron/src/shared/"
     ],
     "gate": "swift test --filter KAModelTests",
-    "passes": false,
+    "passes": true,
     "blocked": null,
-    "notes": ""
+    "notes": "verified on macOS only"
   },
   {
     "id": "S-STORE-01",
