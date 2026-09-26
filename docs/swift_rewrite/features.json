@@ -198,9 +198,9 @@
       "electron/src/main/storage/migrations/"
     ],
     "gate": "swift test --filter KAStorageTests.Database",
-    "passes": false,
+    "passes": true,
     "blocked": null,
-    "notes": ""
+    "notes": "no sqlite_master fixture exists in Tests/Fixtures/parity; schema verified via bundled .sql sha256 == migrations.json and table-list tests; macOS only"
   },
   {
     "id": "S-STORE-02",
