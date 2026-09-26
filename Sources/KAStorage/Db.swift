@@ -125,18 +125,9 @@ public final class Db: Sendable {
   }
 }
 
-/// Execute a multi-statement SQL script (migration files are plain DDL/DML; GRDB accepts one
-/// statement per call, so split on `;`). `--` comments are stripped first — they can contain
-/// semicolons; no migration literal contains `--` or `;` inside quotes.
+/// Migration files are multi-statement scripts; GRDB executes them verbatim.
 func execScript(_ db: GRDB.Database, _ sql: String) throws {
-  let code = sql.split(separator: "\n").map { line -> Substring in
-    guard let comment = line.range(of: "--") else { return line }
-    return line[..<comment.lowerBound]
-  }.joined(separator: "\n")
-  for statement in code.split(separator: ";") {
-    if statement.allSatisfy(\.isWhitespace) { continue }
-    try db.execute(sql: String(statement))
-  }
+  try db.execute(sql: sql)
 }
 
 /// JS `toISOString()` format.
