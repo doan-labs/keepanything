@@ -132,9 +132,9 @@ describe('consolidatePlanSchema', () => {
       renames: [
         {
           collectionId: 'c1',
-          name: 'MiniMax Hackathon',
-          description: 'Everything for the hackathon build.',
-          reason: 'Members are all hackathon material.'
+          name: 'Inference Research',
+          description: 'Everything about choosing an inference provider.',
+          reason: 'Members are all provider research.'
         }
       ],
       merges: [{ fromCollectionId: 'c2', intoCollectionId: 'c1', reason: 'Same context.' }],

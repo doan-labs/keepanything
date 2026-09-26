@@ -613,8 +613,8 @@ design; when they disagree with this list, this list describes what ships.
 - Sources cited by `finish` are filtered to items the run actually saw (search results, inspected/read items, seed
   items — `validSources`); the rest are dropped with a debug log, so an answer can end up with fewer sources than
   the model claimed.
-- No `reasoning_content` has ever been observed from GMI (79/79 probe calls, 0 in the live run); the strip-on-persist
-  path is kept but nothing depends on it. See `docs/GMI_NOTES.md`.
+- No `reasoning_content` has ever been observed from GMI; the strip-on-persist path is kept but nothing depends
+  on it.
 
 **Embeddings**
 

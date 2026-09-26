@@ -19,5 +19,5 @@ Every agent action is undoable. When a user removes something the agent proposed
 
 - Every automatic change is inspectable, attributable and reversible.
 - Suppressions are permanent, small and cheap to consult; the alternative — the agent re-proposing —
-  destroys trust in one demo.
+  destroys trust fast.
 - Any new agent capability must go through a service before it can touch state.

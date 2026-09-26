@@ -155,7 +155,7 @@ Item (id, type, title, originalPath, managedPath, url, mimeType, size, createdAt
 processingStatus, understanding, whyUseful, metadata JSON, extractedText, thumbnailPath); Collection (id, name,
 description, createdBy, createdAt); CollectionItem (collectionId, itemId, confidence, reason, addedBy);
 generated artifacts as Items; AgentRun (id, itemId, task, status, model, startedAt, completedAt, toolCalls, result,
-error) for debugging and demos.
+error) for debugging.
 
 ## 24. Processing pipeline
 Background jobs: CAPTURED → EXTRACTING → EXTRACTED → EMBEDDING → UNDERSTANDING → RELATING → READY; failure states
@@ -186,7 +186,7 @@ natural-language search; item detail; multi-item compare/summarise. Later: globa
 extensions, browser extension, saved searches, advanced parsers. Core product must work even if
 macOS-level drag interception is technically expensive.
 
-## 29. Demo scenario
+## 29. Reference scenario
 Empty library. Drag in: a MiniMax article, a GitHub repository, an AI infrastructure PDF, a product screenshot, a Doan
 Labs design reference, another model provider page, a random research note. No tags/folders. Library develops
 relationships/collections. Ask "What am I researching here?" → agent searches, reasons, identifies a theme, cites

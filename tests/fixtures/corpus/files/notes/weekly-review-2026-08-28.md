@@ -5,7 +5,7 @@
 - Mon: read the PagedAttention paper properly instead of skimming the blog posts about it. The
   block table idea maps almost one-to-one onto virtual memory paging; copy-on-write for beam search
   is the clever bit.
-- Tue: MiniMax Week kickoff. Registered KeepAnything for the Reasoning track. Got a GMI Cloud key.
+- Tue: picked MiniMax-M3 as the reasoning model for KeepAnything. Got a GMI Cloud key.
 - Wed: probed the GMI endpoint. No `reasoning_content` field comes back for M3; tool calls are
   clean JSON; one 429 in ~40 requests.
 - Thu: wrote the eval queries for retrieval ("that pdf about attention", "the website with the
@@ -16,10 +16,10 @@
 
 1. Structured output = fenced/raw JSON extraction + zod + one retry. Never trust `json_schema`.
 2. One organize run per drop batch instead of one per item.
-3. Demo runs from a replay cache; live mode only if the venue Wi-Fi behaves.
+3. The app must stay usable offline: capture and local search never wait on the model.
 
 ## Next week
 
 - Build the "Ask My Stuff" panel.
-- Rehearse the 3-minute demo twice with a timer.
+- Drop a real week of downloads into the library and see what collections come out.
 - Read the ReAct paper again; the "thought → action → observation" loop is basically our agent log.

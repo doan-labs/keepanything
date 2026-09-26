@@ -115,7 +115,7 @@ describe('text helpers', () => {
     expect(out.title).toBeUndefined()
   })
 
-  it('runs the file adapter over the demo notes', async () => {
+  it('runs the file adapter over the fixture notes', async () => {
     const filePath = resolve(FIXTURES, 'notes/inference-providers-notes.md')
     const out = await textExtractor.extract(
       { item: item({ type: 'markdown', metadata: { originalName: 'inference-providers-notes.md' } }), filePath },

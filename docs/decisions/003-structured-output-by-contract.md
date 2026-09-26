@@ -16,7 +16,7 @@ prefix cache still hits. The answer is extracted in three escalating steps — r
 block, balanced-object scan — then validated with zod. A zod failure retries once with the formatted
 error fed back to the model; `finish_reason: 'length'` is treated as unusable and retries once with
 doubled `max_tokens` (8k → 16k cap). `<think>` blocks are stripped and `reasoning_content` is never
-persisted. See `src/main/ai/structured.ts` and `docs/GMI_NOTES.md`.
+persisted. See `src/main/ai/structured.ts`.
 
 ## Consequences
 

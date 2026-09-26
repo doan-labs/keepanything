@@ -13,7 +13,7 @@ Everything lives on disk under `<userData>`: a single SQLite database opened wit
 `DatabaseSync` (SQLite 3.53, FTS5 + JSON1), plus `objects/`, `previews/` and `content/` directories.
 Migrations are numbered `.sql` files in `src/main/storage/migrations/`. Originals are copied into
 `objects/` or referenced in place, never moved or rewritten. Dev and packaged builds use separate
-libraries (`<userData>/dev`) so a demo can never be corrupted by a dev run.
+libraries (`<userData>/dev`) so a real library can never be corrupted by a dev run.
 
 ## Consequences
 

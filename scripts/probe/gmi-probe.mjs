@@ -9,7 +9,6 @@
 // KEEPANYTHING_GMI_BASE_URL / KEEPANYTHING_MODEL from the gitignored .env at the repo root.
 // The key is never printed. Every string that is logged or written to disk passes through redact().
 // Raw (redacted) records are written to /tmp/gmi-probe-results/<timestamp>/ for later inspection.
-// Findings are summarised in docs/GMI_NOTES.md.
 
 import { execFile } from 'node:child_process'
 import { access, mkdir, readFile, writeFile } from 'node:fs/promises'

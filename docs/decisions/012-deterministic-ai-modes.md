@@ -25,10 +25,9 @@ key-like values.
 
 This record originally specified two more modes, `record` (live, caching every request/response pair
 to `<userData>/ai-cache/` keyed by the request) and `replay` (serve only from that cache). They existed
-so a live demo could be rehearsed once and replayed offline. Both were removed along with the rest of
-the demo scaffolding: `ai/cache-provider.ts`, `Paths.aiCacheDir` and the two `AiMode` members are gone.
+so a session could be recorded once and replayed offline. Both were removed: `ai/cache-provider.ts`, `Paths.aiCacheDir` and the two `AiMode` members are gone.
 
 The reasoning was that the cache keys are request-shaped, so any prompt edit silently invalidates a
 recording — the feature is only safe to use after the prompts are final, which is when the
 codebase should not be carrying it speculatively. Reintroduce it from git history when there is a
-demo to rehearse.
+concrete need for offline replay.

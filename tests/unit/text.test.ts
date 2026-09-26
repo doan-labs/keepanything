@@ -31,7 +31,7 @@ describe('slugify', () => {
 describe('normalizeName', () => {
   it('lowercases, strips punctuation and collapses whitespace', () => {
     expect(normalizeName('  mnismt:  Visual   Direction!! ')).toBe('mnismt visual direction')
-    expect(normalizeName('MiniMax-Hackathon')).toBe('minimax hackathon')
+    expect(normalizeName('Inference-Research')).toBe('inference research')
     expect(normalizeName('Things to Read')).toBe(normalizeName('things   to read'))
     expect(normalizeName('Ｍacos Apps')).toBe('macos apps')
   })

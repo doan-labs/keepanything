@@ -20,7 +20,7 @@ Non-goals: cloud sync, accounts, telemetry, Windows/Linux, scraping behind login
   TypeScript 5.9 strict with `noUncheckedIndexedAccess`.
 - AI: one OpenAI-compatible transport (`ai/openai-compatible.ts`) with two selectable providers: GMI Cloud
   (default, model `MiniMaxAI/MiniMax-M3`) and OpenRouter (default model `minimax/minimax-m3`). Structured
-  output is fenced-JSON extraction + zod + one retry; `response_format` is not relied on. Notes in `docs/GMI_NOTES.md`.
+  output is fenced-JSON extraction + zod + one retry; `response_format` is not relied on.
 - Embeddings: `@huggingface/transformers` running `Xenova/bge-small-en-v1.5` (q8, 384-d, cls pooling)
   in a `utilityProcess` worker; hashed TF-IDF fallback when the model is missing.
 - UI: StyleX (`@stylexjs/stylex` + `@stylexjs/unplugin` in the renderer Vite config, before the React

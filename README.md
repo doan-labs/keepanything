@@ -43,6 +43,6 @@ Keys can also go in a gitignored `.env` (see `.env.example`): `KEEPANYTHING_GMI_
 builds never share a library.
 
 More: [product brief](docs/PRODUCT_BRIEF.md) · [architecture](docs/ARCHITECTURE.md) ·
-[GMI notes](docs/GMI_NOTES.md) · [contributor conventions](AGENTS.md)
+[contributor conventions](AGENTS.md)
 
 Built by [Doan Labs](https://doan-labs.com), an independent software lab in Vietnam.
