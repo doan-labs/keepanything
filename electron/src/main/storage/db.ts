@@ -21,7 +21,10 @@ export interface Db {
    * rollback. Services use it to emit events only for state that actually exists.
    */
   afterCommit(fn: () => void): void
-  /** Apply pending migrations from `MIGRATIONS`. */
+  /**
+   * Apply pending migrations from `MIGRATIONS`. Throws `SchemaTooNewError` when the database was
+   * written by a newer app, so an older build never touches a schema it does not know.
+   */
   migrate(): void
   /** Highest applied migration version (0 when none). */
   schemaVersion(): number
@@ -42,15 +45,29 @@ export const MIGRATIONS: readonly Migration[] = [
   { version: 3, name: '003-settle-trashed-items', sql: SETTLE_TRASHED_SQL }
 ]
 
+/** The library's `schema_migrations` records a version this build does not know. */
+export class SchemaTooNewError extends Error {
+  constructor(
+    readonly found: number,
+    readonly supported: number
+  ) {
+    super(`library schema version ${found} is newer than this app supports (${supported}); update the app`)
+    this.name = 'SchemaTooNewError'
+  }
+}
+
 export interface OpenDatabaseOptions {
   /** Milliseconds to wait on a locked database (default 5000). */
   busyTimeoutMs?: number
+  /** Open with `SQLITE_OPEN_READONLY`; another process holds `library.lock`. Never migrate then. */
+  readOnly?: boolean
 }
 
 /** Open (creating if needed) the library database with the production PRAGMAs. Does not migrate. */
 export function openDatabase(file: string, options: OpenDatabaseOptions = {}): Db {
-  const raw = new DatabaseSync(file)
-  if (file !== ':memory:') raw.exec('PRAGMA journal_mode = WAL')
+  const readOnly = options.readOnly === true
+  const raw = new DatabaseSync(file, { readOnly })
+  if (file !== ':memory:' && !readOnly) raw.exec('PRAGMA journal_mode = WAL')
   raw.exec(`PRAGMA busy_timeout = ${Math.max(0, Math.floor(options.busyTimeoutMs ?? 5000))}`)
   raw.exec('PRAGMA foreign_keys = ON')
   raw.exec('PRAGMA synchronous = NORMAL')

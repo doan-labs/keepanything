@@ -2,7 +2,7 @@ import { existsSync, mkdtempSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, describe, expect, it } from 'vitest'
-import { type Db, MIGRATIONS, openDatabase, toSql } from '../../src/main/storage/db'
+import { type Db, MIGRATIONS, openDatabase, SchemaTooNewError, toSql } from '../../src/main/storage/db'
 
 const dirs: string[] = []
 const dbs: Db[] = []
@@ -71,6 +71,34 @@ describe('openDatabase + migrate', () => {
         )
         .run()
     ).not.toThrow()
+  })
+
+  it('refuses a database whose schema version is newer than the newest known migration', () => {
+    const file = tempFile()
+    const future = openDatabase(file)
+    future.migrate()
+    const newest = MIGRATIONS[MIGRATIONS.length - 1]!.version
+    future.raw
+      .prepare('INSERT INTO schema_migrations (version, applied_at) VALUES (?, ?)')
+      .run(newest + 1, '2099-01-01T00:00:00.000Z')
+    future.raw.exec('CREATE TABLE future_only (id TEXT PRIMARY KEY)')
+    future.close()
+
+    const db = open(file)
+    let caught: unknown
+    try {
+      db.migrate()
+    } catch (error) {
+      caught = error
+    }
+    expect(caught).toBeInstanceOf(SchemaTooNewError)
+    const guard = caught as SchemaTooNewError
+    expect(guard.found).toBe(newest + 1)
+    expect(guard.supported).toBe(newest)
+    expect(guard.message).toMatch(/newer than this app supports/)
+    expect(db.schemaVersion()).toBe(newest + 1)
+    expect(db.raw.prepare('SELECT count(*) AS n FROM schema_migrations').get()).toEqual({ n: newest + 1 })
+    expect(db.raw.prepare("SELECT 1 AS ok FROM sqlite_master WHERE name = 'future_only'").get()).toEqual({ ok: 1 })
   })
 
   it('uses WAL, foreign keys and a busy timeout', () => {
