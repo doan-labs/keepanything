@@ -130,9 +130,9 @@
       "electron/src/renderer/src/components/"
     ],
     "gate": "node electron/scripts/capture-references.mjs --check",
-    "passes": false,
+    "passes": true,
     "blocked": null,
-    "notes": ""
+    "notes": "28 surfaces; proposals surface unreachable with the mock provider; cards only for the 5 item types in design-seed"
   },
   {
     "id": "E-07",
