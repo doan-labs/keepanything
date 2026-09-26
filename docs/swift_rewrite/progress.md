@@ -30,3 +30,8 @@ Newest last. Format: see PLAN.md#agent-protocol.
 - `electron/src/main/storage/library-lock.ts`: `library.lock` JSON `{pid, app, version, since}` in userData, created with `wx`; live owner → `{ readOnly: true }`; dead pid / unreadable file → taken over via temp file + rename; `release()` only removes a lock the same pid still owns.
 - `electron/src/main/index.ts`: acquire before opening SQLite; read-only mode opens with `SQLITE_OPEN_READONLY`, skips `migrate()` and the scheduler; released on shutdown.
 - Evidence: `bash scripts/gate.sh E-03` (7 passed) locally; `pnpm run typecheck` clean.
+
+## 2026-09-26 E-04 passes
+- `electron/tests/parity/export.test.ts` (+ `exporters/*.ts`, `lib.ts`): vitest runner behind `KEEPANYTHING_PARITY_EXPORT=1`, `pnpm run parity:export`. Wipes and rewrites `Tests/Fixtures/parity/`: vocab, limits, status-table (status×stage×outcome×isLast + stageEntryStatus), text, migrations (+sha256), prompts (system constants, 3 inputs per builder, structured contracts for all 5 schemas), structured, url, query (now = 2026-09-01T12:00Z), classify, hash-vectors, masonry (14 items × 5 widths × 2 densities + nearestInDirection), design/tokens.json (StyleX mocked to identity), design/icons/*.svg, design/fonts.json, retrieval-eval.json (hash; bge file written only when build/models is present).
+- Evidence: `bash scripts/gate.sh E-04` green, export idempotent over 3 runs, `pnpm run typecheck` clean.
+- Notes: renderer imports 41 Lucide icons, PLAN.md says 25 — exported all 41 (REVIEW the PLAN count). Token counts match PLAN (24/4/3/9/7/3/8/6/7). `align-left` is an alias of `text-align-start` in lucide-react 1.40.

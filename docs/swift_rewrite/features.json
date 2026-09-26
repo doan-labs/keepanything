@@ -90,9 +90,9 @@
       "electron/tests/unit/retrieval-eval.test.ts"
     ],
     "gate": "cd electron && pnpm run parity:export && git diff --exit-code -- ../Tests/Fixtures/parity",
-    "passes": false,
+    "passes": true,
     "blocked": null,
-    "notes": ""
+    "notes": "41 Lucide icons in use, not 25"
   },
   {
     "id": "E-05",
