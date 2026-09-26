@@ -1,0 +1,29 @@
+# Manual-only job: regenerates the Electron design references the Swift rewrite diffs against
+# (docs/swift_rewrite/PLAN.md "Keeping the design"). Dispatched by hand when the Electron UI changes;
+# artifacts are reviewed and committed from a Mac because the captures embed SF fonts.
+name: design-reference
+
+on:
+  workflow_dispatch:
+
+jobs:
+  capture:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: electron/package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: electron/.nvmrc
+      - run: pnpm install --frozen-lockfile
+        working-directory: electron
+      - run: pnpm exec electron-vite build
+        working-directory: electron
+      - run: node scripts/capture-references.mjs
+        working-directory: electron
+      - uses: actions/upload-artifact@v4
+        with:
+          name: design-reference
+          path: Tests/Fixtures/design/reference/

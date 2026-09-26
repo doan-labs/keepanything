@@ -1,0 +1,221 @@
+{
+  "comment": "Declarative surfaces captured by electron/scripts/capture-references.mjs into Tests/Fixtures/design/reference/<id>.<theme>.png at 1440x900, both themes. Steps: {click:{role,name}}/{click:{selector}}/{dblclick:{selector}}/{press}/{type}/{wait}/{select:{value}} (the toolbar density <select>)/{invoke:{channel,payload}} (window.keepAnything.invoke)/{evaluate:<js>}/{menu:<label>} (application-menu item)/{window:'shelf'} (switch capture target to the shelf BrowserWindow)/{shot:{element:<selector>}} (locator screenshot instead of the page)/{empty:true} (surface runs against a wiped, unseeded profile). Item ids are the deterministic scenario ids from Tests/E2E/scenarios/design-seed.json.",
+  "surfaces": [
+    {
+      "id": "library-grid-comfortable",
+      "title": "Library grid, comfortable density",
+      "steps": [{ "wait": 400 }]
+    },
+    {
+      "id": "library-grid-compact",
+      "title": "Library grid, compact density",
+      "steps": [{ "select": { "value": "compact" } }, { "wait": 600 }]
+    },
+    {
+      "id": "library-grid-empty",
+      "title": "Library grid, empty state",
+      "steps": [{ "empty": true }, { "wait": 400 }]
+    },
+    {
+      "id": "item-card-markdown",
+      "title": "Item card, markdown",
+      "steps": [{ "wait": 300 }, { "shot": { "element": "[data-item-id='item-2']" } }]
+    },
+    {
+      "id": "item-card-text",
+      "title": "Item card, text",
+      "steps": [{ "shot": { "element": "[data-item-id='item-5']" } }]
+    },
+    {
+      "id": "item-card-url",
+      "title": "Item card, url",
+      "steps": [{ "shot": { "element": "[data-item-id='item-12']" } }]
+    },
+    {
+      "id": "item-card-image",
+      "title": "Item card, image",
+      "steps": [{ "shot": { "element": "[data-item-id='item-7']" } }]
+    },
+    {
+      "id": "item-card-folder",
+      "title": "Item card, folder",
+      "steps": [{ "shot": { "element": "[data-item-id='item-10']" } }]
+    },
+    {
+      "id": "detail",
+      "title": "Item detail sheet",
+      "steps": [{ "dblclick": { "selector": "[data-item-id='item-2']" } }, { "wait": 800 }]
+    },
+    {
+      "id": "palette-idle",
+      "title": "Command palette, idle",
+      "steps": [{ "press": "Meta+k" }, { "wait": 400 }]
+    },
+    {
+      "id": "palette-results",
+      "title": "Command palette, results",
+      "steps": [{ "press": "Meta+k" }, { "type": "batching" }, { "wait": 700 }]
+    },
+    {
+      "id": "ask-running",
+      "title": "Ask, running",
+      "steps": [
+        { "press": "Meta+k" },
+        { "type": "What am I researching here?" },
+        { "press": "Enter" },
+        { "wait": 250 }
+      ]
+    },
+    {
+      "id": "ask-answered",
+      "title": "Ask, answered",
+      "steps": [
+        { "press": "Meta+k" },
+        { "type": "What am I researching here?" },
+        { "press": "Enter" },
+        { "wait": 6000 }
+      ]
+    },
+    {
+      "id": "selection-bar",
+      "title": "Selection bar, two items",
+      "steps": [
+        { "click": { "selector": "[data-item-id='item-2']" } },
+        { "click": { "selector": "[data-item-id='item-4']", "modifiers": ["Meta"] } },
+        { "wait": 400 }
+      ]
+    },
+    {
+      "id": "collections-grid",
+      "title": "Collections grid",
+      "steps": [{ "click": { "role": "button", "name": "Collections" } }, { "wait": 500 }]
+    },
+    {
+      "id": "collection-header",
+      "title": "Collection detail header",
+      "steps": [
+        { "click": { "role": "button", "name": "Collections" } },
+        { "wait": 400 },
+        { "click": { "role": "button", "name": "Inference research" } },
+        { "wait": 500 }
+      ]
+    },
+    {
+      "id": "trash",
+      "title": "Trash view",
+      "steps": [
+        { "invoke": { "channel": "items:trash", "payload": { "ids": ["item-9"] } } },
+        { "wait": 300 },
+        { "click": { "role": "button", "name": "Trash" } },
+        { "wait": 500 }
+      ]
+    },
+    {
+      "id": "activity",
+      "title": "Activity view",
+      "steps": [{ "click": { "role": "button", "name": "Activity" } }, { "wait": 500 }]
+    },
+    {
+      "id": "settings-provider",
+      "title": "Settings, Provider section",
+      "steps": [
+        { "click": { "role": "button", "name": "Settings" } },
+        { "wait": 500 },
+        { "scroll": { "region": "Provider" } },
+        { "wait": 200 }
+      ]
+    },
+    {
+      "id": "settings-library",
+      "title": "Settings, Library section",
+      "steps": [
+        { "click": { "role": "button", "name": "Settings" } },
+        { "wait": 500 },
+        { "scroll": { "region": "Library" } },
+        { "wait": 200 }
+      ]
+    },
+    {
+      "id": "settings-glance",
+      "title": "Settings, Library at a glance section",
+      "steps": [
+        { "click": { "role": "button", "name": "Settings" } },
+        { "wait": 500 },
+        { "scroll": { "region": "Library at a glance" } },
+        { "wait": 200 }
+      ]
+    },
+    {
+      "id": "settings-about",
+      "title": "Settings, About section",
+      "steps": [
+        { "click": { "role": "button", "name": "Settings" } },
+        { "wait": 500 },
+        { "scroll": { "region": "About" } },
+        { "wait": 200 }
+      ]
+    },
+    {
+      "id": "settings-danger",
+      "title": "Settings, Danger zone section",
+      "steps": [
+        { "click": { "role": "button", "name": "Settings" } },
+        { "wait": 500 },
+        { "scroll": { "region": "Danger zone" } },
+        { "wait": 200 }
+      ]
+    },
+    {
+      "id": "toast",
+      "title": "Toast notification",
+      "steps": [
+        { "click": { "role": "button", "name": "Settings" } },
+        { "wait": 500 },
+        { "scroll": { "region": "Library" } },
+        { "click": { "role": "button", "name": "Copy library path" } },
+        { "wait": 400 }
+      ]
+    },
+    {
+      "id": "confirm-dialog",
+      "title": "Confirm dialog (stopping a running Ask)",
+      "steps": [
+        { "press": "Meta+k" },
+        { "type": "What am I researching here?" },
+        { "press": "Enter" },
+        { "wait": 300 },
+        { "press": "Escape" },
+        { "wait": 400 }
+      ]
+    },
+    {
+      "id": "drop-overlay",
+      "title": "Drop overlay",
+      "steps": [
+        {
+          "evaluate": "window.dispatchEvent(new DragEvent('dragenter', { bubbles: true, dataTransfer: new DataTransfer() }))"
+        },
+        { "wait": 400 }
+      ]
+    },
+    {
+      "id": "status-stack",
+      "title": "Status stack with live ask",
+      "steps": [
+        { "press": "Meta+k" },
+        { "type": "What am I researching here?" },
+        { "press": "Enter" },
+        { "wait": 500 },
+        { "press": "Escape" },
+        { "wait": 300 },
+        { "press": "Escape" },
+        { "wait": 400 }
+      ]
+    },
+    {
+      "id": "shelf",
+      "title": "Shelf window",
+      "steps": [{ "menu": "Toggle Shelf" }, { "wait": 800 }, { "window": "shelf" }]
+    }
+  ]
+}

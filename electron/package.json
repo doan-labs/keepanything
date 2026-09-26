@@ -40,7 +40,9 @@
     "audit:comments": "node scripts/audit-comments.mjs",
     "parity:export": "KEEPANYTHING_PARITY_EXPORT=1 vitest run tests/parity/export.test.ts",
     "scenarios:export": "KEEPANYTHING_SCENARIOS=1 vitest run tests/scenarios/run.test.ts",
-    "scenarios:keep": "KEEPANYTHING_SCENARIOS=1 KEEPANYTHING_KEEP_LIBRARY=../Tests/E2E/library vitest run tests/scenarios/run.test.ts"
+    "scenarios:keep": "KEEPANYTHING_SCENARIOS=1 KEEPANYTHING_KEEP_LIBRARY=../Tests/E2E/library vitest run tests/scenarios/run.test.ts",
+    "design:references": "node scripts/capture-references.mjs",
+    "design:references:check": "node scripts/capture-references.mjs --check"
   },
   "simple-git-hooks": {
     "pre-commit": "cd electron && pnpm exec lint-staged"
