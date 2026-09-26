@@ -1,0 +1,375 @@
+{
+  "urls": [
+    {
+      "url": "https://www.Example.com/Path/?utm_source=x&b=2&a=1#frag",
+      "canonicalize": {
+        "url": "https://www.example.com/Path/?utm_source=x&b=2&a=1#frag",
+        "canonical": "https://example.com/Path?a=1&b=2",
+        "domain": "example.com"
+      },
+      "isMedia": false,
+      "isSingle": true,
+      "title": "Path · example.com",
+      "guessSubtype": "generic"
+    },
+    {
+      "url": "https://youtu.be/abc123",
+      "canonicalize": {
+        "url": "https://youtu.be/abc123",
+        "canonical": "https://youtube.com/watch?v=abc123",
+        "domain": "youtube.com"
+      },
+      "isMedia": false,
+      "isSingle": true,
+      "title": "abc123 · youtu.be",
+      "guessSubtype": "youtube"
+    },
+    {
+      "url": "https://x.com/someone/status/1",
+      "canonicalize": {
+        "url": "https://x.com/someone/status/1",
+        "canonical": "https://twitter.com/someone/status/1",
+        "domain": "twitter.com"
+      },
+      "isMedia": false,
+      "isSingle": true,
+      "title": "1 · x.com",
+      "guessSubtype": "tweet"
+    },
+    {
+      "url": "ftp://nope",
+      "canonicalize": null,
+      "isMedia": false,
+      "isSingle": false,
+      "title": "nope",
+      "guessSubtype": null
+    },
+    {
+      "url": "not a url",
+      "canonicalize": null,
+      "isMedia": false,
+      "isSingle": false,
+      "title": null,
+      "guessSubtype": null
+    },
+    {
+      "url": "mailto:a@b.c",
+      "canonicalize": null,
+      "isMedia": false,
+      "isSingle": false,
+      "title": "a@b.c · ",
+      "guessSubtype": null
+    },
+    {
+      "url": "https://",
+      "canonicalize": null,
+      "isMedia": false,
+      "isSingle": false,
+      "title": null,
+      "guessSubtype": null
+    },
+    {
+      "url": "https://Example.com/x?utm_source=1",
+      "canonicalize": {
+        "url": "https://example.com/x?utm_source=1",
+        "canonical": "https://example.com/x",
+        "domain": "example.com"
+      },
+      "isMedia": false,
+      "isSingle": true,
+      "title": "x · example.com",
+      "guessSubtype": "generic"
+    },
+    {
+      "url": "https://youtube.com/shorts/xyz789",
+      "canonicalize": {
+        "url": "https://youtube.com/shorts/xyz789",
+        "canonical": "https://youtube.com/watch?v=xyz789",
+        "domain": "youtube.com"
+      },
+      "isMedia": false,
+      "isSingle": true,
+      "title": "xyz789 · youtube.com",
+      "guessSubtype": "youtube"
+    },
+    {
+      "url": "https://youtube.com/watch?v=abc123&list=PL1&t=42",
+      "canonicalize": {
+        "url": "https://youtube.com/watch?v=abc123&list=PL1&t=42",
+        "canonical": "https://youtube.com/watch?v=abc123",
+        "domain": "youtube.com"
+      },
+      "isMedia": false,
+      "isSingle": true,
+      "title": "watch · youtube.com",
+      "guessSubtype": "youtube"
+    },
+    {
+      "url": "https://music.youtube.com/watch?v=abc123",
+      "canonicalize": {
+        "url": "https://music.youtube.com/watch?v=abc123",
+        "canonical": "https://youtube.com/watch?v=abc123",
+        "domain": "youtube.com"
+      },
+      "isMedia": false,
+      "isSingle": true,
+      "title": "watch · music.youtube.com",
+      "guessSubtype": "youtube"
+    },
+    {
+      "url": "https://github.com/vllm-project/vllm",
+      "canonicalize": {
+        "url": "https://github.com/vllm-project/vllm",
+        "canonical": "https://github.com/vllm-project/vllm",
+        "domain": "github.com"
+      },
+      "isMedia": false,
+      "isSingle": true,
+      "title": "vllm · github.com",
+      "guessSubtype": "github_repo"
+    },
+    {
+      "url": "https://twitter.com/user/status/42?s=20&t=abc",
+      "canonicalize": {
+        "url": "https://twitter.com/user/status/42?s=20&t=abc",
+        "canonical": "https://twitter.com/user/status/42",
+        "domain": "twitter.com"
+      },
+      "isMedia": false,
+      "isSingle": true,
+      "title": "42 · twitter.com",
+      "guessSubtype": "tweet"
+    },
+    {
+      "url": "https://old.reddit.com/r/LocalLLaMA/comments/xyz/title/?rdt=1",
+      "canonicalize": {
+        "url": "https://old.reddit.com/r/LocalLLaMA/comments/xyz/title/?rdt=1",
+        "canonical": "https://reddit.com/r/LocalLLaMA/comments/xyz/title",
+        "domain": "reddit.com"
+      },
+      "isMedia": false,
+      "isSingle": true,
+      "title": "title · old.reddit.com",
+      "guessSubtype": "social"
+    },
+    {
+      "url": "https://arxiv.org/abs/2309.06180v2",
+      "canonicalize": {
+        "url": "https://arxiv.org/abs/2309.06180v2",
+        "canonical": "https://arxiv.org/abs/2309.06180v2",
+        "domain": "arxiv.org"
+      },
+      "isMedia": false,
+      "isSingle": true,
+      "title": "2309.06180v2 · arxiv.org",
+      "guessSubtype": "paper"
+    },
+    {
+      "url": "https://example.com/paper.pdf",
+      "canonicalize": {
+        "url": "https://example.com/paper.pdf",
+        "canonical": "https://example.com/paper.pdf",
+        "domain": "example.com"
+      },
+      "isMedia": false,
+      "isSingle": true,
+      "title": "paper · example.com",
+      "guessSubtype": "paper"
+    },
+    {
+      "url": "https://a.b/c/image.PNG?x=1",
+      "canonicalize": {
+        "url": "https://a.b/c/image.PNG?x=1",
+        "canonical": "https://a.b/c/image.PNG?x=1",
+        "domain": "a.b"
+      },
+      "isMedia": true,
+      "isSingle": true,
+      "title": "image.PNG · a.b",
+      "guessSubtype": "generic"
+    },
+    {
+      "url": "https://example.com:443/path/",
+      "canonicalize": {
+        "url": "https://example.com/path/",
+        "canonical": "https://example.com/path",
+        "domain": "example.com"
+      },
+      "isMedia": false,
+      "isSingle": true,
+      "title": "path · example.com",
+      "guessSubtype": "generic"
+    },
+    {
+      "url": "http://example.com:80/path/",
+      "canonicalize": {
+        "url": "http://example.com/path/",
+        "canonical": "https://example.com/path",
+        "domain": "example.com"
+      },
+      "isMedia": false,
+      "isSingle": true,
+      "title": "path · example.com",
+      "guessSubtype": "generic"
+    },
+    {
+      "url": "https://en.m.wikipedia.org/wiki/Transformer",
+      "canonicalize": {
+        "url": "https://en.m.wikipedia.org/wiki/Transformer",
+        "canonical": "https://en.wikipedia.org/wiki/Transformer",
+        "domain": "en.wikipedia.org"
+      },
+      "isMedia": false,
+      "isSingle": true,
+      "title": "Transformer · en.m.wikipedia.org",
+      "guessSubtype": "generic"
+    },
+    {
+      "url": "https://a.b/page#/spa/route",
+      "canonicalize": {
+        "url": "https://a.b/page#/spa/route",
+        "canonical": "https://a.b/page#/spa/route",
+        "domain": "a.b"
+      },
+      "isMedia": false,
+      "isSingle": true,
+      "title": "page · a.b",
+      "guessSubtype": "generic"
+    },
+    {
+      "url": "https://google.com/search?q=vllm&utm_source=x",
+      "canonicalize": {
+        "url": "https://google.com/search?q=vllm&utm_source=x",
+        "canonical": "https://google.com/search?q=vllm",
+        "domain": "google.com"
+      },
+      "isMedia": false,
+      "isSingle": true,
+      "title": "search · google.com",
+      "guessSubtype": "generic"
+    },
+    {
+      "url": "HTTPS://EXAMPLE.COM/UPPER/Path",
+      "canonicalize": {
+        "url": "https://example.com/UPPER/Path",
+        "canonical": "https://example.com/UPPER/Path",
+        "domain": "example.com"
+      },
+      "isMedia": false,
+      "isSingle": false,
+      "title": "Path · example.com",
+      "guessSubtype": "generic"
+    },
+    {
+      "url": "https://example.com/a//b///c/",
+      "canonicalize": {
+        "url": "https://example.com/a//b///c/",
+        "canonical": "https://example.com/a/b/c",
+        "domain": "example.com"
+      },
+      "isMedia": false,
+      "isSingle": true,
+      "title": "c · example.com",
+      "guessSubtype": "generic"
+    },
+    {
+      "url": "https://example.com/index.html",
+      "canonicalize": {
+        "url": "https://example.com/index.html",
+        "canonical": "https://example.com",
+        "domain": "example.com"
+      },
+      "isMedia": false,
+      "isSingle": true,
+      "title": "index · example.com",
+      "guessSubtype": "generic"
+    },
+    {
+      "url": "https://amazon.com/dp/B0XYZ/?ref_=nav_cs_gb&th=1",
+      "canonicalize": {
+        "url": "https://amazon.com/dp/B0XYZ/?ref_=nav_cs_gb&th=1",
+        "canonical": "https://amazon.com/dp/B0XYZ",
+        "domain": "amazon.com"
+      },
+      "isMedia": false,
+      "isSingle": true,
+      "title": "B0XYZ · amazon.com",
+      "guessSubtype": "product"
+    },
+    {
+      "url": "https://example.com/path?keep=1&utm_medium=em&fbclid=zz",
+      "canonicalize": {
+        "url": "https://example.com/path?keep=1&utm_medium=em&fbclid=zz",
+        "canonical": "https://example.com/path?keep=1",
+        "domain": "example.com"
+      },
+      "isMedia": false,
+      "isSingle": true,
+      "title": "path · example.com",
+      "guessSubtype": "generic"
+    }
+  ],
+  "guessUrlSubtype": [
+    {
+      "domain": "youtube.com",
+      "path": "/watch",
+      "subtype": "youtube"
+    },
+    {
+      "domain": "docs.python.org",
+      "path": "/3",
+      "subtype": "docs"
+    },
+    {
+      "domain": "github.com",
+      "path": "/vllm-project/vllm",
+      "subtype": "github_repo"
+    },
+    {
+      "domain": "github.com",
+      "path": "/vllm-project/vllm/issues/1",
+      "subtype": "generic"
+    },
+    {
+      "domain": "twitter.com",
+      "path": "/user",
+      "subtype": "generic"
+    },
+    {
+      "domain": "arxiv.org",
+      "path": "/abs/2309.06180",
+      "subtype": "paper"
+    },
+    {
+      "domain": "example.com",
+      "path": "/",
+      "subtype": "generic"
+    }
+  ],
+  "parseUriList": [
+    {
+      "input": "# comment\nhttps://a.b\n\nhttps://c.d\r\n",
+      "out": [
+        "https://a.b",
+        "https://c.d"
+      ]
+    },
+    {
+      "input": "https://a.b/one\n#note\nhttps://c.d/two",
+      "out": [
+        "https://a.b/one",
+        "https://c.d/two"
+      ]
+    },
+    {
+      "input": "",
+      "out": []
+    },
+    {
+      "input": "no-newline",
+      "out": [
+        "no-newline"
+      ]
+    }
+  ]
+}

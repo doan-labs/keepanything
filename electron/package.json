@@ -37,7 +37,8 @@
     "models:fetch": "node scripts/fetch-models.mjs",
     "eval:retrieval": "node scripts/eval-retrieval.mjs",
     "seed:library": "pnpm run build && node scripts/seed-library.mjs",
-    "audit:comments": "node scripts/audit-comments.mjs"
+    "audit:comments": "node scripts/audit-comments.mjs",
+    "parity:export": "KEEPANYTHING_PARITY_EXPORT=1 vitest run tests/parity/export.test.ts"
   },
   "simple-git-hooks": {
     "pre-commit": "cd electron && pnpm exec lint-staged"

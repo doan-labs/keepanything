@@ -1,0 +1,325 @@
+{
+  "model": "local-hash",
+  "base": "2026-09-01T00:00:00.000Z",
+  "queries": [
+    {
+      "id": "kw-vllm",
+      "query": "vllm",
+      "k": 3,
+      "ranked": [
+        "url-gh-vllm",
+        "folder-serving-benchmark",
+        "pdf-paged-attention",
+        "url-blog-anyscale-batching",
+        "md-inference-providers",
+        "?"
+      ]
+    },
+    {
+      "id": "kw-hyperliquid",
+      "query": "hyperliquid",
+      "k": 3,
+      "ranked": [
+        "txt-hyperliquid"
+      ]
+    },
+    {
+      "id": "kw-minimax",
+      "query": "minimax",
+      "k": 3,
+      "ranked": [
+        "url-gh-minimax-m1",
+        "md-weekly-review",
+        "md-inference-providers"
+      ]
+    },
+    {
+      "id": "type-pdf-attention",
+      "query": "that pdf about attention",
+      "k": 3,
+      "ranked": [
+        "md-weekly-review",
+        "?",
+        "pdf-react",
+        "pdf-paged-attention"
+      ]
+    },
+    {
+      "id": "nl-agents-paper",
+      "query": "the paper about language models that reason and then act",
+      "k": 3,
+      "ranked": [
+        "pdf-react",
+        "pdf-paged-attention",
+        "url-gh-minimax-m1",
+        "md-weekly-review",
+        "url-yt-karpathy-llms",
+        "?",
+        "md-inference-providers",
+        "txt-resend-alternatives",
+        "?",
+        "?"
+      ]
+    },
+    {
+      "id": "nl-resend",
+      "query": "what did I save about cheaper Resend alternatives?",
+      "k": 3,
+      "ranked": [
+        "txt-resend-alternatives"
+      ]
+    },
+    {
+      "id": "nl-globe",
+      "query": "the website with the globe animation",
+      "k": 3,
+      "ranked": [
+        "md-weekly-review",
+        "md-mnismt-design",
+        "url-docs-sqlite-fts5",
+        "url-docs-electron-utility-process",
+        "url-gh-minimax-m1",
+        "url-docs-gmi-llm-api",
+        "url-gh-transformersjs",
+        "url-blog-anyscale-batching",
+        "url-raycast",
+        "url-gh-vllm"
+      ]
+    },
+    {
+      "id": "type-screenshot-pricing",
+      "query": "screenshot of inference pricing",
+      "k": 3,
+      "ranked": [
+        "png-pricing-page",
+        "url-docs-gmi-llm-api",
+        "md-inference-providers",
+        "txt-resend-alternatives",
+        "url-gh-vllm",
+        "?",
+        "url-blog-anyscale-batching"
+      ]
+    },
+    {
+      "id": "type-screenshot-terminal",
+      "query": "the terminal screenshot with the test results",
+      "k": 3,
+      "ranked": [
+        "png-terminal-tests",
+        "?",
+        "?",
+        "?",
+        "folder-serving-benchmark"
+      ]
+    },
+    {
+      "id": "nl-db-locked",
+      "query": "database is locked error",
+      "k": 3,
+      "ranked": [
+        "png-error-dialog",
+        "md-inference-providers"
+      ]
+    },
+    {
+      "id": "type-video-karpathy",
+      "query": "karpathy video about llms",
+      "k": 3,
+      "ranked": [
+        "url-yt-karpathy-llms",
+        "url-docs-gmi-llm-api",
+        "url-blog-anyscale-batching",
+        "url-wiki-rag",
+        "url-gh-vllm",
+        "folder-serving-benchmark",
+        "md-inference-providers",
+        "pdf-react",
+        "pdf-paged-attention",
+        "png-pricing-page"
+      ]
+    },
+    {
+      "id": "nl-cheap-inference",
+      "query": "something I saved about cheap inference providers",
+      "k": 4,
+      "ranked": [
+        "md-inference-providers",
+        "png-pricing-page",
+        "url-docs-gmi-llm-api",
+        "url-blog-anyscale-batching",
+        "url-gh-vllm",
+        "?"
+      ]
+    },
+    {
+      "id": "type-repo-transformers-js",
+      "query": "github repo for running transformers in javascript",
+      "k": 3,
+      "ranked": [
+        "url-gh-transformersjs",
+        "?",
+        "md-inference-providers",
+        "?",
+        "md-weekly-review",
+        "?",
+        "md-mnismt-design",
+        "png-terminal-tests",
+        "txt-hyperliquid"
+      ]
+    },
+    {
+      "id": "nl-electron-worker",
+      "query": "electron docs about running work in a background process",
+      "k": 3,
+      "ranked": [
+        "url-docs-electron-utility-process",
+        "md-weekly-review",
+        "md-inference-providers",
+        "md-mnismt-design",
+        "?",
+        "txt-resend-alternatives",
+        "?",
+        "?",
+        "png-terminal-tests",
+        "txt-hyperliquid"
+      ]
+    },
+    {
+      "id": "time-last-week-notes",
+      "query": "my notes from last week",
+      "k": 3,
+      "ranked": [
+        "md-inference-providers",
+        "txt-resend-alternatives",
+        "md-weekly-review",
+        "md-mnismt-design",
+        "?",
+        "?",
+        "txt-hyperliquid"
+      ]
+    },
+    {
+      "id": "time-few-weeks-mac-app",
+      "query": "that mac app I saved a few weeks ago",
+      "k": 3,
+      "ranked": [
+        "url-raycast"
+      ]
+    },
+    {
+      "id": "type-folder-benchmark",
+      "query": "the benchmark folder with the csv results",
+      "k": 3,
+      "ranked": [
+        "folder-serving-benchmark",
+        "?",
+        "?",
+        "?"
+      ]
+    },
+    {
+      "id": "nl-fts-sqlite",
+      "query": "full text search in sqlite",
+      "k": 3,
+      "ranked": [
+        "url-docs-sqlite-fts5",
+        "png-error-dialog",
+        "md-weekly-review",
+        "md-mnismt-design",
+        "?"
+      ]
+    },
+    {
+      "id": "par-globe",
+      "query": "the rotating planet on the homepage of that design site",
+      "k": 3,
+      "ranked": [
+        "md-mnismt-design",
+        "txt-hyperliquid",
+        "url-gh-transformersjs",
+        "url-docs-sqlite-fts5",
+        "url-docs-electron-utility-process",
+        "url-gh-minimax-m1",
+        "url-docs-gmi-llm-api",
+        "url-yt-karpathy-llms",
+        "url-raycast",
+        "url-gh-vllm"
+      ]
+    },
+    {
+      "id": "par-karpathy-llms",
+      "query": "Andrej Karpathy's talk on large language models",
+      "k": 3,
+      "ranked": [
+        "url-yt-karpathy-llms",
+        "pdf-react",
+        "pdf-paged-attention",
+        "txt-resend-alternatives",
+        "url-gh-minimax-m1",
+        "md-mnismt-design",
+        "md-inference-providers",
+        "?",
+        "md-weekly-review",
+        "?"
+      ]
+    },
+    {
+      "id": "par-paged-kv-cache",
+      "query": "paper on paging the KV cache to serve LLMs without wasting GPU memory",
+      "k": 3,
+      "ranked": [
+        "pdf-paged-attention",
+        "pdf-react",
+        "md-inference-providers",
+        "?",
+        "?",
+        "?",
+        "md-weekly-review",
+        "png-pricing-page",
+        "url-gh-vllm",
+        "url-docs-gmi-llm-api"
+      ]
+    },
+    {
+      "id": "par-weekly-notes",
+      "query": "what I wrote down at the end of last week",
+      "k": 3,
+      "ranked": [
+        "md-weekly-review",
+        "?",
+        "md-inference-providers",
+        "?",
+        "?"
+      ]
+    },
+    {
+      "id": "par-resend",
+      "query": "notes I kept on cheaper options to Resend for transactional email",
+      "k": 3,
+      "ranked": [
+        "txt-resend-alternatives",
+        "md-inference-providers",
+        "md-weekly-review",
+        "txt-hyperliquid",
+        "md-mnismt-design"
+      ]
+    },
+    {
+      "id": "par-cheap-inference",
+      "query": "comparison of low-cost LLM inference providers",
+      "k": 4,
+      "ranked": [
+        "md-inference-providers",
+        "url-docs-gmi-llm-api",
+        "png-pricing-page",
+        "url-blog-anyscale-batching",
+        "url-gh-vllm",
+        "pdf-react",
+        "folder-serving-benchmark",
+        "?",
+        "md-mnismt-design",
+        "pdf-paged-attention"
+      ]
+    }
+  ]
+}

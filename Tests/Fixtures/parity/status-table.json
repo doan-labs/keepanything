@@ -1,0 +1,4704 @@
+{
+  "transitions": [
+    {
+      "status": "CAPTURED",
+      "stage": "extract",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "extract",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "extract",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "extract",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "extract",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "extract",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "thumbnail",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "CAPTURED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "thumbnail",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "thumbnail",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "CAPTURED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "thumbnail",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "thumbnail",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "CAPTURED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "thumbnail",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "snapshot",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "CAPTURED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "snapshot",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "snapshot",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "CAPTURED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "snapshot",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "snapshot",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "CAPTURED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "snapshot",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "embed",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "embed",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "embed",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "embed",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "embed",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "CAPTURED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "embed",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "CAPTURED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "index",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "CAPTURED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "index",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "index",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "CAPTURED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "index",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "index",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "CAPTURED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "index",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "understand",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "understand",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "RELATING"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "understand",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "understand",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "understand",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "understand",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "relate",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "relate",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "relate",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "relate",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "relate",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "relate",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "organize_batch",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "organize_batch",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "organize_batch",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "organize_batch",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "organize_batch",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "organize_batch",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "consolidate",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "CAPTURED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "consolidate",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "CAPTURED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "consolidate",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "CAPTURED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "consolidate",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "CAPTURED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "consolidate",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "CAPTURED"
+    },
+    {
+      "status": "CAPTURED",
+      "stage": "consolidate",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "CAPTURED"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "extract",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "extract",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "extract",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "extract",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "extract",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "extract",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "thumbnail",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTING"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "thumbnail",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "thumbnail",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTING"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "thumbnail",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "thumbnail",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTING"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "thumbnail",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "snapshot",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTING"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "snapshot",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "snapshot",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTING"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "snapshot",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "snapshot",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTING"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "snapshot",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "embed",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "embed",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "embed",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "embed",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "embed",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTING"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "embed",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "EXTRACTING"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "index",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTING"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "index",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "index",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTING"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "index",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "index",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTING"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "index",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "understand",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "understand",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "RELATING"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "understand",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "understand",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "understand",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "understand",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "relate",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "relate",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "relate",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "relate",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "relate",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "relate",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "organize_batch",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "organize_batch",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "organize_batch",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "organize_batch",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "organize_batch",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "organize_batch",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "consolidate",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTING"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "consolidate",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "EXTRACTING"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "consolidate",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTING"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "consolidate",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "EXTRACTING"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "consolidate",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTING"
+    },
+    {
+      "status": "EXTRACTING",
+      "stage": "consolidate",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "EXTRACTING"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "extract",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "extract",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "extract",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "extract",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "extract",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "extract",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "thumbnail",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "thumbnail",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "thumbnail",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "thumbnail",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "thumbnail",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "thumbnail",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "snapshot",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "snapshot",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "snapshot",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "snapshot",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "snapshot",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "snapshot",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "embed",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "embed",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "embed",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "embed",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "embed",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "embed",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "index",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "index",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "index",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "index",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "index",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "index",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "understand",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "understand",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "RELATING"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "understand",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "understand",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "understand",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "understand",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "relate",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "relate",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "relate",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "relate",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "relate",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "relate",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "organize_batch",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "organize_batch",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "organize_batch",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "organize_batch",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "organize_batch",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "organize_batch",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "consolidate",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "consolidate",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "consolidate",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "consolidate",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "consolidate",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTED",
+      "stage": "consolidate",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "extract",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "extract",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "extract",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "extract",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "extract",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "extract",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "thumbnail",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EMBEDDING"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "thumbnail",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "thumbnail",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EMBEDDING"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "thumbnail",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "thumbnail",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EMBEDDING"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "thumbnail",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "snapshot",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EMBEDDING"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "snapshot",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "snapshot",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EMBEDDING"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "snapshot",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "snapshot",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EMBEDDING"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "snapshot",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "embed",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "embed",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "embed",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "embed",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "embed",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EMBEDDING"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "embed",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "EMBEDDING"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "index",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EMBEDDING"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "index",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "index",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EMBEDDING"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "index",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "index",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EMBEDDING"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "index",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "understand",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "understand",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "RELATING"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "understand",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "understand",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "understand",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "understand",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "relate",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "relate",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "relate",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "relate",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "relate",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "relate",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "organize_batch",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "organize_batch",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "organize_batch",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "organize_batch",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "organize_batch",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "organize_batch",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "consolidate",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EMBEDDING"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "consolidate",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "EMBEDDING"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "consolidate",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EMBEDDING"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "consolidate",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "EMBEDDING"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "consolidate",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EMBEDDING"
+    },
+    {
+      "status": "EMBEDDING",
+      "stage": "consolidate",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "EMBEDDING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "extract",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "extract",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "extract",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "extract",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "extract",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "extract",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "thumbnail",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "thumbnail",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "thumbnail",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "thumbnail",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "thumbnail",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "thumbnail",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "snapshot",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "snapshot",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "snapshot",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "snapshot",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "snapshot",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "snapshot",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "embed",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "embed",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "embed",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "embed",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "embed",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "embed",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "index",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "index",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "index",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "index",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "index",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "index",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "understand",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "understand",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "RELATING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "understand",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "understand",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "understand",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "understand",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "relate",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "relate",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "relate",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "relate",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "relate",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "relate",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "organize_batch",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "organize_batch",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "organize_batch",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "organize_batch",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "organize_batch",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "organize_batch",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "consolidate",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "consolidate",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "consolidate",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "consolidate",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "consolidate",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "UNDERSTANDING",
+      "stage": "consolidate",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "UNDERSTANDING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "extract",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "RELATING",
+      "stage": "extract",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "RELATING",
+      "stage": "extract",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "RELATING",
+      "stage": "extract",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "RELATING",
+      "stage": "extract",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "RELATING",
+      "stage": "extract",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "RELATING",
+      "stage": "thumbnail",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "thumbnail",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "RELATING",
+      "stage": "thumbnail",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "thumbnail",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "RELATING",
+      "stage": "thumbnail",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "thumbnail",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "RELATING",
+      "stage": "snapshot",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "snapshot",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "RELATING",
+      "stage": "snapshot",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "snapshot",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "RELATING",
+      "stage": "snapshot",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "snapshot",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "RELATING",
+      "stage": "embed",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "embed",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "RELATING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "embed",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "embed",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "RELATING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "embed",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "embed",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "RELATING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "index",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "index",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "RELATING",
+      "stage": "index",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "index",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "RELATING",
+      "stage": "index",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "index",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "RELATING",
+      "stage": "understand",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "understand",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "RELATING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "understand",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "RELATING",
+      "stage": "understand",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "RELATING",
+      "stage": "understand",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "RELATING",
+      "stage": "understand",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "RELATING",
+      "stage": "relate",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "RELATING",
+      "stage": "relate",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "RELATING",
+      "stage": "relate",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "RELATING",
+      "stage": "relate",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "RELATING",
+      "stage": "relate",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "RELATING",
+      "stage": "relate",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "RELATING",
+      "stage": "organize_batch",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "RELATING",
+      "stage": "organize_batch",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "RELATING",
+      "stage": "organize_batch",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "RELATING",
+      "stage": "organize_batch",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "RELATING",
+      "stage": "organize_batch",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "RELATING",
+      "stage": "organize_batch",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "RELATING",
+      "stage": "consolidate",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "consolidate",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "RELATING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "consolidate",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "consolidate",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "RELATING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "consolidate",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "RELATING",
+      "stage": "consolidate",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "RELATING"
+    },
+    {
+      "status": "READY",
+      "stage": "extract",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "READY",
+      "stage": "extract",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "READY",
+      "stage": "extract",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "READY",
+      "stage": "extract",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "READY",
+      "stage": "extract",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "READY",
+      "stage": "extract",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "READY",
+      "stage": "thumbnail",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "thumbnail",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "thumbnail",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "thumbnail",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "READY",
+      "stage": "thumbnail",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "thumbnail",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "READY",
+      "stage": "snapshot",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "snapshot",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "snapshot",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "snapshot",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "READY",
+      "stage": "snapshot",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "snapshot",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "READY",
+      "stage": "embed",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "embed",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "embed",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "embed",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "embed",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "embed",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "index",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "index",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "index",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "index",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "READY",
+      "stage": "index",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "index",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "READY",
+      "stage": "understand",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "READY",
+      "stage": "understand",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "RELATING"
+    },
+    {
+      "status": "READY",
+      "stage": "understand",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "READY",
+      "stage": "understand",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "READY",
+      "stage": "understand",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "READY",
+      "stage": "understand",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "READY",
+      "stage": "relate",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "relate",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "relate",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "READY",
+      "stage": "relate",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "READY",
+      "stage": "relate",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "READY",
+      "stage": "relate",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "READY",
+      "stage": "organize_batch",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "organize_batch",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "organize_batch",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "READY",
+      "stage": "organize_batch",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "READY",
+      "stage": "organize_batch",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "READY",
+      "stage": "organize_batch",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "READY",
+      "stage": "consolidate",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "consolidate",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "consolidate",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "consolidate",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "consolidate",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "READY",
+      "stage": "consolidate",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "extract",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "extract",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "extract",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "extract",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "extract",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "extract",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "thumbnail",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "thumbnail",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "thumbnail",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "thumbnail",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "thumbnail",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "thumbnail",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "snapshot",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "snapshot",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "snapshot",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "snapshot",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "snapshot",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "snapshot",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "embed",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "embed",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "embed",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "embed",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "embed",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "embed",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "index",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "index",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "index",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "index",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "index",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "index",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "understand",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "understand",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "RELATING"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "understand",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "understand",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "understand",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "understand",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "relate",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "relate",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "relate",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "relate",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "relate",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "relate",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "organize_batch",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "organize_batch",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "organize_batch",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "organize_batch",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "organize_batch",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "organize_batch",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "consolidate",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "consolidate",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "consolidate",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "consolidate",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "consolidate",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "PARTIAL",
+      "stage": "consolidate",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "extract",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "extract",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "extract",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "extract",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "extract",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "extract",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "thumbnail",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "thumbnail",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "thumbnail",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "thumbnail",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "thumbnail",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "thumbnail",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "snapshot",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "snapshot",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "snapshot",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "snapshot",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "snapshot",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "snapshot",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "embed",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "embed",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "embed",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "embed",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "embed",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "embed",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "index",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "index",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "index",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "index",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "index",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "index",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "understand",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "understand",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "understand",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "understand",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "understand",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "understand",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "relate",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "relate",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "relate",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "relate",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "relate",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "relate",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "organize_batch",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "organize_batch",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "organize_batch",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "organize_batch",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "organize_batch",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "organize_batch",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "consolidate",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "consolidate",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "consolidate",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "consolidate",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "consolidate",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "EXTRACTION_FAILED",
+      "stage": "consolidate",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "extract",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "extract",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "extract",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "extract",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "extract",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "extract",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "thumbnail",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "thumbnail",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "thumbnail",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "thumbnail",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "thumbnail",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "thumbnail",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "snapshot",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "snapshot",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "snapshot",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "snapshot",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "snapshot",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "snapshot",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "embed",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "embed",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "embed",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "embed",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "embed",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "embed",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "index",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "index",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "index",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "index",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "index",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "index",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "understand",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "understand",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "RELATING"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "understand",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "understand",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "understand",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "understand",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "relate",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "relate",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "relate",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "relate",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "relate",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "relate",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "organize_batch",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "organize_batch",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "organize_batch",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "organize_batch",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "organize_batch",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "organize_batch",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "consolidate",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "consolidate",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "consolidate",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "consolidate",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "consolidate",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "AI_FAILED",
+      "stage": "consolidate",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "extract",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "extract",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "extract",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "extract",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "EXTRACTED"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "extract",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "extract",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "EXTRACTION_FAILED"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "thumbnail",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "WAITING_FOR_AI"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "thumbnail",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "thumbnail",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "WAITING_FOR_AI"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "thumbnail",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "thumbnail",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "WAITING_FOR_AI"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "thumbnail",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "snapshot",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "WAITING_FOR_AI"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "snapshot",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "snapshot",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "WAITING_FOR_AI"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "snapshot",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "snapshot",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "WAITING_FOR_AI"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "snapshot",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "embed",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "WAITING_FOR_AI"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "embed",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "WAITING_FOR_AI"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "embed",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "WAITING_FOR_AI"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "embed",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "WAITING_FOR_AI"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "embed",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "WAITING_FOR_AI"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "embed",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "WAITING_FOR_AI"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "index",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "WAITING_FOR_AI"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "index",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "index",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "WAITING_FOR_AI"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "index",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "index",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "WAITING_FOR_AI"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "index",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "understand",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "RELATING"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "understand",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "RELATING"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "understand",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "understand",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "understand",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "understand",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "relate",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "relate",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "relate",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "relate",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "relate",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "relate",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "organize_batch",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "READY"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "organize_batch",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "READY"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "organize_batch",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "organize_batch",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "PARTIAL"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "organize_batch",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "organize_batch",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "AI_FAILED"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "consolidate",
+      "outcome": "ok",
+      "isLast": false,
+      "next": "WAITING_FOR_AI"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "consolidate",
+      "outcome": "ok",
+      "isLast": true,
+      "next": "WAITING_FOR_AI"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "consolidate",
+      "outcome": "partial",
+      "isLast": false,
+      "next": "WAITING_FOR_AI"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "consolidate",
+      "outcome": "partial",
+      "isLast": true,
+      "next": "WAITING_FOR_AI"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "consolidate",
+      "outcome": "failed",
+      "isLast": false,
+      "next": "WAITING_FOR_AI"
+    },
+    {
+      "status": "WAITING_FOR_AI",
+      "stage": "consolidate",
+      "outcome": "failed",
+      "isLast": true,
+      "next": "WAITING_FOR_AI"
+    }
+  ],
+  "stageEntryStatus": [
+    {
+      "stage": "extract",
+      "current": null,
+      "status": "EXTRACTING"
+    },
+    {
+      "stage": "extract",
+      "current": "CAPTURED",
+      "status": "EXTRACTING"
+    },
+    {
+      "stage": "extract",
+      "current": "EXTRACTING",
+      "status": "EXTRACTING"
+    },
+    {
+      "stage": "extract",
+      "current": "EXTRACTED",
+      "status": "EXTRACTING"
+    },
+    {
+      "stage": "extract",
+      "current": "EMBEDDING",
+      "status": "EXTRACTING"
+    },
+    {
+      "stage": "extract",
+      "current": "UNDERSTANDING",
+      "status": "EXTRACTING"
+    },
+    {
+      "stage": "extract",
+      "current": "RELATING",
+      "status": "EXTRACTING"
+    },
+    {
+      "stage": "extract",
+      "current": "READY",
+      "status": "EXTRACTING"
+    },
+    {
+      "stage": "extract",
+      "current": "PARTIAL",
+      "status": "EXTRACTING"
+    },
+    {
+      "stage": "extract",
+      "current": "EXTRACTION_FAILED",
+      "status": "EXTRACTING"
+    },
+    {
+      "stage": "extract",
+      "current": "AI_FAILED",
+      "status": "EXTRACTING"
+    },
+    {
+      "stage": "extract",
+      "current": "WAITING_FOR_AI",
+      "status": "EXTRACTING"
+    },
+    {
+      "stage": "thumbnail",
+      "current": null,
+      "status": null
+    },
+    {
+      "stage": "thumbnail",
+      "current": "CAPTURED",
+      "status": null
+    },
+    {
+      "stage": "thumbnail",
+      "current": "EXTRACTING",
+      "status": null
+    },
+    {
+      "stage": "thumbnail",
+      "current": "EXTRACTED",
+      "status": null
+    },
+    {
+      "stage": "thumbnail",
+      "current": "EMBEDDING",
+      "status": null
+    },
+    {
+      "stage": "thumbnail",
+      "current": "UNDERSTANDING",
+      "status": null
+    },
+    {
+      "stage": "thumbnail",
+      "current": "RELATING",
+      "status": null
+    },
+    {
+      "stage": "thumbnail",
+      "current": "READY",
+      "status": null
+    },
+    {
+      "stage": "thumbnail",
+      "current": "PARTIAL",
+      "status": null
+    },
+    {
+      "stage": "thumbnail",
+      "current": "EXTRACTION_FAILED",
+      "status": null
+    },
+    {
+      "stage": "thumbnail",
+      "current": "AI_FAILED",
+      "status": null
+    },
+    {
+      "stage": "thumbnail",
+      "current": "WAITING_FOR_AI",
+      "status": null
+    },
+    {
+      "stage": "snapshot",
+      "current": null,
+      "status": null
+    },
+    {
+      "stage": "snapshot",
+      "current": "CAPTURED",
+      "status": null
+    },
+    {
+      "stage": "snapshot",
+      "current": "EXTRACTING",
+      "status": null
+    },
+    {
+      "stage": "snapshot",
+      "current": "EXTRACTED",
+      "status": null
+    },
+    {
+      "stage": "snapshot",
+      "current": "EMBEDDING",
+      "status": null
+    },
+    {
+      "stage": "snapshot",
+      "current": "UNDERSTANDING",
+      "status": null
+    },
+    {
+      "stage": "snapshot",
+      "current": "RELATING",
+      "status": null
+    },
+    {
+      "stage": "snapshot",
+      "current": "READY",
+      "status": null
+    },
+    {
+      "stage": "snapshot",
+      "current": "PARTIAL",
+      "status": null
+    },
+    {
+      "stage": "snapshot",
+      "current": "EXTRACTION_FAILED",
+      "status": null
+    },
+    {
+      "stage": "snapshot",
+      "current": "AI_FAILED",
+      "status": null
+    },
+    {
+      "stage": "snapshot",
+      "current": "WAITING_FOR_AI",
+      "status": null
+    },
+    {
+      "stage": "embed",
+      "current": null,
+      "status": "EMBEDDING"
+    },
+    {
+      "stage": "embed",
+      "current": "CAPTURED",
+      "status": "EMBEDDING"
+    },
+    {
+      "stage": "embed",
+      "current": "EXTRACTING",
+      "status": "EMBEDDING"
+    },
+    {
+      "stage": "embed",
+      "current": "EXTRACTED",
+      "status": "EMBEDDING"
+    },
+    {
+      "stage": "embed",
+      "current": "EMBEDDING",
+      "status": "EMBEDDING"
+    },
+    {
+      "stage": "embed",
+      "current": "UNDERSTANDING",
+      "status": null
+    },
+    {
+      "stage": "embed",
+      "current": "RELATING",
+      "status": null
+    },
+    {
+      "stage": "embed",
+      "current": "READY",
+      "status": null
+    },
+    {
+      "stage": "embed",
+      "current": "PARTIAL",
+      "status": null
+    },
+    {
+      "stage": "embed",
+      "current": "EXTRACTION_FAILED",
+      "status": null
+    },
+    {
+      "stage": "embed",
+      "current": "AI_FAILED",
+      "status": null
+    },
+    {
+      "stage": "embed",
+      "current": "WAITING_FOR_AI",
+      "status": null
+    },
+    {
+      "stage": "index",
+      "current": null,
+      "status": null
+    },
+    {
+      "stage": "index",
+      "current": "CAPTURED",
+      "status": null
+    },
+    {
+      "stage": "index",
+      "current": "EXTRACTING",
+      "status": null
+    },
+    {
+      "stage": "index",
+      "current": "EXTRACTED",
+      "status": null
+    },
+    {
+      "stage": "index",
+      "current": "EMBEDDING",
+      "status": null
+    },
+    {
+      "stage": "index",
+      "current": "UNDERSTANDING",
+      "status": null
+    },
+    {
+      "stage": "index",
+      "current": "RELATING",
+      "status": null
+    },
+    {
+      "stage": "index",
+      "current": "READY",
+      "status": null
+    },
+    {
+      "stage": "index",
+      "current": "PARTIAL",
+      "status": null
+    },
+    {
+      "stage": "index",
+      "current": "EXTRACTION_FAILED",
+      "status": null
+    },
+    {
+      "stage": "index",
+      "current": "AI_FAILED",
+      "status": null
+    },
+    {
+      "stage": "index",
+      "current": "WAITING_FOR_AI",
+      "status": null
+    },
+    {
+      "stage": "understand",
+      "current": null,
+      "status": "UNDERSTANDING"
+    },
+    {
+      "stage": "understand",
+      "current": "CAPTURED",
+      "status": "UNDERSTANDING"
+    },
+    {
+      "stage": "understand",
+      "current": "EXTRACTING",
+      "status": "UNDERSTANDING"
+    },
+    {
+      "stage": "understand",
+      "current": "EXTRACTED",
+      "status": "UNDERSTANDING"
+    },
+    {
+      "stage": "understand",
+      "current": "EMBEDDING",
+      "status": "UNDERSTANDING"
+    },
+    {
+      "stage": "understand",
+      "current": "UNDERSTANDING",
+      "status": "UNDERSTANDING"
+    },
+    {
+      "stage": "understand",
+      "current": "RELATING",
+      "status": null
+    },
+    {
+      "stage": "understand",
+      "current": "READY",
+      "status": null
+    },
+    {
+      "stage": "understand",
+      "current": "PARTIAL",
+      "status": null
+    },
+    {
+      "stage": "understand",
+      "current": "EXTRACTION_FAILED",
+      "status": null
+    },
+    {
+      "stage": "understand",
+      "current": "AI_FAILED",
+      "status": "UNDERSTANDING"
+    },
+    {
+      "stage": "understand",
+      "current": "WAITING_FOR_AI",
+      "status": "UNDERSTANDING"
+    },
+    {
+      "stage": "relate",
+      "current": null,
+      "status": "RELATING"
+    },
+    {
+      "stage": "relate",
+      "current": "CAPTURED",
+      "status": "RELATING"
+    },
+    {
+      "stage": "relate",
+      "current": "EXTRACTING",
+      "status": "RELATING"
+    },
+    {
+      "stage": "relate",
+      "current": "EXTRACTED",
+      "status": "RELATING"
+    },
+    {
+      "stage": "relate",
+      "current": "EMBEDDING",
+      "status": "RELATING"
+    },
+    {
+      "stage": "relate",
+      "current": "UNDERSTANDING",
+      "status": "RELATING"
+    },
+    {
+      "stage": "relate",
+      "current": "RELATING",
+      "status": "RELATING"
+    },
+    {
+      "stage": "relate",
+      "current": "READY",
+      "status": null
+    },
+    {
+      "stage": "relate",
+      "current": "PARTIAL",
+      "status": null
+    },
+    {
+      "stage": "relate",
+      "current": "EXTRACTION_FAILED",
+      "status": null
+    },
+    {
+      "stage": "relate",
+      "current": "AI_FAILED",
+      "status": "RELATING"
+    },
+    {
+      "stage": "relate",
+      "current": "WAITING_FOR_AI",
+      "status": "RELATING"
+    },
+    {
+      "stage": "organize_batch",
+      "current": null,
+      "status": "RELATING"
+    },
+    {
+      "stage": "organize_batch",
+      "current": "CAPTURED",
+      "status": "RELATING"
+    },
+    {
+      "stage": "organize_batch",
+      "current": "EXTRACTING",
+      "status": "RELATING"
+    },
+    {
+      "stage": "organize_batch",
+      "current": "EXTRACTED",
+      "status": "RELATING"
+    },
+    {
+      "stage": "organize_batch",
+      "current": "EMBEDDING",
+      "status": "RELATING"
+    },
+    {
+      "stage": "organize_batch",
+      "current": "UNDERSTANDING",
+      "status": "RELATING"
+    },
+    {
+      "stage": "organize_batch",
+      "current": "RELATING",
+      "status": "RELATING"
+    },
+    {
+      "stage": "organize_batch",
+      "current": "READY",
+      "status": null
+    },
+    {
+      "stage": "organize_batch",
+      "current": "PARTIAL",
+      "status": null
+    },
+    {
+      "stage": "organize_batch",
+      "current": "EXTRACTION_FAILED",
+      "status": null
+    },
+    {
+      "stage": "organize_batch",
+      "current": "AI_FAILED",
+      "status": "RELATING"
+    },
+    {
+      "stage": "organize_batch",
+      "current": "WAITING_FOR_AI",
+      "status": "RELATING"
+    },
+    {
+      "stage": "consolidate",
+      "current": null,
+      "status": null
+    },
+    {
+      "stage": "consolidate",
+      "current": "CAPTURED",
+      "status": null
+    },
+    {
+      "stage": "consolidate",
+      "current": "EXTRACTING",
+      "status": null
+    },
+    {
+      "stage": "consolidate",
+      "current": "EXTRACTED",
+      "status": null
+    },
+    {
+      "stage": "consolidate",
+      "current": "EMBEDDING",
+      "status": null
+    },
+    {
+      "stage": "consolidate",
+      "current": "UNDERSTANDING",
+      "status": null
+    },
+    {
+      "stage": "consolidate",
+      "current": "RELATING",
+      "status": null
+    },
+    {
+      "stage": "consolidate",
+      "current": "READY",
+      "status": null
+    },
+    {
+      "stage": "consolidate",
+      "current": "PARTIAL",
+      "status": null
+    },
+    {
+      "stage": "consolidate",
+      "current": "EXTRACTION_FAILED",
+      "status": null
+    },
+    {
+      "stage": "consolidate",
+      "current": "AI_FAILED",
+      "status": null
+    },
+    {
+      "stage": "consolidate",
+      "current": "WAITING_FOR_AI",
+      "status": null
+    }
+  ]
+}

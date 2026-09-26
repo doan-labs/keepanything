@@ -1,0 +1,420 @@
+{
+  "cases": [
+    {
+      "name": "bare-json",
+      "input": "{\"a\": 1}",
+      "extractJsonCandidates": {
+        "candidates": [
+          {
+            "a": 1
+          },
+          {
+            "a": 1
+          }
+        ]
+      },
+      "extractJson": {
+        "value": {
+          "a": 1
+        }
+      },
+      "repairToolArguments": {
+        "value": {
+          "a": 1
+        }
+      }
+    },
+    {
+      "name": "fenced-json",
+      "input": "```json\n{\"a\": 1, \"b\": [2, 3]}\n```",
+      "extractJsonCandidates": {
+        "candidates": [
+          {
+            "a": 1,
+            "b": [
+              2,
+              3
+            ]
+          },
+          {
+            "a": 1,
+            "b": [
+              2,
+              3
+            ]
+          }
+        ]
+      },
+      "extractJson": {
+        "value": {
+          "a": 1,
+          "b": [
+            2,
+            3
+          ]
+        }
+      },
+      "repairToolArguments": {
+        "value": {
+          "a": 1,
+          "b": [
+            2,
+            3
+          ]
+        }
+      }
+    },
+    {
+      "name": "fenced-unlabelled",
+      "input": "```\n{\"a\": 1}\n```",
+      "extractJsonCandidates": {
+        "candidates": [
+          {
+            "a": 1
+          },
+          {
+            "a": 1
+          }
+        ]
+      },
+      "extractJson": {
+        "value": {
+          "a": 1
+        }
+      },
+      "repairToolArguments": {
+        "value": {
+          "a": 1
+        }
+      }
+    },
+    {
+      "name": "think-prefix",
+      "input": "<think>reasoning here</think>{\"a\": 1}",
+      "extractJsonCandidates": {
+        "candidates": [
+          {
+            "a": 1
+          },
+          {
+            "a": 1
+          }
+        ]
+      },
+      "extractJson": {
+        "value": {
+          "a": 1
+        }
+      },
+      "repairToolArguments": {
+        "value": {
+          "a": 1
+        }
+      }
+    },
+    {
+      "name": "unclosed-think",
+      "input": "<think>still thinking {\"a\": 1}",
+      "extractJsonCandidates": {
+        "candidates": [
+          {
+            "a": 1
+          }
+        ]
+      },
+      "extractJson": {
+        "value": {
+          "a": 1
+        }
+      },
+      "repairToolArguments": {
+        "value": {
+          "a": 1
+        }
+      }
+    },
+    {
+      "name": "trailing-prose",
+      "input": "{\"a\": 1}\nHope that helps!",
+      "extractJsonCandidates": {
+        "candidates": [
+          {
+            "a": 1
+          }
+        ]
+      },
+      "extractJson": {
+        "value": {
+          "a": 1
+        }
+      },
+      "repairToolArguments": {
+        "error": "Tool arguments were not valid JSON."
+      }
+    },
+    {
+      "name": "leading-prose",
+      "input": "Here you go:\n{\"a\": 1}",
+      "extractJsonCandidates": {
+        "candidates": [
+          {
+            "a": 1
+          }
+        ]
+      },
+      "extractJson": {
+        "value": {
+          "a": 1
+        }
+      },
+      "repairToolArguments": {
+        "value": {
+          "a": 1
+        }
+      }
+    },
+    {
+      "name": "multiple-candidates",
+      "input": "```json\n{\"wrong\": true}\n```\nActually: {\"right\": true}",
+      "extractJsonCandidates": {
+        "candidates": [
+          {
+            "wrong": true
+          },
+          {
+            "right": true
+          }
+        ]
+      },
+      "extractJson": {
+        "value": {
+          "wrong": true
+        }
+      },
+      "repairToolArguments": {
+        "error": "Tool arguments were not valid JSON."
+      }
+    },
+    {
+      "name": "truncated",
+      "input": "{\"a\": [1, 2, 3",
+      "extractJsonCandidates": {
+        "candidates": [],
+        "error": "No JSON object could be parsed from the response."
+      },
+      "extractJson": {
+        "value": null
+      },
+      "repairToolArguments": {
+        "value": {
+          "a": [
+            1,
+            2,
+            3
+          ]
+        }
+      }
+    },
+    {
+      "name": "single-quotes",
+      "input": "{'a': 'b'}",
+      "extractJsonCandidates": {
+        "candidates": [],
+        "error": "No JSON object could be parsed from the response."
+      },
+      "extractJson": {
+        "value": null
+      },
+      "repairToolArguments": {
+        "value": {
+          "a": "b"
+        }
+      }
+    },
+    {
+      "name": "trailing-commas",
+      "input": "{\"a\": 1, \"b\": [2, 3,],}",
+      "extractJsonCandidates": {
+        "candidates": [],
+        "error": "No JSON object could be parsed from the response."
+      },
+      "extractJson": {
+        "value": null
+      },
+      "repairToolArguments": {
+        "value": {
+          "a": 1,
+          "b": [
+            2,
+            3
+          ]
+        }
+      }
+    },
+    {
+      "name": "unquoted-keys",
+      "input": "{a: 1, b_c: \"x\"}",
+      "extractJsonCandidates": {
+        "candidates": [],
+        "error": "No JSON object could be parsed from the response."
+      },
+      "extractJson": {
+        "value": null
+      },
+      "repairToolArguments": {
+        "value": {
+          "a": 1,
+          "b_c": "x"
+        }
+      }
+    },
+    {
+      "name": "empty",
+      "input": "",
+      "extractJsonCandidates": {
+        "candidates": [],
+        "error": "The response was empty."
+      },
+      "extractJson": {
+        "value": null
+      },
+      "repairToolArguments": {
+        "value": {}
+      }
+    },
+    {
+      "name": "whitespace",
+      "input": "   \n  ",
+      "extractJsonCandidates": {
+        "candidates": [],
+        "error": "The response was empty."
+      },
+      "extractJson": {
+        "value": null
+      },
+      "repairToolArguments": {
+        "value": {}
+      }
+    },
+    {
+      "name": "non-object",
+      "input": "[1, 2, 3]",
+      "extractJsonCandidates": {
+        "candidates": [
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      "extractJson": {
+        "value": [
+          1,
+          2,
+          3
+        ]
+      },
+      "repairToolArguments": {
+        "error": "Tool arguments were not valid JSON."
+      }
+    },
+    {
+      "name": "garbage",
+      "input": "no json at all",
+      "extractJsonCandidates": {
+        "candidates": [],
+        "error": "No JSON object could be parsed from the response."
+      },
+      "extractJson": {
+        "value": null
+      },
+      "repairToolArguments": {
+        "error": "Tool arguments were not valid JSON."
+      }
+    },
+    {
+      "name": "nested-prose",
+      "input": "prose {\"outer\": {\"inner\": 5}} tail {\"second\": 2}",
+      "extractJsonCandidates": {
+        "candidates": [
+          {
+            "second": 2
+          }
+        ]
+      },
+      "extractJson": {
+        "value": {
+          "second": 2
+        }
+      },
+      "repairToolArguments": {
+        "error": "Tool arguments were not valid JSON."
+      }
+    },
+    {
+      "name": "fenced-then-raw",
+      "input": "```json\n{\"a\": 0}\n```\n{\"a\": 1}",
+      "extractJsonCandidates": {
+        "candidates": [
+          {
+            "a": 0
+          },
+          {
+            "a": 1
+          }
+        ]
+      },
+      "extractJson": {
+        "value": {
+          "a": 0
+        }
+      },
+      "repairToolArguments": {
+        "error": "Tool arguments were not valid JSON."
+      }
+    },
+    {
+      "name": "unbalanced-open",
+      "input": "{\"a\": {\"b\": 2",
+      "extractJsonCandidates": {
+        "candidates": [],
+        "error": "No JSON object could be parsed from the response."
+      },
+      "extractJson": {
+        "value": null
+      },
+      "repairToolArguments": {
+        "value": {
+          "a": {
+            "b": 2
+          }
+        }
+      }
+    },
+    {
+      "name": "string-with-brace",
+      "input": "{\"a\": \"x {not json} y\"}",
+      "extractJsonCandidates": {
+        "candidates": [
+          {
+            "a": "x {not json} y"
+          },
+          {
+            "a": "x {not json} y"
+          }
+        ]
+      },
+      "extractJson": {
+        "value": {
+          "a": "x {not json} y"
+        }
+      },
+      "repairToolArguments": {
+        "value": {
+          "a": "x {not json} y"
+        }
+      }
+    }
+  ]
+}
