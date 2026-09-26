@@ -39,6 +39,10 @@ jobs:
           node-version-file: electron/.nvmrc
           cache: pnpm
           cache-dependency-path: electron/pnpm-lock.yaml
+      - name: Allow Linux optional deps
+        # pnpm-workspace.yaml pins supportedArchitectures to darwin (for dual-arch Mac packaging);
+        # on Linux that skips all linux-* optional packages (e.g. @rollup/rollup-linux-x64-gnu).
+        run: sed -i '/^supportedArchitectures:/,$d' electron/pnpm-workspace.yaml
       - run: pnpm install --frozen-lockfile
         working-directory: electron
 
