@@ -49,3 +49,8 @@ Newest last. Format: see PLAN.md#agent-protocol.
 
 ## 2026-09-26 E-07 passes
 - No code change needed: `cd electron && pnpm run build && pnpm run package:mac` produces `release/KeepAnything-0.1.0-{arm64,x64}.dmg` (175/179 MB, unsigned) from `electron/` after the E-00 move. `build/models` absent on this Mac, so the model is not bundled.
+
+## 2026-09-26 S-PKG-01 passes
+- `Package.swift` (tools 6.0, macOS 15, Swift 6 mode): 14 modules + `CZlib` system library + 13 Swift Testing targets with marker enums; GRDB 7.11.1; onnxruntime-swift-package-manager 1.24.2 linked only `.when(platforms: [.macOS])` on KAEmbeddings; `Package.resolved` committed. `scripts/gate.sh lint` gains: no `import KAUI` outside KAUI/App, Apple-only frameworks only in files with `#if canImport(`.
+- Evidence: `swift build` complete (27.8 s), `swift test` 13/13, `bash scripts/gate.sh lint` ok — on macOS only (no Linux run during the local-only phase).
+- REVIEW: commits on this branch carry a `Co-Authored-By: Devin AI` trailer appended by the hosting environment (no local hook/config sets it); PLAN forbids AI attribution — owner may squash-merge with a clean message.

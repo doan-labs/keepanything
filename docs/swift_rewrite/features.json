@@ -164,9 +164,9 @@
       "docs/swift_rewrite/PLAN.md#modules"
     ],
     "gate": "swift build && bash scripts/gate.sh lint",
-    "passes": false,
+    "passes": true,
     "blocked": null,
-    "notes": ""
+    "notes": "GRDB 7.11.1, onnxruntime 1.24.2 (macOS only); verified on macOS only"
   },
   {
     "id": "S-MODEL-01",
