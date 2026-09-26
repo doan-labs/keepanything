@@ -11,7 +11,7 @@ concurrency:
 
 env:
   # Pinned to the Swift version the macos-26 runner reports (docs/swift_rewrite/PLAN.md#toolchain).
-  SWIFT_VERSION: "6.2"
+  SWIFT_VERSION: "6.3.3"
 
 jobs:
   linux:
