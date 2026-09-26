@@ -1,0 +1,69 @@
+{
+  "name": "full-library",
+  "runs_on": "macos",
+  "ai": "mock",
+  "embeddings": "bge",
+  "steps": [
+    {
+      "op": "capture.files",
+      "paths": [
+        "pagedattention-vllm-2309.06180.pdf",
+        "react-reasoning-acting-2210.03629.pdf",
+        "notes/inference-providers-notes.md",
+        "notes/mnismt-website-design.md",
+        "notes/weekly-review-2026-08-28.md",
+        "snippets/hyperliquid-snippet.txt",
+        "snippets/resend-alternatives.txt",
+        "screenshots/terminal-pnpm-test.png",
+        "screenshots/pricing-page-inference.png",
+        "screenshots/error-dialog-sqlite.png",
+        "folder-serving-benchmark"
+      ]
+    },
+    {
+      "op": "capture.url",
+      "url": "{fixture}/article.html"
+    },
+    {
+      "op": "capture.url",
+      "url": "{fixture}/arxiv-abs.html"
+    },
+    {
+      "op": "settle"
+    },
+    {
+      "op": "search.quick",
+      "query": "vllm"
+    },
+    {
+      "op": "search.quick",
+      "query": "hyperliquid"
+    },
+    {
+      "op": "search.quick",
+      "query": "minimax"
+    },
+    {
+      "op": "search.quick",
+      "query": "that pdf about attention"
+    },
+    {
+      "op": "search.quick",
+      "query": "the paper about language models that reason and then act"
+    },
+    {
+      "op": "search.quick",
+      "query": "what did I save about cheaper Resend alternatives?"
+    },
+    {
+      "op": "agent.command",
+      "question": "What am I researching here?"
+    },
+    {
+      "op": "settle"
+    },
+    {
+      "op": "snapshot"
+    }
+  ]
+}

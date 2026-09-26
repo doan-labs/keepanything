@@ -1,0 +1,20 @@
+[
+  {
+    "version": 1,
+    "name": "001-init",
+    "file": "001-init.sql",
+    "sha256": "31ce199c2a07b406ed0732d8fd98879d0e61ec0d04a4d8c631c7706acdd26384"
+  },
+  {
+    "version": 2,
+    "name": "002-one-collection-shape",
+    "file": "002-one-collection-shape.sql",
+    "sha256": "a3541f4b7e2da3440694e0f47224861eda549e99576716f8b8a24eadff86f943"
+  },
+  {
+    "version": 3,
+    "name": "003-settle-trashed-items",
+    "file": "003-settle-trashed-items.sql",
+    "sha256": "148ca5c1dd6ebb7582a58c94f3ab77550462c00a0e07f042ad797d0dde7cef76"
+  }
+]

@@ -1,0 +1,261 @@
+{
+  "name": "smoke",
+  "runsOn": "linux",
+  "ai": "mock",
+  "embeddings": "hash",
+  "steps": [
+    {
+      "op": "capture.text",
+      "input": {
+        "text": "KeepAnything smoke: one line about cheap inference providers."
+      },
+      "result": {
+        "ok": true,
+        "data": {
+          "items": [
+            {
+              "id": "item-2",
+              "status": "created",
+              "title": "KeepAnything smoke: one line about cheap inference providers."
+            }
+          ],
+          "batchId": "item-1"
+        }
+      }
+    },
+    {
+      "op": "settle",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": null
+      }
+    },
+    {
+      "op": "snapshot",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": null
+      }
+    }
+  ],
+  "results": [
+    {
+      "items": [
+        {
+          "id": "item-2",
+          "type": "text",
+          "subtype": null,
+          "kind": "article",
+          "title": "KeepAnything smoke: one line about cheap inference providers.",
+          "original_path": null,
+          "managed_path": "item-2/text.txt",
+          "url": null,
+          "canonical_url": null,
+          "domain": null,
+          "mime_type": "text/plain",
+          "size": 61,
+          "content_hash": "693bf393b36565999545308fbb71e952a52f5b54bc8b25effc18955f9a56574a",
+          "width": null,
+          "height": null,
+          "duration_ms": null,
+          "page_count": null,
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "captured_at": "2026-09-01T00:00:01.000Z",
+          "modified_at": "2026-09-01T00:00:02.000Z",
+          "last_kept_at": "2026-09-01T00:00:01.000Z",
+          "capture_batch_id": "item-1",
+          "processing_status": "READY",
+          "processing_error": null,
+          "understanding": "Article titled \"KeepAnything smoke: one line about cheap inference providers.\". KeepAnything smoke: one line about cheap inference providers.",
+          "why_useful": "Worth keeping as a article reference on keepanything; reach for it when that comes up again.",
+          "topics": "[\"keepanything\",\"smoke\",\"line\",\"cheap\",\"inference\",\"providers\"]",
+          "entities": "[\"KeepAnything\"]",
+          "vision_text": null,
+          "retrieval_hints": "[\"keepanything smoke: one line about cheap inference providers.\",\"article about keepanything\",\"keepanything smoke\"]",
+          "suggested_actions": "[]",
+          "ai_confidence": 0.55,
+          "metadata": "{\"source\":\"paste\",\"wordCount\":8,\"extractor\":\"text\",\"truncated\":false}",
+          "extracted_text": "KeepAnything smoke: one line about cheap inference providers.",
+          "excerpt": "KeepAnything smoke: one line about cheap inference providers.",
+          "thumbnail_path": null,
+          "snapshot_path": null,
+          "favicon_path": null,
+          "dominant_color": null,
+          "media_version": 1,
+          "parent_item_id": null,
+          "user_overrides": "{}",
+          "is_missing": 0,
+          "missing_checked_at": null,
+          "deleted_at": null
+        }
+      ],
+      "fts": [
+        {
+          "item_id": "item-2",
+          "title": "KeepAnything smoke: one line about cheap inference providers.",
+          "retrieval_hints": "keepanything smoke: one line about cheap inference providers. article about keepanything keepanything smoke",
+          "topics": "keepanything smoke line cheap inference providers",
+          "entities": "KeepAnything",
+          "understanding": "Article titled \"KeepAnything smoke: one line about cheap inference providers.\". KeepAnything smoke: one line about cheap inference providers.",
+          "why_useful": "Worth keeping as a article reference on keepanything; reach for it when that comes up again.",
+          "vision_text": "",
+          "meta_text": "",
+          "extracted_text": "KeepAnything smoke: one line about cheap inference providers.",
+          "domain": "",
+          "kind": "article"
+        }
+      ],
+      "collections": [],
+      "collectionItems": [],
+      "relationships": [],
+      "suppressions": [],
+      "audit": [],
+      "agentRuns": [
+        {
+          "id": "uuid-1",
+          "item_id": "item-2",
+          "batch_id": null,
+          "task": "understand",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:02.000Z",
+          "completed_at": "2026-09-01T00:00:02.000Z",
+          "steps": "[{\"tool\":\"inspect_item\",\"kind\":\"inspect\",\"label\":\"Reading \\\"KeepAnything smoke: one line about cheap inference providers.\\\"\",\"itemIds\":[\"item-2\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"understand\",\"itemId\":\"item-2\",\"understanding\":{\"kind\":\"article\",\"title\":\"KeepAnything smoke: one line about cheap inference providers.\",\"summary\":\"Article titled \\\"KeepAnything smoke: one line about cheap inference providers.\\\". KeepAnything smoke: one line about cheap inference providers.\",\"whyUseful\":\"Worth keeping as a article reference on keepanything; reach for it when that comes up again.\",\"topics\":[\"keepanything\",\"smoke\",\"line\",\"cheap\",\"inference\",\"providers\"],\"entities\":[\"KeepAnything\"],\"retrievalHints\":[\"keepanything smoke: one line about cheap inference providers.\",\"article about keepanything\",\"keepanything smoke\"],\"confidence\":0.55},\"skippedFields\":[]}",
+          "error": null,
+          "usage": "{\"promptTokens\":1129,\"completionTokens\":152,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-2",
+          "item_id": "item-2",
+          "batch_id": null,
+          "task": "organize",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:02.000Z",
+          "completed_at": "2026-09-01T00:00:02.000Z",
+          "steps": "[{\"tool\":\"find_candidates\",\"kind\":\"search\",\"label\":\"Looking for similar things\",\"itemIds\":[],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"organize\",\"itemId\":\"item-2\",\"relationshipIds\":[],\"collectionIds\":[],\"summary\":\"Kept on its own for now; nothing else in the library is about this yet.\"}",
+          "error": null,
+          "usage": null
+        }
+      ],
+      "jobs": [
+        {
+          "id": "job-1",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "extract",
+          "lane": "io",
+          "priority": 25,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        },
+        {
+          "id": "job-2",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "thumbnail",
+          "lane": "io",
+          "priority": 15,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": "No preview could be made",
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        },
+        {
+          "id": "job-3",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "embed",
+          "lane": "embed",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        },
+        {
+          "id": "job-4",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "understand",
+          "lane": "ai",
+          "priority": 30,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        },
+        {
+          "id": "job-5",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "index",
+          "lane": "embed",
+          "priority": 20,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        },
+        {
+          "id": "job-6",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "relate",
+          "lane": "ai",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        }
+      ],
+      "settings": {
+        "aiMode": "mock",
+        "provider": "gmi",
+        "model": "MiniMaxAI/MiniMax-M3",
+        "baseUrl": "https://api.gmi-serving.com/v1",
+        "hasApiKey": true,
+        "apiKeyMasked": "sce…-key",
+        "importMode": "copy",
+        "theme": "system",
+        "libraryPath": "{library}",
+        "embeddings": {
+          "provider": "none",
+          "modelPresent": false,
+          "dims": 384
+        }
+      },
+      "thumbnailCalls": [
+        {
+          "op": "thumbnail",
+          "file": "{library}/objects/item-2/text.txt",
+          "out": "{library}/thumbs/item-2.png",
+          "maxPx": 800
+        }
+      ],
+      "snapshotCalls": [],
+      "fetchCalls": [],
+      "desktopCalls": [],
+      "pushes": []
+    }
+  ]
+}

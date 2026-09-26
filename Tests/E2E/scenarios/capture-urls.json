@@ -1,0 +1,22 @@
+{
+  "name": "capture-urls",
+  "runs_on": "macos",
+  "ai": "mock",
+  "embeddings": "hash",
+  "steps": [
+    {
+      "op": "capture.url",
+      "url": "{fixture}/article.html"
+    },
+    {
+      "op": "capture.url",
+      "url": "{fixture}/arxiv-abs.html"
+    },
+    {
+      "op": "settle"
+    },
+    {
+      "op": "snapshot"
+    }
+  ]
+}

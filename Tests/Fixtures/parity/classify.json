@@ -1,0 +1,516 @@
+{
+  "classifyFile": [
+    {
+      "name": "photo.png",
+      "mime": null,
+      "out": {
+        "type": "image",
+        "subtype": null
+      }
+    },
+    {
+      "name": "photo.jpg",
+      "mime": "image/jpeg",
+      "out": {
+        "type": "image",
+        "subtype": null
+      }
+    },
+    {
+      "name": "Screenshot 2026-09-01 at 10.22.33.png",
+      "mime": null,
+      "out": {
+        "type": "image",
+        "subtype": "screenshot"
+      }
+    },
+    {
+      "name": "scan.heic",
+      "mime": null,
+      "out": {
+        "type": "image",
+        "subtype": null
+      }
+    },
+    {
+      "name": "vector.svg",
+      "mime": null,
+      "out": {
+        "type": "image",
+        "subtype": null
+      }
+    },
+    {
+      "name": "clip.mp4",
+      "mime": null,
+      "out": {
+        "type": "video",
+        "subtype": null
+      }
+    },
+    {
+      "name": "movie.mov",
+      "mime": "video/quicktime",
+      "out": {
+        "type": "video",
+        "subtype": null
+      }
+    },
+    {
+      "name": "track.mp3",
+      "mime": null,
+      "out": {
+        "type": "audio",
+        "subtype": null
+      }
+    },
+    {
+      "name": "voice.m4a",
+      "mime": "audio/mp4",
+      "out": {
+        "type": "audio",
+        "subtype": null
+      }
+    },
+    {
+      "name": "paper.pdf",
+      "mime": null,
+      "out": {
+        "type": "pdf",
+        "subtype": null
+      }
+    },
+    {
+      "name": "document",
+      "mime": "application/pdf",
+      "out": {
+        "type": "pdf",
+        "subtype": null
+      }
+    },
+    {
+      "name": "notes.md",
+      "mime": null,
+      "out": {
+        "type": "markdown",
+        "subtype": null
+      }
+    },
+    {
+      "name": "readme.markdown",
+      "mime": null,
+      "out": {
+        "type": "markdown",
+        "subtype": null
+      }
+    },
+    {
+      "name": "page.mdx",
+      "mime": "text/markdown",
+      "out": {
+        "type": "markdown",
+        "subtype": null
+      }
+    },
+    {
+      "name": "log.txt",
+      "mime": null,
+      "out": {
+        "type": "text",
+        "subtype": null
+      }
+    },
+    {
+      "name": "plainfile",
+      "mime": "text/plain",
+      "out": {
+        "type": "text",
+        "subtype": null
+      }
+    },
+    {
+      "name": "report.docx",
+      "mime": null,
+      "out": {
+        "type": "file",
+        "subtype": "document"
+      }
+    },
+    {
+      "name": "book.epub",
+      "mime": null,
+      "out": {
+        "type": "file",
+        "subtype": "document"
+      }
+    },
+    {
+      "name": "sheet.xlsx",
+      "mime": null,
+      "out": {
+        "type": "file",
+        "subtype": "spreadsheet"
+      }
+    },
+    {
+      "name": "data.csv",
+      "mime": null,
+      "out": {
+        "type": "file",
+        "subtype": "spreadsheet"
+      }
+    },
+    {
+      "name": "slides.pptx",
+      "mime": null,
+      "out": {
+        "type": "file",
+        "subtype": "presentation"
+      }
+    },
+    {
+      "name": "talk.key",
+      "mime": null,
+      "out": {
+        "type": "file",
+        "subtype": "presentation"
+      }
+    },
+    {
+      "name": "archive.zip",
+      "mime": null,
+      "out": {
+        "type": "file",
+        "subtype": "archive"
+      }
+    },
+    {
+      "name": "backup.tar.gz",
+      "mime": null,
+      "out": {
+        "type": "file",
+        "subtype": "archive"
+      }
+    },
+    {
+      "name": "app.dmg",
+      "mime": null,
+      "out": {
+        "type": "file",
+        "subtype": "archive"
+      }
+    },
+    {
+      "name": "main.ts",
+      "mime": null,
+      "out": {
+        "type": "file",
+        "subtype": "code"
+      }
+    },
+    {
+      "name": "script.py",
+      "mime": "application/octet-stream",
+      "out": {
+        "type": "file",
+        "subtype": "code"
+      }
+    },
+    {
+      "name": "style.scss",
+      "mime": null,
+      "out": {
+        "type": "file",
+        "subtype": "code"
+      }
+    },
+    {
+      "name": "Package.swift",
+      "mime": null,
+      "out": {
+        "type": "file",
+        "subtype": "code"
+      }
+    },
+    {
+      "name": "data.json",
+      "mime": null,
+      "out": {
+        "type": "file",
+        "subtype": "data"
+      }
+    },
+    {
+      "name": "export.yaml",
+      "mime": null,
+      "out": {
+        "type": "file",
+        "subtype": "data"
+      }
+    },
+    {
+      "name": "db.sqlite",
+      "mime": null,
+      "out": {
+        "type": "file",
+        "subtype": "data"
+      }
+    },
+    {
+      "name": "app.log",
+      "mime": null,
+      "out": {
+        "type": "file",
+        "subtype": "data"
+      }
+    },
+    {
+      "name": "mystery.xyz",
+      "mime": null,
+      "out": {
+        "type": "file",
+        "subtype": "other"
+      }
+    },
+    {
+      "name": "noext",
+      "mime": "application/octet-stream",
+      "out": {
+        "type": "file",
+        "subtype": "other"
+      }
+    },
+    {
+      "name": "noext",
+      "mime": null,
+      "out": {
+        "type": "unknown",
+        "subtype": null
+      }
+    },
+    {
+      "name": "photo",
+      "mime": "image/png",
+      "out": {
+        "type": "image",
+        "subtype": null
+      }
+    },
+    {
+      "name": "recording",
+      "mime": "video/mp4",
+      "out": {
+        "type": "video",
+        "subtype": null
+      }
+    },
+    {
+      "name": "song",
+      "mime": "audio/mpeg",
+      "out": {
+        "type": "audio",
+        "subtype": null
+      }
+    },
+    {
+      "name": "doc",
+      "mime": "text/markdown",
+      "out": {
+        "type": "markdown",
+        "subtype": null
+      }
+    },
+    {
+      "name": "file",
+      "mime": "application/pdf",
+      "out": {
+        "type": "pdf",
+        "subtype": null
+      }
+    },
+    {
+      "name": "upper.PNG",
+      "mime": null,
+      "out": {
+        "type": "image",
+        "subtype": null
+      }
+    },
+    {
+      "name": "dotfile.",
+      "mime": null,
+      "out": {
+        "type": "unknown",
+        "subtype": null
+      }
+    }
+  ],
+  "classifyBytes": [
+    {
+      "name": "png",
+      "hex": "89504e470d0a1a0a0000000d49484452",
+      "out": {
+        "type": "image",
+        "mimeType": "image/png"
+      }
+    },
+    {
+      "name": "jpeg",
+      "hex": "ffd8ffe000104a4649460001",
+      "out": {
+        "type": "image",
+        "mimeType": "image/jpeg"
+      }
+    },
+    {
+      "name": "gif89",
+      "hex": "47494638396101000100",
+      "out": null
+    },
+    {
+      "name": "webp",
+      "hex": "52494646100000005745425056503820",
+      "out": {
+        "type": "image",
+        "mimeType": "image/webp"
+      }
+    },
+    {
+      "name": "pdf",
+      "hex": "255044462d312e370a25",
+      "out": {
+        "type": "pdf",
+        "mimeType": "application/pdf"
+      }
+    },
+    {
+      "name": "bmp",
+      "hex": "424d4600000000000000",
+      "out": null
+    },
+    {
+      "name": "tiff-le",
+      "hex": "49492a0008000000",
+      "out": null
+    },
+    {
+      "name": "tiff-be",
+      "hex": "4d4d002a00000008",
+      "out": null
+    },
+    {
+      "name": "random",
+      "hex": "00010203040506070809",
+      "out": null
+    },
+    {
+      "name": "empty",
+      "hex": "",
+      "out": null
+    },
+    {
+      "name": "text",
+      "hex": "68656c6c6f20776f726c64",
+      "out": null
+    }
+  ],
+  "isTempPath": [
+    {
+      "path": "/tmp/x/a.png",
+      "tmpDir": "/tmp/x",
+      "out": true
+    },
+    {
+      "path": "/tmp/x/sub/dir/a.png",
+      "tmpDir": "/tmp/x",
+      "out": true
+    },
+    {
+      "path": "/tmp/y/a.png",
+      "tmpDir": "/tmp/x",
+      "out": false
+    },
+    {
+      "path": "/private/var/folders/zz/abcdef/T/drag.png",
+      "tmpDir": "/tmp/x",
+      "out": true
+    },
+    {
+      "path": "/Users/devin/TemporaryItems/shot.png",
+      "tmpDir": "/tmp/x",
+      "out": true
+    },
+    {
+      "path": "/Users/devin/Pictures/photo.png",
+      "tmpDir": "/tmp/x",
+      "out": false
+    },
+    {
+      "path": "relative/path.png",
+      "tmpDir": "/tmp/x",
+      "out": false
+    }
+  ],
+  "isScreenshotName": [
+    {
+      "name": "Screenshot 2026-09-01 at 10.22.33.png",
+      "out": true
+    },
+    {
+      "name": "Screen Shot 2024-01-01 at 9.00.00 AM.png",
+      "out": true
+    },
+    {
+      "name": "CleanShot 2026-08-30 at 14.03.22@2x.png",
+      "out": true
+    },
+    {
+      "name": "simulator screen shot - iPhone 16 - 2026-08-01.png",
+      "out": true
+    },
+    {
+      "name": "SCR-20240101.png",
+      "out": true
+    },
+    {
+      "name": "bildschirmfoto 2026.png",
+      "out": true
+    },
+    {
+      "name": "截屏2026-09-01.png",
+      "out": true
+    },
+    {
+      "name": "スクリーンショット.png",
+      "out": true
+    },
+    {
+      "name": "skjermbilde.png",
+      "out": true
+    },
+    {
+      "name": "zrzut ekranu 2026.png",
+      "out": true
+    },
+    {
+      "name": "IMG_1234.png",
+      "out": false
+    },
+    {
+      "name": "photo of screen.png",
+      "out": false
+    },
+    {
+      "name": "screenshot",
+      "out": true
+    },
+    {
+      "name": "my screenshot.png",
+      "out": true
+    },
+    {
+      "name": "screenshot.png",
+      "out": true
+    }
+  ]
+}

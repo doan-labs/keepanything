@@ -1,0 +1,33 @@
+{
+  "files": [
+    {
+      "file": "InstrumentSerif-Italic.ttf",
+      "bytes": 71592,
+      "sha256": "08939b8bdf534afec24ae0ef5e03f948940cd9a8fe08e7fecbad040e62327385"
+    },
+    {
+      "file": "InstrumentSerif-Regular.ttf",
+      "bytes": 70012,
+      "sha256": "498efd461f6ddfcb7a111bf9a565709d2085d48201d501ead960d93e84ffbb88"
+    },
+    {
+      "file": "OFL.txt",
+      "bytes": 4405,
+      "sha256": "129ed7618959716959f2941fdd5b49e0ad6e6c1d78726761786a00253d865521"
+    }
+  ],
+  "fontFaces": [
+    {
+      "family": "'Instrument Serif'",
+      "style": "normal",
+      "weight": "400",
+      "src": "InstrumentSerif-Regular.ttf"
+    },
+    {
+      "family": "'Instrument Serif'",
+      "style": "italic",
+      "weight": "400",
+      "src": "InstrumentSerif-Italic.ttf"
+    }
+  ]
+}

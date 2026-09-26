@@ -1,0 +1,49 @@
+{
+  "LIMITS": {
+    "maxExtractedChars": 60000,
+    "understandTextChars": 12000,
+    "readDocumentChars": 8000,
+    "summaryUnderstandingMaxChars": 160,
+    "excerptChars": 280,
+    "bodyChunkChars": 1800,
+    "maxBodyChunks": 24,
+    "folderMaxFiles": 500,
+    "folderMaxDepth": 4,
+    "folderSampleFiles": 20,
+    "folderSampleFileBytes": 30000,
+    "folderChildrenBodyEmbedLimit": 50,
+    "thumbnailMaxPx": 800,
+    "snapshotWidth": 1280,
+    "snapshotHeight": 800,
+    "snapshotTimeoutMs": 20000,
+    "fetchTimeoutMs": 15000,
+    "aiTimeoutMs": 60000,
+    "batchGateMs": 90000,
+    "organizeSteps": 5,
+    "organizeBatchSteps": 10,
+    "commandSteps": 12,
+    "runPromptTokenCeiling": 60000,
+    "cosineFloor": 0.5,
+    "nearDuplicateCosine": 0.95,
+    "minCollectionConfidence": 0.7,
+    "minNewCollectionMembers": 2,
+    "minCollectionDescriptionChars": 40,
+    "collectionNameFold": 0.6,
+    "retryBackoffMs": [
+      30000,
+      120000,
+      600000
+    ],
+    "maxAttempts": 3,
+    "lanes": {
+      "io": 2,
+      "embed": 1,
+      "ai": 1
+    }
+  },
+  "STRUCTURED_MAX_TOKENS": 8192,
+  "STRUCTURED_MAX_TOKENS_CAP": 16384,
+  "STRUCTURED_FAILURE_MESSAGE": "Couldn't make sense of the model's answer. Try again in a moment.",
+  "AGENT_MAX_TOKENS": 8192,
+  "RUN_PROMPT_TOKEN_CEILING": 60000
+}

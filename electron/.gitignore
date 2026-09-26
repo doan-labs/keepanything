@@ -1,0 +1,24 @@
+node_modules
+out
+dist
+release
+*.log
+test-results
+playwright-report
+
+.env
+.env.local
+
+# Embedding model files fetched by `pnpm run models:fetch` (shipped via extraResources).
+build/models
+# Drag-watch sidecar compiled by `pnpm run native` (shipped via extraResources).
+build/native
+# Stray model download from an earlier run of the fetch script.
+assets/fonts/build/
+
+# Local captures from helper scripts (screenshot, eval, etc).
+.artifacts/
+
+# Local scratch files.
+.probe-lint-staged.js
+.tmp-live-run.mjs

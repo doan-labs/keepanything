@@ -1,0 +1,397 @@
+{
+  "surfaces": [
+    {
+      "id": "activity",
+      "theme": "dark",
+      "file": "activity.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "activity",
+      "theme": "light",
+      "file": "activity.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "ask-answered",
+      "theme": "dark",
+      "file": "ask-answered.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "ask-answered",
+      "theme": "light",
+      "file": "ask-answered.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "ask-running",
+      "theme": "dark",
+      "file": "ask-running.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "ask-running",
+      "theme": "light",
+      "file": "ask-running.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "collection-header",
+      "theme": "dark",
+      "file": "collection-header.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "collection-header",
+      "theme": "light",
+      "file": "collection-header.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "collections-grid",
+      "theme": "dark",
+      "file": "collections-grid.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "collections-grid",
+      "theme": "light",
+      "file": "collections-grid.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "confirm-dialog",
+      "theme": "dark",
+      "file": "confirm-dialog.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "confirm-dialog",
+      "theme": "light",
+      "file": "confirm-dialog.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "detail",
+      "theme": "dark",
+      "file": "detail.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "detail",
+      "theme": "light",
+      "file": "detail.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "drop-overlay",
+      "theme": "dark",
+      "file": "drop-overlay.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "drop-overlay",
+      "theme": "light",
+      "file": "drop-overlay.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "item-card-folder",
+      "theme": "dark",
+      "file": "item-card-folder.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "item-card-folder",
+      "theme": "light",
+      "file": "item-card-folder.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "item-card-image",
+      "theme": "dark",
+      "file": "item-card-image.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "item-card-image",
+      "theme": "light",
+      "file": "item-card-image.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "item-card-markdown",
+      "theme": "dark",
+      "file": "item-card-markdown.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "item-card-markdown",
+      "theme": "light",
+      "file": "item-card-markdown.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "item-card-text",
+      "theme": "dark",
+      "file": "item-card-text.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "item-card-text",
+      "theme": "light",
+      "file": "item-card-text.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "item-card-url",
+      "theme": "dark",
+      "file": "item-card-url.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "item-card-url",
+      "theme": "light",
+      "file": "item-card-url.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "library-grid-comfortable",
+      "theme": "dark",
+      "file": "library-grid-comfortable.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "library-grid-comfortable",
+      "theme": "light",
+      "file": "library-grid-comfortable.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "library-grid-compact",
+      "theme": "dark",
+      "file": "library-grid-compact.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "library-grid-compact",
+      "theme": "light",
+      "file": "library-grid-compact.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "library-grid-empty",
+      "theme": "dark",
+      "file": "library-grid-empty.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "library-grid-empty",
+      "theme": "light",
+      "file": "library-grid-empty.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "palette-idle",
+      "theme": "dark",
+      "file": "palette-idle.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "palette-idle",
+      "theme": "light",
+      "file": "palette-idle.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "palette-results",
+      "theme": "dark",
+      "file": "palette-results.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "palette-results",
+      "theme": "light",
+      "file": "palette-results.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "selection-bar",
+      "theme": "dark",
+      "file": "selection-bar.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "selection-bar",
+      "theme": "light",
+      "file": "selection-bar.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "settings-about",
+      "theme": "dark",
+      "file": "settings-about.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "settings-about",
+      "theme": "light",
+      "file": "settings-about.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "settings-danger",
+      "theme": "dark",
+      "file": "settings-danger.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "settings-danger",
+      "theme": "light",
+      "file": "settings-danger.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "settings-glance",
+      "theme": "dark",
+      "file": "settings-glance.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "settings-glance",
+      "theme": "light",
+      "file": "settings-glance.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "settings-library",
+      "theme": "dark",
+      "file": "settings-library.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "settings-library",
+      "theme": "light",
+      "file": "settings-library.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "settings-provider",
+      "theme": "dark",
+      "file": "settings-provider.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "settings-provider",
+      "theme": "light",
+      "file": "settings-provider.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "shelf",
+      "theme": "dark",
+      "file": "shelf.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "shelf",
+      "theme": "light",
+      "file": "shelf.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "status-stack",
+      "theme": "dark",
+      "file": "status-stack.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "status-stack",
+      "theme": "light",
+      "file": "status-stack.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "toast",
+      "theme": "dark",
+      "file": "toast.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "toast",
+      "theme": "light",
+      "file": "toast.light.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "trash",
+      "theme": "dark",
+      "file": "trash.dark.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "trash",
+      "theme": "light",
+      "file": "trash.light.png",
+      "width": 1440,
+      "height": 900
+    }
+  ],
+  "electronVersion": "44.1.1"
+}

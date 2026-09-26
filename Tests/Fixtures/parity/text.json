@@ -1,0 +1,497 @@
+{
+  "nowIso": "2026-09-01T00:00:00.000Z",
+  "cases": [
+    {
+      "fn": "truncate",
+      "args": [
+        "hello",
+        10
+      ],
+      "out": "hello"
+    },
+    {
+      "fn": "truncate",
+      "args": [
+        "hello",
+        5
+      ],
+      "out": "hello"
+    },
+    {
+      "fn": "truncate",
+      "args": [
+        "hello world",
+        6
+      ],
+      "out": "hello…"
+    },
+    {
+      "fn": "truncate",
+      "args": [
+        "hello world",
+        1
+      ],
+      "out": "…"
+    },
+    {
+      "fn": "truncate",
+      "args": [
+        "hello",
+        0
+      ],
+      "out": ""
+    },
+    {
+      "fn": "truncate",
+      "args": [
+        "a longer title about local inference",
+        20
+      ],
+      "out": "a longer title abou…"
+    },
+    {
+      "fn": "slugify",
+      "args": [
+        "mnismt — Visual Direction!"
+      ],
+      "out": "mnismt-visual-direction"
+    },
+    {
+      "fn": "slugify",
+      "args": [
+        "  Résumé 2026.pdf "
+      ],
+      "out": "resume-2026-pdf"
+    },
+    {
+      "fn": "slugify",
+      "args": [
+        "---"
+      ],
+      "out": ""
+    },
+    {
+      "fn": "slugify",
+      "args": [
+        "Local LLM inference notes"
+      ],
+      "out": "local-llm-inference-notes"
+    },
+    {
+      "fn": "slugify",
+      "args": [
+        "Already--dashed  TITLE"
+      ],
+      "out": "already-dashed-title"
+    },
+    {
+      "fn": "slugify",
+      "args": [
+        "Café naïve über"
+      ],
+      "out": "cafe-naive-uber"
+    },
+    {
+      "fn": "slugify",
+      "args": [
+        ""
+      ],
+      "out": ""
+    },
+    {
+      "fn": "normalizeName",
+      "args": [
+        "  mnismt:  Visual   Direction!! "
+      ],
+      "out": "mnismt visual direction"
+    },
+    {
+      "fn": "normalizeName",
+      "args": [
+        "Inference-Research"
+      ],
+      "out": "inference research"
+    },
+    {
+      "fn": "normalizeName",
+      "args": [
+        "Things to Read"
+      ],
+      "out": "things to read"
+    },
+    {
+      "fn": "normalizeName",
+      "args": [
+        "Ｍacos Apps"
+      ],
+      "out": "macos apps"
+    },
+    {
+      "fn": "normalizeName",
+      "args": [
+        "MVP — launch (draft)"
+      ],
+      "out": "mvp launch draft"
+    },
+    {
+      "fn": "normalizeName",
+      "args": [
+        "a   b"
+      ],
+      "out": "a b"
+    },
+    {
+      "fn": "relativeTime",
+      "args": [
+        "2026-09-01T00:00:00.000Z",
+        "2026-09-01T00:00:00.000Z"
+      ],
+      "out": "just now"
+    },
+    {
+      "fn": "relativeTime",
+      "args": [
+        "2026-08-31T23:59:30.000Z",
+        "2026-09-01T00:00:00.000Z"
+      ],
+      "out": "just now"
+    },
+    {
+      "fn": "relativeTime",
+      "args": [
+        "2026-08-31T23:59:00.000Z",
+        "2026-09-01T00:00:00.000Z"
+      ],
+      "out": "1 minute ago"
+    },
+    {
+      "fn": "relativeTime",
+      "args": [
+        "2026-08-31T23:55:00.000Z",
+        "2026-09-01T00:00:00.000Z"
+      ],
+      "out": "5 minutes ago"
+    },
+    {
+      "fn": "relativeTime",
+      "args": [
+        "2026-08-31T23:00:00.000Z",
+        "2026-09-01T00:00:00.000Z"
+      ],
+      "out": "1 hour ago"
+    },
+    {
+      "fn": "relativeTime",
+      "args": [
+        "2026-08-31T21:00:00.000Z",
+        "2026-09-01T00:00:00.000Z"
+      ],
+      "out": "3 hours ago"
+    },
+    {
+      "fn": "relativeTime",
+      "args": [
+        "2026-08-31T00:00:00.000Z",
+        "2026-09-01T00:00:00.000Z"
+      ],
+      "out": "yesterday"
+    },
+    {
+      "fn": "relativeTime",
+      "args": [
+        "2026-08-29T00:00:00.000Z",
+        "2026-09-01T00:00:00.000Z"
+      ],
+      "out": "3 days ago"
+    },
+    {
+      "fn": "relativeTime",
+      "args": [
+        "2026-08-24T00:00:00.000Z",
+        "2026-09-01T00:00:00.000Z"
+      ],
+      "out": "1 week ago"
+    },
+    {
+      "fn": "relativeTime",
+      "args": [
+        "2026-08-11T00:00:00.000Z",
+        "2026-09-01T00:00:00.000Z"
+      ],
+      "out": "3 weeks ago"
+    },
+    {
+      "fn": "relativeTime",
+      "args": [
+        "2026-07-23T00:00:00.000Z",
+        "2026-09-01T00:00:00.000Z"
+      ],
+      "out": "1 month ago"
+    },
+    {
+      "fn": "relativeTime",
+      "args": [
+        "2026-05-29T00:00:00.000Z",
+        "2026-09-01T00:00:00.000Z"
+      ],
+      "out": "3 months ago"
+    },
+    {
+      "fn": "relativeTime",
+      "args": [
+        "2025-07-28T00:00:00.000Z",
+        "2026-09-01T00:00:00.000Z"
+      ],
+      "out": "1 year ago"
+    },
+    {
+      "fn": "relativeTime",
+      "args": [
+        "2024-06-23T00:00:00.000Z",
+        "2026-09-01T00:00:00.000Z"
+      ],
+      "out": "2 years ago"
+    },
+    {
+      "fn": "relativeTime",
+      "args": [
+        "2027-01-01T00:00:00.000Z",
+        "2026-09-01T00:00:00.000Z"
+      ],
+      "out": "just now"
+    },
+    {
+      "fn": "relativeTime",
+      "args": [
+        "not a date",
+        "2026-09-01T00:00:00.000Z"
+      ],
+      "out": "just now"
+    },
+    {
+      "fn": "formatBytes",
+      "args": [
+        0
+      ],
+      "out": "0 B"
+    },
+    {
+      "fn": "formatBytes",
+      "args": [
+        512
+      ],
+      "out": "512 B"
+    },
+    {
+      "fn": "formatBytes",
+      "args": [
+        12300
+      ],
+      "out": "12.3 KB"
+    },
+    {
+      "fn": "formatBytes",
+      "args": [
+        2400000
+      ],
+      "out": "2.4 MB"
+    },
+    {
+      "fn": "formatBytes",
+      "args": [
+        150000000
+      ],
+      "out": "150 MB"
+    },
+    {
+      "fn": "formatBytes",
+      "args": [
+        3000000000
+      ],
+      "out": "3 GB"
+    },
+    {
+      "fn": "formatBytes",
+      "args": [
+        -1
+      ],
+      "out": "0 B"
+    },
+    {
+      "fn": "formatBytes",
+      "args": [
+        999
+      ],
+      "out": "999 B"
+    },
+    {
+      "fn": "formatBytes",
+      "args": [
+        1500
+      ],
+      "out": "1.5 KB"
+    },
+    {
+      "fn": "formatDuration",
+      "args": [
+        0
+      ],
+      "out": "0:00"
+    },
+    {
+      "fn": "formatDuration",
+      "args": [
+        65000
+      ],
+      "out": "1:05"
+    },
+    {
+      "fn": "formatDuration",
+      "args": [
+        3725000
+      ],
+      "out": "1:02:05"
+    },
+    {
+      "fn": "formatDuration",
+      "args": [
+        null
+      ],
+      "out": "0:00"
+    },
+    {
+      "fn": "formatDuration",
+      "args": [
+        -1
+      ],
+      "out": "0:00"
+    },
+    {
+      "fn": "formatDuration",
+      "args": [
+        600000
+      ],
+      "out": "10:00"
+    },
+    {
+      "fn": "formatDuration",
+      "args": [
+        3599000
+      ],
+      "out": "59:59"
+    },
+    {
+      "fn": "isProbablyNaturalLanguage",
+      "args": [
+        "what did I save about vllm?"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isProbablyNaturalLanguage",
+      "args": [
+        "invoice"
+      ],
+      "out": false
+    },
+    {
+      "fn": "isProbablyNaturalLanguage",
+      "args": [
+        "show me my screenshots"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isProbablyNaturalLanguage",
+      "args": [
+        "vllm continuous batching notes"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isProbablyNaturalLanguage",
+      "args": [
+        "is the library ready?"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isProbablyNaturalLanguage",
+      "args": [
+        "find the thing about fonts"
+      ],
+      "out": true
+    },
+    {
+      "fn": "isProbablyNaturalLanguage",
+      "args": [
+        "local inference providers"
+      ],
+      "out": false
+    },
+    {
+      "fn": "tokenize",
+      "args": [
+        "Hello, World!"
+      ],
+      "out": [
+        "hello",
+        "world"
+      ]
+    },
+    {
+      "fn": "tokenize",
+      "args": [
+        "vllm 连续批处理 notes"
+      ],
+      "out": [
+        "vllm",
+        "连续批处理",
+        "notes"
+      ]
+    },
+    {
+      "fn": "tokenize",
+      "args": [
+        "a-b_c.d e"
+      ],
+      "out": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e"
+      ]
+    },
+    {
+      "fn": "tokenize",
+      "args": [
+        "  multiple   spaces  "
+      ],
+      "out": [
+        "multiple",
+        "spaces"
+      ]
+    },
+    {
+      "fn": "tokenize",
+      "args": [
+        "café naïve"
+      ],
+      "out": [
+        "café",
+        "naïve"
+      ]
+    },
+    {
+      "fn": "tokenize",
+      "args": [
+        "123 456"
+      ],
+      "out": [
+        "123",
+        "456"
+      ]
+    }
+  ]
+}

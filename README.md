@@ -1,4 +1,4 @@
-<h1><img src="build/icon.png" width="40" align="top" alt=""> KeepAnything</h1>
+<h1><img src="electron/build/icon.png" width="40" align="top" alt=""> KeepAnything</h1>
 
 Keep anything. We'll figure out the rest.
 
@@ -22,9 +22,10 @@ one, items are still kept and searchable but summaries are heuristic and no coll
 
 ## Develop
 
-Node 24 (`.nvmrc`) and pnpm 11 (`corepack enable`).
+Node 24 (`.nvmrc`) and pnpm 11 (`corepack enable`). The app lives in `electron/`:
 
 ```bash
+cd electron
 pnpm install
 pnpm run models:fetch   # embedding model into build/models; needed before packaging
 pnpm run dev
@@ -38,7 +39,7 @@ pnpm run dev
 | Signed `.dmg` + `.zip` uploaded to a draft GitHub release (needs `GH_TOKEN`) | `pnpm run release:mac` |
 | Seed an empty dev library | `pnpm run seed:library` |
 
-Keys can also go in a gitignored `.env` (see `.env.example`): `KEEPANYTHING_GMI_API_KEY`,
+Keys can also go in a gitignored `electron/.env` (see `electron/.env.example`): `KEEPANYTHING_GMI_API_KEY`,
 `KEEPANYTHING_OPENROUTER_API_KEY`, and `KEEPANYTHING_AI=gmi|openrouter|mock|off`. Dev and packaged
 builds never share a library.
 

@@ -1,0 +1,512 @@
+{
+  "KINDS": [
+    "macos_app",
+    "cli_tool",
+    "library",
+    "saas_product",
+    "article",
+    "paper",
+    "docs",
+    "design_reference",
+    "screenshot",
+    "photo",
+    "receipt",
+    "video",
+    "dataset",
+    "note",
+    "social_post",
+    "other"
+  ],
+  "KIND_LABEL": {
+    "macos_app": "macOS app",
+    "cli_tool": "Command-line tool",
+    "library": "Library",
+    "saas_product": "Product",
+    "article": "Article",
+    "paper": "Paper",
+    "docs": "Documentation",
+    "design_reference": "Design reference",
+    "screenshot": "Screenshot",
+    "photo": "Photo",
+    "receipt": "Receipt",
+    "video": "Video",
+    "dataset": "Dataset",
+    "note": "Note",
+    "social_post": "Social post",
+    "other": "Other"
+  },
+  "RELATIONSHIP_TYPES": {
+    "related_to": {
+      "symmetric": true,
+      "label": "related to",
+      "inverseLabel": "related to"
+    },
+    "inspired_by": {
+      "symmetric": false,
+      "label": "inspired by",
+      "inverseLabel": "inspired"
+    },
+    "same_project": {
+      "symmetric": true,
+      "label": "same project",
+      "inverseLabel": "same project"
+    },
+    "references": {
+      "symmetric": false,
+      "label": "references",
+      "inverseLabel": "referenced by"
+    },
+    "alternative_to": {
+      "symmetric": true,
+      "label": "alternative to",
+      "inverseLabel": "alternative to"
+    },
+    "continuation_of": {
+      "symmetric": false,
+      "label": "continuation of",
+      "inverseLabel": "continued by"
+    },
+    "contradicts": {
+      "symmetric": true,
+      "label": "contradicts",
+      "inverseLabel": "contradicts"
+    },
+    "duplicate_of": {
+      "symmetric": true,
+      "label": "duplicate of",
+      "inverseLabel": "duplicate of"
+    },
+    "created_from": {
+      "symmetric": false,
+      "label": "created from",
+      "inverseLabel": "source of"
+    },
+    "belongs_to": {
+      "symmetric": false,
+      "label": "belongs to",
+      "inverseLabel": "contains"
+    }
+  },
+  "RELATIONSHIP_TYPE_IDS": [
+    "related_to",
+    "inspired_by",
+    "same_project",
+    "references",
+    "alternative_to",
+    "continuation_of",
+    "contradicts",
+    "duplicate_of",
+    "created_from",
+    "belongs_to"
+  ],
+  "symmetric": {
+    "related_to": true,
+    "inspired_by": false,
+    "same_project": true,
+    "references": false,
+    "alternative_to": true,
+    "continuation_of": false,
+    "contradicts": true,
+    "duplicate_of": true,
+    "created_from": false,
+    "belongs_to": false
+  },
+  "relationshipLabel": {
+    "related_to": {
+      "out": "related to",
+      "in": "related to"
+    },
+    "inspired_by": {
+      "out": "inspired by",
+      "in": "inspired"
+    },
+    "same_project": {
+      "out": "same project",
+      "in": "same project"
+    },
+    "references": {
+      "out": "references",
+      "in": "referenced by"
+    },
+    "alternative_to": {
+      "out": "alternative to",
+      "in": "alternative to"
+    },
+    "continuation_of": {
+      "out": "continuation of",
+      "in": "continued by"
+    },
+    "contradicts": {
+      "out": "contradicts",
+      "in": "contradicts"
+    },
+    "duplicate_of": {
+      "out": "duplicate of",
+      "in": "duplicate of"
+    },
+    "created_from": {
+      "out": "created from",
+      "in": "source of"
+    },
+    "belongs_to": {
+      "out": "belongs to",
+      "in": "contains"
+    }
+  },
+  "PROCESSING_STATUSES": [
+    "CAPTURED",
+    "EXTRACTING",
+    "EXTRACTED",
+    "EMBEDDING",
+    "UNDERSTANDING",
+    "RELATING",
+    "READY",
+    "PARTIAL",
+    "EXTRACTION_FAILED",
+    "AI_FAILED",
+    "WAITING_FOR_AI"
+  ],
+  "STATUS_LABEL": {
+    "CAPTURED": "Saved.",
+    "EXTRACTING": "Reading",
+    "EXTRACTED": "Reading",
+    "EMBEDDING": "Reading",
+    "UNDERSTANDING": "Understanding",
+    "RELATING": "Looking for similar things",
+    "READY": "",
+    "PARTIAL": "Kept. Partly understood.",
+    "EXTRACTION_FAILED": "Couldn't read this, but it's kept.",
+    "AI_FAILED": "Still figuring this one out.",
+    "WAITING_FOR_AI": "Kept. Not understood yet."
+  },
+  "STAGE_LABEL": {
+    "extract": "Reading",
+    "thumbnail": "Making a preview",
+    "snapshot": "Capturing the page",
+    "embed": "Indexing",
+    "index": "Indexing",
+    "understand": "Understanding",
+    "relate": "Looking for similar things",
+    "organize_batch": "Organizing",
+    "consolidate": "Tidying collections"
+  },
+  "USER_STAGES": [
+    {
+      "id": "reading",
+      "label": "Reading",
+      "statuses": [
+        "EXTRACTING",
+        "EXTRACTED",
+        "EMBEDDING"
+      ]
+    },
+    {
+      "id": "understanding",
+      "label": "Understanding",
+      "statuses": [
+        "UNDERSTANDING"
+      ]
+    },
+    {
+      "id": "connecting",
+      "label": "Looking for similar things",
+      "statuses": [
+        "RELATING"
+      ]
+    }
+  ],
+  "userStageFor": {
+    "CAPTURED": null,
+    "EXTRACTING": "reading",
+    "EXTRACTED": "reading",
+    "EMBEDDING": "reading",
+    "UNDERSTANDING": "understanding",
+    "RELATING": "connecting",
+    "READY": null,
+    "PARTIAL": null,
+    "EXTRACTION_FAILED": null,
+    "AI_FAILED": null,
+    "WAITING_FOR_AI": null
+  },
+  "STICKY_STATUSES": [
+    "EXTRACTION_FAILED",
+    "PARTIAL"
+  ],
+  "isFailed": {
+    "CAPTURED": false,
+    "EXTRACTING": false,
+    "EXTRACTED": false,
+    "EMBEDDING": false,
+    "UNDERSTANDING": false,
+    "RELATING": false,
+    "READY": false,
+    "PARTIAL": false,
+    "EXTRACTION_FAILED": true,
+    "AI_FAILED": true,
+    "WAITING_FOR_AI": false
+  },
+  "isTerminal": {
+    "CAPTURED": false,
+    "EXTRACTING": false,
+    "EXTRACTED": false,
+    "EMBEDDING": false,
+    "UNDERSTANDING": false,
+    "RELATING": false,
+    "READY": true,
+    "PARTIAL": true,
+    "EXTRACTION_FAILED": false,
+    "AI_FAILED": false,
+    "WAITING_FOR_AI": false
+  },
+  "COPY": {
+    "tagline": "Keep anything.",
+    "taglineRest": "We'll figure out the rest.",
+    "saved": "Saved.",
+    "cantReadPage": "Couldn't read this page, but the link is safe.",
+    "stillFiguring": "Still figuring this one out.",
+    "emptyCollection": "Nothing here yet. Drag things in or let it fill up.",
+    "trashEmpty": "Trash is empty.",
+    "askNothing": "Couldn't find anything about that.",
+    "askScanning": "Looking through your library",
+    "askScanCaption": "Text, pages and pictures — all of it on this Mac",
+    "askAnswered": "Answered from your library",
+    "askStopTitle": "Stop the search?",
+    "askStopBody": "It is still looking through your library. Whatever it has found so far stays on screen.",
+    "dropHint": "Drop anywhere",
+    "dropHere": "Drop here",
+    "dropSub": "Keep it for later",
+    "pasteHint": "Paste a link (⌘V)",
+    "notUnderstood": "Kept. Not understood yet.",
+    "connectHint": "Connect an AI provider in Settings to understand this.",
+    "samples": {
+      "foundRelated": [
+        "Linked to 1 thing.",
+        "Linked to 4 things."
+      ],
+      "alreadyKept": [
+        "Already kept · 3 days ago"
+      ],
+      "noMatches": [
+        "Nothing matches \"invoice\"."
+      ],
+      "askReading": [
+        "Reading 1 match",
+        "Reading 5 matches"
+      ],
+      "askFound": [
+        "Found it in 1 thing you kept",
+        "Found it in 5 things you kept"
+      ]
+    }
+  },
+  "SKIP_DIR_NAMES": [
+    "node_modules",
+    ".git",
+    "dist",
+    "build",
+    ".cache",
+    "__pycache__",
+    "Library",
+    ".venv",
+    "venv",
+    ".next",
+    ".turbo",
+    "coverage",
+    "DerivedData",
+    "Pods",
+    ".Trash"
+  ],
+  "TEMP_PATH_MARKERS": [
+    "/private/var/folders",
+    "TemporaryItems"
+  ],
+  "DEFAULT_MODEL": "MiniMaxAI/MiniMax-M3",
+  "DEFAULT_BASE_URL": "https://api.gmi-serving.com/v1",
+  "AI_PROVIDER_DEFAULTS": {
+    "gmi": {
+      "model": "MiniMaxAI/MiniMax-M3",
+      "baseUrl": "https://api.gmi-serving.com/v1"
+    },
+    "openrouter": {
+      "model": "minimax/minimax-m3",
+      "baseUrl": "https://openrouter.ai/api/v1"
+    }
+  },
+  "AI_PROVIDER_LABEL": {
+    "gmi": "GMI",
+    "openrouter": "OpenRouter"
+  },
+  "SNIPPET_OPEN": "[[",
+  "SNIPPET_CLOSE": "]]",
+  "EMBEDDING_MODEL_ID": "Xenova/bge-small-en-v1.5",
+  "EMBEDDING_DIMS": 384,
+  "MEDIA_SCHEME": "ka-media",
+  "MEDIA_ROOTS": [
+    "objects",
+    "thumbs",
+    "snapshots",
+    "content"
+  ],
+  "INTERNAL_DND_MIME": "application/x-keepanything-items",
+  "LAYOUT": {
+    "window": {
+      "width": 470,
+      "height": 404
+    },
+    "margin": {
+      "top": 8,
+      "right": 14,
+      "bottom": 28,
+      "left": 14
+    },
+    "rail": {
+      "width": 108,
+      "notchHeight": 12
+    },
+    "cardGap": 14,
+    "card": {
+      "width": 320
+    },
+    "trayGap": 4,
+    "anchorMode": "right-edge"
+  },
+  "SHELF": {
+    "body": {
+      "width": 224,
+      "height": 288
+    },
+    "radius": 18,
+    "fillet": 20,
+    "shadow": 28
+  },
+  "SHELF_WINDOW": {
+    "width": 252,
+    "height": 328
+  },
+  "SHELF_EXIT_MS": 260,
+  "railAnchorX": 402,
+  "IPC_CHANNELS": {
+    "itemsList": "items:list",
+    "itemsGet": "items:get",
+    "itemsUpdate": "items:update",
+    "itemsTrash": "items:trash",
+    "itemsRestore": "items:restore",
+    "itemsDeleteForever": "items:deleteForever",
+    "itemsCancel": "items:cancel",
+    "itemsReprocess": "items:reprocess",
+    "itemsReprocessAll": "items:reprocessAll",
+    "itemsOpenOriginal": "items:openOriginal",
+    "itemsRevealInFinder": "items:revealInFinder",
+    "itemsQuickLook": "items:quickLook",
+    "itemsOpenUrl": "items:openUrl",
+    "itemsReadContent": "items:readContent",
+    "captureFiles": "capture:files",
+    "captureUrl": "capture:url",
+    "captureText": "capture:text",
+    "captureBlob": "capture:blob",
+    "captureDrop": "capture:drop",
+    "collectionsList": "collections:list",
+    "collectionsCreate": "collections:create",
+    "collectionsRename": "collections:rename",
+    "collectionsDelete": "collections:delete",
+    "collectionsAddItems": "collections:addItems",
+    "collectionsRemoveItem": "collections:removeItem",
+    "relationshipsCreate": "relationships:create",
+    "relationshipsRemove": "relationships:remove",
+    "searchQuick": "search:quick",
+    "agentCommand": "agent:command",
+    "agentCancel": "agent:cancel",
+    "agentRun": "agent:run",
+    "agentRuns": "agent:runs",
+    "agentUndo": "agent:undo",
+    "agentUndoRun": "agent:undoRun",
+    "agentApplyProposals": "agent:applyProposals",
+    "settingsGet": "settings:get",
+    "settingsResetData": "settings:resetData",
+    "settingsUpdate": "settings:update",
+    "settingsTestConnection": "settings:testConnection",
+    "systemStats": "system:stats",
+    "systemContextMenu": "system:contextMenu",
+    "systemOpenExternal": "system:openExternal",
+    "systemChooseFiles": "system:chooseFiles",
+    "systemRevealLibrary": "system:revealLibrary",
+    "systemUpdateStatus": "system:updateStatus",
+    "systemCheckForUpdates": "system:checkForUpdates",
+    "systemInstallUpdate": "system:installUpdate",
+    "jobsStatus": "jobs:status"
+  },
+  "IPC_CHANNEL_LIST": [
+    "items:list",
+    "items:get",
+    "items:update",
+    "items:trash",
+    "items:restore",
+    "items:deleteForever",
+    "items:cancel",
+    "items:reprocess",
+    "items:reprocessAll",
+    "items:openOriginal",
+    "items:revealInFinder",
+    "items:quickLook",
+    "items:openUrl",
+    "items:readContent",
+    "capture:files",
+    "capture:url",
+    "capture:text",
+    "capture:blob",
+    "capture:drop",
+    "collections:list",
+    "collections:create",
+    "collections:rename",
+    "collections:delete",
+    "collections:addItems",
+    "collections:removeItem",
+    "relationships:create",
+    "relationships:remove",
+    "search:quick",
+    "agent:command",
+    "agent:cancel",
+    "agent:run",
+    "agent:runs",
+    "agent:undo",
+    "agent:undoRun",
+    "agent:applyProposals",
+    "settings:get",
+    "settings:resetData",
+    "settings:update",
+    "settings:testConnection",
+    "system:stats",
+    "system:contextMenu",
+    "system:openExternal",
+    "system:chooseFiles",
+    "system:revealLibrary",
+    "system:updateStatus",
+    "system:checkForUpdates",
+    "system:installUpdate",
+    "jobs:status"
+  ],
+  "IPC_EVENTS": {
+    "itemsChanged": "items:changed",
+    "jobsProgress": "jobs:progress",
+    "collectionsChanged": "collections:changed",
+    "agentRun": "agent:run",
+    "shelfDropped": "shelf:dropped",
+    "shelfPresence": "shelf:presence",
+    "shelfDrag": "shelf:drag",
+    "settingsChanged": "settings:changed",
+    "themeChanged": "theme:changed",
+    "updateStatus": "update:status"
+  },
+  "IPC_EVENT_LIST": [
+    "items:changed",
+    "jobs:progress",
+    "collections:changed",
+    "agent:run",
+    "shelf:dropped",
+    "shelf:presence",
+    "shelf:drag",
+    "settings:changed",
+    "theme:changed",
+    "update:status"
+  ]
+}

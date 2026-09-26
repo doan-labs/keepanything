@@ -1,0 +1,29 @@
+{
+  "name": "capture-text",
+  "runs_on": "linux",
+  "ai": "mock",
+  "embeddings": "hash",
+  "steps": [
+    {
+      "op": "capture.text",
+      "text": "Plain note: remember to compare GMI Cloud and OpenRouter pricing for MiniMax-M3."
+    },
+    {
+      "op": "capture.text",
+      "text": "# Weekly review\n\n- shipped the drag shelf\n- MiniMax-M3 pricing still open\n",
+      "title": "Weekly review 2026-09-01"
+    },
+    {
+      "op": "capture.blob",
+      "name": "pasted-image.png",
+      "mimeType": "image/png",
+      "bytesBase64": "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAAABLbSncAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAATSURBVBhXY/iPA4YMg2FGKggFAF9hAgOZVagTAAAAAElFTkSuQmCC"
+    },
+    {
+      "op": "settle"
+    },
+    {
+      "op": "snapshot"
+    }
+  ]
+}

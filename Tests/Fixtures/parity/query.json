@@ -1,0 +1,921 @@
+{
+  "now": "2026-09-01T12:00:00.000Z",
+  "queries": [
+    {
+      "query": "vllm batching article",
+      "filters": {},
+      "parsed": {
+        "raw": "vllm batching article",
+        "tokens": [
+          "vllm",
+          "batching"
+        ],
+        "phrases": [],
+        "cueTokens": [
+          "article"
+        ],
+        "cues": {
+          "types": [],
+          "subtypes": [],
+          "kinds": [
+            "article"
+          ],
+          "domains": [],
+          "noteCue": false,
+          "strict": false
+        },
+        "embedText": "vllm batching article"
+      },
+      "timeCue": null,
+      "match": "\"vllm\" AND \"batching\"",
+      "matchOr": "\"vllm\" OR \"batching\"",
+      "matchPrefix": "\"vllm\" AND \"batching\"*",
+      "matchNoSynonyms": "\"vllm\" AND \"batching\""
+    },
+    {
+      "query": "screenshots from today",
+      "filters": {},
+      "parsed": {
+        "raw": "screenshots from today",
+        "tokens": [],
+        "phrases": [],
+        "cueTokens": [
+          "screenshots"
+        ],
+        "cues": {
+          "types": [
+            "image"
+          ],
+          "subtypes": [
+            "screenshot"
+          ],
+          "kinds": [],
+          "domains": [],
+          "noteCue": false,
+          "strict": false,
+          "timeframe": {
+            "label": "today",
+            "since": "2026-08-31T12:00:00.000Z"
+          }
+        },
+        "embedText": "screenshots from"
+      },
+      "timeCue": {
+        "label": "today",
+        "since": "2026-08-31T12:00:00.000Z"
+      },
+      "match": "\"screenshots\"",
+      "matchOr": "\"screenshots\"",
+      "matchPrefix": "\"screenshots\"*",
+      "matchNoSynonyms": "\"screenshots\""
+    },
+    {
+      "query": "things I saved yesterday",
+      "filters": {},
+      "parsed": {
+        "raw": "things I saved yesterday",
+        "tokens": [],
+        "phrases": [],
+        "cueTokens": [],
+        "cues": {
+          "types": [],
+          "subtypes": [],
+          "kinds": [],
+          "domains": [],
+          "noteCue": false,
+          "strict": false,
+          "timeframe": {
+            "label": "yesterday",
+            "since": "2026-08-30T12:00:00.000Z"
+          }
+        },
+        "embedText": "things I saved"
+      },
+      "timeCue": {
+        "label": "yesterday",
+        "since": "2026-08-30T12:00:00.000Z"
+      },
+      "match": null,
+      "matchOr": null,
+      "matchPrefix": null,
+      "matchNoSynonyms": null
+    },
+    {
+      "query": "papers from last week",
+      "filters": {},
+      "parsed": {
+        "raw": "papers from last week",
+        "tokens": [],
+        "phrases": [],
+        "cueTokens": [
+          "papers"
+        ],
+        "cues": {
+          "types": [],
+          "subtypes": [],
+          "kinds": [
+            "paper"
+          ],
+          "domains": [],
+          "noteCue": false,
+          "strict": false,
+          "timeframe": {
+            "label": "last week",
+            "since": "2026-08-18T12:00:00.000Z"
+          }
+        },
+        "embedText": "papers from"
+      },
+      "timeCue": {
+        "label": "last week",
+        "since": "2026-08-18T12:00:00.000Z"
+      },
+      "match": "\"papers\"",
+      "matchOr": "\"papers\"",
+      "matchPrefix": "\"papers\"*",
+      "matchNoSynonyms": "\"papers\""
+    },
+    {
+      "query": "notes about fonts",
+      "filters": {},
+      "parsed": {
+        "raw": "notes about fonts",
+        "tokens": [
+          "fonts"
+        ],
+        "phrases": [],
+        "cueTokens": [
+          "notes"
+        ],
+        "cues": {
+          "types": [
+            "note"
+          ],
+          "subtypes": [],
+          "kinds": [
+            "note"
+          ],
+          "domains": [],
+          "noteCue": true,
+          "strict": false
+        },
+        "embedText": "notes about fonts"
+      },
+      "timeCue": null,
+      "match": "\"fonts\"",
+      "matchOr": "\"fonts\"",
+      "matchPrefix": "\"fonts\"*",
+      "matchNoSynonyms": "\"fonts\""
+    },
+    {
+      "query": "the \"local inference\" article",
+      "filters": {},
+      "parsed": {
+        "raw": "the \"local inference\" article",
+        "tokens": [],
+        "phrases": [
+          [
+            "local",
+            "inference"
+          ]
+        ],
+        "cueTokens": [
+          "article"
+        ],
+        "cues": {
+          "types": [],
+          "subtypes": [],
+          "kinds": [
+            "article"
+          ],
+          "domains": [],
+          "noteCue": false,
+          "strict": false
+        },
+        "embedText": "the article local inference"
+      },
+      "timeCue": null,
+      "match": "\"local inference\"",
+      "matchOr": "\"local inference\"",
+      "matchPrefix": "\"local inference\"",
+      "matchNoSynonyms": "\"local inference\""
+    },
+    {
+      "query": "3 days ago receipts",
+      "filters": {},
+      "parsed": {
+        "raw": "3 days ago receipts",
+        "tokens": [],
+        "phrases": [],
+        "cueTokens": [
+          "receipts"
+        ],
+        "cues": {
+          "types": [],
+          "subtypes": [],
+          "kinds": [
+            "receipt"
+          ],
+          "domains": [],
+          "noteCue": false,
+          "strict": false,
+          "timeframe": {
+            "label": "3 days ago",
+            "since": "2026-08-27T12:00:00.000Z",
+            "until": "2026-08-31T12:00:00.000Z"
+          }
+        },
+        "embedText": "receipts"
+      },
+      "timeCue": {
+        "label": "3 days ago",
+        "since": "2026-08-27T12:00:00.000Z",
+        "until": "2026-08-31T12:00:00.000Z"
+      },
+      "match": "\"receipts\"",
+      "matchOr": "\"receipts\"",
+      "matchPrefix": "\"receipts\"*",
+      "matchNoSynonyms": "\"receipts\""
+    },
+    {
+      "query": "repos I kept last month",
+      "filters": {},
+      "parsed": {
+        "raw": "repos I kept last month",
+        "tokens": [],
+        "phrases": [],
+        "cueTokens": [
+          "repos"
+        ],
+        "cues": {
+          "types": [
+            "url"
+          ],
+          "subtypes": [
+            "github_repo"
+          ],
+          "kinds": [],
+          "domains": [],
+          "noteCue": false,
+          "strict": false,
+          "timeframe": {
+            "label": "last month",
+            "since": "2026-07-18T12:00:00.000Z"
+          }
+        },
+        "embedText": "repos I kept"
+      },
+      "timeCue": {
+        "label": "last month",
+        "since": "2026-07-18T12:00:00.000Z"
+      },
+      "match": "\"repos\"",
+      "matchOr": "\"repos\"",
+      "matchPrefix": "\"repos\"*",
+      "matchNoSynonyms": "\"repos\""
+    },
+    {
+      "query": "a few weeks ago",
+      "filters": {},
+      "parsed": {
+        "raw": "a few weeks ago",
+        "tokens": [],
+        "phrases": [],
+        "cueTokens": [],
+        "cues": {
+          "types": [],
+          "subtypes": [],
+          "kinds": [],
+          "domains": [],
+          "noteCue": false,
+          "strict": false,
+          "timeframe": {
+            "label": "a few weeks ago",
+            "since": "2026-07-28T12:00:00.000Z",
+            "until": "2026-08-22T12:00:00.000Z"
+          }
+        },
+        "embedText": "a few weeks ago"
+      },
+      "timeCue": {
+        "label": "a few weeks ago",
+        "since": "2026-07-28T12:00:00.000Z",
+        "until": "2026-08-22T12:00:00.000Z"
+      },
+      "match": null,
+      "matchOr": null,
+      "matchPrefix": null,
+      "matchNoSynonyms": null
+    },
+    {
+      "query": "the and or",
+      "filters": {},
+      "parsed": {
+        "raw": "the and or",
+        "tokens": [],
+        "phrases": [],
+        "cueTokens": [],
+        "cues": {
+          "types": [],
+          "subtypes": [],
+          "kinds": [],
+          "domains": [],
+          "noteCue": false,
+          "strict": false
+        },
+        "embedText": "the and or"
+      },
+      "timeCue": null,
+      "match": null,
+      "matchOr": null,
+      "matchPrefix": null,
+      "matchNoSynonyms": null
+    },
+    {
+      "query": "",
+      "filters": {},
+      "parsed": {
+        "raw": "",
+        "tokens": [],
+        "phrases": [],
+        "cueTokens": [],
+        "cues": {
+          "types": [],
+          "subtypes": [],
+          "kinds": [],
+          "domains": [],
+          "noteCue": false,
+          "strict": false
+        },
+        "embedText": ""
+      },
+      "timeCue": null,
+      "match": null,
+      "matchOr": null,
+      "matchPrefix": null,
+      "matchNoSynonyms": null
+    },
+    {
+      "query": "type:pdf attention is all you need",
+      "filters": {},
+      "parsed": {
+        "raw": "type:pdf attention is all you need",
+        "tokens": [
+          "attention"
+        ],
+        "phrases": [],
+        "cueTokens": [],
+        "cues": {
+          "types": [
+            "pdf"
+          ],
+          "subtypes": [],
+          "kinds": [],
+          "domains": [],
+          "noteCue": false,
+          "strict": true
+        },
+        "embedText": "attention is all you need"
+      },
+      "timeCue": null,
+      "match": "\"attention\"",
+      "matchOr": "\"attention\"",
+      "matchPrefix": "\"attention\"*",
+      "matchNoSynonyms": "\"attention\""
+    },
+    {
+      "query": "kind:article since:2026-08-01 inference",
+      "filters": {},
+      "parsed": {
+        "raw": "kind:article since:2026-08-01 inference",
+        "tokens": [
+          "inference"
+        ],
+        "phrases": [],
+        "cueTokens": [],
+        "cues": {
+          "types": [],
+          "subtypes": [],
+          "kinds": [
+            "article"
+          ],
+          "domains": [],
+          "noteCue": false,
+          "strict": true,
+          "timeframe": {
+            "label": "since:2026-08-01",
+            "since": "2026-08-01T00:00:00.000Z"
+          }
+        },
+        "embedText": "inference"
+      },
+      "timeCue": null,
+      "match": "\"inference\"",
+      "matchOr": "\"inference\"",
+      "matchPrefix": "\"inference\"*",
+      "matchNoSynonyms": "\"inference\""
+    },
+    {
+      "query": "domain:github.com vllm",
+      "filters": {},
+      "parsed": {
+        "raw": "domain:github.com vllm",
+        "tokens": [
+          "vllm"
+        ],
+        "phrases": [],
+        "cueTokens": [],
+        "cues": {
+          "types": [],
+          "subtypes": [],
+          "kinds": [],
+          "domains": [
+            "github.com"
+          ],
+          "noteCue": false,
+          "strict": false
+        },
+        "embedText": "vllm"
+      },
+      "timeCue": null,
+      "match": "\"vllm\"",
+      "matchOr": "\"vllm\"",
+      "matchPrefix": "\"vllm\"*",
+      "matchNoSynonyms": "\"vllm\""
+    },
+    {
+      "query": "until:7d screenshots",
+      "filters": {},
+      "parsed": {
+        "raw": "until:7d screenshots",
+        "tokens": [],
+        "phrases": [],
+        "cueTokens": [
+          "screenshots"
+        ],
+        "cues": {
+          "types": [
+            "image"
+          ],
+          "subtypes": [
+            "screenshot"
+          ],
+          "kinds": [],
+          "domains": [],
+          "noteCue": false,
+          "strict": false,
+          "timeframe": {
+            "label": "until:7d",
+            "until": "2026-08-25T12:00:00.000Z"
+          }
+        },
+        "embedText": "screenshots"
+      },
+      "timeCue": null,
+      "match": "\"screenshots\"",
+      "matchOr": "\"screenshots\"",
+      "matchPrefix": "\"screenshots\"*",
+      "matchNoSynonyms": "\"screenshots\""
+    },
+    {
+      "query": "mac app for window tiling",
+      "filters": {},
+      "parsed": {
+        "raw": "mac app for window tiling",
+        "tokens": [
+          "window",
+          "tiling"
+        ],
+        "phrases": [],
+        "cueTokens": [
+          "mac",
+          "app"
+        ],
+        "cues": {
+          "types": [],
+          "subtypes": [],
+          "kinds": [
+            "macos_app"
+          ],
+          "domains": [],
+          "noteCue": false,
+          "strict": false
+        },
+        "embedText": "mac app for window tiling"
+      },
+      "timeCue": null,
+      "match": "\"window\" AND \"tiling\"",
+      "matchOr": "\"window\" OR \"tiling\"",
+      "matchPrefix": "\"window\" AND \"tiling\"*",
+      "matchNoSynonyms": "\"window\" AND \"tiling\""
+    },
+    {
+      "query": "youtube talks about attention",
+      "filters": {},
+      "parsed": {
+        "raw": "youtube talks about attention",
+        "tokens": [
+          "talks",
+          "attention"
+        ],
+        "phrases": [],
+        "cueTokens": [
+          "youtube"
+        ],
+        "cues": {
+          "types": [
+            "video",
+            "url"
+          ],
+          "subtypes": [
+            "youtube"
+          ],
+          "kinds": [
+            "video"
+          ],
+          "domains": [],
+          "noteCue": false,
+          "strict": false
+        },
+        "embedText": "youtube talks about attention"
+      },
+      "timeCue": null,
+      "match": "\"talks\" AND \"attention\"",
+      "matchOr": "\"talks\" OR \"attention\"",
+      "matchPrefix": "\"talks\" AND \"attention\"*",
+      "matchNoSynonyms": "\"talks\" AND \"attention\""
+    },
+    {
+      "query": "my notes",
+      "filters": {
+        "strict": true,
+        "types": [
+          "note"
+        ]
+      },
+      "parsed": {
+        "raw": "my notes",
+        "tokens": [],
+        "phrases": [],
+        "cueTokens": [
+          "notes"
+        ],
+        "cues": {
+          "types": [
+            "note"
+          ],
+          "subtypes": [],
+          "kinds": [
+            "note"
+          ],
+          "domains": [],
+          "noteCue": true,
+          "strict": true
+        },
+        "embedText": "my notes"
+      },
+      "timeCue": null,
+      "match": "\"notes\"",
+      "matchOr": "\"notes\"",
+      "matchPrefix": "\"notes\"*",
+      "matchNoSynonyms": "\"notes\""
+    },
+    {
+      "query": "inference",
+      "filters": {
+        "kinds": [
+          "article"
+        ],
+        "domains": [
+          "example.com"
+        ],
+        "since": "2026-08-01T00:00:00Z",
+        "until": "2026-09-01T00:00:00Z"
+      },
+      "parsed": {
+        "raw": "inference",
+        "tokens": [
+          "inference"
+        ],
+        "phrases": [],
+        "cueTokens": [],
+        "cues": {
+          "types": [],
+          "subtypes": [],
+          "kinds": [
+            "article"
+          ],
+          "domains": [
+            "example.com"
+          ],
+          "noteCue": false,
+          "strict": false,
+          "timeframe": {
+            "label": "filter",
+            "since": "2026-08-01T00:00:00Z",
+            "until": "2026-09-01T00:00:00Z"
+          }
+        },
+        "embedText": "inference"
+      },
+      "timeCue": null,
+      "match": "\"inference\"",
+      "matchOr": "\"inference\"",
+      "matchPrefix": "\"inference\"*",
+      "matchNoSynonyms": "\"inference\""
+    },
+    {
+      "query": "receipt from the other day",
+      "filters": {},
+      "parsed": {
+        "raw": "receipt from the other day",
+        "tokens": [],
+        "phrases": [],
+        "cueTokens": [
+          "receipt"
+        ],
+        "cues": {
+          "types": [],
+          "subtypes": [],
+          "kinds": [
+            "receipt"
+          ],
+          "domains": [],
+          "noteCue": false,
+          "strict": false,
+          "timeframe": {
+            "label": "the other day",
+            "since": "2026-08-11T12:00:00.000Z"
+          }
+        },
+        "embedText": "receipt from"
+      },
+      "timeCue": {
+        "label": "the other day",
+        "since": "2026-08-11T12:00:00.000Z"
+      },
+      "match": "\"receipt\"",
+      "matchOr": "\"receipt\"",
+      "matchPrefix": "\"receipt\"*",
+      "matchNoSynonyms": "\"receipt\""
+    },
+    {
+      "query": "dataset parquet",
+      "filters": {},
+      "parsed": {
+        "raw": "dataset parquet",
+        "tokens": [
+          "dataset",
+          "parquet"
+        ],
+        "phrases": [],
+        "cueTokens": [],
+        "cues": {
+          "types": [],
+          "subtypes": [],
+          "kinds": [],
+          "domains": [],
+          "noteCue": false,
+          "strict": false
+        },
+        "embedText": "dataset parquet"
+      },
+      "timeCue": null,
+      "match": "\"dataset\" AND \"parquet\"",
+      "matchOr": "\"dataset\" OR \"parquet\"",
+      "matchPrefix": "\"dataset\" AND \"parquet\"*",
+      "matchNoSynonyms": "\"dataset\" AND \"parquet\""
+    }
+  ],
+  "timeCues": [
+    {
+      "input": "today",
+      "cue": {
+        "label": "today",
+        "since": "2026-08-31T12:00:00.000Z"
+      }
+    },
+    {
+      "input": "yesterday",
+      "cue": {
+        "label": "yesterday",
+        "since": "2026-08-30T12:00:00.000Z"
+      }
+    },
+    {
+      "input": "this week",
+      "cue": {
+        "label": "this week",
+        "since": "2026-08-25T12:00:00.000Z"
+      }
+    },
+    {
+      "input": "last week",
+      "cue": {
+        "label": "last week",
+        "since": "2026-08-18T12:00:00.000Z"
+      }
+    },
+    {
+      "input": "this month",
+      "cue": {
+        "label": "this month",
+        "since": "2026-08-01T12:00:00.000Z"
+      }
+    },
+    {
+      "input": "past month",
+      "cue": {
+        "label": "past month",
+        "since": "2026-07-18T12:00:00.000Z"
+      }
+    },
+    {
+      "input": "last year",
+      "cue": {
+        "label": "last year",
+        "since": "2025-07-28T12:00:00.000Z"
+      }
+    },
+    {
+      "input": "a few weeks ago",
+      "cue": {
+        "label": "a few weeks ago",
+        "since": "2026-07-28T12:00:00.000Z",
+        "until": "2026-08-22T12:00:00.000Z"
+      }
+    },
+    {
+      "input": "couple of days ago",
+      "cue": {
+        "label": "couple of days ago",
+        "since": "2026-08-22T12:00:00.000Z",
+        "until": "2026-08-31T12:00:00.000Z"
+      }
+    },
+    {
+      "input": "a few months ago",
+      "cue": {
+        "label": "a few months ago",
+        "since": "2026-05-04T12:00:00.000Z",
+        "until": "2026-07-18T12:00:00.000Z"
+      }
+    },
+    {
+      "input": "a week ago",
+      "cue": {
+        "label": "a week ago",
+        "since": "2026-08-20T12:00:00.000Z",
+        "until": "2026-08-28T12:00:00.000Z"
+      }
+    },
+    {
+      "input": "one month ago",
+      "cue": {
+        "label": "one month ago",
+        "since": "2026-07-18T12:00:00.000Z",
+        "until": "2026-08-14T12:00:00.000Z"
+      }
+    },
+    {
+      "input": "3 days ago",
+      "cue": {
+        "label": "3 days ago",
+        "since": "2026-08-27T12:00:00.000Z",
+        "until": "2026-08-31T12:00:00.000Z"
+      }
+    },
+    {
+      "input": "2 weeks ago",
+      "cue": {
+        "label": "2 weeks ago",
+        "since": "2026-08-13T12:00:00.000Z",
+        "until": "2026-08-23T12:00:00.000Z"
+      }
+    },
+    {
+      "input": "6 months ago",
+      "cue": {
+        "label": "6 months ago",
+        "since": "2026-02-18T12:00:00.000Z",
+        "until": "2026-03-20T12:00:00.000Z"
+      }
+    },
+    {
+      "input": "recently",
+      "cue": {
+        "label": "recently",
+        "since": "2026-08-11T12:00:00.000Z"
+      }
+    },
+    {
+      "input": "the other day",
+      "cue": {
+        "label": "the other day",
+        "since": "2026-08-11T12:00:00.000Z"
+      }
+    },
+    {
+      "input": "in august",
+      "cue": null
+    },
+    {
+      "input": "2025",
+      "cue": null
+    },
+    {
+      "input": "no cue here",
+      "cue": null
+    }
+  ],
+  "bagMatch": [
+    {
+      "words": [
+        "llm serving",
+        "PagedAttention",
+        "vllm"
+      ],
+      "out": "\"llm\" OR \"serving\" OR \"pagedattention\" OR \"vllm\""
+    },
+    {
+      "words": [
+        "the and or"
+      ],
+      "out": null
+    },
+    {
+      "words": [
+        "fonts typography"
+      ],
+      "out": "\"fonts\" OR \"typography\""
+    },
+    {
+      "words": [],
+      "out": null
+    },
+    {
+      "words": [
+        "one",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine",
+        "ten",
+        "eleven",
+        "twelve",
+        "thirteen",
+        "fourteen",
+        "fifteen",
+        "sixteen",
+        "seventeen",
+        "eighteen",
+        "nineteen",
+        "twenty",
+        "twentyone",
+        "twentytwo",
+        "twentythree",
+        "twentyfour",
+        "twentyfive"
+      ],
+      "out": "\"two\" OR \"three\" OR \"four\" OR \"five\" OR \"six\" OR \"seven\" OR \"eight\" OR \"nine\" OR \"ten\" OR \"eleven\" OR \"twelve\" OR \"thirteen\" OR \"fourteen\" OR \"fifteen\" OR \"sixteen\" OR \"seventeen\" OR \"eighteen\" OR \"nineteen\" OR \"twenty\" OR \"twentyone\" OR \"twentytwo\" OR \"twentythree\" OR \"twentyfour\" OR \"twentyfive\""
+    }
+  ],
+  "isStopword": [
+    {
+      "token": "the",
+      "out": true
+    },
+    {
+      "token": "vllm",
+      "out": false
+    },
+    {
+      "token": "ago",
+      "out": true
+    },
+    {
+      "token": "thing",
+      "out": true
+    },
+    {
+      "token": "mac",
+      "out": false
+    },
+    {
+      "token": "kept",
+      "out": true
+    },
+    {
+      "token": "inference",
+      "out": false
+    },
+    {
+      "token": "recently",
+      "out": true
+    }
+  ]
+}

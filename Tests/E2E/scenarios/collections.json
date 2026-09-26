@@ -1,0 +1,56 @@
+{
+  "name": "collections",
+  "runs_on": "linux",
+  "ai": "mock",
+  "embeddings": "hash",
+  "steps": [
+    {
+      "op": "capture.text",
+      "text": "Notes on low-cost LLM inference providers."
+    },
+    {
+      "op": "capture.text",
+      "text": "More notes: vLLM continuous batching and paged KV cache."
+    },
+    {
+      "op": "capture.text",
+      "text": "MiniMax-M3 vs GPT-4o-mini pricing comparison."
+    },
+    {
+      "op": "settle"
+    },
+    {
+      "op": "collections.create",
+      "name": "Inference research",
+      "description": "Cheap inference providers and batching."
+    },
+    {
+      "op": "collections.rename",
+      "id": "collection-1",
+      "name": "Inference notes"
+    },
+    {
+      "op": "collections.addItems",
+      "id": "collection-1",
+      "itemIds": [
+        "item-2",
+        "item-4"
+      ]
+    },
+    {
+      "op": "collections.removeItem",
+      "id": "collection-1",
+      "itemId": "item-4"
+    },
+    {
+      "op": "collections.delete",
+      "id": "collection-1"
+    },
+    {
+      "op": "settle"
+    },
+    {
+      "op": "snapshot"
+    }
+  ]
+}

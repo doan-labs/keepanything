@@ -1,0 +1,54 @@
+{
+  "name": "undo-suppress",
+  "runs_on": "linux",
+  "ai": "mock",
+  "embeddings": "hash",
+  "steps": [
+    {
+      "op": "capture.files",
+      "paths": [
+        "notes/inference-providers-notes.md",
+        "notes/mnismt-website-design.md",
+        "notes/weekly-review-2026-08-28.md"
+      ]
+    },
+    {
+      "op": "settle"
+    },
+    {
+      "op": "collections.list"
+    },
+    {
+      "op": "agent.undoRun",
+      "runId": "{agentRun:organize_batch}"
+    },
+    {
+      "op": "collections.create",
+      "name": "Inference notes"
+    },
+    {
+      "op": "collections.addItems",
+      "id": "collection-1",
+      "itemIds": [
+        "item-2",
+        "item-3"
+      ]
+    },
+    {
+      "op": "collections.removeItem",
+      "id": "collection-1",
+      "itemId": "item-2"
+    },
+    {
+      "op": "items.reprocess",
+      "id": "item-2",
+      "from": "understand"
+    },
+    {
+      "op": "settle"
+    },
+    {
+      "op": "snapshot"
+    }
+  ]
+}

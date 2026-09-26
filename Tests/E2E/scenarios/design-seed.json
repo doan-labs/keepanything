@@ -1,0 +1,85 @@
+{
+  "name": "design-seed",
+  "runs_on": "macos",
+  "ai": "mock",
+  "embeddings": "hash",
+  "steps": [
+    {
+      "op": "capture.files",
+      "paths": [
+        "notes/inference-providers-notes.md",
+        "notes/mnismt-website-design.md",
+        "notes/weekly-review-2026-08-28.md",
+        "snippets/hyperliquid-snippet.txt",
+        "snippets/resend-alternatives.txt",
+        "screenshots/terminal-pnpm-test.png",
+        "screenshots/pricing-page-inference.png",
+        "screenshots/error-dialog-sqlite.png",
+        "folder-serving-benchmark"
+      ]
+    },
+    {
+      "op": "capture.url",
+      "url": "{fixture}/article.html"
+    },
+    {
+      "op": "capture.url",
+      "url": "{fixture}/arxiv-abs.html"
+    },
+    {
+      "op": "capture.text",
+      "text": "Design seed note: MiniMax-M3 remains the default reasoning model."
+    },
+    {
+      "op": "settle"
+    },
+    {
+      "op": "collections.create",
+      "name": "Inference research"
+    },
+    {
+      "op": "collections.addItems",
+      "id": "collection-1",
+      "itemIds": [
+        "item-2",
+        "item-5"
+      ]
+    },
+    {
+      "op": "collections.create",
+      "name": "Design references"
+    },
+    {
+      "op": "collections.addItems",
+      "id": "collection-2",
+      "itemIds": [
+        "item-3",
+        "item-7"
+      ]
+    },
+    {
+      "op": "relationships.create",
+      "sourceId": "item-2",
+      "targetId": "item-5",
+      "type": "same_project",
+      "description": "Both about cheap inference."
+    },
+    {
+      "op": "relationships.create",
+      "sourceId": "item-3",
+      "targetId": "item-12",
+      "type": "related_to",
+      "description": "Design site note links to the saved article."
+    },
+    {
+      "op": "agent.command",
+      "question": "Summarize what this library is about."
+    },
+    {
+      "op": "settle"
+    },
+    {
+      "op": "snapshot"
+    }
+  ]
+}

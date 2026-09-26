@@ -1,0 +1,859 @@
+{
+  "schemas": [
+    {
+      "name": "understanding",
+      "contract": "Respond with a single JSON object with exactly these keys: kind, title, summary, whyUseful, topics, entities, visualDescription, visibleText, retrievalHints, confidence.\nOutput only the JSON object: no markdown fences, no commentary before or after it.\nUse the allowed values verbatim where the schema lists them.\nJSON schema \"Understanding\":\n{\"type\":\"object\",\"properties\":{\"kind\":{\"type\":\"string\",\"enum\":[\"macos_app\",\"cli_tool\",\"library\",\"saas_product\",\"article\",\"paper\",\"docs\",\"design_reference\",\"screenshot\",\"photo\",\"receipt\",\"video\",\"dataset\",\"note\",\"social_post\",\"other\"]},\"title\":{\"type\":\"string\",\"maxLength\":160},\"summary\":{\"type\":\"string\",\"minLength\":1},\"whyUseful\":{\"type\":\"string\",\"minLength\":1},\"topics\":{\"maxItems\":6,\"type\":\"array\",\"items\":{\"type\":\"string\",\"minLength\":1}},\"entities\":{\"maxItems\":12,\"type\":\"array\",\"items\":{\"type\":\"string\",\"minLength\":1}},\"visualDescription\":{\"type\":\"string\"},\"visibleText\":{\"type\":\"string\"},\"retrievalHints\":{\"maxItems\":6,\"type\":\"array\",\"items\":{\"type\":\"string\",\"minLength\":1}},\"confidence\":{\"default\":0.5,\"type\":\"number\",\"minimum\":0,\"maximum\":1}},\"required\":[\"kind\",\"title\",\"summary\",\"whyUseful\",\"topics\",\"entities\",\"retrievalHints\",\"confidence\"],\"additionalProperties\":false,\"description\":\"What a kept item is, what it contains and why someone would keep it.\"}",
+      "finishTool": {
+        "type": "function",
+        "function": {
+          "name": "finish",
+          "description": "End the run and deliver the result (Understanding). Call this once you have enough information.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "macos_app",
+                  "cli_tool",
+                  "library",
+                  "saas_product",
+                  "article",
+                  "paper",
+                  "docs",
+                  "design_reference",
+                  "screenshot",
+                  "photo",
+                  "receipt",
+                  "video",
+                  "dataset",
+                  "note",
+                  "social_post",
+                  "other"
+                ]
+              },
+              "title": {
+                "type": "string",
+                "maxLength": 160
+              },
+              "summary": {
+                "type": "string",
+                "minLength": 1
+              },
+              "whyUseful": {
+                "type": "string",
+                "minLength": 1
+              },
+              "topics": {
+                "maxItems": 6,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "entities": {
+                "maxItems": 12,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "visualDescription": {
+                "type": "string"
+              },
+              "visibleText": {
+                "type": "string"
+              },
+              "retrievalHints": {
+                "maxItems": 6,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "confidence": {
+                "default": 0.5,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            },
+            "required": [
+              "kind",
+              "title",
+              "summary",
+              "whyUseful",
+              "topics",
+              "entities",
+              "retrievalHints",
+              "confidence"
+            ],
+            "additionalProperties": false,
+            "description": "What a kept item is, what it contains and why someone would keep it."
+          }
+        }
+      }
+    },
+    {
+      "name": "organizePlan",
+      "contract": "Respond with a single JSON object with exactly these keys: relationships, addToCollections, newCollections, understandingPatches, summary, confidence.\nOutput only the JSON object: no markdown fences, no commentary before or after it.\nUse the allowed values verbatim where the schema lists them.\nJSON schema \"OrganizePlan\":\n{\"type\":\"object\",\"properties\":{\"relationships\":{\"default\":[],\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"sourceId\":{\"type\":\"string\",\"minLength\":1},\"targetId\":{\"type\":\"string\",\"minLength\":1},\"type\":{\"type\":\"string\",\"enum\":[\"related_to\",\"inspired_by\",\"same_project\",\"references\",\"alternative_to\",\"continuation_of\",\"contradicts\",\"duplicate_of\",\"created_from\",\"belongs_to\"]},\"description\":{\"type\":\"string\",\"minLength\":1},\"confidence\":{\"default\":0.5,\"type\":\"number\",\"minimum\":0,\"maximum\":1},\"evidenceQuote\":{\"type\":\"string\"}},\"required\":[\"sourceId\",\"targetId\",\"type\",\"description\",\"confidence\"],\"additionalProperties\":false}},\"addToCollections\":{\"default\":[],\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"collectionId\":{\"type\":\"string\",\"minLength\":1},\"itemId\":{\"type\":\"string\",\"minLength\":1},\"confidence\":{\"default\":0.5,\"type\":\"number\",\"minimum\":0,\"maximum\":1},\"reason\":{\"type\":\"string\",\"minLength\":1}},\"required\":[\"collectionId\",\"itemId\",\"confidence\",\"reason\"],\"additionalProperties\":false}},\"newCollections\":{\"default\":[],\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"minLength\":1},\"description\":{\"type\":\"string\",\"minLength\":1},\"members\":{\"minItems\":1,\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"itemId\":{\"type\":\"string\",\"minLength\":1},\"reason\":{\"type\":\"string\",\"minLength\":1}},\"required\":[\"itemId\",\"reason\"],\"additionalProperties\":false}},\"confidence\":{\"default\":0.5,\"type\":\"number\",\"minimum\":0,\"maximum\":1}},\"required\":[\"name\",\"description\",\"members\",\"confidence\"],\"additionalProperties\":false}},\"understandingPatches\":{\"default\":[],\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"itemId\":{\"type\":\"string\",\"minLength\":1},\"topics\":{\"maxItems\":6,\"type\":\"array\",\"items\":{\"type\":\"string\",\"minLength\":1}},\"entities\":{\"maxItems\":12,\"type\":\"array\",\"items\":{\"type\":\"string\",\"minLength\":1}},\"retrievalHints\":{\"maxItems\":6,\"type\":\"array\",\"items\":{\"type\":\"string\",\"minLength\":1}},\"reason\":{\"type\":\"string\",\"minLength\":1}},\"required\":[\"itemId\",\"reason\"],\"additionalProperties\":false}},\"summary\":{\"type\":\"string\",\"minLength\":1},\"confidence\":{\"default\":0.5,\"type\":\"number\",\"minimum\":0,\"maximum\":1}},\"required\":[\"relationships\",\"addToCollections\",\"newCollections\",\"understandingPatches\",\"summary\",\"confidence\"],\"additionalProperties\":false,\"description\":\"Conservative plan: relationships, collection memberships and (rarely) new collections.\"}",
+      "finishTool": {
+        "type": "function",
+        "function": {
+          "name": "finish",
+          "description": "End the run and deliver the result (OrganizePlan). Call this once you have enough information.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "relationships": {
+                "default": [],
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "sourceId": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "targetId": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "related_to",
+                        "inspired_by",
+                        "same_project",
+                        "references",
+                        "alternative_to",
+                        "continuation_of",
+                        "contradicts",
+                        "duplicate_of",
+                        "created_from",
+                        "belongs_to"
+                      ]
+                    },
+                    "description": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "confidence": {
+                      "default": 0.5,
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "evidenceQuote": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "sourceId",
+                    "targetId",
+                    "type",
+                    "description",
+                    "confidence"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "addToCollections": {
+                "default": [],
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "collectionId": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "itemId": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "confidence": {
+                      "default": 0.5,
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "reason": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "collectionId",
+                    "itemId",
+                    "confidence",
+                    "reason"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "newCollections": {
+                "default": [],
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "description": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "members": {
+                      "minItems": 1,
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "itemId": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "reason": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        },
+                        "required": [
+                          "itemId",
+                          "reason"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "confidence": {
+                      "default": 0.5,
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "description",
+                    "members",
+                    "confidence"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "understandingPatches": {
+                "default": [],
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "itemId": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "topics": {
+                      "maxItems": 6,
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "entities": {
+                      "maxItems": 12,
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "retrievalHints": {
+                      "maxItems": 6,
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "reason": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "itemId",
+                    "reason"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "summary": {
+                "type": "string",
+                "minLength": 1
+              },
+              "confidence": {
+                "default": 0.5,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            },
+            "required": [
+              "relationships",
+              "addToCollections",
+              "newCollections",
+              "understandingPatches",
+              "summary",
+              "confidence"
+            ],
+            "additionalProperties": false,
+            "description": "Conservative plan: relationships, collection memberships and (rarely) new collections."
+          }
+        }
+      }
+    },
+    {
+      "name": "consolidatePlan",
+      "contract": "Respond with a single JSON object with exactly these keys: renames, merges, addToCollections, newCollections, relationships, summary, confidence.\nOutput only the JSON object: no markdown fences, no commentary before or after it.\nUse the allowed values verbatim where the schema lists them.\nJSON schema \"ConsolidatePlan\":\n{\"type\":\"object\",\"properties\":{\"renames\":{\"default\":[],\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"collectionId\":{\"type\":\"string\",\"minLength\":1},\"name\":{\"type\":\"string\",\"minLength\":1},\"description\":{\"type\":\"string\",\"minLength\":1},\"reason\":{\"type\":\"string\",\"minLength\":1}},\"required\":[\"collectionId\",\"name\",\"description\",\"reason\"],\"additionalProperties\":false}},\"merges\":{\"default\":[],\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"fromCollectionId\":{\"type\":\"string\",\"minLength\":1},\"intoCollectionId\":{\"type\":\"string\",\"minLength\":1},\"reason\":{\"type\":\"string\",\"minLength\":1}},\"required\":[\"fromCollectionId\",\"intoCollectionId\",\"reason\"],\"additionalProperties\":false}},\"addToCollections\":{\"default\":[],\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"collectionId\":{\"type\":\"string\",\"minLength\":1},\"itemId\":{\"type\":\"string\",\"minLength\":1},\"confidence\":{\"default\":0.5,\"type\":\"number\",\"minimum\":0,\"maximum\":1},\"reason\":{\"type\":\"string\",\"minLength\":1}},\"required\":[\"collectionId\",\"itemId\",\"confidence\",\"reason\"],\"additionalProperties\":false}},\"newCollections\":{\"default\":[],\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"minLength\":1},\"description\":{\"type\":\"string\",\"minLength\":1},\"members\":{\"minItems\":1,\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"itemId\":{\"type\":\"string\",\"minLength\":1},\"reason\":{\"type\":\"string\",\"minLength\":1}},\"required\":[\"itemId\",\"reason\"],\"additionalProperties\":false}},\"confidence\":{\"default\":0.5,\"type\":\"number\",\"minimum\":0,\"maximum\":1}},\"required\":[\"name\",\"description\",\"members\",\"confidence\"],\"additionalProperties\":false}},\"relationships\":{\"default\":[],\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"sourceId\":{\"type\":\"string\",\"minLength\":1},\"targetId\":{\"type\":\"string\",\"minLength\":1},\"type\":{\"type\":\"string\",\"enum\":[\"related_to\",\"inspired_by\",\"same_project\",\"references\",\"alternative_to\",\"continuation_of\",\"contradicts\",\"duplicate_of\",\"created_from\",\"belongs_to\"]},\"description\":{\"type\":\"string\",\"minLength\":1},\"confidence\":{\"default\":0.5,\"type\":\"number\",\"minimum\":0,\"maximum\":1},\"evidenceQuote\":{\"type\":\"string\"}},\"required\":[\"sourceId\",\"targetId\",\"type\",\"description\",\"confidence\"],\"additionalProperties\":false}},\"summary\":{\"type\":\"string\",\"minLength\":1},\"confidence\":{\"default\":0.5,\"type\":\"number\",\"minimum\":0,\"maximum\":1}},\"required\":[\"renames\",\"merges\",\"addToCollections\",\"newCollections\",\"relationships\",\"summary\",\"confidence\"],\"additionalProperties\":false,\"description\":\"Library-wide tidy-up of agent-created collections. Prefer doing nothing over doing something vague.\"}",
+      "finishTool": {
+        "type": "function",
+        "function": {
+          "name": "finish",
+          "description": "End the run and deliver the result (ConsolidatePlan). Call this once you have enough information.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "renames": {
+                "default": [],
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "collectionId": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "name": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "description": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "reason": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "collectionId",
+                    "name",
+                    "description",
+                    "reason"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "merges": {
+                "default": [],
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "fromCollectionId": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "intoCollectionId": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "reason": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "fromCollectionId",
+                    "intoCollectionId",
+                    "reason"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "addToCollections": {
+                "default": [],
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "collectionId": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "itemId": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "confidence": {
+                      "default": 0.5,
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "reason": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "collectionId",
+                    "itemId",
+                    "confidence",
+                    "reason"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "newCollections": {
+                "default": [],
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "description": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "members": {
+                      "minItems": 1,
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "itemId": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "reason": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        },
+                        "required": [
+                          "itemId",
+                          "reason"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "confidence": {
+                      "default": 0.5,
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "description",
+                    "members",
+                    "confidence"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "relationships": {
+                "default": [],
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "sourceId": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "targetId": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "related_to",
+                        "inspired_by",
+                        "same_project",
+                        "references",
+                        "alternative_to",
+                        "continuation_of",
+                        "contradicts",
+                        "duplicate_of",
+                        "created_from",
+                        "belongs_to"
+                      ]
+                    },
+                    "description": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "confidence": {
+                      "default": 0.5,
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "evidenceQuote": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "sourceId",
+                    "targetId",
+                    "type",
+                    "description",
+                    "confidence"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "summary": {
+                "type": "string",
+                "minLength": 1
+              },
+              "confidence": {
+                "default": 0.5,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            },
+            "required": [
+              "renames",
+              "merges",
+              "addToCollections",
+              "newCollections",
+              "relationships",
+              "summary",
+              "confidence"
+            ],
+            "additionalProperties": false,
+            "description": "Library-wide tidy-up of agent-created collections. Prefer doing nothing over doing something vague."
+          }
+        }
+      }
+    },
+    {
+      "name": "folderUnderstanding",
+      "contract": "Respond with a single JSON object with exactly these keys: understanding, purpose, keyFiles, collection.\nOutput only the JSON object: no markdown fences, no commentary before or after it.\nUse the allowed values verbatim where the schema lists them.\nJSON schema \"FolderUnderstanding\":\n{\"type\":\"object\",\"properties\":{\"understanding\":{\"type\":\"object\",\"properties\":{\"kind\":{\"type\":\"string\",\"enum\":[\"macos_app\",\"cli_tool\",\"library\",\"saas_product\",\"article\",\"paper\",\"docs\",\"design_reference\",\"screenshot\",\"photo\",\"receipt\",\"video\",\"dataset\",\"note\",\"social_post\",\"other\"]},\"title\":{\"type\":\"string\",\"maxLength\":160},\"summary\":{\"type\":\"string\",\"minLength\":1},\"whyUseful\":{\"type\":\"string\",\"minLength\":1},\"topics\":{\"maxItems\":6,\"type\":\"array\",\"items\":{\"type\":\"string\",\"minLength\":1}},\"entities\":{\"maxItems\":12,\"type\":\"array\",\"items\":{\"type\":\"string\",\"minLength\":1}},\"visualDescription\":{\"type\":\"string\"},\"visibleText\":{\"type\":\"string\"},\"retrievalHints\":{\"maxItems\":6,\"type\":\"array\",\"items\":{\"type\":\"string\",\"minLength\":1}},\"confidence\":{\"default\":0.5,\"type\":\"number\",\"minimum\":0,\"maximum\":1}},\"required\":[\"kind\",\"title\",\"summary\",\"whyUseful\",\"topics\",\"entities\",\"retrievalHints\",\"confidence\"],\"additionalProperties\":false},\"purpose\":{\"type\":\"string\",\"minLength\":1},\"keyFiles\":{\"default\":[],\"maxItems\":10,\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"path\":{\"type\":\"string\",\"minLength\":1},\"why\":{\"type\":\"string\",\"minLength\":1}},\"required\":[\"path\",\"why\"],\"additionalProperties\":false}},\"collection\":{\"default\":null,\"anyOf\":[{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\",\"minLength\":1},\"description\":{\"type\":\"string\",\"minLength\":1},\"confidence\":{\"default\":0.5,\"type\":\"number\",\"minimum\":0,\"maximum\":1}},\"required\":[\"name\",\"description\",\"confidence\"],\"additionalProperties\":false},{\"type\":\"null\"}]}},\"required\":[\"understanding\",\"purpose\",\"keyFiles\",\"collection\"],\"additionalProperties\":false,\"description\":\"What a folder is, which files matter and whether it deserves a collection.\"}",
+      "finishTool": {
+        "type": "function",
+        "function": {
+          "name": "finish",
+          "description": "End the run and deliver the result (FolderUnderstanding). Call this once you have enough information.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "understanding": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "macos_app",
+                      "cli_tool",
+                      "library",
+                      "saas_product",
+                      "article",
+                      "paper",
+                      "docs",
+                      "design_reference",
+                      "screenshot",
+                      "photo",
+                      "receipt",
+                      "video",
+                      "dataset",
+                      "note",
+                      "social_post",
+                      "other"
+                    ]
+                  },
+                  "title": {
+                    "type": "string",
+                    "maxLength": 160
+                  },
+                  "summary": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "whyUseful": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "topics": {
+                    "maxItems": 6,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "entities": {
+                    "maxItems": 12,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "visualDescription": {
+                    "type": "string"
+                  },
+                  "visibleText": {
+                    "type": "string"
+                  },
+                  "retrievalHints": {
+                    "maxItems": 6,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "confidence": {
+                    "default": 0.5,
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                },
+                "required": [
+                  "kind",
+                  "title",
+                  "summary",
+                  "whyUseful",
+                  "topics",
+                  "entities",
+                  "retrievalHints",
+                  "confidence"
+                ],
+                "additionalProperties": false
+              },
+              "purpose": {
+                "type": "string",
+                "minLength": 1
+              },
+              "keyFiles": {
+                "default": [],
+                "maxItems": 10,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "why": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "path",
+                    "why"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "collection": {
+                "default": null,
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "description": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "confidence": {
+                        "default": 0.5,
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "description",
+                      "confidence"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "understanding",
+              "purpose",
+              "keyFiles",
+              "collection"
+            ],
+            "additionalProperties": false,
+            "description": "What a folder is, which files matter and whether it deserves a collection."
+          }
+        }
+      }
+    },
+    {
+      "name": "commandFinish",
+      "contract": "Respond with a single JSON object with exactly these keys: kind, answer, noteTitle, noteMarkdown, sources, cues, confidence.\nOutput only the JSON object: no markdown fences, no commentary before or after it.\nUse the allowed values verbatim where the schema lists them.\nJSON schema \"CommandFinish\":\n{\"type\":\"object\",\"properties\":{\"kind\":{\"type\":\"string\",\"enum\":[\"answer\",\"note\"]},\"answer\":{\"type\":\"string\"},\"noteTitle\":{\"type\":\"string\"},\"noteMarkdown\":{\"type\":\"string\"},\"sources\":{\"default\":[],\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"itemId\":{\"type\":\"string\",\"minLength\":1},\"role\":{\"default\":\"supporting\",\"type\":\"string\",\"enum\":[\"primary\",\"supporting\"]},\"why\":{\"type\":\"string\",\"minLength\":1}},\"required\":[\"itemId\",\"role\",\"why\"],\"additionalProperties\":false}},\"cues\":{\"default\":{\"topics\":[],\"types\":[]},\"type\":\"object\",\"properties\":{\"topics\":{\"default\":[],\"maxItems\":8,\"type\":\"array\",\"items\":{\"type\":\"string\",\"minLength\":1}},\"types\":{\"default\":[],\"maxItems\":4,\"type\":\"array\",\"items\":{\"type\":\"string\",\"enum\":[\"file\",\"folder\",\"image\",\"video\",\"audio\",\"pdf\",\"text\",\"markdown\",\"url\",\"note\",\"unknown\"]}},\"timeframe\":{}},\"required\":[\"topics\",\"types\",\"timeframe\"],\"additionalProperties\":false},\"confidence\":{\"default\":0.5,\"type\":\"number\",\"minimum\":0,\"maximum\":1}},\"required\":[\"kind\",\"sources\",\"cues\",\"confidence\"],\"additionalProperties\":false,\"description\":\"Final answer or note, with the items it is based on.\"}",
+      "finishTool": {
+        "type": "function",
+        "function": {
+          "name": "finish",
+          "description": "End the run and deliver the result (CommandFinish). Call this once you have enough information.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "answer",
+                  "note"
+                ]
+              },
+              "answer": {
+                "type": "string"
+              },
+              "noteTitle": {
+                "type": "string"
+              },
+              "noteMarkdown": {
+                "type": "string"
+              },
+              "sources": {
+                "default": [],
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "itemId": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "role": {
+                      "default": "supporting",
+                      "type": "string",
+                      "enum": [
+                        "primary",
+                        "supporting"
+                      ]
+                    },
+                    "why": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "itemId",
+                    "role",
+                    "why"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "cues": {
+                "default": {
+                  "topics": [],
+                  "types": []
+                },
+                "type": "object",
+                "properties": {
+                  "topics": {
+                    "default": [],
+                    "maxItems": 8,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "types": {
+                    "default": [],
+                    "maxItems": 4,
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "file",
+                        "folder",
+                        "image",
+                        "video",
+                        "audio",
+                        "pdf",
+                        "text",
+                        "markdown",
+                        "url",
+                        "note",
+                        "unknown"
+                      ]
+                    }
+                  },
+                  "timeframe": {}
+                },
+                "required": [
+                  "topics",
+                  "types",
+                  "timeframe"
+                ],
+                "additionalProperties": false
+              },
+              "confidence": {
+                "default": 0.5,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            },
+            "required": [
+              "kind",
+              "sources",
+              "cues",
+              "confidence"
+            ],
+            "additionalProperties": false,
+            "description": "Final answer or note, with the items it is based on."
+          }
+        }
+      }
+    }
+  ],
+  "messagesWithContract": [
+    {
+      "role": "system",
+      "content": "You are a test."
+    },
+    {
+      "role": "user",
+      "content": "Describe this item.\n\nRespond with a single JSON object with exactly these keys: kind, title, summary, whyUseful, topics, entities, visualDescription, visibleText, retrievalHints, confidence.\nOutput only the JSON object: no markdown fences, no commentary before or after it.\nUse the allowed values verbatim where the schema lists them.\nJSON schema \"Understanding\":\n{\"type\":\"object\",\"properties\":{\"kind\":{\"type\":\"string\",\"enum\":[\"macos_app\",\"cli_tool\",\"library\",\"saas_product\",\"article\",\"paper\",\"docs\",\"design_reference\",\"screenshot\",\"photo\",\"receipt\",\"video\",\"dataset\",\"note\",\"social_post\",\"other\"]},\"title\":{\"type\":\"string\",\"maxLength\":160},\"summary\":{\"type\":\"string\",\"minLength\":1},\"whyUseful\":{\"type\":\"string\",\"minLength\":1},\"topics\":{\"maxItems\":6,\"type\":\"array\",\"items\":{\"type\":\"string\",\"minLength\":1}},\"entities\":{\"maxItems\":12,\"type\":\"array\",\"items\":{\"type\":\"string\",\"minLength\":1}},\"visualDescription\":{\"type\":\"string\"},\"visibleText\":{\"type\":\"string\"},\"retrievalHints\":{\"maxItems\":6,\"type\":\"array\",\"items\":{\"type\":\"string\",\"minLength\":1}},\"confidence\":{\"default\":0.5,\"type\":\"number\",\"minimum\":0,\"maximum\":1}},\"required\":[\"kind\",\"title\",\"summary\",\"whyUseful\",\"topics\",\"entities\",\"retrievalHints\",\"confidence\"],\"additionalProperties\":false,\"description\":\"What a kept item is, what it contains and why someone would keep it.\"}"
+    }
+  ]
+}

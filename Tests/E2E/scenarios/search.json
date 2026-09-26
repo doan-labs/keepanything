@@ -1,0 +1,120 @@
+{
+  "name": "search",
+  "runs_on": "linux",
+  "ai": "mock",
+  "embeddings": "hash",
+  "steps": [
+    {
+      "op": "capture.files",
+      "paths": [
+        "notes/inference-providers-notes.md",
+        "notes/mnismt-website-design.md",
+        "notes/weekly-review-2026-08-28.md",
+        "snippets/hyperliquid-snippet.txt",
+        "snippets/resend-alternatives.txt"
+      ]
+    },
+    {
+      "op": "settle"
+    },
+    {
+      "op": "search.quick",
+      "query": "vllm"
+    },
+    {
+      "op": "search.quick",
+      "query": "hyperliquid"
+    },
+    {
+      "op": "search.quick",
+      "query": "minimax"
+    },
+    {
+      "op": "search.quick",
+      "query": "that pdf about attention"
+    },
+    {
+      "op": "search.quick",
+      "query": "the paper about language models that reason and then act"
+    },
+    {
+      "op": "search.quick",
+      "query": "what did I save about cheaper Resend alternatives?"
+    },
+    {
+      "op": "search.quick",
+      "query": "the website with the globe animation"
+    },
+    {
+      "op": "search.quick",
+      "query": "screenshot of inference pricing"
+    },
+    {
+      "op": "search.quick",
+      "query": "the terminal screenshot with the test results"
+    },
+    {
+      "op": "search.quick",
+      "query": "database is locked error"
+    },
+    {
+      "op": "search.quick",
+      "query": "karpathy video about llms"
+    },
+    {
+      "op": "search.quick",
+      "query": "something I saved about cheap inference providers"
+    },
+    {
+      "op": "search.quick",
+      "query": "github repo for running transformers in javascript"
+    },
+    {
+      "op": "search.quick",
+      "query": "electron docs about running work in a background process"
+    },
+    {
+      "op": "search.quick",
+      "query": "my notes from last week"
+    },
+    {
+      "op": "search.quick",
+      "query": "that mac app I saved a few weeks ago"
+    },
+    {
+      "op": "search.quick",
+      "query": "the benchmark folder with the csv results"
+    },
+    {
+      "op": "search.quick",
+      "query": "full text search in sqlite"
+    },
+    {
+      "op": "search.quick",
+      "query": "the rotating planet on the homepage of that design site"
+    },
+    {
+      "op": "search.quick",
+      "query": "Andrej Karpathy's talk on large language models"
+    },
+    {
+      "op": "search.quick",
+      "query": "paper on paging the KV cache to serve LLMs without wasting GPU memory"
+    },
+    {
+      "op": "search.quick",
+      "query": "what I wrote down at the end of last week"
+    },
+    {
+      "op": "search.quick",
+      "query": "notes I kept on cheaper options to Resend for transactional email"
+    },
+    {
+      "op": "search.quick",
+      "query": "comparison of low-cost LLM inference providers"
+    },
+    {
+      "op": "snapshot"
+    }
+  ]
+}

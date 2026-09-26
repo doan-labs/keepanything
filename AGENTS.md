@@ -26,7 +26,7 @@ Non-goals: cloud sync, accounts, telemetry, Windows/Linux, scraping behind login
 - UI: StyleX (`@stylexjs/stylex` + `@stylexjs/unplugin` in the renderer Vite config, before the React
   plugin). Tokens are `defineVars` in `styles/*.stylex.ts`; the only plain CSS is `global.css` (reset,
   `@font-face`). zustand stores, cmdk palette, Lucide icons, Instrument Serif (bundled in
-  `assets/fonts/`) for editorial headlines only. `@scritto/react` (`<Scritto value=... />`) for values
+  `electron/assets/fonts/`) for editorial headlines only. `@scritto/react` (`<Scritto value=... />`) for values
   that change in place (live counters, statuses); it renders each glyph in its own span, so only short
   labels, never prose. Static text stays plain.
 - Tests: Vitest (unit), Playwright `_electron` (smoke). Packaging: electron-builder, arm64 + x64 DMGs, Developer ID
@@ -36,10 +36,11 @@ Non-goals: cloud sync, accounts, telemetry, Windows/Linux, scraping behind login
 
 ## Commands
 
+These run from `electron/` (`cd electron` first). The website has its own project in `web/`, run pnpm from inside it.
+
 | Task | Command |
 | --- | --- |
 | Dev (library window opens; HMR for renderer, restart on main/preload) | `pnpm run dev` |
-| Website dev server (`web/`, port 3000) | `pnpm run web:dev` |
 | Typecheck (node, web, e2e tsconfigs) | `pnpm run typecheck` |
 | Unit tests | `pnpm run test` |
 | Format + lint fix (also runs on staged files via the lint-staged pre-commit hook) | `pnpm run format` |
@@ -70,43 +71,47 @@ or paste it into prompts. The logger redacts key-like values.
 
 ## Layout
 
+The Electron app lives under `electron/`; the repo root will later gain `Package.swift`, `Sources/`,
+`Tests/` and `App/` for the Swift rewrite (docs/swift_rewrite/PLAN.md).
+
 ```
-src/shared/     Contract, zero imports: types, ipc (channels/events/envelope), status table, actions,
-                kinds, constants, media URLs, text helpers.
-src/main/       Electron main. ports.ts = interfaces for every seam. core/ storage/ pipeline/ ipc/
-                desktop/ lib/ worker/ are foundation; capture/ extraction/ previews/ (slice 3) and
-                ai/ retrieval/ agent/ (slice 4) implement the ports.
-src/preload/    contextBridge `window.keepAnything`: invoke / on / getPathForFile / platform.
-src/renderer/   React app: App (library | shelf), state/ (zustand), lib/ (ipc-client + dev MockBridge),
-                components/{shell,library,detail,palette,selection,collections,settings,shelf,common}
-                (each component owns a folder named after it, e.g. library/item-card/).
-native/         drag-watch/main.swift: the global drag sidecar (NDJSON on stdout), built by `pnpm run native`.
-scripts/        fetch-models, build-native, screenshot, seed-library, eval-retrieval, probe/ (GMI + embedding probes).
-tests/unit/     Vitest.   tests/e2e/  Playwright smoke.   tests/fixtures/corpus/  test corpus + eval queries.
-assets/         fonts, tray template PNGs.   build/  app icon, icns, models (gitignored).   docs/  brief, architecture, notes.
-web/            Marketing site. Separate project, see below.
-video/          Remotion videos, one standalone pnpm project per folder (like web/): update-dmg/ (signed-DMG launch post,
-                `pnpm render` -> release/keepanything-launch.mp4) and intro/ (homepage intro, -> release/keepanything-intro.mp4).
-                `pnpm dev` in either folder opens the studio.
+electron/src/shared/     Contract, zero imports: types, ipc (channels/events/envelope), status table, actions,
+                         kinds, constants, media URLs, text helpers.
+electron/src/main/       Electron main. ports.ts = interfaces for every seam. core/ storage/ pipeline/ ipc/
+                         desktop/ lib/ worker/ are foundation; capture/ extraction/ previews/ (slice 3) and
+                         ai/ retrieval/ agent/ (slice 4) implement the ports.
+electron/src/preload/    contextBridge `window.keepAnything`: invoke / on / getPathForFile / platform.
+electron/src/renderer/   React app: App (library | shelf), state/ (zustand), lib/ (ipc-client + dev MockBridge),
+                         components/{shell,library,detail,palette,selection,collections,settings,shelf,common}
+                         (each component owns a folder named after it, e.g. library/item-card/).
+electron/native/         drag-watch/main.swift: the global drag sidecar (NDJSON on stdout), built by `pnpm run native`.
+electron/scripts/        fetch-models, build-native, screenshot, seed-library, eval-retrieval, probe/ (GMI + embedding probes).
+electron/tests/unit/     Vitest.   electron/tests/e2e/  Playwright smoke.   electron/tests/fixtures/corpus/  test corpus + eval queries.
+electron/assets/         fonts, tray template PNGs.   electron/build/  app icon, icns, models (gitignored).
+docs/                    brief, architecture, notes.   web/  Marketing site. Separate project, see below.
+video/                   Remotion videos, one standalone pnpm project per folder (like web/): update-dmg/ (signed-DMG launch post,
+                         `pnpm render` -> release/keepanything-launch.mp4) and intro/ (homepage intro, -> release/keepanything-intro.mp4).
+                         `pnpm dev` in either folder opens the studio.
 ```
 
 ### web/
 
 The public website: TanStack Start (SSR) + Vite 8 + React 19 + StyleX
 (`@stylexjs/stylex` + `@stylexjs/unplugin`, `useCSSLayers: true`; mirrors the renderer's config in
-`electron.vite.config.ts`). Standalone project — its own `package.json`, lockfile, `node_modules`,
-`pnpm-workspace.yaml`. Run pnpm from inside `web/` (`pnpm dev`, `pnpm build`, `pnpm typecheck`).
-Root forwards one script, `web:dev`; installs/builds stay separate so electron-builder never sees
-the site's tree. Deploy with the host root at `web/`. If the site ever needs `src/shared/`, add a
+`electron/electron.vite.config.ts`). Standalone project — its own `package.json`, lockfile, `node_modules`,
+`pnpm-workspace.yaml`. Run pnpm from inside `web/` (`pnpm dev`, `pnpm build`, `pnpm typecheck`);
+installs/builds stay separate so electron-builder never sees the site's tree. Deploy with the host
+root at `web/`. If the site ever needs `electron/src/shared/`, add a
 pnpm workspace then, not Turborepo.
 
 #### Shared StyleX tokens
 
-`web/src/styles/tokens.stylex.ts` and `shared.ts` are symlinks to `src/renderer/src/styles/`.
-`themes.ts` is a real file: the desktop version imports `Theme` from `src/shared/types`; the web
+`web/src/styles/tokens.stylex.ts` and `shared.ts` are copies of the files in
+`electron/src/renderer/src/styles/` — kept in sync by hand: edit the Electron file, then copy it over.
+`themes.ts` is a real file: the desktop version imports `Theme` from `electron/src/shared/types`; the web
 inlines that one type. `global.css` is a real file too: same `@layer reset` rules, font paths
-point at `web/public/fonts/`. New token or theme field → update `tokens.stylex.ts` (auto) and
-`themes.ts` (manual). No Tailwind in `web/`; StyleX tokens are the contract.
+point at `web/public/fonts/`. New token or theme field → update `tokens.stylex.ts` (in `electron/`,
+then the copy) and `themes.ts` (manual). No Tailwind in `web/`; StyleX tokens are the contract.
 
 ## Conventions
 - Use kebab-case for source filenames, including React components and hooks; keep conventional `index.ts(x)` barrels and required compound suffixes such as `*.stylex.ts`.
@@ -119,7 +124,7 @@ point at `web/public/fonts/`. New token or theme field → update `tokens.stylex
 ### Component folder layout
 
 Every renderer component lives in its own folder named after the component, e.g.
-`src/renderer/src/components/library/item-card/{index.tsx, styles.ts}`. The `index.tsx` is the
+`electron/src/renderer/src/components/library/item-card/{index.tsx, styles.ts}`. The `index.tsx` is the
 component and `styles.ts` holds the `stylex.create({...})` block (re-exported as `export const styles`).
 Category folders (`library/`, `shell/`, `common/`, ...) keep their existing `index.ts` barrels
 (`from './item-card'`, etc.): directory-as-module resolution makes the folder name a valid
@@ -130,7 +135,7 @@ Exception: `shell/animated-icons/` is a single category without per-icon `styles
 animation tokens live in `shell/animated-icons/shared.ts` and prop types in `types.ts`, with each
 icon's folder containing only `index.tsx` and the category `index.ts` re-exporting them.
 
-- `src/shared/**`, `src/main/ports.ts`, `src/main/ipc/**`, the pipeline scheduler/graph/state and the
+- `electron/src/shared/**`, `electron/src/main/ports.ts`, `electron/src/main/ipc/**`, the pipeline scheduler/graph/state and the
   renderer stores are contract files. Change them and update every consumer in the same change.
 - Testability rule: nothing under `core/ capture/ extraction/ retrieval/ agent/ pipeline/ storage/ ai/`
   imports `electron` or reads `process.env`. Electron-touching code lives in `desktop/`, `previews/`,
@@ -139,7 +144,7 @@ icon's folder containing only `index.tsx` and the category `index.ts` re-exporti
   checked against known windows. The renderer never classifies drops: it sends the raw dataTransfer
   snapshot to `capture:drop`.
 - Pipeline stages return a `StagePatch`; only the scheduler writes `items.status`. Stage bodies are
-  idempotent. Status transitions come from `status.next()` in `src/shared/status.ts`.
+  idempotent. Status transitions come from `status.next()` in `electron/src/shared/status.ts`.
 - Anything that interrupts or discards work in progress (a live Ask run, an import, an unsaved edit) asks first
   via `confirm()` from `renderer/state/confirm.ts`; never an inline "are you sure" row, never `window.confirm`.
 - The agent mutates state only through services with audit rows; every agent action is undoable and

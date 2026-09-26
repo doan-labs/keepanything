@@ -1,0 +1,1160 @@
+{
+  "name": "failures",
+  "runsOn": "linux",
+  "ai": "off",
+  "embeddings": "hash",
+  "steps": [
+    {
+      "op": "capture.files",
+      "input": {
+        "paths": [
+          "folder-serving-benchmark/prompts.jsonl"
+        ]
+      },
+      "result": {
+        "ok": true,
+        "data": {
+          "items": [
+            {
+              "id": "item-2",
+              "status": "created",
+              "title": "prompts"
+            }
+          ],
+          "batchId": "item-1"
+        }
+      }
+    },
+    {
+      "op": "capture.url",
+      "input": {
+        "url": "{fixture}/missing.html"
+      },
+      "result": {
+        "ok": true,
+        "data": {
+          "items": [
+            {
+              "id": "item-4",
+              "status": "created",
+              "title": "missing · fixture"
+            }
+          ],
+          "batchId": "item-3"
+        }
+      }
+    },
+    {
+      "op": "capture.text",
+      "input": {
+        "text": "A note that needs no extraction."
+      },
+      "result": {
+        "ok": true,
+        "data": {
+          "items": [
+            {
+              "id": "item-6",
+              "status": "created",
+              "title": "A note that needs no extraction."
+            }
+          ],
+          "batchId": "item-5"
+        }
+      }
+    },
+    {
+      "op": "settle",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": null
+      }
+    },
+    {
+      "op": "snapshot",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": null
+      }
+    },
+    {
+      "op": "settings.update",
+      "input": {
+        "ai": "on"
+      },
+      "result": {
+        "ok": true,
+        "data": {
+          "aiMode": "gmi",
+          "provider": "gmi",
+          "model": "MiniMaxAI/MiniMax-M3",
+          "baseUrl": "https://api.gmi-serving.com/v1",
+          "hasApiKey": true,
+          "apiKeyMasked": "sce…-key",
+          "importMode": "copy",
+          "theme": "system",
+          "libraryPath": "{library}",
+          "embeddings": {
+            "provider": "none",
+            "modelPresent": false,
+            "dims": 384
+          }
+        }
+      }
+    },
+    {
+      "op": "settle",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": null
+      }
+    },
+    {
+      "op": "settings.update",
+      "input": {
+        "ai": "on"
+      },
+      "result": {
+        "ok": true,
+        "data": {
+          "aiMode": "gmi",
+          "provider": "gmi",
+          "model": "MiniMaxAI/MiniMax-M3",
+          "baseUrl": "https://api.gmi-serving.com/v1",
+          "hasApiKey": true,
+          "apiKeyMasked": "sce…-key",
+          "importMode": "copy",
+          "theme": "system",
+          "libraryPath": "{library}",
+          "embeddings": {
+            "provider": "none",
+            "modelPresent": false,
+            "dims": 384
+          }
+        }
+      }
+    },
+    {
+      "op": "settle",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": null
+      }
+    },
+    {
+      "op": "snapshot",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": null
+      }
+    }
+  ],
+  "results": [
+    {
+      "items": [
+        {
+          "id": "item-2",
+          "type": "file",
+          "subtype": "data",
+          "kind": null,
+          "title": "prompts",
+          "original_path": "{corpus}/folder-serving-benchmark/prompts.jsonl",
+          "managed_path": "item-2/prompts.jsonl",
+          "url": null,
+          "canonical_url": null,
+          "domain": null,
+          "mime_type": null,
+          "size": 1062,
+          "content_hash": "c1151a0fba38b5f3cc09d719d430e8087529c7db22e29efa66d30f0f26a6563c",
+          "width": null,
+          "height": null,
+          "duration_ms": null,
+          "page_count": null,
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "captured_at": "2026-09-01T00:00:01.000Z",
+          "modified_at": "2026-09-01T00:00:04.000Z",
+          "last_kept_at": "2026-09-01T00:00:01.000Z",
+          "capture_batch_id": "item-1",
+          "processing_status": "UNDERSTANDING",
+          "processing_error": null,
+          "understanding": null,
+          "why_useful": null,
+          "topics": "[]",
+          "entities": "[]",
+          "vision_text": null,
+          "retrieval_hints": "[]",
+          "suggested_actions": "[]",
+          "ai_confidence": null,
+          "metadata": "{\"originalName\":\"prompts.jsonl\",\"extension\":\"jsonl\",\"source\":\"dialog\",\"fileModifiedAt\":\"2026-09-26T17:05:12.230Z\",\"language\":\"JSON Lines\",\"lines\":9,\"wordCount\":156,\"extractor\":\"text\",\"content\":{\"path\":\"item-2.txt\",\"hash\":\"c1151a0fba38b5f3cc09d719d430e8087529c7db22e29efa66d30f0f26a6563c\",\"chars\":1062,\"kind\":\"text\"},\"truncated\":false}",
+          "extracted_text": "{\"id\": 1, \"bucket\": \"short\", \"prompt\": \"Explain paged attention in two sentences.\"}\n{\"id\": 2, \"bucket\": \"short\", \"prompt\": \"What is continuous batching?\"}\n{\"id\": 3, \"bucket\": \"short\", \"prompt\": \"List three ways to reduce time to first token.\"}\n{\"id\": 4, \"bucket\": \"medium\", \"prompt\": \"Compare static batching and continuous batching for an LLM serving system handling a mix of short and long prompts. Discuss GPU utilisation, latency and memory.\"}\n{\"id\": 5, \"bucket\": \"medium\", \"prompt\": \"Write a short runbook entry describing what to check when p95 latency exceeds 800 ms on the inference cluster.\"}\n{\"id\": 6, \"bucket\": \"long\", \"prompt\": \"You are reviewing an incident where the KV-cache block size was changed from 16 to 24 tokens. Write a detailed post-mortem template with sections for timeline, impact, root cause, and action items, then fill it with plausible content.\"}\n{\"id\": 7, \"bucket\": \"short\", \"prompt\": \"Define speculative decoding.\"}\n{\"id\": 8, \"bucket\": \"short\", \"prompt\": \"Why does prefix caching help when every prompt shares a system prompt?\"}\n",
+          "excerpt": "{\"id\": 1, \"bucket\": \"short\", \"prompt\": \"Explain paged attention in two sentences.\"} {\"id\": 2, \"bucket\": \"short\", \"prompt\": \"What is continuous batching?\"} {\"id\": 3, \"bucket\": \"short\", \"prompt\": \"List three ways to reduce time to first token.\"} {\"id\": 4, \"bucket\": \"medium\", \"prom…",
+          "thumbnail_path": null,
+          "snapshot_path": null,
+          "favicon_path": null,
+          "dominant_color": null,
+          "media_version": 1,
+          "parent_item_id": null,
+          "user_overrides": "{}",
+          "is_missing": 0,
+          "missing_checked_at": null,
+          "deleted_at": null
+        },
+        {
+          "id": "item-4",
+          "type": "url",
+          "subtype": "generic",
+          "kind": null,
+          "title": "missing · fixture",
+          "original_path": null,
+          "managed_path": null,
+          "url": "http://fixture/missing.html",
+          "canonical_url": "https://fixture/missing.html",
+          "domain": "fixture",
+          "mime_type": null,
+          "size": null,
+          "content_hash": null,
+          "width": null,
+          "height": null,
+          "duration_ms": null,
+          "page_count": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "captured_at": "2026-09-01T00:00:02.000Z",
+          "modified_at": "2026-09-01T00:00:04.000Z",
+          "last_kept_at": "2026-09-01T00:00:02.000Z",
+          "capture_batch_id": "item-3",
+          "processing_status": "UNDERSTANDING",
+          "processing_error": null,
+          "understanding": null,
+          "why_useful": null,
+          "topics": "[]",
+          "entities": "[]",
+          "vision_text": null,
+          "retrieval_hints": "[]",
+          "suggested_actions": "[]",
+          "ai_confidence": null,
+          "metadata": "{\"source\":\"paste\",\"urlKind\":\"generic\",\"unreadable\":\"HTTP 404\",\"httpStatus\":404,\"extractor\":\"url\",\"truncated\":false}",
+          "extracted_text": null,
+          "excerpt": null,
+          "thumbnail_path": null,
+          "snapshot_path": null,
+          "favicon_path": null,
+          "dominant_color": null,
+          "media_version": 1,
+          "parent_item_id": null,
+          "user_overrides": "{}",
+          "is_missing": 0,
+          "missing_checked_at": null,
+          "deleted_at": null
+        },
+        {
+          "id": "item-6",
+          "type": "text",
+          "subtype": null,
+          "kind": null,
+          "title": "A note that needs no extraction.",
+          "original_path": null,
+          "managed_path": "item-6/text.txt",
+          "url": null,
+          "canonical_url": null,
+          "domain": null,
+          "mime_type": "text/plain",
+          "size": 32,
+          "content_hash": "65be262c43dce74a6fc749653ccc560369f930198560534af7f370fb4499cf40",
+          "width": null,
+          "height": null,
+          "duration_ms": null,
+          "page_count": null,
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "captured_at": "2026-09-01T00:00:03.000Z",
+          "modified_at": "2026-09-01T00:00:04.000Z",
+          "last_kept_at": "2026-09-01T00:00:03.000Z",
+          "capture_batch_id": "item-5",
+          "processing_status": "UNDERSTANDING",
+          "processing_error": null,
+          "understanding": null,
+          "why_useful": null,
+          "topics": "[]",
+          "entities": "[]",
+          "vision_text": null,
+          "retrieval_hints": "[]",
+          "suggested_actions": "[]",
+          "ai_confidence": null,
+          "metadata": "{\"source\":\"paste\",\"wordCount\":6,\"extractor\":\"text\",\"truncated\":false}",
+          "extracted_text": "A note that needs no extraction.",
+          "excerpt": "A note that needs no extraction.",
+          "thumbnail_path": null,
+          "snapshot_path": null,
+          "favicon_path": null,
+          "dominant_color": null,
+          "media_version": 1,
+          "parent_item_id": null,
+          "user_overrides": "{}",
+          "is_missing": 0,
+          "missing_checked_at": null,
+          "deleted_at": null
+        }
+      ],
+      "fts": [
+        {
+          "item_id": "item-2",
+          "title": "prompts",
+          "retrieval_hints": "",
+          "topics": "",
+          "entities": "",
+          "understanding": "",
+          "why_useful": "",
+          "vision_text": "",
+          "meta_text": "prompts.jsonl",
+          "extracted_text": "{\"id\": 1, \"bucket\": \"short\", \"prompt\": \"Explain paged attention in two sentences.\"}\n{\"id\": 2, \"bucket\": \"short\", \"prompt\": \"What is continuous batching?\"}\n{\"id\": 3, \"bucket\": \"short\", \"prompt\": \"List three ways to reduce time to first token.\"}\n{\"id\": 4, \"bucket\": \"medium\", \"prompt\": \"Compare static batching and continuous batching for an LLM serving system handling a mix of short and long prompts. Discuss GPU utilisation, latency and memory.\"}\n{\"id\": 5, \"bucket\": \"medium\", \"prompt\": \"Write a short runbook entry describing what to check when p95 latency exceeds 800 ms on the inference cluster.\"}\n{\"id\": 6, \"bucket\": \"long\", \"prompt\": \"You are reviewing an incident where the KV-cache block size was changed from 16 to 24 tokens. Write a detailed post-mortem template with sections for timeline, impact, root cause, and action items, then fill it with plausible content.\"}\n{\"id\": 7, \"bucket\": \"short\", \"prompt\": \"Define speculative decoding.\"}\n{\"id\": 8, \"bucket\": \"short\", \"prompt\": \"Why does prefix caching help when every prompt shares a system prompt?\"}\n",
+          "domain": "",
+          "kind": ""
+        },
+        {
+          "item_id": "item-4",
+          "title": "missing · fixture",
+          "retrieval_hints": "",
+          "topics": "",
+          "entities": "",
+          "understanding": "",
+          "why_useful": "",
+          "vision_text": "",
+          "meta_text": "",
+          "extracted_text": "",
+          "domain": "fixture",
+          "kind": ""
+        },
+        {
+          "item_id": "item-6",
+          "title": "A note that needs no extraction.",
+          "retrieval_hints": "",
+          "topics": "",
+          "entities": "",
+          "understanding": "",
+          "why_useful": "",
+          "vision_text": "",
+          "meta_text": "",
+          "extracted_text": "A note that needs no extraction.",
+          "domain": "",
+          "kind": ""
+        }
+      ],
+      "collections": [],
+      "collectionItems": [],
+      "relationships": [],
+      "suppressions": [],
+      "audit": [],
+      "agentRuns": [],
+      "jobs": [
+        {
+          "id": "job-1",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "extract",
+          "lane": "io",
+          "priority": 25,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-10",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "understand",
+          "lane": "ai",
+          "priority": 30,
+          "status": "queued",
+          "attempts": 0,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-11",
+          "item_id": "item-6",
+          "batch_id": "item-5",
+          "stage": "embed",
+          "lane": "embed",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-12",
+          "item_id": "item-6",
+          "batch_id": "item-5",
+          "stage": "understand",
+          "lane": "ai",
+          "priority": 30,
+          "status": "queued",
+          "attempts": 0,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-2",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "thumbnail",
+          "lane": "io",
+          "priority": 15,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": "No preview could be made",
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-3",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "extract",
+          "lane": "io",
+          "priority": 25,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": "Couldn't read this page, but the link is safe.",
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-4",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "snapshot",
+          "lane": "io",
+          "priority": 15,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": "Snapshot failed",
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-5",
+          "item_id": "item-6",
+          "batch_id": "item-5",
+          "stage": "extract",
+          "lane": "io",
+          "priority": 25,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-6",
+          "item_id": "item-6",
+          "batch_id": "item-5",
+          "stage": "thumbnail",
+          "lane": "io",
+          "priority": 15,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": "No preview could be made",
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-7",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "embed",
+          "lane": "embed",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-8",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "understand",
+          "lane": "ai",
+          "priority": 30,
+          "status": "queued",
+          "attempts": 0,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-9",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "embed",
+          "lane": "embed",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        }
+      ],
+      "settings": {
+        "aiMode": "off",
+        "provider": "gmi",
+        "model": "MiniMaxAI/MiniMax-M3",
+        "baseUrl": "https://api.gmi-serving.com/v1",
+        "hasApiKey": true,
+        "apiKeyMasked": "sce…-key",
+        "importMode": "copy",
+        "theme": "system",
+        "libraryPath": "{library}",
+        "embeddings": {
+          "provider": "none",
+          "modelPresent": false,
+          "dims": 384
+        }
+      },
+      "thumbnailCalls": [
+        {
+          "op": "thumbnail",
+          "file": "{library}/objects/item-2/prompts.jsonl",
+          "out": "{library}/thumbs/item-2.png",
+          "maxPx": 800
+        },
+        {
+          "op": "thumbnail",
+          "file": "{library}/objects/item-6/text.txt",
+          "out": "{library}/thumbs/item-6.png",
+          "maxPx": 800
+        }
+      ],
+      "snapshotCalls": [
+        {
+          "url": "http://fixture/missing.html",
+          "out": "{library}/snapshots/item-4.png"
+        }
+      ],
+      "fetchCalls": [
+        {
+          "op": "fetchDom",
+          "url": "http://fixture/missing.html"
+        }
+      ],
+      "desktopCalls": [],
+      "pushes": []
+    },
+    {
+      "items": [
+        {
+          "id": "item-2",
+          "type": "file",
+          "subtype": "data",
+          "kind": "other",
+          "title": "prompts",
+          "original_path": "{corpus}/folder-serving-benchmark/prompts.jsonl",
+          "managed_path": "item-2/prompts.jsonl",
+          "url": null,
+          "canonical_url": null,
+          "domain": null,
+          "mime_type": null,
+          "size": 1062,
+          "content_hash": "c1151a0fba38b5f3cc09d719d430e8087529c7db22e29efa66d30f0f26a6563c",
+          "width": null,
+          "height": null,
+          "duration_ms": null,
+          "page_count": null,
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "captured_at": "2026-09-01T00:00:01.000Z",
+          "modified_at": "2026-09-01T00:00:09.000Z",
+          "last_kept_at": "2026-09-01T00:00:01.000Z",
+          "capture_batch_id": "item-1",
+          "processing_status": "READY",
+          "processing_error": null,
+          "understanding": "Other titled \"prompts\". {\"id\": 1, \"bucket\": \"short\", \"prompt\": \"Explain paged attention in two sentences.\"}\n{\"id\": 2, \"bucket\": \"short\", \"prompt\": \"What is continuous batching?\"}\n{\"id\"",
+          "why_useful": "Worth keeping as a other reference on prompt; reach for it when that comes up again.",
+          "topics": "[\"prompt\",\"bucket\",\"short\",\"prompts\",\"batching\",\"continuous\"]",
+          "entities": "[\"Explain\",\"List\",\"Compare\",\"LLM\",\"Discuss GPU\",\"Write\",\"Define\"]",
+          "vision_text": null,
+          "retrieval_hints": "[\"prompts\",\"other about prompt\",\"prompt bucket\"]",
+          "suggested_actions": "[]",
+          "ai_confidence": 0.65,
+          "metadata": "{\"originalName\":\"prompts.jsonl\",\"extension\":\"jsonl\",\"source\":\"dialog\",\"fileModifiedAt\":\"2026-09-26T17:05:12.230Z\",\"language\":\"JSON Lines\",\"lines\":9,\"wordCount\":156,\"extractor\":\"text\",\"content\":{\"path\":\"item-2.txt\",\"hash\":\"c1151a0fba38b5f3cc09d719d430e8087529c7db22e29efa66d30f0f26a6563c\",\"chars\":1062,\"kind\":\"text\"},\"truncated\":false}",
+          "extracted_text": "{\"id\": 1, \"bucket\": \"short\", \"prompt\": \"Explain paged attention in two sentences.\"}\n{\"id\": 2, \"bucket\": \"short\", \"prompt\": \"What is continuous batching?\"}\n{\"id\": 3, \"bucket\": \"short\", \"prompt\": \"List three ways to reduce time to first token.\"}\n{\"id\": 4, \"bucket\": \"medium\", \"prompt\": \"Compare static batching and continuous batching for an LLM serving system handling a mix of short and long prompts. Discuss GPU utilisation, latency and memory.\"}\n{\"id\": 5, \"bucket\": \"medium\", \"prompt\": \"Write a short runbook entry describing what to check when p95 latency exceeds 800 ms on the inference cluster.\"}\n{\"id\": 6, \"bucket\": \"long\", \"prompt\": \"You are reviewing an incident where the KV-cache block size was changed from 16 to 24 tokens. Write a detailed post-mortem template with sections for timeline, impact, root cause, and action items, then fill it with plausible content.\"}\n{\"id\": 7, \"bucket\": \"short\", \"prompt\": \"Define speculative decoding.\"}\n{\"id\": 8, \"bucket\": \"short\", \"prompt\": \"Why does prefix caching help when every prompt shares a system prompt?\"}\n",
+          "excerpt": "{\"id\": 1, \"bucket\": \"short\", \"prompt\": \"Explain paged attention in two sentences.\"} {\"id\": 2, \"bucket\": \"short\", \"prompt\": \"What is continuous batching?\"} {\"id\": 3, \"bucket\": \"short\", \"prompt\": \"List three ways to reduce time to first token.\"} {\"id\": 4, \"bucket\": \"medium\", \"prom…",
+          "thumbnail_path": null,
+          "snapshot_path": null,
+          "favicon_path": null,
+          "dominant_color": null,
+          "media_version": 1,
+          "parent_item_id": null,
+          "user_overrides": "{}",
+          "is_missing": 0,
+          "missing_checked_at": null,
+          "deleted_at": null
+        },
+        {
+          "id": "item-4",
+          "type": "url",
+          "subtype": "generic",
+          "kind": "article",
+          "title": "missing · fixture",
+          "original_path": null,
+          "managed_path": null,
+          "url": "http://fixture/missing.html",
+          "canonical_url": "https://fixture/missing.html",
+          "domain": "fixture",
+          "mime_type": null,
+          "size": null,
+          "content_hash": null,
+          "width": null,
+          "height": null,
+          "duration_ms": null,
+          "page_count": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "captured_at": "2026-09-01T00:00:02.000Z",
+          "modified_at": "2026-09-01T00:00:09.000Z",
+          "last_kept_at": "2026-09-01T00:00:02.000Z",
+          "capture_batch_id": "item-3",
+          "processing_status": "READY",
+          "processing_error": null,
+          "understanding": "Article titled \"missing · fixture\". (no text could be extracted; work from the title, URL and metadata)",
+          "why_useful": "Worth keeping as a article reference on missing; reach for it when that comes up again.",
+          "topics": "[\"missing\",\"fixture\",\"text\",\"extracted\",\"work\"]",
+          "entities": "[]",
+          "vision_text": null,
+          "retrieval_hints": "[\"missing · fixture\",\"article about missing\",\"fixture\",\"missing fixture\"]",
+          "suggested_actions": "[]",
+          "ai_confidence": 0.6000000000000001,
+          "metadata": "{\"source\":\"paste\",\"urlKind\":\"generic\",\"unreadable\":\"HTTP 404\",\"httpStatus\":404,\"extractor\":\"url\",\"truncated\":false}",
+          "extracted_text": null,
+          "excerpt": null,
+          "thumbnail_path": null,
+          "snapshot_path": null,
+          "favicon_path": null,
+          "dominant_color": null,
+          "media_version": 1,
+          "parent_item_id": null,
+          "user_overrides": "{}",
+          "is_missing": 0,
+          "missing_checked_at": null,
+          "deleted_at": null
+        },
+        {
+          "id": "item-6",
+          "type": "text",
+          "subtype": null,
+          "kind": "article",
+          "title": "A note that needs no extraction.",
+          "original_path": null,
+          "managed_path": "item-6/text.txt",
+          "url": null,
+          "canonical_url": null,
+          "domain": null,
+          "mime_type": "text/plain",
+          "size": 32,
+          "content_hash": "65be262c43dce74a6fc749653ccc560369f930198560534af7f370fb4499cf40",
+          "width": null,
+          "height": null,
+          "duration_ms": null,
+          "page_count": null,
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "captured_at": "2026-09-01T00:00:03.000Z",
+          "modified_at": "2026-09-01T00:00:09.000Z",
+          "last_kept_at": "2026-09-01T00:00:03.000Z",
+          "capture_batch_id": "item-5",
+          "processing_status": "READY",
+          "processing_error": null,
+          "understanding": "Article titled \"A note that needs no extraction.\". A note that needs no extraction.",
+          "why_useful": "Worth keeping as a article reference on needs; reach for it when that comes up again.",
+          "topics": "[\"needs\",\"extraction\"]",
+          "entities": "[]",
+          "vision_text": null,
+          "retrieval_hints": "[\"a note that needs no extraction.\",\"article about needs\",\"needs extraction\"]",
+          "suggested_actions": "[]",
+          "ai_confidence": 0.55,
+          "metadata": "{\"source\":\"paste\",\"wordCount\":6,\"extractor\":\"text\",\"truncated\":false}",
+          "extracted_text": "A note that needs no extraction.",
+          "excerpt": "A note that needs no extraction.",
+          "thumbnail_path": null,
+          "snapshot_path": null,
+          "favicon_path": null,
+          "dominant_color": null,
+          "media_version": 1,
+          "parent_item_id": null,
+          "user_overrides": "{}",
+          "is_missing": 0,
+          "missing_checked_at": null,
+          "deleted_at": null
+        }
+      ],
+      "fts": [
+        {
+          "item_id": "item-2",
+          "title": "prompts",
+          "retrieval_hints": "prompts other about prompt prompt bucket",
+          "topics": "prompt bucket short prompts batching continuous",
+          "entities": "Explain List Compare LLM Discuss GPU Write Define",
+          "understanding": "Other titled \"prompts\". {\"id\": 1, \"bucket\": \"short\", \"prompt\": \"Explain paged attention in two sentences.\"}\n{\"id\": 2, \"bucket\": \"short\", \"prompt\": \"What is continuous batching?\"}\n{\"id\"",
+          "why_useful": "Worth keeping as a other reference on prompt; reach for it when that comes up again.",
+          "vision_text": "",
+          "meta_text": "prompts.jsonl",
+          "extracted_text": "{\"id\": 1, \"bucket\": \"short\", \"prompt\": \"Explain paged attention in two sentences.\"}\n{\"id\": 2, \"bucket\": \"short\", \"prompt\": \"What is continuous batching?\"}\n{\"id\": 3, \"bucket\": \"short\", \"prompt\": \"List three ways to reduce time to first token.\"}\n{\"id\": 4, \"bucket\": \"medium\", \"prompt\": \"Compare static batching and continuous batching for an LLM serving system handling a mix of short and long prompts. Discuss GPU utilisation, latency and memory.\"}\n{\"id\": 5, \"bucket\": \"medium\", \"prompt\": \"Write a short runbook entry describing what to check when p95 latency exceeds 800 ms on the inference cluster.\"}\n{\"id\": 6, \"bucket\": \"long\", \"prompt\": \"You are reviewing an incident where the KV-cache block size was changed from 16 to 24 tokens. Write a detailed post-mortem template with sections for timeline, impact, root cause, and action items, then fill it with plausible content.\"}\n{\"id\": 7, \"bucket\": \"short\", \"prompt\": \"Define speculative decoding.\"}\n{\"id\": 8, \"bucket\": \"short\", \"prompt\": \"Why does prefix caching help when every prompt shares a system prompt?\"}\n",
+          "domain": "",
+          "kind": "other"
+        },
+        {
+          "item_id": "item-4",
+          "title": "missing · fixture",
+          "retrieval_hints": "missing · fixture article about missing fixture missing fixture",
+          "topics": "missing fixture text extracted work",
+          "entities": "",
+          "understanding": "Article titled \"missing · fixture\". (no text could be extracted; work from the title, URL and metadata)",
+          "why_useful": "Worth keeping as a article reference on missing; reach for it when that comes up again.",
+          "vision_text": "",
+          "meta_text": "",
+          "extracted_text": "",
+          "domain": "fixture",
+          "kind": "article"
+        },
+        {
+          "item_id": "item-6",
+          "title": "A note that needs no extraction.",
+          "retrieval_hints": "a note that needs no extraction. article about needs needs extraction",
+          "topics": "needs extraction",
+          "entities": "",
+          "understanding": "Article titled \"A note that needs no extraction.\". A note that needs no extraction.",
+          "why_useful": "Worth keeping as a article reference on needs; reach for it when that comes up again.",
+          "vision_text": "",
+          "meta_text": "",
+          "extracted_text": "A note that needs no extraction.",
+          "domain": "",
+          "kind": "article"
+        }
+      ],
+      "collections": [],
+      "collectionItems": [],
+      "relationships": [],
+      "suppressions": [],
+      "audit": [],
+      "agentRuns": [
+        {
+          "id": "uuid-1",
+          "item_id": "item-6",
+          "batch_id": null,
+          "task": "understand",
+          "status": "failed",
+          "model": "scripted",
+          "started_at": "2026-09-01T00:00:07.000Z",
+          "completed_at": "2026-09-01T00:00:07.000Z",
+          "steps": "[{\"tool\":\"inspect_item\",\"kind\":\"inspect\",\"label\":\"Reading \\\"A note that needs no extraction.\\\"\",\"itemIds\":[\"item-6\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": null,
+          "error": "provider unreachable",
+          "usage": null
+        },
+        {
+          "id": "uuid-2",
+          "item_id": "item-6",
+          "batch_id": null,
+          "task": "understand",
+          "status": "succeeded",
+          "model": "scripted",
+          "started_at": "2026-09-01T00:00:09.000Z",
+          "completed_at": "2026-09-01T00:00:09.000Z",
+          "steps": "[{\"tool\":\"inspect_item\",\"kind\":\"inspect\",\"label\":\"Reading \\\"A note that needs no extraction.\\\"\",\"itemIds\":[\"item-6\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"understand\",\"itemId\":\"item-6\",\"understanding\":{\"kind\":\"article\",\"title\":\"A note that needs no extraction.\",\"summary\":\"Article titled \\\"A note that needs no extraction.\\\". A note that needs no extraction.\",\"whyUseful\":\"Worth keeping as a article reference on needs; reach for it when that comes up again.\",\"topics\":[\"needs\",\"extraction\"],\"entities\":[],\"retrievalHints\":[\"a note that needs no extraction.\",\"article about needs\",\"needs extraction\"],\"confidence\":0.55},\"skippedFields\":[]}",
+          "error": null,
+          "usage": "{\"promptTokens\":1115,\"completionTokens\":105,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-3",
+          "item_id": "item-4",
+          "batch_id": null,
+          "task": "understand",
+          "status": "succeeded",
+          "model": "scripted",
+          "started_at": "2026-09-01T00:00:09.000Z",
+          "completed_at": "2026-09-01T00:00:09.000Z",
+          "steps": "[{\"tool\":\"inspect_item\",\"kind\":\"inspect\",\"label\":\"Reading \\\"missing · fixture\\\"\",\"itemIds\":[\"item-4\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"understand\",\"itemId\":\"item-4\",\"understanding\":{\"kind\":\"article\",\"title\":\"missing · fixture\",\"summary\":\"Article titled \\\"missing · fixture\\\". (no text could be extracted; work from the title, URL and metadata)\",\"whyUseful\":\"Worth keeping as a article reference on missing; reach for it when that comes up again.\",\"topics\":[\"missing\",\"fixture\",\"text\",\"extracted\",\"work\"],\"entities\":[],\"retrievalHints\":[\"missing · fixture\",\"article about missing\",\"fixture\",\"missing fixture\"],\"confidence\":0.6000000000000001},\"skippedFields\":[]}",
+          "error": null,
+          "usage": "{\"promptTokens\":1122,\"completionTokens\":115,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-4",
+          "item_id": "item-2",
+          "batch_id": null,
+          "task": "understand",
+          "status": "succeeded",
+          "model": "scripted",
+          "started_at": "2026-09-01T00:00:09.000Z",
+          "completed_at": "2026-09-01T00:00:09.000Z",
+          "steps": "[{\"tool\":\"inspect_item\",\"kind\":\"inspect\",\"label\":\"Reading \\\"prompts\\\"\",\"itemIds\":[\"item-2\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"understand\",\"itemId\":\"item-2\",\"understanding\":{\"kind\":\"other\",\"title\":\"prompts\",\"summary\":\"Other titled \\\"prompts\\\". {\\\"id\\\": 1, \\\"bucket\\\": \\\"short\\\", \\\"prompt\\\": \\\"Explain paged attention in two sentences.\\\"}\\n{\\\"id\\\": 2, \\\"bucket\\\": \\\"short\\\", \\\"prompt\\\": \\\"What is continuous batching?\\\"}\\n{\\\"id\\\"\",\"whyUseful\":\"Worth keeping as a other reference on prompt; reach for it when that comes up again.\",\"topics\":[\"prompt\",\"bucket\",\"short\",\"prompts\",\"batching\",\"continuous\"],\"entities\":[\"Explain\",\"List\",\"Compare\",\"LLM\",\"Discuss GPU\",\"Write\",\"Define\"],\"retrievalHints\":[\"prompts\",\"other about prompt\",\"prompt bucket\"],\"confidence\":0.65},\"skippedFields\":[]}",
+          "error": null,
+          "usage": "{\"promptTokens\":1371,\"completionTokens\":147,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-5",
+          "item_id": "item-4",
+          "batch_id": null,
+          "task": "organize",
+          "status": "succeeded",
+          "model": "scripted",
+          "started_at": "2026-09-01T00:00:09.000Z",
+          "completed_at": "2026-09-01T00:00:09.000Z",
+          "steps": "[{\"tool\":\"find_candidates\",\"kind\":\"search\",\"label\":\"Checking 2 similar things\",\"itemIds\":[\"item-6\",\"item-2\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"organize\",\"itemId\":\"item-4\",\"relationshipIds\":[],\"collectionIds\":[],\"summary\":\"Kept on its own for now; nothing else in the library is about this yet.\"}",
+          "error": null,
+          "usage": "{\"promptTokens\":1873,\"completionTokens\":48,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-6",
+          "item_id": "item-2",
+          "batch_id": null,
+          "task": "organize",
+          "status": "succeeded",
+          "model": "scripted",
+          "started_at": "2026-09-01T00:00:09.000Z",
+          "completed_at": "2026-09-01T00:00:09.000Z",
+          "steps": "[{\"tool\":\"find_candidates\",\"kind\":\"search\",\"label\":\"Checking 2 similar things\",\"itemIds\":[\"item-4\",\"item-6\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"organize\",\"itemId\":\"item-2\",\"relationshipIds\":[],\"collectionIds\":[],\"summary\":\"Kept on its own for now; nothing else in the library is about this yet.\"}",
+          "error": null,
+          "usage": "{\"promptTokens\":1905,\"completionTokens\":48,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-7",
+          "item_id": "item-6",
+          "batch_id": null,
+          "task": "organize",
+          "status": "succeeded",
+          "model": "scripted",
+          "started_at": "2026-09-01T00:00:09.000Z",
+          "completed_at": "2026-09-01T00:00:09.000Z",
+          "steps": "[{\"tool\":\"find_candidates\",\"kind\":\"search\",\"label\":\"Checking 2 similar things\",\"itemIds\":[\"item-4\",\"item-2\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"organize\",\"itemId\":\"item-6\",\"relationshipIds\":[],\"collectionIds\":[],\"summary\":\"Kept on its own for now; nothing else in the library is about this yet.\"}",
+          "error": null,
+          "usage": "{\"promptTokens\":1871,\"completionTokens\":48,\"calls\":1,\"latencyMs\":0}"
+        }
+      ],
+      "jobs": [
+        {
+          "id": "job-1",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "extract",
+          "lane": "io",
+          "priority": 25,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-10",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "understand",
+          "lane": "ai",
+          "priority": 30,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:09.000Z"
+        },
+        {
+          "id": "job-11",
+          "item_id": "item-6",
+          "batch_id": "item-5",
+          "stage": "embed",
+          "lane": "embed",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-12",
+          "item_id": "item-6",
+          "batch_id": "item-5",
+          "stage": "understand",
+          "lane": "ai",
+          "priority": 30,
+          "status": "done",
+          "attempts": 1,
+          "run_after": "2026-09-01T00:00:08.000Z",
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:09.000Z"
+        },
+        {
+          "id": "job-13",
+          "item_id": "item-6",
+          "batch_id": "item-5",
+          "stage": "index",
+          "lane": "embed",
+          "priority": 20,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:09.000Z",
+          "updated_at": "2026-09-01T00:00:09.000Z"
+        },
+        {
+          "id": "job-14",
+          "item_id": "item-6",
+          "batch_id": "item-5",
+          "stage": "relate",
+          "lane": "ai",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:09.000Z",
+          "updated_at": "2026-09-01T00:00:09.000Z"
+        },
+        {
+          "id": "job-15",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "index",
+          "lane": "embed",
+          "priority": 20,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:09.000Z",
+          "updated_at": "2026-09-01T00:00:09.000Z"
+        },
+        {
+          "id": "job-16",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "relate",
+          "lane": "ai",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:09.000Z",
+          "updated_at": "2026-09-01T00:00:09.000Z"
+        },
+        {
+          "id": "job-17",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "index",
+          "lane": "embed",
+          "priority": 20,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:09.000Z",
+          "updated_at": "2026-09-01T00:00:09.000Z"
+        },
+        {
+          "id": "job-18",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "relate",
+          "lane": "ai",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:09.000Z",
+          "updated_at": "2026-09-01T00:00:09.000Z"
+        },
+        {
+          "id": "job-2",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "thumbnail",
+          "lane": "io",
+          "priority": 15,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": "No preview could be made",
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-3",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "extract",
+          "lane": "io",
+          "priority": 25,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": "Couldn't read this page, but the link is safe.",
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-4",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "snapshot",
+          "lane": "io",
+          "priority": 15,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": "Snapshot failed",
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-5",
+          "item_id": "item-6",
+          "batch_id": "item-5",
+          "stage": "extract",
+          "lane": "io",
+          "priority": 25,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-6",
+          "item_id": "item-6",
+          "batch_id": "item-5",
+          "stage": "thumbnail",
+          "lane": "io",
+          "priority": 15,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": "No preview could be made",
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-7",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "embed",
+          "lane": "embed",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-8",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "understand",
+          "lane": "ai",
+          "priority": 30,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:09.000Z"
+        },
+        {
+          "id": "job-9",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "embed",
+          "lane": "embed",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        }
+      ],
+      "settings": {
+        "aiMode": "gmi",
+        "provider": "gmi",
+        "model": "MiniMaxAI/MiniMax-M3",
+        "baseUrl": "https://api.gmi-serving.com/v1",
+        "hasApiKey": true,
+        "apiKeyMasked": "sce…-key",
+        "importMode": "copy",
+        "theme": "system",
+        "libraryPath": "{library}",
+        "embeddings": {
+          "provider": "none",
+          "modelPresent": false,
+          "dims": 384
+        }
+      },
+      "thumbnailCalls": [
+        {
+          "op": "thumbnail",
+          "file": "{library}/objects/item-2/prompts.jsonl",
+          "out": "{library}/thumbs/item-2.png",
+          "maxPx": 800
+        },
+        {
+          "op": "thumbnail",
+          "file": "{library}/objects/item-6/text.txt",
+          "out": "{library}/thumbs/item-6.png",
+          "maxPx": 800
+        }
+      ],
+      "snapshotCalls": [
+        {
+          "url": "http://fixture/missing.html",
+          "out": "{library}/snapshots/item-4.png"
+        }
+      ],
+      "fetchCalls": [
+        {
+          "op": "fetchDom",
+          "url": "http://fixture/missing.html"
+        }
+      ],
+      "desktopCalls": [],
+      "pushes": []
+    }
+  ]
+}

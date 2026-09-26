@@ -1,0 +1,16 @@
+{
+  "name": "library-compat",
+  "runs_on": "linux",
+  "ai": "mock",
+  "embeddings": "hash",
+  "library": "understand-organize",
+  "steps": [
+    {
+      "op": "open-library",
+      "path": "{kept}"
+    },
+    {
+      "op": "snapshot"
+    }
+  ]
+}
