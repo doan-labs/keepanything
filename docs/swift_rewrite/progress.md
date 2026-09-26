@@ -69,3 +69,7 @@ Newest last. Format: see PLAN.md#agent-protocol.
 - `Sources/KAStorage/Repositories/*` (8 repos + Rows, verbatim SQL), `ObjectStore.swift`, `SHA256.swift` (pure Swift, checked against CryptoKit), `Paths.swift`, `ResetData.swift`, `LibraryLock.swift` (ported early: O_EXCL create, temp+rename stale takeover). `Db.run/readOnly` reuse the in-flight transaction connection. KAModel row structs gained public inits.
 - Evidence: `swift test --filter KAStorageTests.Repositories` 16/16; `swift test --filter KAStorageTests` 42/42; lint ok (macOS only).
 - REVIEW: `folder.extensions` keys are emitted sorted (TS used insertion order) — may show up in metaText parity later; JSON column key order comes from JSONEncoder and is not guaranteed to match JS literal order — scenario comparison must be structural. `resetRunning` returns a struct instead of a tuple.
+
+## 2026-09-26 S-STORE-03 passes
+- Electron: `pnpm run parity:library` (scenario runner, `KEEPANYTHING_PARITY_LIBRARY`) writes the finished understand-organize library to `Tests/Fixtures/parity/library/` (320 KB, checkpointed, no lock/wal/shm) plus `markers.json` with the `{corpus}`/`{library}` prefixes. Swift: `Sources/KATestSupport/Snapshot.swift` (takeSnapshot + normalizeDocument port), `Tests/KAStorageTests/CompatTests.swift` — snapshot of the Electron library equals `expected/library-compat.json` results[0] on all 9 tables; live lock → read-only db; stale lock taken over.
+- Evidence: `swift test --filter KAStorageTests.Compat` 3/3; KAStorageTests 45/45; `scenarios:export` diff clean; lint ok (macOS only).
