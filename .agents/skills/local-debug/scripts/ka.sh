@@ -57,7 +57,7 @@ case "$cmd" in
     found=
     for pid in $(pgrep -x 'Electron|KeepAnything' || true); do
       cwd=$(lsof -a -p "$pid" -d cwd -Fn 2>/dev/null | sed -n 's/^n//p' || true)
-      if [[ "$(ps -o comm= -p "$pid" || true)" == *Electron && "$cwd" != "$REPO" ]]; then continue; fi
+      if [[ "$(ps -o comm= -p "$pid" || true)" == *Electron && "$cwd" != "$REPO/electron" ]]; then continue; fi
       found=1
       open=$(lsof -p "$pid" -Fn 2>/dev/null | sed -n 's/^n\(.*\)\/library\.db$/\1/p' | head -1 || true)
       open=${open#/private} # lsof resolves /var/folders (the e2e profile) to /private/var/folders
@@ -67,7 +67,7 @@ case "$cmd" in
       echo "pid=$pid profile=$name${listening:+ listening=${listening% }}"
     done
     [[ -n "$found" ]] || echo "no KeepAnything instance running"
-    for pid in $(pgrep -f "$REPO/node_modules/.bin/electron-vite dev" || true); do
+    for pid in $(pgrep -f "$REPO/electron/node_modules/.bin/electron-vite dev" || true); do
       listening=$(ports "$pid")
       echo "electron-vite pid=$pid${listening:+ renderer-port=${listening% }}"
     done

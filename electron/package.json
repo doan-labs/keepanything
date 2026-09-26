@@ -21,7 +21,6 @@
     "native": "node scripts/build-native.mjs",
     "dev": "pnpm run native && electron-vite dev --watch",
     "dev:pinned": "pnpm run native && cross-env KEEPANYTHING_PIN=1 electron-vite dev --watch",
-    "web:dev": "pnpm -C web dev",
     "start": "electron-vite preview",
     "build": "pnpm run typecheck && pnpm run native && electron-vite build",
     "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.web.json && tsc --noEmit -p tests/e2e/tsconfig.json",
@@ -41,7 +40,7 @@
     "audit:comments": "node scripts/audit-comments.mjs"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm exec lint-staged"
+    "pre-commit": "cd electron && pnpm exec lint-staged"
   },
   "lint-staged": {
     "*": "biome check --write --files-ignore-unknown=true --no-errors-on-unmatched"

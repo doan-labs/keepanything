@@ -18,7 +18,7 @@ JSON columns (`topics`, `steps`, `usage`, `result`, `before`, `after`) work with
 | `embeddings` | Chunk vectors: `role` (`summary`/`body`), `model`, `dims` |
 | `items_fts` | FTS5 index keyed by `item_id` (UNINDEXED) |
 
-Status flow (`src/shared/status.ts`): `CAPTURED -> EXTRACTING -> EXTRACTED -> EMBEDDING -> UNDERSTANDING
+Status flow (`electron/src/shared/status.ts`): `CAPTURED -> EXTRACTING -> EXTRACTED -> EMBEDDING -> UNDERSTANDING
 -> RELATING -> READY`, with the outcomes `PARTIAL`, `EXTRACTION_FAILED`, `AI_FAILED`, and `WAITING_FOR_AI` for parked AI work.
 
 ## Items
