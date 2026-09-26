@@ -214,9 +214,9 @@
       "electron/src/main/storage/"
     ],
     "gate": "swift test --filter KAStorageTests.Repositories",
-    "passes": false,
+    "passes": true,
     "blocked": null,
-    "notes": ""
+    "notes": "also ports library-lock.ts + its tests; macOS only"
   },
   {
     "id": "S-STORE-03",
