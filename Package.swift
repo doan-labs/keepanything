@@ -29,7 +29,8 @@ let package = Package(
     .target(
       name: "KAStorage",
       dependencies: ["KAModel", .product(name: "GRDB", package: "GRDB.swift")],
-      path: "Sources/KAStorage"
+      path: "Sources/KAStorage",
+      resources: [.copy("Migrations")]
     ),
     .target(name: "KACore", dependencies: ["KAModel", "KAStorage"], path: "Sources/KACore"),
     .target(name: "KACapture", dependencies: ["KAModel", "KACore"], path: "Sources/KACapture"),
