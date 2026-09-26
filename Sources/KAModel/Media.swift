@@ -6,6 +6,12 @@ import Foundation
 public let MEDIA_ROOTS: [String] = ["objects", "thumbs", "snapshots", "content"]
 
 public struct ParsedMediaUrl: Sendable, Equatable {
+  public init(root: String, relPath: String, version: Int) {
+    self.root = root
+    self.relPath = relPath
+    self.version = version
+  }
+
   public var root: String
   /// Decoded path relative to the root directory, forward slashes, no empty or `..` segments.
   public var relPath: String

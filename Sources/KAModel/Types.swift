@@ -150,6 +150,99 @@ public struct ItemMetadata: Codable, Sendable, Equatable {
 
 /// Full `items` row in camelCase with JSON columns parsed.
 public struct Item: Codable, Sendable, Equatable {
+  public init(
+    id: String = "",
+    type: ItemType = .text,
+    subtype: ItemSubtype? = nil,
+    kind: Kind? = nil,
+    title: String = "",
+    originalPath: String? = nil,
+    managedPath: String? = nil,
+    url: String? = nil,
+    canonicalUrl: String? = nil,
+    domain: String? = nil,
+    mimeType: String? = nil,
+    size: Double? = nil,
+    contentHash: String? = nil,
+    width: Double? = nil,
+    height: Double? = nil,
+    durationMs: Double? = nil,
+    pageCount: Double? = nil,
+    createdAt: String = "",
+    capturedAt: String = "",
+    modifiedAt: String = "",
+    lastKeptAt: String = "",
+    captureBatchId: String? = nil,
+    processingStatus: ProcessingStatus = .captured,
+    processingError: String? = nil,
+    understanding: String? = nil,
+    whyUseful: String? = nil,
+    topics: [String] = [],
+    entities: [String] = [],
+    visionText: String? = nil,
+    retrievalHints: [String] = [],
+    aiConfidence: Double? = nil,
+    metadata: ItemMetadata = ItemMetadata(),
+    extractedText: String? = nil,
+    excerpt: String? = nil,
+    thumbnailPath: String? = nil,
+    snapshotPath: String? = nil,
+    faviconPath: String? = nil,
+    dominantColor: String? = nil,
+    mediaVersion: Double = 1,
+    parentItemId: String? = nil,
+    userOverrides: UserOverrides = UserOverrides(),
+    isMissing: Bool = false,
+    missingCheckedAt: String? = nil,
+    deletedAt: String? = nil
+  ) {
+    self.id = id
+    self.type = type
+    self.subtype = subtype
+    self.kind = kind
+    self.title = title
+    self.originalPath = originalPath
+    self.managedPath = managedPath
+    self.url = url
+    self.canonicalUrl = canonicalUrl
+    self.domain = domain
+    self.mimeType = mimeType
+    self.size = size
+    self.contentHash = contentHash
+    self.width = width
+    self.height = height
+    self.durationMs = durationMs
+    self.pageCount = pageCount
+    self.createdAt = createdAt
+    self.capturedAt = capturedAt
+    self.modifiedAt = modifiedAt
+    self.lastKeptAt = lastKeptAt
+    self.captureBatchId = captureBatchId
+    self.processingStatus = processingStatus
+    self.processingError = processingError
+    self.understanding = understanding
+    self.whyUseful = whyUseful
+    self.topics = topics
+    self.entities = entities
+    self.visionText = visionText
+    self.retrievalHints = retrievalHints
+    self.aiConfidence = aiConfidence
+    self.metadata = metadata
+    self.extractedText = extractedText
+    self.excerpt = excerpt
+    self.thumbnailPath = thumbnailPath
+    self.snapshotPath = snapshotPath
+    self.faviconPath = faviconPath
+    self.dominantColor = dominantColor
+    self.mediaVersion = mediaVersion
+    self.parentItemId = parentItemId
+    self.userOverrides = userOverrides
+    self.isMissing = isMissing
+    self.missingCheckedAt = missingCheckedAt
+    self.deletedAt = deletedAt
+  }
+
+
   public var id: String
   public var type: ItemType
   public var subtype: ItemSubtype?
@@ -223,6 +316,68 @@ public struct ItemCardFacts: Codable, Sendable, Equatable {
 /// Card payload for grids, lists and search results. All `*Url` fields are `ka-media://` URLs
 /// built only in the library layer (see `Media.swift`).
 public struct ItemSummary: Codable, Sendable, Equatable {
+  public init(
+    id: String = "",
+    type: ItemType = .text,
+    subtype: ItemSubtype? = nil,
+    kind: Kind? = nil,
+    title: String = "",
+    domain: String? = nil,
+    url: String? = nil,
+    thumbnailUrl: String? = nil,
+    snapshotUrl: String? = nil,
+    faviconUrl: String? = nil,
+    dominantColor: String? = nil,
+    width: Double? = nil,
+    height: Double? = nil,
+    size: Double? = nil,
+    mimeType: String? = nil,
+    durationMs: Double? = nil,
+    pageCount: Double? = nil,
+    excerpt: String? = nil,
+    capturedAt: String = "",
+    createdAt: String = "",
+    processingStatus: ProcessingStatus = .captured,
+    processingError: String? = nil,
+    understanding: String? = nil,
+    collectionIds: [String] = [],
+    childCount: Double = 0,
+    childThumbnailUrls: [String] = [],
+    card: ItemCardFacts? = nil,
+    isMissing: Bool = false,
+    parentItemId: String? = nil
+  ) {
+    self.id = id
+    self.type = type
+    self.subtype = subtype
+    self.kind = kind
+    self.title = title
+    self.domain = domain
+    self.url = url
+    self.thumbnailUrl = thumbnailUrl
+    self.snapshotUrl = snapshotUrl
+    self.faviconUrl = faviconUrl
+    self.dominantColor = dominantColor
+    self.width = width
+    self.height = height
+    self.size = size
+    self.mimeType = mimeType
+    self.durationMs = durationMs
+    self.pageCount = pageCount
+    self.excerpt = excerpt
+    self.capturedAt = capturedAt
+    self.createdAt = createdAt
+    self.processingStatus = processingStatus
+    self.processingError = processingError
+    self.understanding = understanding
+    self.collectionIds = collectionIds
+    self.childCount = childCount
+    self.childThumbnailUrls = childThumbnailUrls
+    self.card = card
+    self.isMissing = isMissing
+    self.parentItemId = parentItemId
+  }
+
   public var id: String
   public var type: ItemType
   public var subtype: ItemSubtype?
@@ -324,6 +479,28 @@ public struct SearchFilters: Codable, Sendable, Equatable {
 
 /// `collections` row.
 public struct Collection: Codable, Sendable, Equatable {
+  public init(
+    id: String = "",
+    name: String = "",
+    nameKey: String = "",
+    description: String? = nil,
+    createdBy: CollectionCreator = .user,
+    color: String? = nil,
+    pinned: Bool = false,
+    createdAt: String = "",
+    updatedAt: String = ""
+  ) {
+    self.id = id
+    self.name = name
+    self.nameKey = nameKey
+    self.description = description
+    self.createdBy = createdBy
+    self.color = color
+    self.pinned = pinned
+    self.createdAt = createdAt
+    self.updatedAt = updatedAt
+  }
+
   public var id: String
   public var name: String
   /// `normalizeName(name)`; unique.
@@ -339,6 +516,16 @@ public struct Collection: Codable, Sendable, Equatable {
 
 /// Sidebar / grid payload for a collection.
 public struct CollectionSummary: Codable, Sendable, Equatable {
+  public init(
+    collection: Collection = Collection(),
+    count: Int = 0,
+    coverThumbnailUrls: [String] = []
+  ) {
+    self.collection = collection
+    self.count = count
+    self.coverThumbnailUrls = coverThumbnailUrls
+  }
+
   public var collection: Collection
   public var count: Int
   /// Up to 4 `ka-media://` thumbnail URLs for the cover collage.
@@ -347,6 +534,24 @@ public struct CollectionSummary: Codable, Sendable, Equatable {
 
 /// `collection_items` row.
 public struct CollectionItem: Codable, Sendable, Equatable {
+  public init(
+    collectionId: String = "",
+    itemId: String = "",
+    confidence: Double? = nil,
+    reason: String? = nil,
+    addedBy: MembershipActor = .user,
+    agentRunId: String? = nil,
+    addedAt: String = ""
+  ) {
+    self.collectionId = collectionId
+    self.itemId = itemId
+    self.confidence = confidence
+    self.reason = reason
+    self.addedBy = addedBy
+    self.agentRunId = agentRunId
+    self.addedAt = addedAt
+  }
+
   public var collectionId: String
   public var itemId: String
   public var confidence: Double?
@@ -364,12 +569,44 @@ public enum RelationshipCreator: String, Codable, Sendable { case user, agent, s
 
 /// Optional quote backing a relationship, verified against the target's text.
 public struct RelationshipEvidence: Codable, Sendable, Equatable {
+  public init(
+    itemId: String = "",
+    quote: String = ""
+  ) {
+    self.itemId = itemId
+    self.quote = quote
+  }
+
   public var itemId: String
   public var quote: String
 }
 
 /// `relationships` row. Symmetric types are stored with `sourceItemId < targetItemId`.
 public struct Relationship: Codable, Sendable, Equatable {
+  public init(
+    id: String = "",
+    sourceItemId: String = "",
+    targetItemId: String = "",
+    type: RelationshipType = .relatedTo,
+    description: String? = nil,
+    confidence: Double? = nil,
+    evidence: RelationshipEvidence? = nil,
+    createdBy: RelationshipCreator = .user,
+    agentRunId: String? = nil,
+    createdAt: String = ""
+  ) {
+    self.id = id
+    self.sourceItemId = sourceItemId
+    self.targetItemId = targetItemId
+    self.type = type
+    self.description = description
+    self.confidence = confidence
+    self.evidence = evidence
+    self.createdBy = createdBy
+    self.agentRunId = agentRunId
+    self.createdAt = createdAt
+  }
+
   public var id: String
   public var sourceItemId: String
   public var targetItemId: String
@@ -387,6 +624,22 @@ public enum EmbeddingRole: String, Codable, Sendable { case summary, body }
 
 /// `embeddings` row without the vector BLOB.
 public struct EmbeddingMeta: Codable, Sendable, Equatable {
+  public init(
+    itemId: String = "",
+    chunkIndex: Int = 0,
+    role: EmbeddingRole = .summary,
+    content: String = "",
+    model: String = "",
+    dims: Int = 0
+  ) {
+    self.itemId = itemId
+    self.chunkIndex = chunkIndex
+    self.role = role
+    self.content = content
+    self.model = model
+    self.dims = dims
+  }
+
   public var itemId: String
   public var chunkIndex: Int
   public var role: EmbeddingRole
@@ -405,6 +658,34 @@ public enum JobStatus: String, Codable, Sendable, CaseIterable {
 
 /// `jobs` row.
 public struct Job: Codable, Sendable, Equatable {
+  public init(
+    id: String = "",
+    itemId: String? = nil,
+    batchId: String? = nil,
+    stage: Stage = .extract,
+    lane: Lane = .io,
+    priority: Double = 0,
+    status: JobStatus = .queued,
+    attempts: Int = 0,
+    runAfter: String? = nil,
+    lastError: String? = nil,
+    createdAt: String = "",
+    updatedAt: String = ""
+  ) {
+    self.id = id
+    self.itemId = itemId
+    self.batchId = batchId
+    self.stage = stage
+    self.lane = lane
+    self.priority = priority
+    self.status = status
+    self.attempts = attempts
+    self.runAfter = runAfter
+    self.lastError = lastError
+    self.createdAt = createdAt
+    self.updatedAt = updatedAt
+  }
+
   public var id: String
   public var itemId: String?
   public var batchId: String?
@@ -422,6 +703,24 @@ public struct Job: Codable, Sendable, Equatable {
 
 /// Per-job progress pushed by the scheduler (`jobs:progress`) and listed by `jobs:status`.
 public struct JobProgress: Codable, Sendable, Equatable {
+  public init(
+    itemId: String? = nil,
+    batchId: String? = nil,
+    processingStatus: ProcessingStatus? = nil,
+    stage: Stage = .extract,
+    jobStatus: JobStatus = .queued,
+    attempts: Int = 0,
+    message: String? = nil
+  ) {
+    self.itemId = itemId
+    self.batchId = batchId
+    self.processingStatus = processingStatus
+    self.stage = stage
+    self.jobStatus = jobStatus
+    self.attempts = attempts
+    self.message = message
+  }
+
   /// Nil for batch-level jobs (`organize_batch`, `consolidate`).
   public var itemId: String?
   public var batchId: String?
@@ -470,6 +769,26 @@ public enum AgentStepKind: String, Codable, Sendable {
 
 /// One tool step of a run. `label` is product voice, never model reasoning.
 public struct AgentStep: Codable, Sendable, Equatable {
+  public init(
+    n: Int = 0,
+    tool: String = "",
+    kind: AgentStepKind = .finish,
+    label: String = "",
+    itemIds: [String]? = nil,
+    status: Status = .ok,
+    rejectReason: String? = nil,
+    durationMs: Double = 0
+  ) {
+    self.n = n
+    self.tool = tool
+    self.kind = kind
+    self.label = label
+    self.itemIds = itemIds
+    self.status = status
+    self.rejectReason = rejectReason
+    self.durationMs = durationMs
+  }
+
   public var n: Int
   public var tool: String
   public var kind: AgentStepKind
@@ -510,6 +829,18 @@ public struct AgentCues: Codable, Sendable, Equatable {
 
 /// Token usage of a run, summed over all model calls.
 public struct AgentUsage: Codable, Sendable, Equatable {
+  public init(
+    promptTokens: Int = 0,
+    completionTokens: Int = 0,
+    calls: Int = 0,
+    latencyMs: Double = 0
+  ) {
+    self.promptTokens = promptTokens
+    self.completionTokens = completionTokens
+    self.calls = calls
+    self.latencyMs = latencyMs
+  }
+
   public var promptTokens: Int
   public var completionTokens: Int
   public var calls: Int
@@ -571,6 +902,34 @@ public struct AgentResult: Codable, Sendable, Equatable {
 
 /// List payload for runs (item detail "How this was organized"): steps included, result/usage not.
 public struct AgentRunSummary: Codable, Sendable, Equatable {
+  public init(
+    id: String = "",
+    itemId: String? = nil,
+    batchId: String? = nil,
+    task: AgentTask = .command,
+    status: AgentRunStatus = .running,
+    model: String = "",
+    startedAt: String = "",
+    completedAt: String? = nil,
+    stepCount: Int = 0,
+    error: String? = nil,
+    steps: [AgentStep] = [],
+    undoable: Bool = false
+  ) {
+    self.id = id
+    self.itemId = itemId
+    self.batchId = batchId
+    self.task = task
+    self.status = status
+    self.model = model
+    self.startedAt = startedAt
+    self.completedAt = completedAt
+    self.stepCount = stepCount
+    self.error = error
+    self.steps = steps
+    self.undoable = undoable
+  }
+
   public var id: String
   public var itemId: String?
   public var batchId: String?
@@ -589,6 +948,16 @@ public struct AgentRunSummary: Codable, Sendable, Equatable {
 
 /// `agent:run` payload: full transcript without model reasoning.
 public struct AgentRunDetail: Codable, Sendable, Equatable {
+  public init(
+    summary: AgentRunSummary = AgentRunSummary(),
+    usage: AgentUsage? = nil,
+    result: AgentResult? = nil
+  ) {
+    self.summary = summary
+    self.usage = usage
+    self.result = result
+  }
+
   public var summary: AgentRunSummary
   public var usage: AgentUsage?
   public var result: AgentResult?
@@ -743,6 +1112,30 @@ public enum AuditActor: String, Codable, Sendable { case user, agent, system }
 
 /// `audit_log` row.
 public struct AuditEntry: Codable, Sendable, Equatable {
+  public init(
+    id: String = "",
+    actor: AuditActor = .user,
+    action: String = "",
+    entity: String = "",
+    entityId: String = "",
+    before: JSONValue? = nil,
+    after: JSONValue? = nil,
+    agentRunId: String? = nil,
+    createdAt: String = "",
+    undoneAt: String? = nil
+  ) {
+    self.id = id
+    self.actor = actor
+    self.action = action
+    self.entity = entity
+    self.entityId = entityId
+    self.before = before
+    self.after = after
+    self.agentRunId = agentRunId
+    self.createdAt = createdAt
+    self.undoneAt = undoneAt
+  }
+
   public var id: String
   public var actor: AuditActor
   public var action: String
@@ -789,3 +1182,4 @@ public enum JSONValue: Codable, Sendable, Equatable {
     }
   }
 }
+

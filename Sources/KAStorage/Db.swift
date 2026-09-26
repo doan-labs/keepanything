@@ -73,6 +73,20 @@ public final class Db: Sendable {
     }
   }
 
+  /// Run `body` on the in-flight transaction connection when inside `transaction()`, else a
+  /// fresh writer access. Repos go through this so service-level `transaction` wraps several
+  /// repo calls, exactly like the TS `db.prepare` inside `transaction()`.
+  public func run<T>(_ body: (GRDB.Database) throws -> T) throws -> T {
+    if let db = state.withLock({ $0.db }) { return try body(db) }
+    return try raw.writeWithoutTransaction(body)
+  }
+
+  /// Run `body` on the in-flight connection, else a read access.
+  public func readOnly<T>(_ body: (GRDB.Database) throws -> T) throws -> T {
+    if let db = state.withLock({ $0.db }) { return try body(db) }
+    return try raw.read(body)
+  }
+
   /// True while inside `transaction()`.
   public func inTransaction() -> Bool {
     state.withLock { $0.depth > 0 }
