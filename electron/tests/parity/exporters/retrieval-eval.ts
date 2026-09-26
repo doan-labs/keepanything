@@ -94,7 +94,7 @@ async function rank(
     idOf.set(f.id, item.id)
     if (f.type === 'folder' && f.path) {
       const dir = join(FIXTURES, f.path)
-      for (const name of existsSync(dir) ? readdirSync(dir) : []) {
+      for (const name of existsSync(dir) ? readdirSync(dir).sort() : []) {
         const child = h.item({
           type: /\.(md|txt)$/.test(name) ? (name.endsWith('.md') ? 'markdown' : 'text') : 'file',
           title: name,
@@ -103,6 +103,7 @@ async function rank(
           capturedAt,
           processingStatus: 'READY'
         })
+        idOf.set(`${f.id}/${name}`, child.id)
         await retrieval.embedBody(child.id)
         await retrieval.indexItem(child.id)
       }
@@ -116,7 +117,7 @@ async function rank(
   for (const q of queries.queries) {
     const k = q.k ?? queries.defaultK
     const results = await retrieval.quickSearch(q.query, { limit: 10 })
-    out.push({ id: q.id, query: q.query, k, ranked: results.map((r) => fixtureOf.get(r.id) ?? '?') })
+    out.push({ id: q.id, query: q.query, k, ranked: results.map((r) => fixtureOf.get(r.id) ?? r.id) })
   }
   h.close()
   return out

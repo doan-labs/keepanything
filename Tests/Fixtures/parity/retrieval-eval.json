@@ -12,7 +12,7 @@
         "pdf-paged-attention",
         "url-blog-anyscale-batching",
         "md-inference-providers",
-        "?"
+        "folder-serving-benchmark/notes.txt"
       ]
     },
     {
@@ -39,7 +39,7 @@
       "k": 3,
       "ranked": [
         "md-weekly-review",
-        "?",
+        "folder-serving-benchmark/prompts.jsonl",
         "pdf-react",
         "pdf-paged-attention"
       ]
@@ -54,11 +54,11 @@
         "url-gh-minimax-m1",
         "md-weekly-review",
         "url-yt-karpathy-llms",
-        "?",
+        "folder-serving-benchmark/prompts.jsonl",
         "md-inference-providers",
         "txt-resend-alternatives",
-        "?",
-        "?"
+        "folder-serving-benchmark/config.yaml",
+        "folder-serving-benchmark/run_bench.py"
       ]
     },
     {
@@ -96,7 +96,7 @@
         "md-inference-providers",
         "txt-resend-alternatives",
         "url-gh-vllm",
-        "?",
+        "folder-serving-benchmark/prompts.jsonl",
         "url-blog-anyscale-batching"
       ]
     },
@@ -106,9 +106,9 @@
       "k": 3,
       "ranked": [
         "png-terminal-tests",
-        "?",
-        "?",
-        "?",
+        "folder-serving-benchmark/results.csv",
+        "folder-serving-benchmark/README.md",
+        "folder-serving-benchmark/run_bench.py",
         "folder-serving-benchmark"
       ]
     },
@@ -148,7 +148,7 @@
         "url-docs-gmi-llm-api",
         "url-blog-anyscale-batching",
         "url-gh-vllm",
-        "?"
+        "folder-serving-benchmark/prompts.jsonl"
       ]
     },
     {
@@ -157,11 +157,11 @@
       "k": 3,
       "ranked": [
         "url-gh-transformersjs",
-        "?",
+        "folder-serving-benchmark/notes.txt",
         "md-inference-providers",
-        "?",
+        "folder-serving-benchmark/README.md",
         "md-weekly-review",
-        "?",
+        "folder-serving-benchmark/run_bench.py",
         "md-mnismt-design",
         "png-terminal-tests",
         "txt-hyperliquid"
@@ -176,10 +176,10 @@
         "md-weekly-review",
         "md-inference-providers",
         "md-mnismt-design",
-        "?",
+        "folder-serving-benchmark/results.csv",
         "txt-resend-alternatives",
-        "?",
-        "?",
+        "folder-serving-benchmark/notes.txt",
+        "folder-serving-benchmark/run_bench.py",
         "png-terminal-tests",
         "txt-hyperliquid"
       ]
@@ -193,8 +193,8 @@
         "txt-resend-alternatives",
         "md-weekly-review",
         "md-mnismt-design",
-        "?",
-        "?",
+        "folder-serving-benchmark/notes.txt",
+        "folder-serving-benchmark/README.md",
         "txt-hyperliquid"
       ]
     },
@@ -212,9 +212,9 @@
       "k": 3,
       "ranked": [
         "folder-serving-benchmark",
-        "?",
-        "?",
-        "?"
+        "folder-serving-benchmark/results.csv",
+        "folder-serving-benchmark/README.md",
+        "folder-serving-benchmark/run_bench.py"
       ]
     },
     {
@@ -226,7 +226,7 @@
         "png-error-dialog",
         "md-weekly-review",
         "md-mnismt-design",
-        "?"
+        "folder-serving-benchmark/README.md"
       ]
     },
     {
@@ -258,9 +258,9 @@
         "url-gh-minimax-m1",
         "md-mnismt-design",
         "md-inference-providers",
-        "?",
+        "folder-serving-benchmark/results.csv",
         "md-weekly-review",
-        "?"
+        "folder-serving-benchmark/run_bench.py"
       ]
     },
     {
@@ -271,9 +271,9 @@
         "pdf-paged-attention",
         "pdf-react",
         "md-inference-providers",
-        "?",
-        "?",
-        "?",
+        "folder-serving-benchmark/notes.txt",
+        "folder-serving-benchmark/README.md",
+        "folder-serving-benchmark/prompts.jsonl",
         "md-weekly-review",
         "png-pricing-page",
         "url-gh-vllm",
@@ -286,10 +286,10 @@
       "k": 3,
       "ranked": [
         "md-weekly-review",
-        "?",
+        "folder-serving-benchmark/README.md",
         "md-inference-providers",
-        "?",
-        "?"
+        "folder-serving-benchmark/config.yaml",
+        "folder-serving-benchmark/run_bench.py"
       ]
     },
     {
@@ -316,7 +316,7 @@
         "url-gh-vllm",
         "pdf-react",
         "folder-serving-benchmark",
-        "?",
+        "folder-serving-benchmark/prompts.jsonl",
         "md-mnismt-design",
         "pdf-paged-attention"
       ]
