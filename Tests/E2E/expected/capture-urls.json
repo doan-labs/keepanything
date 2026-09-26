@@ -1,0 +1,460 @@
+{
+  "name": "capture-urls",
+  "runsOn": "macos",
+  "ai": "mock",
+  "embeddings": "hash",
+  "steps": [
+    {
+      "op": "capture.url",
+      "input": {
+        "url": "{fixture}/article.html"
+      },
+      "result": {
+        "ok": true,
+        "data": {
+          "items": [
+            {
+              "id": "item-2",
+              "status": "created",
+              "title": "article · fixture"
+            }
+          ],
+          "batchId": "item-1"
+        }
+      }
+    },
+    {
+      "op": "capture.url",
+      "input": {
+        "url": "{fixture}/arxiv-abs.html"
+      },
+      "result": {
+        "ok": true,
+        "data": {
+          "items": [
+            {
+              "id": "item-4",
+              "status": "created",
+              "title": "arxiv abs · fixture"
+            }
+          ],
+          "batchId": "item-3"
+        }
+      }
+    },
+    {
+      "op": "settle",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": null
+      }
+    },
+    {
+      "op": "snapshot",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": null
+      }
+    }
+  ],
+  "results": [
+    {
+      "items": [
+        {
+          "id": "item-2",
+          "type": "url",
+          "subtype": "article",
+          "kind": "article",
+          "title": "Continuous batching for LLM inference",
+          "original_path": null,
+          "managed_path": null,
+          "url": "http://fixture/article.html",
+          "canonical_url": "https://fixture/article.html",
+          "domain": "fixture",
+          "mime_type": null,
+          "size": null,
+          "content_hash": null,
+          "width": null,
+          "height": null,
+          "duration_ms": null,
+          "page_count": null,
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "captured_at": "2026-09-01T00:00:01.000Z",
+          "modified_at": "2026-09-01T00:00:03.000Z",
+          "last_kept_at": "2026-09-01T00:00:01.000Z",
+          "capture_batch_id": "item-1",
+          "processing_status": "READY",
+          "processing_error": null,
+          "understanding": "Article titled \"Continuous batching for LLM inference\". By Ada Example · 14 March 2026\nStatic batching groups requests that arrive within a window and runs them together until every sequence has finished.",
+          "why_useful": "Worth keeping as a article reference on batching; reach for it when that comes up again.",
+          "topics": "[\"batching\",\"continuous\",\"batch\",\"time\",\"requests\",\"every\"]",
+          "entities": "[\"Continuous\",\"LLM\",\"By Ada Example\",\"March\",\"Static\",\"GPU\",\"Switching\",\"Memory\"]",
+          "vision_text": null,
+          "retrieval_hints": "[\"continuous batching for llm inference\",\"article about batching\",\"fixture\",\"batching continuous\"]",
+          "suggested_actions": "[]",
+          "ai_confidence": 0.7000000000000001,
+          "metadata": "{\"source\":\"paste\",\"urlKind\":\"generic\",\"og\":{\"title\":\"Continuous batching for LLM inference\",\"description\":\"How continuous batching raises throughput for large language model serving, with measurements against static batching.\",\"image\":\"{fixture}/images/batching-hero.png\",\"siteName\":\"Example Engineering\",\"type\":\"article\",\"canonical\":\"https://blog.example.com/posts/continuous-batching/\"},\"finalUrl\":\"{fixture}/article.html\",\"fetchedVia\":\"fetch\",\"readableChars\":1981,\"description\":\"How continuous batching raises throughput for large language model serving, with measurements against static batching.\",\"siteName\":\"Example Engineering\",\"favicon\":\"{fixture}/apple-touch-icon.png\",\"publishedAt\":\"2026-03-14T09:30:00.000Z\",\"byline\":\"Ada Example\",\"lang\":\"en\",\"extractor\":\"url\",\"content\":{\"path\":\"item-2.md\",\"hash\":\"e8e7b45901180e6dd813001b288439193e976a4b8f37646f4af01dec6bd4c5c3\",\"chars\":2041,\"kind\":\"markdown\"},\"truncated\":false}",
+          "extracted_text": "By Ada Example · 14 March 2026\nStatic batching groups requests that arrive within a window and runs them together until every sequence has finished. The problem is that sequences finish at very different times: a short answer is done after twenty tokens while a long one keeps the whole batch alive for hundreds of steps. During that time the finished slots sit idle and the GPU runs well below its capacity.\nContinuous batching, sometimes called iteration-level scheduling, changes the unit of work from a batch to a single decode step. After every step the scheduler looks at the batch again: finished sequences leave, and waiting requests take their place immediately instead of waiting for the next window. The batch is therefore always as full as memory allows.\nWhat we measured\nWe replayed two thousand production requests against the same model on one GPU. With static batching we saw a median of 410 tokens per second and a p95 time to first token of 2.9 seconds. Switching to continuous batching raised throughput to 1,480 tokens per second, a 3.6× improvement, and brought p95 time to first token down to 0.7 seconds. Memory use was higher because the scheduler keeps more sequences resident, which is where paged attention becomes important.\npython run_bench.py --scheduler continuous --concurrency 64\nWhere it does not help\nIf every request has the same length, the idle-slot problem disappears and both strategies perform similarly. Very small models are also often bandwidth bound in ways that batching cannot fix. In practice production traffic is bursty and heterogeneous, so continuous batching is the safer default for any serving stack that is not latency bound at batch size one.\nUse continuous batching whenever request lengths vary.\nPair it with paged KV-cache management to avoid fragmentation.\nMeasure p95 time to first token, not just aggregate throughput.\nFurther reading: the PagedAttention paper covers the memory side of the same problem in depth.",
+          "excerpt": "How continuous batching raises throughput for large language model serving, with measurements against static batching.",
+          "thumbnail_path": null,
+          "snapshot_path": null,
+          "favicon_path": null,
+          "dominant_color": null,
+          "media_version": 1,
+          "parent_item_id": null,
+          "user_overrides": "{}",
+          "is_missing": 0,
+          "missing_checked_at": null,
+          "deleted_at": null
+        },
+        {
+          "id": "item-4",
+          "type": "url",
+          "subtype": "generic",
+          "kind": "article",
+          "title": "[2309.06180] Efficient Memory Management for Large Language Model Serving with PagedAttention",
+          "original_path": null,
+          "managed_path": null,
+          "url": "http://fixture/arxiv-abs.html",
+          "canonical_url": "https://fixture/arxiv-abs.html",
+          "domain": "fixture",
+          "mime_type": null,
+          "size": null,
+          "content_hash": null,
+          "width": null,
+          "height": null,
+          "duration_ms": null,
+          "page_count": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "captured_at": "2026-09-01T00:00:02.000Z",
+          "modified_at": "2026-09-01T00:00:03.000Z",
+          "last_kept_at": "2026-09-01T00:00:02.000Z",
+          "capture_batch_id": "item-3",
+          "processing_status": "READY",
+          "processing_error": null,
+          "understanding": "Article titled \"[2309.06180] Efficient Memory Management for Large Language Model Serving with PagedAttention\". Subjects:Machine Learning (cs.LG); Distributed, Parallel, and Cluster Computing (cs.DC)",
+          "why_useful": "Worth keeping as a article reference on 2309.06180; reach for it when that comes up again.",
+          "topics": "[\"2309.06180\",\"efficient\",\"memory\",\"management\",\"large\",\"language\"]",
+          "entities": "[\"Efficient Memory Management\",\"Large Language Model Serving\",\"PagedAttention\",\"Subjects\",\"Machine Learning\",\"Distributed\",\"Parallel\",\"Cluster Computing\"]",
+          "vision_text": null,
+          "retrieval_hints": "[\"[2309.06180] efficient memory management for large language model serving with pagedattention\",\"article about 2309.06180\",\"fixture\",\"2309.06180 efficient\"]",
+          "suggested_actions": "[]",
+          "ai_confidence": 0.6000000000000001,
+          "metadata": "{\"source\":\"paste\",\"urlKind\":\"generic\",\"og\":{\"title\":\"[2309.06180] Efficient Memory Management for Large Language Model Serving with PagedAttention\",\"siteName\":\"arXiv.org\"},\"finalUrl\":\"{fixture}/arxiv-abs.html\",\"fetchedVia\":\"fetch\",\"readableChars\":87,\"siteName\":\"arXiv.org\",\"favicon\":\"{fixture}/favicon.ico\",\"publishedAt\":\"2023-09-12T07:00:00.000Z\",\"lang\":\"en\",\"extractor\":\"url\",\"content\":{\"path\":\"item-4.md\",\"hash\":\"209f2f7a69507e61e45c11239e96e8c3a82c242d767036a95567ade7fdc11a0f\",\"chars\":87,\"kind\":\"markdown\"},\"truncated\":false}",
+          "extracted_text": "Subjects:Machine Learning (cs.LG); Distributed, Parallel, and Cluster Computing (cs.DC)",
+          "excerpt": "Subjects:Machine Learning (cs.LG); Distributed, Parallel, and Cluster Computing (cs.DC)",
+          "thumbnail_path": null,
+          "snapshot_path": null,
+          "favicon_path": null,
+          "dominant_color": null,
+          "media_version": 1,
+          "parent_item_id": null,
+          "user_overrides": "{}",
+          "is_missing": 0,
+          "missing_checked_at": null,
+          "deleted_at": null
+        }
+      ],
+      "fts": [
+        {
+          "item_id": "item-2",
+          "title": "Continuous batching for LLM inference",
+          "retrieval_hints": "continuous batching for llm inference article about batching fixture batching continuous",
+          "topics": "batching continuous batch time requests every",
+          "entities": "Continuous LLM By Ada Example March Static GPU Switching Memory",
+          "understanding": "Article titled \"Continuous batching for LLM inference\". By Ada Example · 14 March 2026\nStatic batching groups requests that arrive within a window and runs them together until every sequence has finished.",
+          "why_useful": "Worth keeping as a article reference on batching; reach for it when that comes up again.",
+          "vision_text": "",
+          "meta_text": "How continuous batching raises throughput for large language model serving, with measurements against static batching. Example Engineering Continuous batching for LLM inference How continuous batching raises throughput for large language model serving, with measurements against static batching. Example Engineering",
+          "extracted_text": "By Ada Example · 14 March 2026\nStatic batching groups requests that arrive within a window and runs them together until every sequence has finished. The problem is that sequences finish at very different times: a short answer is done after twenty tokens while a long one keeps the whole batch alive for hundreds of steps. During that time the finished slots sit idle and the GPU runs well below its capacity.\nContinuous batching, sometimes called iteration-level scheduling, changes the unit of work from a batch to a single decode step. After every step the scheduler looks at the batch again: finished sequences leave, and waiting requests take their place immediately instead of waiting for the next window. The batch is therefore always as full as memory allows.\nWhat we measured\nWe replayed two thousand production requests against the same model on one GPU. With static batching we saw a median of 410 tokens per second and a p95 time to first token of 2.9 seconds. Switching to continuous batching raised throughput to 1,480 tokens per second, a 3.6× improvement, and brought p95 time to first token down to 0.7 seconds. Memory use was higher because the scheduler keeps more sequences resident, which is where paged attention becomes important.\npython run_bench.py --scheduler continuous --concurrency 64\nWhere it does not help\nIf every request has the same length, the idle-slot problem disappears and both strategies perform similarly. Very small models are also often bandwidth bound in ways that batching cannot fix. In practice production traffic is bursty and heterogeneous, so continuous batching is the safer default for any serving stack that is not latency bound at batch size one.\nUse continuous batching whenever request lengths vary.\nPair it with paged KV-cache management to avoid fragmentation.\nMeasure p95 time to first token, not just aggregate throughput.\nFurther reading: the PagedAttention paper covers the memory side of the same problem in depth.",
+          "domain": "fixture",
+          "kind": "article"
+        },
+        {
+          "item_id": "item-4",
+          "title": "[2309.06180] Efficient Memory Management for Large Language Model Serving with PagedAttention",
+          "retrieval_hints": "[2309.06180] efficient memory management for large language model serving with pagedattention article about 2309.06180 fixture 2309.06180 efficient",
+          "topics": "2309.06180 efficient memory management large language",
+          "entities": "Efficient Memory Management Large Language Model Serving PagedAttention Subjects Machine Learning Distributed Parallel Cluster Computing",
+          "understanding": "Article titled \"[2309.06180] Efficient Memory Management for Large Language Model Serving with PagedAttention\". Subjects:Machine Learning (cs.LG); Distributed, Parallel, and Cluster Computing (cs.DC)",
+          "why_useful": "Worth keeping as a article reference on 2309.06180; reach for it when that comes up again.",
+          "vision_text": "",
+          "meta_text": "arXiv.org [2309.06180] Efficient Memory Management for Large Language Model Serving with PagedAttention arXiv.org",
+          "extracted_text": "Subjects:Machine Learning (cs.LG); Distributed, Parallel, and Cluster Computing (cs.DC)",
+          "domain": "fixture",
+          "kind": "article"
+        }
+      ],
+      "collections": [],
+      "collectionItems": [],
+      "relationships": [],
+      "suppressions": [],
+      "audit": [],
+      "agentRuns": [
+        {
+          "id": "uuid-1",
+          "item_id": "item-2",
+          "batch_id": null,
+          "task": "understand",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:03.000Z",
+          "completed_at": "2026-09-01T00:00:03.000Z",
+          "steps": "[{\"tool\":\"inspect_item\",\"kind\":\"inspect\",\"label\":\"Reading \\\"Continuous batching for LLM inference\\\"\",\"itemIds\":[\"item-2\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"understand\",\"itemId\":\"item-2\",\"understanding\":{\"kind\":\"article\",\"title\":\"Continuous batching for LLM inference\",\"summary\":\"Article titled \\\"Continuous batching for LLM inference\\\". By Ada Example · 14 March 2026\\nStatic batching groups requests that arrive within a window and runs them together until every sequence has finished.\",\"whyUseful\":\"Worth keeping as a article reference on batching; reach for it when that comes up again.\",\"topics\":[\"batching\",\"continuous\",\"batch\",\"time\",\"requests\",\"every\"],\"entities\":[\"Continuous\",\"LLM\",\"By Ada Example\",\"March\",\"Static\",\"GPU\",\"Switching\",\"Memory\"],\"retrievalHints\":[\"continuous batching for llm inference\",\"article about batching\",\"fixture\",\"batching continuous\"],\"confidence\":0.7000000000000001},\"skippedFields\":[]}",
+          "error": null,
+          "usage": "{\"promptTokens\":1742,\"completionTokens\":175,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-2",
+          "item_id": "item-4",
+          "batch_id": null,
+          "task": "understand",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:03.000Z",
+          "completed_at": "2026-09-01T00:00:03.000Z",
+          "steps": "[{\"tool\":\"inspect_item\",\"kind\":\"inspect\",\"label\":\"Reading \\\"[2309.06180] Efficient Memory Management for Large Language Model Serving with PagedAttention\\\"\",\"itemIds\":[\"item-4\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"understand\",\"itemId\":\"item-4\",\"understanding\":{\"kind\":\"article\",\"title\":\"[2309.06180] Efficient Memory Management for Large Language Model Serving with PagedAttention\",\"summary\":\"Article titled \\\"[2309.06180] Efficient Memory Management for Large Language Model Serving with PagedAttention\\\". Subjects:Machine Learning (cs.LG); Distributed, Parallel, and Cluster Computing (cs.DC)\",\"whyUseful\":\"Worth keeping as a article reference on 2309.06180; reach for it when that comes up again.\",\"topics\":[\"2309.06180\",\"efficient\",\"memory\",\"management\",\"large\",\"language\"],\"entities\":[\"Efficient Memory Management\",\"Large Language Model Serving\",\"PagedAttention\",\"Subjects\",\"Machine Learning\",\"Distributed\",\"Parallel\",\"Cluster Computing\"],\"retrievalHints\":[\"[2309.06180] efficient memory management for large language model serving with pagedattention\",\"article about 2309.06180\",\"fixture\",\"2309.06180 efficient\"],\"confidence\":0.6000000000000001},\"skippedFields\":[]}",
+          "error": null,
+          "usage": "{\"promptTokens\":1190,\"completionTokens\":223,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-3",
+          "item_id": "item-2",
+          "batch_id": null,
+          "task": "organize",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:03.000Z",
+          "completed_at": "2026-09-01T00:00:03.000Z",
+          "steps": "[{\"tool\":\"find_candidates\",\"kind\":\"search\",\"label\":\"Checking 1 similar things\",\"itemIds\":[\"item-4\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"organize\",\"itemId\":\"item-2\",\"relationshipIds\":[],\"collectionIds\":[],\"summary\":\"Linked to 1 thing.\"}",
+          "error": null,
+          "usage": "{\"promptTokens\":1871,\"completionTokens\":66,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-4",
+          "item_id": "item-4",
+          "batch_id": null,
+          "task": "organize",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:03.000Z",
+          "completed_at": "2026-09-01T00:00:03.000Z",
+          "steps": "[{\"tool\":\"find_candidates\",\"kind\":\"search\",\"label\":\"Checking 1 similar things\",\"itemIds\":[\"item-2\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"organize\",\"itemId\":\"item-4\",\"relationshipIds\":[],\"collectionIds\":[],\"summary\":\"Linked to 1 thing.\"}",
+          "error": null,
+          "usage": "{\"promptTokens\":1888,\"completionTokens\":66,\"calls\":1,\"latencyMs\":0}"
+        }
+      ],
+      "jobs": [
+        {
+          "id": "job-1",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "extract",
+          "lane": "io",
+          "priority": 25,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "updated_at": "2026-09-01T00:00:03.000Z"
+        },
+        {
+          "id": "job-10",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "relate",
+          "lane": "ai",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "updated_at": "2026-09-01T00:00:03.000Z"
+        },
+        {
+          "id": "job-11",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "index",
+          "lane": "embed",
+          "priority": 20,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "updated_at": "2026-09-01T00:00:03.000Z"
+        },
+        {
+          "id": "job-12",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "relate",
+          "lane": "ai",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "updated_at": "2026-09-01T00:00:03.000Z"
+        },
+        {
+          "id": "job-2",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "snapshot",
+          "lane": "io",
+          "priority": 15,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": "Snapshot failed",
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "updated_at": "2026-09-01T00:00:03.000Z"
+        },
+        {
+          "id": "job-3",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "extract",
+          "lane": "io",
+          "priority": 25,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": "Only 87 readable characters",
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:03.000Z"
+        },
+        {
+          "id": "job-4",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "snapshot",
+          "lane": "io",
+          "priority": 15,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": "Snapshot failed",
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:03.000Z"
+        },
+        {
+          "id": "job-5",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "embed",
+          "lane": "embed",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "updated_at": "2026-09-01T00:00:03.000Z"
+        },
+        {
+          "id": "job-6",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "understand",
+          "lane": "ai",
+          "priority": 30,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "updated_at": "2026-09-01T00:00:03.000Z"
+        },
+        {
+          "id": "job-7",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "embed",
+          "lane": "embed",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "updated_at": "2026-09-01T00:00:03.000Z"
+        },
+        {
+          "id": "job-8",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "understand",
+          "lane": "ai",
+          "priority": 30,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "updated_at": "2026-09-01T00:00:03.000Z"
+        },
+        {
+          "id": "job-9",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "index",
+          "lane": "embed",
+          "priority": 20,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "updated_at": "2026-09-01T00:00:03.000Z"
+        }
+      ],
+      "settings": {
+        "aiMode": "mock",
+        "provider": "gmi",
+        "model": "MiniMaxAI/MiniMax-M3",
+        "baseUrl": "https://api.gmi-serving.com/v1",
+        "hasApiKey": true,
+        "apiKeyMasked": "sce…-key",
+        "importMode": "copy",
+        "theme": "system",
+        "libraryPath": "{library}",
+        "embeddings": {
+          "provider": "none",
+          "modelPresent": false,
+          "dims": 384
+        }
+      },
+      "thumbnailCalls": [],
+      "snapshotCalls": [
+        {
+          "url": "http://fixture/article.html",
+          "out": "{library}/snapshots/item-2.png"
+        },
+        {
+          "url": "http://fixture/arxiv-abs.html",
+          "out": "{library}/snapshots/item-4.png"
+        }
+      ],
+      "fetchCalls": [
+        {
+          "op": "fetchDom",
+          "url": "http://fixture/arxiv-abs.html"
+        }
+      ],
+      "desktopCalls": [],
+      "pushes": []
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "understand-organize",
+  "runs_on": "linux",
+  "ai": "mock",
+  "embeddings": "hash",
+  "steps": [
+    {
+      "op": "capture.files",
+      "paths": [
+        "notes/inference-providers-notes.md",
+        "notes/weekly-review-2026-08-28.md"
+      ]
+    },
+    {
+      "op": "capture.text",
+      "text": "Compare GMI Cloud and OpenRouter pricing for MiniMax-M3."
+    },
+    {
+      "op": "settle"
+    },
+    {
+      "op": "items.list",
+      "view": "library"
+    },
+    {
+      "op": "collections.list"
+    },
+    {
+      "op": "snapshot"
+    }
+  ]
+}

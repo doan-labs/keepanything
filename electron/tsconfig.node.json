@@ -23,6 +23,7 @@
     "src/preload/**/*.ts",
     "src/shared/**/*.ts",
     "tests/unit/**/*.ts",
-    "tests/parity/**/*.ts"
+    "tests/parity/**/*.ts",
+    "tests/scenarios/**/*.ts"
   ]
 }

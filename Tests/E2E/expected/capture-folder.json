@@ -1,0 +1,228 @@
+{
+  "name": "capture-folder",
+  "runsOn": "linux",
+  "ai": "mock",
+  "embeddings": "hash",
+  "steps": [
+    {
+      "op": "capture.files",
+      "input": {
+        "paths": [
+          "folder-serving-benchmark"
+        ]
+      },
+      "result": {
+        "ok": true,
+        "data": {
+          "items": [
+            {
+              "id": "item-2",
+              "status": "created",
+              "title": "folder-serving-benchmark"
+            }
+          ],
+          "batchId": "item-1"
+        }
+      }
+    },
+    {
+      "op": "settle",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": null
+      }
+    },
+    {
+      "op": "snapshot",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": null
+      }
+    }
+  ],
+  "results": [
+    {
+      "items": [
+        {
+          "id": "item-2",
+          "type": "folder",
+          "subtype": null,
+          "kind": "other",
+          "title": "folder-serving-benchmark",
+          "original_path": "{corpus}/folder-serving-benchmark",
+          "managed_path": null,
+          "url": null,
+          "canonical_url": null,
+          "domain": null,
+          "mime_type": null,
+          "size": 4425,
+          "content_hash": null,
+          "width": null,
+          "height": null,
+          "duration_ms": null,
+          "page_count": null,
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "captured_at": "2026-09-01T00:00:01.000Z",
+          "modified_at": "2026-09-01T00:00:02.000Z",
+          "last_kept_at": "2026-09-01T00:00:01.000Z",
+          "capture_batch_id": "item-1",
+          "processing_status": "READY",
+          "processing_error": null,
+          "understanding": "Other titled \"folder-serving-benchmark\".",
+          "why_useful": "Worth keeping as a other reference on folder-serving-benchmark; reach for it when that comes up again.",
+          "topics": "[\"folder-serving-benchmark\"]",
+          "entities": "[]",
+          "vision_text": null,
+          "retrieval_hints": "[\"folder-serving-benchmark\",\"other about folder-serving-benchmark\"]",
+          "suggested_actions": "[]",
+          "ai_confidence": 0.55,
+          "metadata": "{\"originalName\":\"folder-serving-benchmark\",\"source\":\"dialog\",\"folder\":{\"fileCount\":6,\"dirCount\":0,\"totalBytes\":4425,\"truncated\":false,\"extensions\":{\"yaml\":1,\"txt\":1,\"jsonl\":1,\"md\":1,\"csv\":1,\"py\":1},\"sampledFiles\":[\"README.md\",\"notes.txt\",\"config.yaml\",\"prompts.jsonl\",\"results.csv\",\"run_bench.py\"],\"tree\":\"folder-serving-benchmark/\\n  config.yaml\\n  notes.txt\\n  prompts.jsonl\\n  README.md\\n  results.csv\\n  run_bench.py\",\"purpose\":\"A folder named \\\"folder-serving-benchmark\\\".\",\"keyFiles\":[]},\"topLevel\":[{\"name\":\"config.yaml\",\"kind\":\"file\",\"size\":246},{\"name\":\"notes.txt\",\"kind\":\"file\",\"size\":562},{\"name\":\"prompts.jsonl\",\"kind\":\"file\",\"size\":1062},{\"name\":\"README.md\",\"kind\":\"file\",\"size\":571},{\"name\":\"results.csv\",\"kind\":\"file\",\"size\":335},{\"name\":\"run_bench.py\",\"kind\":\"file\",\"size\":1649}],\"description\":\"serving-benchmark Small reproducible load test for comparing LLM serving configurations on one GPU. Runs a fixed 2,000-request replay set against an OpenAI-compatible endpoint and records throughput (tokens/s), time-to-first-token and p95 latency. Files: runbench.py — the load generator (asyncio + httpx). config.yaml — endpoint, concurrency, prompt mix. results.csv — last run's per-configuration summary. notes.txt — what changed between runs. prompts.jsonl — 20 sample prompts from the replay se…\",\"readmeTitle\":\"serving-benchmark\",\"extractor\":\"folder\",\"content\":{\"path\":\"item-2.md\",\"hash\":\"a76e33770e6d7fe480fd210a50f69f6125008f0fd11e3fa3ce432425e80d4d87\",\"chars\":561,\"kind\":\"markdown\"},\"truncated\":false}",
+          "extracted_text": "Folder: folder-serving-benchmark\n\nfolder-serving-benchmark/\n  config.yaml\n  notes.txt\n  prompts.jsonl\n  README.md\n  results.csv\n  run_bench.py\n\n--- README.md ---\n# serving-benchmark\n\nSmall reproducible load test for comparing LLM serving configurations on one GPU.\nRuns a fixed 2,000-request replay set against an OpenAI-compatible endpoint and records\nthroughput (tokens/s), time-to-first-token and p95 latency.\n\nFiles:\n\n- `run_bench.py` — the load generator (asyncio + httpx).\n- `config.yaml` — endpoint, concurrency, prompt mix.\n- `results.csv` — last run's per-configuration summary.\n- `notes.txt` — what changed between runs.\n- `prompts.jsonl` — 20 sample prompts from the replay set (the full set is not checked in).\n\n\n--- notes.txt ---\nRun log\n\nrun 1  baseline: HF generate with static batches of 8. GPU util hovered around 55%.\nrun 2  switched to vLLM with continuous batching, no paging. Big TTFT win, some OOM at 60 concurrent.\nrun 3  paged KV cache, block size 16. Throughput up 3x vs baseline; no OOM at 60.\nrun 4  block size 24 (what the week-9 incident review recommended). Marginal.\nrun 5  enabled prefix caching; all prompts share the same 180-token system prompt so TTFT dropped a lot.\n\nNext: try speculative decoding with a 1B draft model; measure acceptance rate on the medium prompts.\n\n\n--- config.yaml ---\nendpoint: http://localhost:8000/v1\nmodel: meta-llama/Llama-3.1-8B-Instruct\nconcurrency: 40\nmax_tokens: 256\nprompt_mix:\n  short: 0.6   # < 200 tokens\n  medium: 0.3  # 200-1000 tokens\n  long: 0.1    # 1000-4000 tokens\nreplay_set: replay-2000.jsonl\n\n\n--- prompts.jsonl ---\n{\"id\": 1, \"bucket\": \"short\", \"prompt\": \"Explain paged attention in two sentences.\"}\n{\"id\": 2, \"bucket\": \"short\", \"prompt\": \"What is continuous batching?\"}\n{\"id\": 3, \"bucket\": \"short\", \"prompt\": \"List three ways to reduce time to first token.\"}\n{\"id\": 4, \"bucket\": \"medium\", \"prompt\": \"Compare static batching and continuous batching for an LLM serving system handling a mix of short and long prompts. Discuss GPU utilisation, latency and memory.\"}\n{\"id\": 5, \"bucket\": \"medium\", \"prompt\": \"Write a short runbook entry describing what to check when p95 latency exceeds 800 ms on the inference cluster.\"}\n{\"id\": 6, \"bucket\": \"long\", \"prompt\": \"You are reviewing an incident where the KV-cache block size was changed from 16 to 24 tokens. Write a detailed post-mortem template with sections for timeline, impact, root cause, and action items, then fill it with plausible content.\"}\n{\"id\": 7, \"bucket\": \"short\", \"prompt\": \"Define speculative decoding.\"}\n{\"id\": 8, \"bucket\": \"short\", \"prompt\": \"Why does prefix caching help when every prompt shares a system prompt?\"}\n\n\n--- results.csv ---\nrun,scheduler,kv_cache,block_size,concurrency,tokens_per_s,ttft_p50_ms,p95_latency_s\n1,static-batching,contiguous,-,40,410,910,6.8\n2,continuous-batching,contiguous,-,40,790,520,3.9\n3,continuous-batching,paged,16,40,1180,340,2.6\n4,continuous-batching,paged,24,40,1195,335,2.5\n5,continuous-batching,paged+prefix-cache,24,40,1310,210,2.3\n\n\n--- run_bench.py ---\n\"\"\"Replay a fixed prompt set against an OpenAI-compatible chat endpoint and measure serving metrics.\"\"\"\nimport asyncio\nimport json\nimport statistics\nimport time\n\nimport httpx\nimport yaml\n\n\nasync def one(client, cfg, prompt):\n    t0 = time.perf_counter()\n    first = None\n    tokens = 0\n    async with client.stream(\n        \"POST\",\n        f\"{cfg['endpoint']}/chat/completions\",\n        json={\"model\": cfg[\"model\"], \"messages\": [{\"role\": \"user\", \"content\": prompt}], \"stream\": True, \"max_tokens\": cfg[\"max_tokens\"]},\n    ) as r:\n        async for line in r.aiter_lines():\n            if not line.startswith(\"data:\") or line.endswith(\"[DONE]\"):\n                continue\n            if first is None:\n                first = time.perf_counter() - t0\n            tokens += 1\n    return {\"ttft\": first, \"latency\": time.perf_counter() - t0, \"tokens\": tokens}\n\n\nasync def main():\n    cfg = yaml.safe_load(open(\"config.yaml\"))\n    prompts = [json.loads(l)[\"prompt\"] for l in open(\"prompts.jsonl\")]\n    sem = asyncio.Semaphore(cfg[\"concurrency\"])\n    async with httpx.AsyncClient(timeout=120) as client:\n        async def guarded(p):\n            async with sem:\n                return await one(client, cfg, p)\n        t0 = time.perf_counter()\n        results = await asyncio.gather(*(guarded(p) for p in prompts))\n        wall = time.perf_counter() - t0\n    toks = sum(r[\"tokens\"] for r in results)\n    lat = sorted(r[\"latency\"] for r in results)\n    print(f\"tokens/s={toks / wall:.0f} ttft_p50={statistics.median(r['ttft'] for r in results) * 1000:.0f}ms p95_latency={lat[int(len(lat) * 0.95)]:.2f}s\")\n\n\nif __name__ == \"__main__\":\n    asyncio.run(main())\n",
+          "excerpt": "serving-benchmark Small reproducible load test for comparing LLM serving configurations on one GPU. Runs a fixed 2,000-request replay set against an OpenAI-compatible endpoint and records throughput (tokens/s), time-to-first-token and p95 latency. Files: runbench.py — the load g…",
+          "thumbnail_path": null,
+          "snapshot_path": null,
+          "favicon_path": null,
+          "dominant_color": null,
+          "media_version": 1,
+          "parent_item_id": null,
+          "user_overrides": "{}",
+          "is_missing": 0,
+          "missing_checked_at": null,
+          "deleted_at": null
+        }
+      ],
+      "fts": [
+        {
+          "item_id": "item-2",
+          "title": "folder-serving-benchmark",
+          "retrieval_hints": "folder-serving-benchmark other about folder-serving-benchmark",
+          "topics": "folder-serving-benchmark",
+          "entities": "",
+          "understanding": "Other titled \"folder-serving-benchmark\".",
+          "why_useful": "Worth keeping as a other reference on folder-serving-benchmark; reach for it when that comes up again.",
+          "vision_text": "",
+          "meta_text": "serving-benchmark Small reproducible load test for comparing LLM serving configurations on one GPU. Runs a fixed 2,000-request replay set against an OpenAI-compatible endpoint and records throughput (tokens/s), time-to-first-token and p95 latency. Files: runbench.py — the load generator (asyncio + httpx). config.yaml — endpoint, concurrency, prompt mix. results.csv — last run's per-configuration summary. notes.txt — what changed between runs. prompts.jsonl — 20 sample prompts from the replay se… folder-serving-benchmark yaml txt jsonl md csv py",
+          "extracted_text": "Folder: folder-serving-benchmark\n\nfolder-serving-benchmark/\n  config.yaml\n  notes.txt\n  prompts.jsonl\n  README.md\n  results.csv\n  run_bench.py\n\n--- README.md ---\n# serving-benchmark\n\nSmall reproducible load test for comparing LLM serving configurations on one GPU.\nRuns a fixed 2,000-request replay set against an OpenAI-compatible endpoint and records\nthroughput (tokens/s), time-to-first-token and p95 latency.\n\nFiles:\n\n- `run_bench.py` — the load generator (asyncio + httpx).\n- `config.yaml` — endpoint, concurrency, prompt mix.\n- `results.csv` — last run's per-configuration summary.\n- `notes.txt` — what changed between runs.\n- `prompts.jsonl` — 20 sample prompts from the replay set (the full set is not checked in).\n\n\n--- notes.txt ---\nRun log\n\nrun 1  baseline: HF generate with static batches of 8. GPU util hovered around 55%.\nrun 2  switched to vLLM with continuous batching, no paging. Big TTFT win, some OOM at 60 concurrent.\nrun 3  paged KV cache, block size 16. Throughput up 3x vs baseline; no OOM at 60.\nrun 4  block size 24 (what the week-9 incident review recommended). Marginal.\nrun 5  enabled prefix caching; all prompts share the same 180-token system prompt so TTFT dropped a lot.\n\nNext: try speculative decoding with a 1B draft model; measure acceptance rate on the medium prompts.\n\n\n--- config.yaml ---\nendpoint: http://localhost:8000/v1\nmodel: meta-llama/Llama-3.1-8B-Instruct\nconcurrency: 40\nmax_tokens: 256\nprompt_mix:\n  short: 0.6   # < 200 tokens\n  medium: 0.3  # 200-1000 tokens\n  long: 0.1    # 1000-4000 tokens\nreplay_set: replay-2000.jsonl\n\n\n--- prompts.jsonl ---\n{\"id\": 1, \"bucket\": \"short\", \"prompt\": \"Explain paged attention in two sentences.\"}\n{\"id\": 2, \"bucket\": \"short\", \"prompt\": \"What is continuous batching?\"}\n{\"id\": 3, \"bucket\": \"short\", \"prompt\": \"List three ways to reduce time to first token.\"}\n{\"id\": 4, \"bucket\": \"medium\", \"prompt\": \"Compare static batching and continuous batching for an LLM serving system handling a mix of short and long prompts. Discuss GPU utilisation, latency and memory.\"}\n{\"id\": 5, \"bucket\": \"medium\", \"prompt\": \"Write a short runbook entry describing what to check when p95 latency exceeds 800 ms on the inference cluster.\"}\n{\"id\": 6, \"bucket\": \"long\", \"prompt\": \"You are reviewing an incident where the KV-cache block size was changed from 16 to 24 tokens. Write a detailed post-mortem template with sections for timeline, impact, root cause, and action items, then fill it with plausible content.\"}\n{\"id\": 7, \"bucket\": \"short\", \"prompt\": \"Define speculative decoding.\"}\n{\"id\": 8, \"bucket\": \"short\", \"prompt\": \"Why does prefix caching help when every prompt shares a system prompt?\"}\n\n\n--- results.csv ---\nrun,scheduler,kv_cache,block_size,concurrency,tokens_per_s,ttft_p50_ms,p95_latency_s\n1,static-batching,contiguous,-,40,410,910,6.8\n2,continuous-batching,contiguous,-,40,790,520,3.9\n3,continuous-batching,paged,16,40,1180,340,2.6\n4,continuous-batching,paged,24,40,1195,335,2.5\n5,continuous-batching,paged+prefix-cache,24,40,1310,210,2.3\n\n\n--- run_bench.py ---\n\"\"\"Replay a fixed prompt set against an OpenAI-compatible chat endpoint and measure serving metrics.\"\"\"\nimport asyncio\nimport json\nimport statistics\nimport time\n\nimport httpx\nimport yaml\n\n\nasync def one(client, cfg, prompt):\n    t0 = time.perf_counter()\n    first = None\n    tokens = 0\n    async with client.stream(\n        \"POST\",\n        f\"{cfg['endpoint']}/chat/completions\",\n        json={\"model\": cfg[\"model\"], \"messages\": [{\"role\": \"user\", \"content\": prompt}], \"stream\": True, \"max_tokens\": cfg[\"max_tokens\"]},\n    ) as r:\n        async for line in r.aiter_lines():\n            if not line.startswith(\"data:\") or line.endswith(\"[DONE]\"):\n                continue\n            if first is None:\n                first = time.perf_counter() - t0\n            tokens += 1\n    return {\"ttft\": first, \"latency\": time.perf_counter() - t0, \"tokens\": tokens}\n\n\nasync def main():\n    cfg = yaml.safe_load(open(\"config.yaml\"))\n    prompts = [json.loads(l)[\"prompt\"] for l in open(\"prompts.jsonl\")]\n    sem = asyncio.Semaphore(cfg[\"concurrency\"])\n    async with httpx.AsyncClient(timeout=120) as client:\n        async def guarded(p):\n            async with sem:\n                return await one(client, cfg, p)\n        t0 = time.perf_counter()\n        results = await asyncio.gather(*(guarded(p) for p in prompts))\n        wall = time.perf_counter() - t0\n    toks = sum(r[\"tokens\"] for r in results)\n    lat = sorted(r[\"latency\"] for r in results)\n    print(f\"tokens/s={toks / wall:.0f} ttft_p50={statistics.median(r['ttft'] for r in results) * 1000:.0f}ms p95_latency={lat[int(len(lat) * 0.95)]:.2f}s\")\n\n\nif __name__ == \"__main__\":\n    asyncio.run(main())\n",
+          "domain": "",
+          "kind": "other"
+        }
+      ],
+      "collections": [],
+      "collectionItems": [],
+      "relationships": [],
+      "suppressions": [],
+      "audit": [],
+      "agentRuns": [
+        {
+          "id": "uuid-1",
+          "item_id": "item-2",
+          "batch_id": null,
+          "task": "folder",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:02.000Z",
+          "completed_at": "2026-09-01T00:00:02.000Z",
+          "steps": "[{\"tool\":\"inspect_folder\",\"kind\":\"inspect\",\"label\":\"Looking through \\\"folder-serving-benchmark\\\"\",\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"folder\",\"itemId\":\"item-2\",\"understanding\":{\"kind\":\"other\",\"title\":\"folder-serving-benchmark\",\"summary\":\"Other titled \\\"folder-serving-benchmark\\\".\",\"whyUseful\":\"Worth keeping as a other reference on folder-serving-benchmark; reach for it when that comes up again.\",\"topics\":[\"folder-serving-benchmark\"],\"entities\":[],\"retrievalHints\":[\"folder-serving-benchmark\",\"other about folder-serving-benchmark\"],\"confidence\":0.55},\"summary\":\"A folder named \\\"folder-serving-benchmark\\\".\"}",
+          "error": null,
+          "usage": "{\"promptTokens\":1411,\"completionTokens\":122,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-2",
+          "item_id": "item-2",
+          "batch_id": null,
+          "task": "organize",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:02.000Z",
+          "completed_at": "2026-09-01T00:00:02.000Z",
+          "steps": "[{\"tool\":\"find_candidates\",\"kind\":\"search\",\"label\":\"Looking for similar things\",\"itemIds\":[],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"organize\",\"itemId\":\"item-2\",\"relationshipIds\":[],\"collectionIds\":[],\"summary\":\"Kept on its own for now; nothing else in the library is about this yet.\"}",
+          "error": null,
+          "usage": null
+        }
+      ],
+      "jobs": [
+        {
+          "id": "job-1",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "extract",
+          "lane": "io",
+          "priority": 25,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        },
+        {
+          "id": "job-2",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "understand",
+          "lane": "ai",
+          "priority": 30,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        },
+        {
+          "id": "job-3",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "index",
+          "lane": "embed",
+          "priority": 20,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        },
+        {
+          "id": "job-4",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "relate",
+          "lane": "ai",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        }
+      ],
+      "settings": {
+        "aiMode": "mock",
+        "provider": "gmi",
+        "model": "MiniMaxAI/MiniMax-M3",
+        "baseUrl": "https://api.gmi-serving.com/v1",
+        "hasApiKey": true,
+        "apiKeyMasked": "sce…-key",
+        "importMode": "copy",
+        "theme": "system",
+        "libraryPath": "{library}",
+        "embeddings": {
+          "provider": "none",
+          "modelPresent": false,
+          "dims": 384
+        }
+      },
+      "thumbnailCalls": [],
+      "snapshotCalls": [],
+      "fetchCalls": [],
+      "desktopCalls": [],
+      "pushes": []
+    }
+  ]
+}

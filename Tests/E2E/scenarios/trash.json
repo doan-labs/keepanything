@@ -1,0 +1,50 @@
+{
+  "name": "trash",
+  "runs_on": "linux",
+  "ai": "mock",
+  "embeddings": "hash",
+  "steps": [
+    {
+      "op": "capture.text",
+      "text": "First throwaway note."
+    },
+    {
+      "op": "capture.text",
+      "text": "Second throwaway note."
+    },
+    {
+      "op": "settle"
+    },
+    {
+      "op": "items.trash",
+      "ids": [
+        "item-2"
+      ]
+    },
+    {
+      "op": "items.list",
+      "view": "trash"
+    },
+    {
+      "op": "items.restore",
+      "ids": [
+        "item-2"
+      ]
+    },
+    {
+      "op": "items.trash",
+      "ids": [
+        "item-2"
+      ]
+    },
+    {
+      "op": "items.deleteForever",
+      "ids": [
+        "item-2"
+      ]
+    },
+    {
+      "op": "snapshot"
+    }
+  ]
+}

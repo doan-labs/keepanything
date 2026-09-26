@@ -1,0 +1,101 @@
+{
+  "name": "schema-guard",
+  "runsOn": "linux",
+  "ai": "mock",
+  "embeddings": "hash",
+  "steps": [
+    {
+      "op": "bump-schema",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": {
+          "path": "{tmp}/ka-scenario-schema-guard-X"
+        }
+      }
+    },
+    {
+      "op": "open-library",
+      "input": {
+        "path": "{prev}"
+      },
+      "result": {
+        "ok": false,
+        "error": {
+          "code": "SCHEMA_TOO_NEW",
+          "message": "library schema version 4 is newer than this app supports (3); update the app"
+        }
+      }
+    },
+    {
+      "op": "hold-lock",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": {
+          "path": "{library}"
+        }
+      }
+    },
+    {
+      "op": "open-library",
+      "input": {
+        "path": "{prev}"
+      },
+      "result": {
+        "ok": true,
+        "data": {
+          "readOnly": false,
+          "owner": {
+            "pid": 0,
+            "app": "electron",
+            "version": "0.0.0",
+            "since": "2026-09-01T00:00:00.000Z"
+          }
+        }
+      }
+    },
+    {
+      "op": "snapshot",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": null
+      }
+    }
+  ],
+  "results": [
+    {
+      "items": [],
+      "fts": [],
+      "collections": [],
+      "collectionItems": [],
+      "relationships": [],
+      "suppressions": [],
+      "audit": [],
+      "agentRuns": [],
+      "jobs": [],
+      "settings": {
+        "aiMode": "mock",
+        "provider": "gmi",
+        "model": "MiniMaxAI/MiniMax-M3",
+        "baseUrl": "https://api.gmi-serving.com/v1",
+        "hasApiKey": true,
+        "apiKeyMasked": "sce…-key",
+        "importMode": "copy",
+        "theme": "system",
+        "libraryPath": "{library}",
+        "embeddings": {
+          "provider": "none",
+          "modelPresent": false,
+          "dims": 384
+        }
+      },
+      "thumbnailCalls": [],
+      "snapshotCalls": [],
+      "fetchCalls": [],
+      "desktopCalls": [],
+      "pushes": []
+    }
+  ]
+}

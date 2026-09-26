@@ -1,0 +1,638 @@
+{
+  "name": "capture-text",
+  "runsOn": "linux",
+  "ai": "mock",
+  "embeddings": "hash",
+  "steps": [
+    {
+      "op": "capture.text",
+      "input": {
+        "text": "Plain note: remember to compare GMI Cloud and OpenRouter pricing for MiniMax-M3."
+      },
+      "result": {
+        "ok": true,
+        "data": {
+          "items": [
+            {
+              "id": "item-2",
+              "status": "created",
+              "title": "Plain note: remember to compare GMI Cloud and OpenRouter pricing for MiniMax-M3."
+            }
+          ],
+          "batchId": "item-1"
+        }
+      }
+    },
+    {
+      "op": "capture.text",
+      "input": {
+        "text": "# Weekly review\n\n- shipped the drag shelf\n- MiniMax-M3 pricing still open\n",
+        "title": "Weekly review 2026-09-01"
+      },
+      "result": {
+        "ok": true,
+        "data": {
+          "items": [
+            {
+              "id": "item-4",
+              "status": "created",
+              "title": "Weekly review 2026-09-01"
+            }
+          ],
+          "batchId": "item-3"
+        }
+      }
+    },
+    {
+      "op": "capture.blob",
+      "input": {
+        "name": "pasted-image.png",
+        "mimeType": "image/png",
+        "bytesBase64": "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAAABLbSncAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAATSURBVBhXY/iPA4YMg2FGKggFAF9hAgOZVagTAAAAAElFTkSuQmCC"
+      },
+      "result": {
+        "ok": true,
+        "data": {
+          "items": [
+            {
+              "id": "item-6",
+              "status": "created",
+              "title": "pasted-image"
+            }
+          ],
+          "batchId": "item-5"
+        }
+      }
+    },
+    {
+      "op": "settle",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": null
+      }
+    },
+    {
+      "op": "snapshot",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": null
+      }
+    }
+  ],
+  "results": [
+    {
+      "items": [
+        {
+          "id": "item-2",
+          "type": "text",
+          "subtype": null,
+          "kind": "article",
+          "title": "Plain note: remember to compare GMI Cloud and OpenRouter pricing for MiniMax-M3.",
+          "original_path": null,
+          "managed_path": "item-2/text.txt",
+          "url": null,
+          "canonical_url": null,
+          "domain": null,
+          "mime_type": "text/plain",
+          "size": 80,
+          "content_hash": "96792115000c23424a097f76eb432826b00b717f05033d892a7ae7415e422ad3",
+          "width": null,
+          "height": null,
+          "duration_ms": null,
+          "page_count": null,
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "captured_at": "2026-09-01T00:00:01.000Z",
+          "modified_at": "2026-09-01T00:00:04.000Z",
+          "last_kept_at": "2026-09-01T00:00:01.000Z",
+          "capture_batch_id": "item-1",
+          "processing_status": "READY",
+          "processing_error": null,
+          "understanding": "Article titled \"Plain note: remember to compare GMI Cloud and OpenRouter pricing for MiniMax-M3.\". Plain note: remember to compare GMI Cloud and OpenRouter pricing for MiniMax-M3.",
+          "why_useful": "Worth keeping as a article reference on plain; reach for it when that comes up again.",
+          "topics": "[\"plain\",\"remember\",\"compare\",\"gmi\",\"cloud\",\"openrouter\"]",
+          "entities": "[\"Plain\",\"GMI Cloud\",\"OpenRouter\",\"MiniMax-M3\"]",
+          "vision_text": null,
+          "retrieval_hints": "[\"plain note: remember to compare gmi cloud and openrouter pricing for minimax-m3.\",\"article about plain\",\"plain remember\"]",
+          "suggested_actions": "[]",
+          "ai_confidence": 0.55,
+          "metadata": "{\"source\":\"paste\",\"wordCount\":12,\"extractor\":\"text\",\"truncated\":false}",
+          "extracted_text": "Plain note: remember to compare GMI Cloud and OpenRouter pricing for MiniMax-M3.",
+          "excerpt": "Plain note: remember to compare GMI Cloud and OpenRouter pricing for MiniMax-M3.",
+          "thumbnail_path": null,
+          "snapshot_path": null,
+          "favicon_path": null,
+          "dominant_color": null,
+          "media_version": 1,
+          "parent_item_id": null,
+          "user_overrides": "{}",
+          "is_missing": 0,
+          "missing_checked_at": null,
+          "deleted_at": null
+        },
+        {
+          "id": "item-4",
+          "type": "markdown",
+          "subtype": null,
+          "kind": "article",
+          "title": "Weekly review",
+          "original_path": null,
+          "managed_path": "item-4/text.md",
+          "url": null,
+          "canonical_url": null,
+          "domain": null,
+          "mime_type": "text/markdown",
+          "size": 73,
+          "content_hash": "005b71192dfd43bb48149be68bb689f645c5cf8655ca4a054206837e094efb13",
+          "width": null,
+          "height": null,
+          "duration_ms": null,
+          "page_count": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "captured_at": "2026-09-01T00:00:02.000Z",
+          "modified_at": "2026-09-01T00:00:04.000Z",
+          "last_kept_at": "2026-09-01T00:00:02.000Z",
+          "capture_batch_id": "item-3",
+          "processing_status": "READY",
+          "processing_error": null,
+          "understanding": "Article titled \"Weekly review\". Weekly review\n\nshipped the drag shelf\nMiniMax-M3 pricing still open",
+          "why_useful": "Worth keeping as a article reference on weekly; reach for it when that comes up again.",
+          "topics": "[\"weekly\",\"review\",\"shipped\",\"drag\",\"shelf\",\"minimax-m3\"]",
+          "entities": "[\"Weekly\",\"MiniMax-M3\"]",
+          "vision_text": null,
+          "retrieval_hints": "[\"weekly review\",\"article about weekly\"]",
+          "suggested_actions": "[]",
+          "ai_confidence": 0.55,
+          "metadata": "{\"source\":\"paste\",\"wordCount\":10,\"headings\":[\"Weekly review\"],\"extractor\":\"text\",\"truncated\":false}",
+          "extracted_text": "Weekly review\n\nshipped the drag shelf\nMiniMax-M3 pricing still open",
+          "excerpt": "Weekly review shipped the drag shelf MiniMax-M3 pricing still open",
+          "thumbnail_path": null,
+          "snapshot_path": null,
+          "favicon_path": null,
+          "dominant_color": null,
+          "media_version": 1,
+          "parent_item_id": null,
+          "user_overrides": "{}",
+          "is_missing": 0,
+          "missing_checked_at": null,
+          "deleted_at": null
+        },
+        {
+          "id": "item-6",
+          "type": "image",
+          "subtype": "generic",
+          "kind": "photo",
+          "title": "pasted-image",
+          "original_path": null,
+          "managed_path": "item-6/pasted-image.png",
+          "url": null,
+          "canonical_url": null,
+          "domain": null,
+          "mime_type": "image/png",
+          "size": 126,
+          "content_hash": "646a01696ec5d67261ed9e4ff4795c0df550ebb5d65a77a6890fb4205fe2afb7",
+          "width": 8,
+          "height": 8,
+          "duration_ms": null,
+          "page_count": null,
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "captured_at": "2026-09-01T00:00:03.000Z",
+          "modified_at": "2026-09-01T00:00:04.000Z",
+          "last_kept_at": "2026-09-01T00:00:03.000Z",
+          "capture_batch_id": "item-5",
+          "processing_status": "READY",
+          "processing_error": null,
+          "understanding": "Photo titled \"pasted-image\". (no text could be extracted; work from the title, URL and metadata)",
+          "why_useful": "Worth keeping as a photo reference on pasted-image; reach for it when that comes up again.",
+          "topics": "[\"pasted-image\",\"text\",\"extracted\",\"work\"]",
+          "entities": "[]",
+          "vision_text": null,
+          "retrieval_hints": "[\"pasted-image\",\"photo about pasted-image\",\"pasted-image text\"]",
+          "suggested_actions": "[]",
+          "ai_confidence": 0.55,
+          "metadata": "{\"originalName\":\"pasted-image.png\",\"source\":\"paste\",\"pasted\":false,\"image\":{\"format\":\"png\"}}",
+          "extracted_text": null,
+          "excerpt": null,
+          "thumbnail_path": null,
+          "snapshot_path": null,
+          "favicon_path": null,
+          "dominant_color": null,
+          "media_version": 1,
+          "parent_item_id": null,
+          "user_overrides": "{}",
+          "is_missing": 0,
+          "missing_checked_at": null,
+          "deleted_at": null
+        }
+      ],
+      "fts": [
+        {
+          "item_id": "item-2",
+          "title": "Plain note: remember to compare GMI Cloud and OpenRouter pricing for MiniMax-M3.",
+          "retrieval_hints": "plain note: remember to compare gmi cloud and openrouter pricing for minimax-m3. article about plain plain remember",
+          "topics": "plain remember compare gmi cloud openrouter",
+          "entities": "Plain GMI Cloud OpenRouter MiniMax-M3",
+          "understanding": "Article titled \"Plain note: remember to compare GMI Cloud and OpenRouter pricing for MiniMax-M3.\". Plain note: remember to compare GMI Cloud and OpenRouter pricing for MiniMax-M3.",
+          "why_useful": "Worth keeping as a article reference on plain; reach for it when that comes up again.",
+          "vision_text": "",
+          "meta_text": "",
+          "extracted_text": "Plain note: remember to compare GMI Cloud and OpenRouter pricing for MiniMax-M3.",
+          "domain": "",
+          "kind": "article"
+        },
+        {
+          "item_id": "item-4",
+          "title": "Weekly review",
+          "retrieval_hints": "weekly review article about weekly",
+          "topics": "weekly review shipped drag shelf minimax-m3",
+          "entities": "Weekly MiniMax-M3",
+          "understanding": "Article titled \"Weekly review\". Weekly review\n\nshipped the drag shelf\nMiniMax-M3 pricing still open",
+          "why_useful": "Worth keeping as a article reference on weekly; reach for it when that comes up again.",
+          "vision_text": "",
+          "meta_text": "Weekly review",
+          "extracted_text": "Weekly review\n\nshipped the drag shelf\nMiniMax-M3 pricing still open",
+          "domain": "",
+          "kind": "article"
+        },
+        {
+          "item_id": "item-6",
+          "title": "pasted-image",
+          "retrieval_hints": "pasted-image photo about pasted-image pasted-image text",
+          "topics": "pasted-image text extracted work",
+          "entities": "",
+          "understanding": "Photo titled \"pasted-image\". (no text could be extracted; work from the title, URL and metadata)",
+          "why_useful": "Worth keeping as a photo reference on pasted-image; reach for it when that comes up again.",
+          "vision_text": "",
+          "meta_text": "pasted-image.png",
+          "extracted_text": "",
+          "domain": "",
+          "kind": "photo"
+        }
+      ],
+      "collections": [],
+      "collectionItems": [],
+      "relationships": [],
+      "suppressions": [],
+      "audit": [],
+      "agentRuns": [
+        {
+          "id": "uuid-1",
+          "item_id": "item-2",
+          "batch_id": null,
+          "task": "understand",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:04.000Z",
+          "completed_at": "2026-09-01T00:00:04.000Z",
+          "steps": "[{\"tool\":\"inspect_item\",\"kind\":\"inspect\",\"label\":\"Reading \\\"Plain note: remember to compare GMI Cloud and OpenRouter pricing for MiniMax-M3.\\\"\",\"itemIds\":[\"item-2\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"understand\",\"itemId\":\"item-2\",\"understanding\":{\"kind\":\"article\",\"title\":\"Plain note: remember to compare GMI Cloud and OpenRouter pricing for MiniMax-M3.\",\"summary\":\"Article titled \\\"Plain note: remember to compare GMI Cloud and OpenRouter pricing for MiniMax-M3.\\\". Plain note: remember to compare GMI Cloud and OpenRouter pricing for MiniMax-M3.\",\"whyUseful\":\"Worth keeping as a article reference on plain; reach for it when that comes up again.\",\"topics\":[\"plain\",\"remember\",\"compare\",\"gmi\",\"cloud\",\"openrouter\"],\"entities\":[\"Plain\",\"GMI Cloud\",\"OpenRouter\",\"MiniMax-M3\"],\"retrievalHints\":[\"plain note: remember to compare gmi cloud and openrouter pricing for minimax-m3.\",\"article about plain\",\"plain remember\"],\"confidence\":0.55},\"skippedFields\":[]}",
+          "error": null,
+          "usage": "{\"promptTokens\":1139,\"completionTokens\":172,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-2",
+          "item_id": "item-4",
+          "batch_id": null,
+          "task": "understand",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:04.000Z",
+          "completed_at": "2026-09-01T00:00:04.000Z",
+          "steps": "[{\"tool\":\"inspect_item\",\"kind\":\"inspect\",\"label\":\"Reading \\\"Weekly review\\\"\",\"itemIds\":[\"item-4\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"understand\",\"itemId\":\"item-4\",\"understanding\":{\"kind\":\"article\",\"title\":\"Weekly review\",\"summary\":\"Article titled \\\"Weekly review\\\". Weekly review\\n\\nshipped the drag shelf\\nMiniMax-M3 pricing still open\",\"whyUseful\":\"Worth keeping as a article reference on weekly; reach for it when that comes up again.\",\"topics\":[\"weekly\",\"review\",\"shipped\",\"drag\",\"shelf\",\"minimax-m3\"],\"entities\":[\"Weekly\",\"MiniMax-M3\"],\"retrievalHints\":[\"weekly review\",\"article about weekly\"],\"confidence\":0.55},\"skippedFields\":[]}",
+          "error": null,
+          "usage": "{\"promptTokens\":1128,\"completionTokens\":114,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-3",
+          "item_id": "item-6",
+          "batch_id": null,
+          "task": "understand",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:04.000Z",
+          "completed_at": "2026-09-01T00:00:04.000Z",
+          "steps": "[{\"tool\":\"inspect_item\",\"kind\":\"inspect\",\"label\":\"Reading \\\"pasted-image\\\"\",\"itemIds\":[\"item-6\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"understand\",\"itemId\":\"item-6\",\"understanding\":{\"kind\":\"photo\",\"title\":\"pasted-image\",\"summary\":\"Photo titled \\\"pasted-image\\\". (no text could be extracted; work from the title, URL and metadata)\",\"whyUseful\":\"Worth keeping as a photo reference on pasted-image; reach for it when that comes up again.\",\"topics\":[\"pasted-image\",\"text\",\"extracted\",\"work\"],\"entities\":[],\"retrievalHints\":[\"pasted-image\",\"photo about pasted-image\",\"pasted-image text\"],\"confidence\":0.55},\"skippedFields\":[]}",
+          "error": null,
+          "usage": "{\"promptTokens\":1134,\"completionTokens\":105,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-4",
+          "item_id": "item-4",
+          "batch_id": null,
+          "task": "organize",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:04.000Z",
+          "completed_at": "2026-09-01T00:00:04.000Z",
+          "steps": "[{\"tool\":\"find_candidates\",\"kind\":\"search\",\"label\":\"Checking 2 similar things\",\"itemIds\":[\"item-2\",\"item-6\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"organize\",\"itemId\":\"item-4\",\"relationshipIds\":[],\"collectionIds\":[],\"summary\":\"Kept on its own for now; nothing else in the library is about this yet.\"}",
+          "error": null,
+          "usage": "{\"promptTokens\":1899,\"completionTokens\":48,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-5",
+          "item_id": "item-6",
+          "batch_id": null,
+          "task": "organize",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:04.000Z",
+          "completed_at": "2026-09-01T00:00:04.000Z",
+          "steps": "[{\"tool\":\"find_candidates\",\"kind\":\"search\",\"label\":\"Checking 2 similar things\",\"itemIds\":[\"item-2\",\"item-4\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"organize\",\"itemId\":\"item-6\",\"relationshipIds\":[],\"collectionIds\":[],\"summary\":\"Kept on its own for now; nothing else in the library is about this yet.\"}",
+          "error": null,
+          "usage": "{\"promptTokens\":1885,\"completionTokens\":48,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-6",
+          "item_id": "item-2",
+          "batch_id": null,
+          "task": "organize",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:04.000Z",
+          "completed_at": "2026-09-01T00:00:04.000Z",
+          "steps": "[{\"tool\":\"find_candidates\",\"kind\":\"search\",\"label\":\"Checking 2 similar things\",\"itemIds\":[\"item-4\",\"item-6\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"organize\",\"itemId\":\"item-2\",\"relationshipIds\":[],\"collectionIds\":[],\"summary\":\"Kept on its own for now; nothing else in the library is about this yet.\"}",
+          "error": null,
+          "usage": "{\"promptTokens\":1914,\"completionTokens\":48,\"calls\":1,\"latencyMs\":0}"
+        }
+      ],
+      "jobs": [
+        {
+          "id": "job-1",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "extract",
+          "lane": "io",
+          "priority": 25,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-10",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "index",
+          "lane": "embed",
+          "priority": 20,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-11",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "relate",
+          "lane": "ai",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-12",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "index",
+          "lane": "embed",
+          "priority": 20,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-13",
+          "item_id": "item-6",
+          "batch_id": "item-5",
+          "stage": "understand",
+          "lane": "ai",
+          "priority": 30,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-14",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "relate",
+          "lane": "ai",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-15",
+          "item_id": "item-6",
+          "batch_id": "item-5",
+          "stage": "index",
+          "lane": "embed",
+          "priority": 20,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-16",
+          "item_id": "item-6",
+          "batch_id": "item-5",
+          "stage": "relate",
+          "lane": "ai",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-2",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "thumbnail",
+          "lane": "io",
+          "priority": 15,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": "No preview could be made",
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-3",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "extract",
+          "lane": "io",
+          "priority": 25,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-4",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "thumbnail",
+          "lane": "io",
+          "priority": 15,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": "No preview could be made",
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-5",
+          "item_id": "item-6",
+          "batch_id": "item-5",
+          "stage": "thumbnail",
+          "lane": "io",
+          "priority": 15,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": "No preview could be made",
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-6",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "embed",
+          "lane": "embed",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-7",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "understand",
+          "lane": "ai",
+          "priority": 30,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-8",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "embed",
+          "lane": "embed",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-9",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "understand",
+          "lane": "ai",
+          "priority": 30,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        }
+      ],
+      "settings": {
+        "aiMode": "mock",
+        "provider": "gmi",
+        "model": "MiniMaxAI/MiniMax-M3",
+        "baseUrl": "https://api.gmi-serving.com/v1",
+        "hasApiKey": true,
+        "apiKeyMasked": "sce…-key",
+        "importMode": "copy",
+        "theme": "system",
+        "libraryPath": "{library}",
+        "embeddings": {
+          "provider": "none",
+          "modelPresent": false,
+          "dims": 384
+        }
+      },
+      "thumbnailCalls": [
+        {
+          "op": "thumbnail",
+          "file": "{library}/objects/item-2/text.txt",
+          "out": "{library}/thumbs/item-2.png",
+          "maxPx": 800
+        },
+        {
+          "op": "thumbnail",
+          "file": "{library}/objects/item-4/text.md",
+          "out": "{library}/thumbs/item-4.png",
+          "maxPx": 800
+        },
+        {
+          "op": "visionImage",
+          "file": "{library}/objects/item-6/pasted-image.png",
+          "out": "{library}/content/item-6.vision.jpg",
+          "maxPx": 1280
+        },
+        {
+          "op": "thumbnail",
+          "file": "{library}/objects/item-6/pasted-image.png",
+          "out": "{library}/thumbs/item-6.png",
+          "maxPx": 800
+        }
+      ],
+      "snapshotCalls": [],
+      "fetchCalls": [],
+      "desktopCalls": [],
+      "pushes": []
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "ask",
+  "runs_on": "linux",
+  "ai": "mock",
+  "embeddings": "hash",
+  "steps": [
+    {
+      "op": "capture.files",
+      "paths": [
+        "notes/inference-providers-notes.md",
+        "notes/weekly-review-2026-08-28.md"
+      ]
+    },
+    {
+      "op": "capture.text",
+      "text": "Compare GMI Cloud and OpenRouter pricing for MiniMax-M3."
+    },
+    {
+      "op": "settle"
+    },
+    {
+      "op": "agent.command",
+      "question": "What am I researching here?"
+    },
+    {
+      "op": "settle"
+    },
+    {
+      "op": "agent.runs"
+    },
+    {
+      "op": "agent.run",
+      "id": "run-1"
+    },
+    {
+      "op": "snapshot"
+    }
+  ]
+}

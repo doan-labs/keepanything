@@ -1,0 +1,25 @@
+{
+  "name": "schema-guard",
+  "runs_on": "linux",
+  "ai": "mock",
+  "embeddings": "hash",
+  "steps": [
+    {
+      "op": "bump-schema"
+    },
+    {
+      "op": "open-library",
+      "path": "{prev}"
+    },
+    {
+      "op": "hold-lock"
+    },
+    {
+      "op": "open-library",
+      "path": "{prev}"
+    },
+    {
+      "op": "snapshot"
+    }
+  ]
+}

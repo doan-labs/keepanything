@@ -1,0 +1,21 @@
+{
+  "name": "capture-pdf",
+  "runs_on": "macos",
+  "ai": "mock",
+  "embeddings": "hash",
+  "steps": [
+    {
+      "op": "capture.files",
+      "paths": [
+        "pagedattention-vllm-2309.06180.pdf",
+        "react-reasoning-acting-2210.03629.pdf"
+      ]
+    },
+    {
+      "op": "settle"
+    },
+    {
+      "op": "snapshot"
+    }
+  ]
+}

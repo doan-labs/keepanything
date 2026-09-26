@@ -1,0 +1,782 @@
+{
+  "name": "undo-suppress",
+  "runsOn": "linux",
+  "ai": "mock",
+  "embeddings": "hash",
+  "steps": [
+    {
+      "op": "capture.files",
+      "input": {
+        "paths": [
+          "notes/inference-providers-notes.md",
+          "notes/mnismt-website-design.md",
+          "notes/weekly-review-2026-08-28.md"
+        ]
+      },
+      "result": {
+        "ok": true,
+        "data": {
+          "items": [
+            {
+              "id": "item-2",
+              "status": "created",
+              "title": "inference-providers-notes"
+            },
+            {
+              "id": "item-3",
+              "status": "created",
+              "title": "mnismt-website-design"
+            },
+            {
+              "id": "item-4",
+              "status": "created",
+              "title": "weekly-review-2026-08-28"
+            }
+          ],
+          "batchId": "item-1"
+        }
+      }
+    },
+    {
+      "op": "settle",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": null
+      }
+    },
+    {
+      "op": "collections.list",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": []
+      }
+    },
+    {
+      "op": "agent.undoRun",
+      "input": {
+        "runId": "{agentRun:organize_batch}"
+      },
+      "result": {
+        "ok": true,
+        "data": {
+          "undone": 0
+        }
+      }
+    },
+    {
+      "op": "collections.create",
+      "input": {
+        "name": "Inference notes"
+      },
+      "result": {
+        "ok": true,
+        "data": {
+          "id": "collection-1",
+          "name": "Inference notes",
+          "nameKey": "inference notes",
+          "description": null,
+          "createdBy": "user",
+          "color": null,
+          "pinned": false,
+          "createdAt": "2026-09-01T00:00:05.000Z",
+          "updatedAt": "2026-09-01T00:00:05.000Z"
+        }
+      }
+    },
+    {
+      "op": "collections.addItems",
+      "input": {
+        "id": "collection-1",
+        "itemIds": [
+          "item-2",
+          "item-3"
+        ]
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "op": "collections.removeItem",
+      "input": {
+        "id": "collection-1",
+        "itemId": "item-2"
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "op": "items.reprocess",
+      "input": {
+        "id": "item-2",
+        "from": "understand"
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "op": "settle",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": null
+      }
+    },
+    {
+      "op": "snapshot",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": null
+      }
+    }
+  ],
+  "results": [
+    {
+      "items": [
+        {
+          "id": "item-2",
+          "type": "markdown",
+          "subtype": null,
+          "kind": "article",
+          "title": "Cheap inference providers — running notes",
+          "original_path": "{corpus}/notes/inference-providers-notes.md",
+          "managed_path": "item-2/inference-providers-notes.md",
+          "url": null,
+          "canonical_url": null,
+          "domain": null,
+          "mime_type": "text/markdown",
+          "size": 1860,
+          "content_hash": "6780958aaaafe65d9e7ceb79a2a88be54866c2c3ef80832e33d8fa917b6c4e98",
+          "width": null,
+          "height": null,
+          "duration_ms": null,
+          "page_count": null,
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "captured_at": "2026-09-01T00:00:01.000Z",
+          "modified_at": "2026-09-01T00:00:09.000Z",
+          "last_kept_at": "2026-09-01T00:00:01.000Z",
+          "capture_batch_id": "item-1",
+          "processing_status": "READY",
+          "processing_error": null,
+          "understanding": "Article titled \"Cheap inference providers — running notes\". Cheap inference providers — running notes\n\nWorking list of places to run open-weight models without owning GPUs.",
+          "why_useful": "Worth keeping as a article reference on inference; reach for it when that comes up again.",
+          "topics": "[\"inference\",\"notes\",\"cheap\",\"providers\",\"running\",\"gmi\"]",
+          "entities": "[\"Cheap\",\"Working\",\"GPUs\",\"Goal\",\"KeepAnything\",\"Provider\",\"Notes\",\"GMI Cloud\"]",
+          "vision_text": null,
+          "retrieval_hints": "[\"cheap inference providers — running notes\",\"article about inference\",\"inference notes\"]",
+          "suggested_actions": "[]",
+          "ai_confidence": 0.65,
+          "metadata": "{\"originalName\":\"inference-providers-notes.md\",\"extension\":\"md\",\"source\":\"dialog\",\"fileModifiedAt\":\"2026-09-26T17:05:12.231Z\",\"headings\":[\"Cheap inference providers — running notes\",\"Candidates\",\"Decision\",\"Open questions\"],\"wordCount\":290,\"extractor\":\"text\",\"truncated\":false}",
+          "extracted_text": "Cheap inference providers — running notes\n\nWorking list of places to run open-weight models without owning GPUs. Goal: find the cheapest\noption that still gives tool calling + JSON output for the KeepAnything agent, and a fallback\nin case the primary provider goes down.\n\nCandidates\n\n| Provider | What I tried | Notes |\n| --- | --- | --- |\n| GMI Cloud | MiniMaxAI/MiniMax-M3 via the OpenAI-compatible /v1/chat/completions | Tool calling works. Vision works with imageurl data URIs. responseformat: jsonschema is accepted but not enforced. Occasional 429 \"all endpoints overloaded\" with retry-after: 60. |\n| Together AI | Llama 3.3 70B, Qwen | Serverless per-token pricing; good batch API; dedicated endpoints by the hour. |\n| Fireworks | Same models, FireFunction for tools | Fast TTFT; grammar-constrained JSON mode is the real deal. |\n| DeepInfra | DeepSeek, Qwen | Usually the cheapest per-token price on the board; fewer knobs. |\n| Groq | Llama 3.x on LPUs | Very fast tokens/sec; small context; limited model list. |\n| Self-host (vLLM) | vLLM on a rented H100 | Only worth it above 50M tokens/day. PagedAttention paper explains why throughput is so much better than naive HF generate. |\n\nDecision\n\nPrimary: GMI Cloud + MiniMax-M3. Keep ai lane concurrency at 1, retry on 429/5xx with jittered backoff.\nFallback: OpenRouter with the same model, same OpenAI-compatible transport.\nDo not depend on jsonschema enforcement anywhere: extract the JSON block, validate with zod, retry once with the error.\n\nOpen questions\n\nHow do prices compare once you include prompt caching discounts? (GMI reports cachedtokens in usage.)\nIs anyone offering per-request rate-limit headers? So far only x-gmi-request-id and Cloudflare headers.\n\nTags I would have used if this app needed tags: inference, pricing, gpu, llm-serving.",
+          "excerpt": "Cheap inference providers — running notes Working list of places to run open-weight models without owning GPUs. Goal: find the cheapest option that still gives tool calling + JSON output for the KeepAnything agent, and a fallback in case the primary provider goes down. Candidate…",
+          "thumbnail_path": null,
+          "snapshot_path": null,
+          "favicon_path": null,
+          "dominant_color": null,
+          "media_version": 1,
+          "parent_item_id": null,
+          "user_overrides": "{}",
+          "is_missing": 0,
+          "missing_checked_at": null,
+          "deleted_at": null
+        },
+        {
+          "id": "item-3",
+          "type": "markdown",
+          "subtype": null,
+          "kind": "article",
+          "title": "mnismt website — design references",
+          "original_path": "{corpus}/notes/mnismt-website-design.md",
+          "managed_path": "item-3/mnismt-website-design.md",
+          "url": null,
+          "canonical_url": null,
+          "domain": null,
+          "mime_type": "text/markdown",
+          "size": 1520,
+          "content_hash": "572a045aaa76a6049806585b57f0e3929f830a83246103282c3c1706030498df",
+          "width": null,
+          "height": null,
+          "duration_ms": null,
+          "page_count": null,
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "captured_at": "2026-09-01T00:00:01.000Z",
+          "modified_at": "2026-09-01T00:00:02.000Z",
+          "last_kept_at": "2026-09-01T00:00:01.000Z",
+          "capture_batch_id": "item-1",
+          "processing_status": "READY",
+          "processing_error": null,
+          "understanding": "Article titled \"mnismt website — design references\". mnismt website — design references\n\nCollecting what influenced the new mnismt site.",
+          "why_useful": "Worth keeping as a article reference on globe; reach for it when that comes up again.",
+          "topics": "[\"globe\",\"mnismt\",\"references\",\"arcs\",\"website\",\"design\"]",
+          "entities": "[\"Collecting\",\"None\",\"Ho Chi Minh City\",\"Berlin\",\"Toronto\",\"References\",\"Stripe\",\"GitHub\"]",
+          "vision_text": null,
+          "retrieval_hints": "[\"mnismt website — design references\",\"article about globe\",\"globe mnismt\"]",
+          "suggested_actions": "[]",
+          "ai_confidence": 0.65,
+          "metadata": "{\"originalName\":\"mnismt-website-design.md\",\"extension\":\"md\",\"source\":\"dialog\",\"fileModifiedAt\":\"2026-09-26T17:05:12.231Z\",\"headings\":[\"mnismt website — design references\",\"The globe\",\"Typography\",\"Colour\",\"Layout ideas worth keeping\",\"To do\"],\"wordCount\":235,\"extractor\":\"text\",\"truncated\":false}",
+          "extracted_text": "mnismt website — design references\n\nCollecting what influenced the new mnismt site. None of this is final; it is the mood board.\n\nThe globe\n\nThe hero should have a slowly rotating wireframe globe with arcs between cities where our\ncontributors live (Ho Chi Minh City, Berlin, Toronto). References:\n\nStripe's old \"global payments\" globe: arcs that ease in, dots that pulse once when they land.\nGitHub's homepage globe (2020 redesign): WebGL, low-poly, dark background, very restrained colour.\nThe cobe library (tiny WebGL globe) is probably enough; three.js is overkill for one hero element.\n\nRule: the globe never competes with the text. 40% opacity, monochrome, and it pauses when\nprefers-reduced-motion is set.\n\nTypography\n\nEditorial serif for headlines only (we bundle Instrument Serif in KeepAnything too — reuse it).\nSystem sans for body. No more than two weights.\nBig type, small screens: headline clamps between 40px and 88px.\n\nColour\n\nNear-black background #0b0b0c, warm off-white text #f3efe6, a single accent used for links\nand the globe arcs. No gradients. No \"AI purple\".\n\nLayout ideas worth keeping\n\nLinear.app: dense but calm feature grid; every card has one sentence and one image.\nVercel: the changelog page as a product surface.\nRead.cv: profile pages that feel like a printed CV.\n\nTo do\n\nPrototype the globe with cobe and measure idle CPU (must be < 3% on an M1 Air).\nAsk Linh whether the arcs should follow real contributor locations or be decorative.",
+          "excerpt": "mnismt website — design references Collecting what influenced the new mnismt site. None of this is final; it is the mood board. The globe The hero should have a slowly rotating wireframe globe with arcs between cities where our contributors live (Ho Chi Minh City, Berlin, Toront…",
+          "thumbnail_path": null,
+          "snapshot_path": null,
+          "favicon_path": null,
+          "dominant_color": null,
+          "media_version": 1,
+          "parent_item_id": null,
+          "user_overrides": "{}",
+          "is_missing": 0,
+          "missing_checked_at": null,
+          "deleted_at": null
+        },
+        {
+          "id": "item-4",
+          "type": "markdown",
+          "subtype": null,
+          "kind": "article",
+          "title": "Weekly review — week of 24 Aug 2026",
+          "original_path": "{corpus}/notes/weekly-review-2026-08-28.md",
+          "managed_path": "item-4/weekly-review-2026-08-28.md",
+          "url": null,
+          "canonical_url": null,
+          "domain": null,
+          "mime_type": "text/markdown",
+          "size": 1284,
+          "content_hash": "1086788e350192fa64dde93e8056c092898e639fecb77f2772715ee8af74e335",
+          "width": null,
+          "height": null,
+          "duration_ms": null,
+          "page_count": null,
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "captured_at": "2026-09-01T00:00:01.000Z",
+          "modified_at": "2026-09-01T00:00:02.000Z",
+          "last_kept_at": "2026-09-01T00:00:01.000Z",
+          "capture_batch_id": "item-1",
+          "processing_status": "READY",
+          "processing_error": null,
+          "understanding": "Article titled \"Weekly review — week of 24 Aug 2026\". Weekly review — week of 24 Aug 2026\n\nWhat happened\n\nMon: read the PagedAttention paper properly instead of skimming the blog posts about it.",
+          "why_useful": "Worth keeping as a article reference on week; reach for it when that comes up again.",
+          "topics": "[\"week\",\"weekly\",\"review\",\"aug\",\"paper\",\"instead\"]",
+          "entities": "[\"Weekly\",\"Aug\",\"Mon\",\"PagedAttention\",\"Tue\",\"MiniMax-M3\",\"KeepAnything\",\"GMI Cloud\"]",
+          "vision_text": null,
+          "retrieval_hints": "[\"weekly review — week of 24 aug 2026\",\"article about week\",\"week weekly\"]",
+          "suggested_actions": "[]",
+          "ai_confidence": 0.65,
+          "metadata": "{\"originalName\":\"weekly-review-2026-08-28.md\",\"extension\":\"md\",\"source\":\"dialog\",\"fileModifiedAt\":\"2026-09-26T17:05:12.231Z\",\"headings\":[\"Weekly review — week of 24 Aug 2026\",\"What happened\",\"Decisions\",\"Next week\"],\"wordCount\":208,\"extractor\":\"text\",\"truncated\":false}",
+          "extracted_text": "Weekly review — week of 24 Aug 2026\n\nWhat happened\n\nMon: read the PagedAttention paper properly instead of skimming the blog posts about it. The\n  block table idea maps almost one-to-one onto virtual memory paging; copy-on-write for beam search\n  is the clever bit.\nTue: picked MiniMax-M3 as the reasoning model for KeepAnything. Got a GMI Cloud key.\nWed: probed the GMI endpoint. No reasoningcontent field comes back for M3; tool calls are\n  clean JSON; one 429 in 40 requests.\nThu: wrote the eval queries for retrieval (\"that pdf about attention\", \"the website with the\n  globe animation\"). Realised type cues matter more than I thought — \"pdf\" should hard-boost PDFs.\nFri: MiniLM embeddings running inside the Electron utility process. 384 dims, 9 ms per chunk.\n\nDecisions\n\n1. Structured output = fenced/raw JSON extraction + zod + one retry. Never trust jsonschema.\n2. One organize run per drop batch instead of one per item.\n3. The app must stay usable offline: capture and local search never wait on the model.\n\nNext week\n\nBuild the \"Ask My Stuff\" panel.\nDrop a real week of downloads into the library and see what collections come out.\nRead the ReAct paper again; the \"thought → action → observation\" loop is basically our agent log.",
+          "excerpt": "Weekly review — week of 24 Aug 2026 What happened Mon: read the PagedAttention paper properly instead of skimming the blog posts about it. The block table idea maps almost one-to-one onto virtual memory paging; copy-on-write for beam search is the clever bit. Tue: picked MiniMax…",
+          "thumbnail_path": null,
+          "snapshot_path": null,
+          "favicon_path": null,
+          "dominant_color": null,
+          "media_version": 1,
+          "parent_item_id": null,
+          "user_overrides": "{}",
+          "is_missing": 0,
+          "missing_checked_at": null,
+          "deleted_at": null
+        }
+      ],
+      "fts": [
+        {
+          "item_id": "item-2",
+          "title": "Cheap inference providers — running notes",
+          "retrieval_hints": "cheap inference providers — running notes article about inference inference notes",
+          "topics": "inference notes cheap providers running gmi",
+          "entities": "Cheap Working GPUs Goal KeepAnything Provider Notes GMI Cloud",
+          "understanding": "Article titled \"Cheap inference providers — running notes\". Cheap inference providers — running notes\n\nWorking list of places to run open-weight models without owning GPUs.",
+          "why_useful": "Worth keeping as a article reference on inference; reach for it when that comes up again.",
+          "vision_text": "",
+          "meta_text": "inference-providers-notes.md Cheap inference providers — running notes Candidates Decision Open questions",
+          "extracted_text": "Cheap inference providers — running notes\n\nWorking list of places to run open-weight models without owning GPUs. Goal: find the cheapest\noption that still gives tool calling + JSON output for the KeepAnything agent, and a fallback\nin case the primary provider goes down.\n\nCandidates\n\n| Provider | What I tried | Notes |\n| --- | --- | --- |\n| GMI Cloud | MiniMaxAI/MiniMax-M3 via the OpenAI-compatible /v1/chat/completions | Tool calling works. Vision works with imageurl data URIs. responseformat: jsonschema is accepted but not enforced. Occasional 429 \"all endpoints overloaded\" with retry-after: 60. |\n| Together AI | Llama 3.3 70B, Qwen | Serverless per-token pricing; good batch API; dedicated endpoints by the hour. |\n| Fireworks | Same models, FireFunction for tools | Fast TTFT; grammar-constrained JSON mode is the real deal. |\n| DeepInfra | DeepSeek, Qwen | Usually the cheapest per-token price on the board; fewer knobs. |\n| Groq | Llama 3.x on LPUs | Very fast tokens/sec; small context; limited model list. |\n| Self-host (vLLM) | vLLM on a rented H100 | Only worth it above 50M tokens/day. PagedAttention paper explains why throughput is so much better than naive HF generate. |\n\nDecision\n\nPrimary: GMI Cloud + MiniMax-M3. Keep ai lane concurrency at 1, retry on 429/5xx with jittered backoff.\nFallback: OpenRouter with the same model, same OpenAI-compatible transport.\nDo not depend on jsonschema enforcement anywhere: extract the JSON block, validate with zod, retry once with the error.\n\nOpen questions\n\nHow do prices compare once you include prompt caching discounts? (GMI reports cachedtokens in usage.)\nIs anyone offering per-request rate-limit headers? So far only x-gmi-request-id and Cloudflare headers.\n\nTags I would have used if this app needed tags: inference, pricing, gpu, llm-serving.",
+          "domain": "",
+          "kind": "article"
+        },
+        {
+          "item_id": "item-3",
+          "title": "mnismt website — design references",
+          "retrieval_hints": "mnismt website — design references article about globe globe mnismt",
+          "topics": "globe mnismt references arcs website design",
+          "entities": "Collecting None Ho Chi Minh City Berlin Toronto References Stripe GitHub",
+          "understanding": "Article titled \"mnismt website — design references\". mnismt website — design references\n\nCollecting what influenced the new mnismt site.",
+          "why_useful": "Worth keeping as a article reference on globe; reach for it when that comes up again.",
+          "vision_text": "",
+          "meta_text": "mnismt-website-design.md mnismt website — design references The globe Typography Colour Layout ideas worth keeping To do",
+          "extracted_text": "mnismt website — design references\n\nCollecting what influenced the new mnismt site. None of this is final; it is the mood board.\n\nThe globe\n\nThe hero should have a slowly rotating wireframe globe with arcs between cities where our\ncontributors live (Ho Chi Minh City, Berlin, Toronto). References:\n\nStripe's old \"global payments\" globe: arcs that ease in, dots that pulse once when they land.\nGitHub's homepage globe (2020 redesign): WebGL, low-poly, dark background, very restrained colour.\nThe cobe library (tiny WebGL globe) is probably enough; three.js is overkill for one hero element.\n\nRule: the globe never competes with the text. 40% opacity, monochrome, and it pauses when\nprefers-reduced-motion is set.\n\nTypography\n\nEditorial serif for headlines only (we bundle Instrument Serif in KeepAnything too — reuse it).\nSystem sans for body. No more than two weights.\nBig type, small screens: headline clamps between 40px and 88px.\n\nColour\n\nNear-black background #0b0b0c, warm off-white text #f3efe6, a single accent used for links\nand the globe arcs. No gradients. No \"AI purple\".\n\nLayout ideas worth keeping\n\nLinear.app: dense but calm feature grid; every card has one sentence and one image.\nVercel: the changelog page as a product surface.\nRead.cv: profile pages that feel like a printed CV.\n\nTo do\n\nPrototype the globe with cobe and measure idle CPU (must be < 3% on an M1 Air).\nAsk Linh whether the arcs should follow real contributor locations or be decorative.",
+          "domain": "",
+          "kind": "article"
+        },
+        {
+          "item_id": "item-4",
+          "title": "Weekly review — week of 24 Aug 2026",
+          "retrieval_hints": "weekly review — week of 24 aug 2026 article about week week weekly",
+          "topics": "week weekly review aug paper instead",
+          "entities": "Weekly Aug Mon PagedAttention Tue MiniMax-M3 KeepAnything GMI Cloud",
+          "understanding": "Article titled \"Weekly review — week of 24 Aug 2026\". Weekly review — week of 24 Aug 2026\n\nWhat happened\n\nMon: read the PagedAttention paper properly instead of skimming the blog posts about it.",
+          "why_useful": "Worth keeping as a article reference on week; reach for it when that comes up again.",
+          "vision_text": "",
+          "meta_text": "weekly-review-2026-08-28.md Weekly review — week of 24 Aug 2026 What happened Decisions Next week",
+          "extracted_text": "Weekly review — week of 24 Aug 2026\n\nWhat happened\n\nMon: read the PagedAttention paper properly instead of skimming the blog posts about it. The\n  block table idea maps almost one-to-one onto virtual memory paging; copy-on-write for beam search\n  is the clever bit.\nTue: picked MiniMax-M3 as the reasoning model for KeepAnything. Got a GMI Cloud key.\nWed: probed the GMI endpoint. No reasoningcontent field comes back for M3; tool calls are\n  clean JSON; one 429 in 40 requests.\nThu: wrote the eval queries for retrieval (\"that pdf about attention\", \"the website with the\n  globe animation\"). Realised type cues matter more than I thought — \"pdf\" should hard-boost PDFs.\nFri: MiniLM embeddings running inside the Electron utility process. 384 dims, 9 ms per chunk.\n\nDecisions\n\n1. Structured output = fenced/raw JSON extraction + zod + one retry. Never trust jsonschema.\n2. One organize run per drop batch instead of one per item.\n3. The app must stay usable offline: capture and local search never wait on the model.\n\nNext week\n\nBuild the \"Ask My Stuff\" panel.\nDrop a real week of downloads into the library and see what collections come out.\nRead the ReAct paper again; the \"thought → action → observation\" loop is basically our agent log.",
+          "domain": "",
+          "kind": "article"
+        }
+      ],
+      "collections": [
+        {
+          "id": "collection-1",
+          "name": "Inference notes",
+          "name_key": "inference notes",
+          "description": null,
+          "created_by": "user",
+          "color": null,
+          "pinned": 0,
+          "created_at": "2026-09-01T00:00:05.000Z",
+          "updated_at": "2026-09-01T00:00:07.000Z"
+        }
+      ],
+      "collectionItems": [
+        {
+          "collection_id": "collection-1",
+          "item_id": "item-3",
+          "confidence": null,
+          "reason": null,
+          "added_by": "user",
+          "agent_run_id": null,
+          "added_at": "2026-09-01T00:00:06.000Z"
+        }
+      ],
+      "relationships": [],
+      "suppressions": [
+        {
+          "kind": "collection_member",
+          "key": "collection-1:item-2",
+          "created_at": "2026-09-01T00:00:07.000Z"
+        },
+        {
+          "kind": "collection_member",
+          "key": "name:inference notes:item-2",
+          "created_at": "2026-09-01T00:00:07.000Z"
+        }
+      ],
+      "audit": [
+        {
+          "id": "audit-1",
+          "actor": "user",
+          "action": "create_collection",
+          "entity": "collection",
+          "entity_id": "collection-1",
+          "before": null,
+          "after": "{\"collection\":{\"id\":\"collection-1\",\"name\":\"Inference notes\",\"nameKey\":\"inference notes\",\"description\":null,\"createdBy\":\"user\",\"color\":null,\"pinned\":false,\"createdAt\":\"2026-09-01T00:00:05.000Z\",\"updatedAt\":\"2026-09-01T00:00:05.000Z\"}}",
+          "agent_run_id": null,
+          "created_at": "2026-09-01T00:00:05.000Z",
+          "undone_at": null
+        },
+        {
+          "id": "audit-2",
+          "actor": "user",
+          "action": "add_to_collection",
+          "entity": "collection_item",
+          "entity_id": "collection-1:item-2",
+          "before": null,
+          "after": "{\"collectionId\":\"collection-1\",\"itemId\":\"item-2\",\"confidence\":null,\"reason\":null,\"addedBy\":\"user\",\"agentRunId\":null,\"addedAt\":\"2026-09-01T00:00:06.000Z\"}",
+          "agent_run_id": null,
+          "created_at": "2026-09-01T00:00:06.000Z",
+          "undone_at": null
+        },
+        {
+          "id": "audit-3",
+          "actor": "user",
+          "action": "add_to_collection",
+          "entity": "collection_item",
+          "entity_id": "collection-1:item-3",
+          "before": null,
+          "after": "{\"collectionId\":\"collection-1\",\"itemId\":\"item-3\",\"confidence\":null,\"reason\":null,\"addedBy\":\"user\",\"agentRunId\":null,\"addedAt\":\"2026-09-01T00:00:06.000Z\"}",
+          "agent_run_id": null,
+          "created_at": "2026-09-01T00:00:06.000Z",
+          "undone_at": null
+        },
+        {
+          "id": "audit-4",
+          "actor": "user",
+          "action": "remove_from_collection",
+          "entity": "collection_item",
+          "entity_id": "collection-1:item-2",
+          "before": "{\"collectionId\":\"collection-1\",\"itemId\":\"item-2\",\"confidence\":null,\"reason\":null,\"addedBy\":\"user\",\"agentRunId\":null,\"addedAt\":\"2026-09-01T00:00:06.000Z\"}",
+          "after": null,
+          "agent_run_id": null,
+          "created_at": "2026-09-01T00:00:07.000Z",
+          "undone_at": null
+        }
+      ],
+      "agentRuns": [
+        {
+          "id": "uuid-1",
+          "item_id": "item-4",
+          "batch_id": null,
+          "task": "understand",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:02.000Z",
+          "completed_at": "2026-09-01T00:00:02.000Z",
+          "steps": "[{\"tool\":\"inspect_item\",\"kind\":\"inspect\",\"label\":\"Reading \\\"Weekly review — week of 24 Aug 2026\\\"\",\"itemIds\":[\"item-4\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"understand\",\"itemId\":\"item-4\",\"understanding\":{\"kind\":\"article\",\"title\":\"Weekly review — week of 24 Aug 2026\",\"summary\":\"Article titled \\\"Weekly review — week of 24 Aug 2026\\\". Weekly review — week of 24 Aug 2026\\n\\nWhat happened\\n\\nMon: read the PagedAttention paper properly instead of skimming the blog posts about it.\",\"whyUseful\":\"Worth keeping as a article reference on week; reach for it when that comes up again.\",\"topics\":[\"week\",\"weekly\",\"review\",\"aug\",\"paper\",\"instead\"],\"entities\":[\"Weekly\",\"Aug\",\"Mon\",\"PagedAttention\",\"Tue\",\"MiniMax-M3\",\"KeepAnything\",\"GMI Cloud\"],\"retrievalHints\":[\"weekly review — week of 24 aug 2026\",\"article about week\",\"week weekly\"],\"confidence\":0.65},\"skippedFields\":[]}",
+          "error": null,
+          "usage": "{\"promptTokens\":1454,\"completionTokens\":161,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-2",
+          "item_id": "item-3",
+          "batch_id": null,
+          "task": "understand",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:02.000Z",
+          "completed_at": "2026-09-01T00:00:02.000Z",
+          "steps": "[{\"tool\":\"inspect_item\",\"kind\":\"inspect\",\"label\":\"Reading \\\"mnismt website — design references\\\"\",\"itemIds\":[\"item-3\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"understand\",\"itemId\":\"item-3\",\"understanding\":{\"kind\":\"article\",\"title\":\"mnismt website — design references\",\"summary\":\"Article titled \\\"mnismt website — design references\\\". mnismt website — design references\\n\\nCollecting what influenced the new mnismt site.\",\"whyUseful\":\"Worth keeping as a article reference on globe; reach for it when that comes up again.\",\"topics\":[\"globe\",\"mnismt\",\"references\",\"arcs\",\"website\",\"design\"],\"entities\":[\"Collecting\",\"None\",\"Ho Chi Minh City\",\"Berlin\",\"Toronto\",\"References\",\"Stripe\",\"GitHub\"],\"retrievalHints\":[\"mnismt website — design references\",\"article about globe\",\"globe mnismt\"],\"confidence\":0.65},\"skippedFields\":[]}",
+          "error": null,
+          "usage": "{\"promptTokens\":1518,\"completionTokens\":149,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-3",
+          "item_id": "item-2",
+          "batch_id": null,
+          "task": "understand",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:02.000Z",
+          "completed_at": "2026-09-01T00:00:02.000Z",
+          "steps": "[{\"tool\":\"inspect_item\",\"kind\":\"inspect\",\"label\":\"Reading \\\"Cheap inference providers — running notes\\\"\",\"itemIds\":[\"item-2\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"understand\",\"itemId\":\"item-2\",\"understanding\":{\"kind\":\"article\",\"title\":\"Cheap inference providers — running notes\",\"summary\":\"Article titled \\\"Cheap inference providers — running notes\\\". Cheap inference providers — running notes\\n\\nWorking list of places to run open-weight models without owning GPUs.\",\"whyUseful\":\"Worth keeping as a article reference on inference; reach for it when that comes up again.\",\"topics\":[\"inference\",\"notes\",\"cheap\",\"providers\",\"running\",\"gmi\"],\"entities\":[\"Cheap\",\"Working\",\"GPUs\",\"Goal\",\"KeepAnything\",\"Provider\",\"Notes\",\"GMI Cloud\"],\"retrievalHints\":[\"cheap inference providers — running notes\",\"article about inference\",\"inference notes\"],\"confidence\":0.65},\"skippedFields\":[]}",
+          "error": null,
+          "usage": "{\"promptTokens\":1600,\"completionTokens\":162,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-4",
+          "item_id": null,
+          "batch_id": "item-1",
+          "task": "organize_batch",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:02.000Z",
+          "completed_at": "2026-09-01T00:00:02.000Z",
+          "steps": "[{\"tool\":\"find_candidates\",\"kind\":\"search\",\"label\":\"Checking 3 new items against 0 similar things\",\"itemIds\":[\"item-2\",\"item-3\",\"item-4\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"organize_batch\",\"batchId\":\"item-1\",\"itemIds\":[\"item-2\",\"item-3\",\"item-4\"],\"relationshipIds\":[],\"collectionIds\":[],\"summary\":\"Kept on its own for now; nothing else in the library is about this yet.\"}",
+          "error": null,
+          "usage": "{\"promptTokens\":2068,\"completionTokens\":48,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-5",
+          "item_id": "item-2",
+          "batch_id": null,
+          "task": "understand",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:09.000Z",
+          "completed_at": "2026-09-01T00:00:09.000Z",
+          "steps": "[{\"tool\":\"inspect_item\",\"kind\":\"inspect\",\"label\":\"Reading \\\"Cheap inference providers — running notes\\\"\",\"itemIds\":[\"item-2\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"understand\",\"itemId\":\"item-2\",\"understanding\":{\"kind\":\"article\",\"title\":\"Cheap inference providers — running notes\",\"summary\":\"Article titled \\\"Cheap inference providers — running notes\\\". Cheap inference providers — running notes\\n\\nWorking list of places to run open-weight models without owning GPUs.\",\"whyUseful\":\"Worth keeping as a article reference on inference; reach for it when that comes up again.\",\"topics\":[\"inference\",\"notes\",\"cheap\",\"providers\",\"running\",\"gmi\"],\"entities\":[\"Cheap\",\"Working\",\"GPUs\",\"Goal\",\"KeepAnything\",\"Provider\",\"Notes\",\"GMI Cloud\"],\"retrievalHints\":[\"cheap inference providers — running notes\",\"article about inference\",\"inference notes\"],\"confidence\":0.65},\"skippedFields\":[]}",
+          "error": null,
+          "usage": "{\"promptTokens\":1600,\"completionTokens\":162,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-6",
+          "item_id": "item-2",
+          "batch_id": null,
+          "task": "organize",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:09.000Z",
+          "completed_at": "2026-09-01T00:00:09.000Z",
+          "steps": "[{\"tool\":\"find_candidates\",\"kind\":\"search\",\"label\":\"Checking 2 similar things\",\"itemIds\":[\"item-4\",\"item-3\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"organize\",\"itemId\":\"item-2\",\"relationshipIds\":[],\"collectionIds\":[],\"summary\":\"Kept on its own for now; nothing else in the library is about this yet.\"}",
+          "error": null,
+          "usage": "{\"promptTokens\":2032,\"completionTokens\":48,\"calls\":1,\"latencyMs\":0}"
+        }
+      ],
+      "jobs": [
+        {
+          "id": "job-1",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "extract",
+          "lane": "io",
+          "priority": 25,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        },
+        {
+          "id": "job-10",
+          "item_id": "item-3",
+          "batch_id": "item-1",
+          "stage": "understand",
+          "lane": "ai",
+          "priority": 30,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        },
+        {
+          "id": "job-11",
+          "item_id": "item-4",
+          "batch_id": "item-1",
+          "stage": "index",
+          "lane": "embed",
+          "priority": 20,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        },
+        {
+          "id": "job-12",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "embed",
+          "lane": "embed",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        },
+        {
+          "id": "job-14",
+          "item_id": null,
+          "batch_id": "item-1",
+          "stage": "organize_batch",
+          "lane": "ai",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": "2026-09-01T00:00:02.000Z",
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        },
+        {
+          "id": "job-15",
+          "item_id": "item-3",
+          "batch_id": "item-1",
+          "stage": "index",
+          "lane": "embed",
+          "priority": 20,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        },
+        {
+          "id": "job-17",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "understand",
+          "lane": "ai",
+          "priority": 30,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:08.000Z",
+          "updated_at": "2026-09-01T00:00:09.000Z"
+        },
+        {
+          "id": "job-18",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "index",
+          "lane": "embed",
+          "priority": 20,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:09.000Z",
+          "updated_at": "2026-09-01T00:00:09.000Z"
+        },
+        {
+          "id": "job-19",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "relate",
+          "lane": "ai",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:09.000Z",
+          "updated_at": "2026-09-01T00:00:09.000Z"
+        },
+        {
+          "id": "job-2",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "thumbnail",
+          "lane": "io",
+          "priority": 15,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": "No preview could be made",
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        },
+        {
+          "id": "job-3",
+          "item_id": "item-3",
+          "batch_id": "item-1",
+          "stage": "extract",
+          "lane": "io",
+          "priority": 25,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        },
+        {
+          "id": "job-4",
+          "item_id": "item-3",
+          "batch_id": "item-1",
+          "stage": "thumbnail",
+          "lane": "io",
+          "priority": 15,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": "No preview could be made",
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        },
+        {
+          "id": "job-5",
+          "item_id": "item-4",
+          "batch_id": "item-1",
+          "stage": "extract",
+          "lane": "io",
+          "priority": 25,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        },
+        {
+          "id": "job-6",
+          "item_id": "item-4",
+          "batch_id": "item-1",
+          "stage": "thumbnail",
+          "lane": "io",
+          "priority": 15,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": "No preview could be made",
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        },
+        {
+          "id": "job-7",
+          "item_id": "item-4",
+          "batch_id": "item-1",
+          "stage": "embed",
+          "lane": "embed",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        },
+        {
+          "id": "job-8",
+          "item_id": "item-4",
+          "batch_id": "item-1",
+          "stage": "understand",
+          "lane": "ai",
+          "priority": 30,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        },
+        {
+          "id": "job-9",
+          "item_id": "item-3",
+          "batch_id": "item-1",
+          "stage": "embed",
+          "lane": "embed",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:02.000Z"
+        }
+      ],
+      "settings": {
+        "aiMode": "mock",
+        "provider": "gmi",
+        "model": "MiniMaxAI/MiniMax-M3",
+        "baseUrl": "https://api.gmi-serving.com/v1",
+        "hasApiKey": true,
+        "apiKeyMasked": "sce…-key",
+        "importMode": "copy",
+        "theme": "system",
+        "libraryPath": "{library}",
+        "embeddings": {
+          "provider": "none",
+          "modelPresent": false,
+          "dims": 384
+        }
+      },
+      "thumbnailCalls": [
+        {
+          "op": "thumbnail",
+          "file": "{library}/objects/item-4/weekly-review-2026-08-28.md",
+          "out": "{library}/thumbs/item-4.png",
+          "maxPx": 800
+        },
+        {
+          "op": "thumbnail",
+          "file": "{library}/objects/item-3/mnismt-website-design.md",
+          "out": "{library}/thumbs/item-3.png",
+          "maxPx": 800
+        },
+        {
+          "op": "thumbnail",
+          "file": "{library}/objects/item-2/inference-providers-notes.md",
+          "out": "{library}/thumbs/item-2.png",
+          "maxPx": 800
+        }
+      ],
+      "snapshotCalls": [],
+      "fetchCalls": [],
+      "desktopCalls": [],
+      "pushes": []
+    }
+  ]
+}

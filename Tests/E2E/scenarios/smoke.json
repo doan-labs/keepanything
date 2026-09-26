@@ -1,0 +1,18 @@
+{
+  "name": "smoke",
+  "runs_on": "linux",
+  "ai": "mock",
+  "embeddings": "hash",
+  "steps": [
+    {
+      "op": "capture.text",
+      "text": "KeepAnything smoke: one line about cheap inference providers."
+    },
+    {
+      "op": "settle"
+    },
+    {
+      "op": "snapshot"
+    }
+  ]
+}

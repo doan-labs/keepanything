@@ -1,0 +1,436 @@
+{
+  "name": "trash",
+  "runsOn": "linux",
+  "ai": "mock",
+  "embeddings": "hash",
+  "steps": [
+    {
+      "op": "capture.text",
+      "input": {
+        "text": "First throwaway note."
+      },
+      "result": {
+        "ok": true,
+        "data": {
+          "items": [
+            {
+              "id": "item-2",
+              "status": "created",
+              "title": "First throwaway note."
+            }
+          ],
+          "batchId": "item-1"
+        }
+      }
+    },
+    {
+      "op": "capture.text",
+      "input": {
+        "text": "Second throwaway note."
+      },
+      "result": {
+        "ok": true,
+        "data": {
+          "items": [
+            {
+              "id": "item-4",
+              "status": "created",
+              "title": "Second throwaway note."
+            }
+          ],
+          "batchId": "item-3"
+        }
+      }
+    },
+    {
+      "op": "settle",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": null
+      }
+    },
+    {
+      "op": "items.trash",
+      "input": {
+        "ids": [
+          "item-2"
+        ]
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "op": "items.list",
+      "input": {
+        "view": "trash"
+      },
+      "result": {
+        "ok": true,
+        "data": [
+          {
+            "id": "item-2",
+            "type": "text",
+            "subtype": null,
+            "kind": "article",
+            "title": "First throwaway note.",
+            "domain": null,
+            "url": null,
+            "thumbnailUrl": null,
+            "snapshotUrl": null,
+            "faviconUrl": null,
+            "dominantColor": null,
+            "width": null,
+            "height": null,
+            "size": 21,
+            "mimeType": "text/plain",
+            "durationMs": null,
+            "pageCount": null,
+            "excerpt": "First throwaway note.",
+            "capturedAt": "2026-09-01T00:00:01.000Z",
+            "createdAt": "2026-09-01T00:00:01.000Z",
+            "processingStatus": "READY",
+            "processingError": null,
+            "understanding": "Article titled \"First throwaway note.\". First throwaway note.",
+            "collectionIds": [],
+            "childCount": 0,
+            "childThumbnailUrls": [],
+            "isMissing": false,
+            "parentItemId": null
+          }
+        ]
+      }
+    },
+    {
+      "op": "items.restore",
+      "input": {
+        "ids": [
+          "item-2"
+        ]
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "op": "items.trash",
+      "input": {
+        "ids": [
+          "item-2"
+        ]
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "op": "items.deleteForever",
+      "input": {
+        "ids": [
+          "item-2"
+        ]
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "op": "snapshot",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": null
+      }
+    }
+  ],
+  "results": [
+    {
+      "items": [
+        {
+          "id": "item-4",
+          "type": "text",
+          "subtype": null,
+          "kind": "article",
+          "title": "Second throwaway note.",
+          "original_path": null,
+          "managed_path": "item-4/text.txt",
+          "url": null,
+          "canonical_url": null,
+          "domain": null,
+          "mime_type": "text/plain",
+          "size": 22,
+          "content_hash": "e8fa72e94713830a9650f2a8b8a90a143daea5afd9598ee75bde9c0ca9b6ee14",
+          "width": null,
+          "height": null,
+          "duration_ms": null,
+          "page_count": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "captured_at": "2026-09-01T00:00:02.000Z",
+          "modified_at": "2026-09-01T00:00:03.000Z",
+          "last_kept_at": "2026-09-01T00:00:02.000Z",
+          "capture_batch_id": "item-3",
+          "processing_status": "READY",
+          "processing_error": null,
+          "understanding": "Article titled \"Second throwaway note.\". Second throwaway note.",
+          "why_useful": "Worth keeping as a article reference on second; reach for it when that comes up again.",
+          "topics": "[\"second\",\"throwaway\"]",
+          "entities": "[\"Second\"]",
+          "vision_text": null,
+          "retrieval_hints": "[\"second throwaway note.\",\"article about second\",\"second throwaway\"]",
+          "suggested_actions": "[]",
+          "ai_confidence": 0.55,
+          "metadata": "{\"source\":\"paste\",\"wordCount\":3,\"extractor\":\"text\",\"truncated\":false}",
+          "extracted_text": "Second throwaway note.",
+          "excerpt": "Second throwaway note.",
+          "thumbnail_path": null,
+          "snapshot_path": null,
+          "favicon_path": null,
+          "dominant_color": null,
+          "media_version": 1,
+          "parent_item_id": null,
+          "user_overrides": "{}",
+          "is_missing": 0,
+          "missing_checked_at": null,
+          "deleted_at": null
+        }
+      ],
+      "fts": [
+        {
+          "item_id": "item-4",
+          "title": "Second throwaway note.",
+          "retrieval_hints": "second throwaway note. article about second second throwaway",
+          "topics": "second throwaway",
+          "entities": "Second",
+          "understanding": "Article titled \"Second throwaway note.\". Second throwaway note.",
+          "why_useful": "Worth keeping as a article reference on second; reach for it when that comes up again.",
+          "vision_text": "",
+          "meta_text": "",
+          "extracted_text": "Second throwaway note.",
+          "domain": "",
+          "kind": "article"
+        }
+      ],
+      "collections": [],
+      "collectionItems": [],
+      "relationships": [],
+      "suppressions": [],
+      "audit": [
+        {
+          "id": "audit-1",
+          "actor": "user",
+          "action": "trash_item",
+          "entity": "item",
+          "entity_id": "item-2",
+          "before": null,
+          "after": "{\"ids\":[\"item-2\"]}",
+          "agent_run_id": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "undone_at": null
+        },
+        {
+          "id": "audit-2",
+          "actor": "user",
+          "action": "restore_item",
+          "entity": "item",
+          "entity_id": "item-2",
+          "before": null,
+          "after": "{\"ids\":[\"item-2\"]}",
+          "agent_run_id": null,
+          "created_at": "2026-09-01T00:00:06.000Z",
+          "undone_at": null
+        },
+        {
+          "id": "audit-3",
+          "actor": "user",
+          "action": "trash_item",
+          "entity": "item",
+          "entity_id": "item-2",
+          "before": null,
+          "after": "{\"ids\":[\"item-2\"]}",
+          "agent_run_id": null,
+          "created_at": "2026-09-01T00:00:07.000Z",
+          "undone_at": null
+        }
+      ],
+      "agentRuns": [
+        {
+          "id": "uuid-1",
+          "item_id": null,
+          "batch_id": null,
+          "task": "understand",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:03.000Z",
+          "completed_at": "2026-09-01T00:00:03.000Z",
+          "steps": "[{\"tool\":\"inspect_item\",\"kind\":\"inspect\",\"label\":\"Reading \\\"First throwaway note.\\\"\",\"itemIds\":[\"item-2\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"understand\",\"itemId\":\"item-2\",\"understanding\":{\"kind\":\"article\",\"title\":\"First throwaway note.\",\"summary\":\"Article titled \\\"First throwaway note.\\\". First throwaway note.\",\"whyUseful\":\"Worth keeping as a article reference on first; reach for it when that comes up again.\",\"topics\":[\"first\",\"throwaway\"],\"entities\":[\"First\"],\"retrievalHints\":[\"first throwaway note.\",\"article about first\",\"first throwaway\"],\"confidence\":0.55},\"skippedFields\":[]}",
+          "error": null,
+          "usage": "{\"promptTokens\":1109,\"completionTokens\":95,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-2",
+          "item_id": "item-4",
+          "batch_id": null,
+          "task": "understand",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:03.000Z",
+          "completed_at": "2026-09-01T00:00:03.000Z",
+          "steps": "[{\"tool\":\"inspect_item\",\"kind\":\"inspect\",\"label\":\"Reading \\\"Second throwaway note.\\\"\",\"itemIds\":[\"item-4\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"understand\",\"itemId\":\"item-4\",\"understanding\":{\"kind\":\"article\",\"title\":\"Second throwaway note.\",\"summary\":\"Article titled \\\"Second throwaway note.\\\". Second throwaway note.\",\"whyUseful\":\"Worth keeping as a article reference on second; reach for it when that comes up again.\",\"topics\":[\"second\",\"throwaway\"],\"entities\":[\"Second\"],\"retrievalHints\":[\"second throwaway note.\",\"article about second\",\"second throwaway\"],\"confidence\":0.55},\"skippedFields\":[]}",
+          "error": null,
+          "usage": "{\"promptTokens\":1110,\"completionTokens\":97,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-3",
+          "item_id": null,
+          "batch_id": null,
+          "task": "organize",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:03.000Z",
+          "completed_at": "2026-09-01T00:00:03.000Z",
+          "steps": "[{\"tool\":\"find_candidates\",\"kind\":\"search\",\"label\":\"Checking 1 similar things\",\"itemIds\":[\"item-4\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"organize\",\"itemId\":\"item-2\",\"relationshipIds\":[],\"collectionIds\":[],\"summary\":\"Kept on its own for now; nothing else in the library is about this yet.\"}",
+          "error": null,
+          "usage": "{\"promptTokens\":1753,\"completionTokens\":48,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-4",
+          "item_id": "item-4",
+          "batch_id": null,
+          "task": "organize",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:03.000Z",
+          "completed_at": "2026-09-01T00:00:03.000Z",
+          "steps": "[{\"tool\":\"find_candidates\",\"kind\":\"search\",\"label\":\"Checking 1 similar things\",\"itemIds\":[\"item-2\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"organize\",\"itemId\":\"item-4\",\"relationshipIds\":[],\"collectionIds\":[],\"summary\":\"Kept on its own for now; nothing else in the library is about this yet.\"}",
+          "error": null,
+          "usage": "{\"promptTokens\":1753,\"completionTokens\":48,\"calls\":1,\"latencyMs\":0}"
+        }
+      ],
+      "jobs": [
+        {
+          "id": "job-11",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "index",
+          "lane": "embed",
+          "priority": 20,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "updated_at": "2026-09-01T00:00:03.000Z"
+        },
+        {
+          "id": "job-12",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "relate",
+          "lane": "ai",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "updated_at": "2026-09-01T00:00:03.000Z"
+        },
+        {
+          "id": "job-3",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "extract",
+          "lane": "io",
+          "priority": 25,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:03.000Z"
+        },
+        {
+          "id": "job-4",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "thumbnail",
+          "lane": "io",
+          "priority": 15,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": "No preview could be made",
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:03.000Z"
+        },
+        {
+          "id": "job-7",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "embed",
+          "lane": "embed",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "updated_at": "2026-09-01T00:00:03.000Z"
+        },
+        {
+          "id": "job-8",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "understand",
+          "lane": "ai",
+          "priority": 30,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "updated_at": "2026-09-01T00:00:03.000Z"
+        }
+      ],
+      "settings": {
+        "aiMode": "mock",
+        "provider": "gmi",
+        "model": "MiniMaxAI/MiniMax-M3",
+        "baseUrl": "https://api.gmi-serving.com/v1",
+        "hasApiKey": true,
+        "apiKeyMasked": "sce…-key",
+        "importMode": "copy",
+        "theme": "system",
+        "libraryPath": "{library}",
+        "embeddings": {
+          "provider": "none",
+          "modelPresent": false,
+          "dims": 384
+        }
+      },
+      "thumbnailCalls": [
+        {
+          "op": "thumbnail",
+          "file": "{library}/objects/item-2/text.txt",
+          "out": "{library}/thumbs/item-2.png",
+          "maxPx": 800
+        },
+        {
+          "op": "thumbnail",
+          "file": "{library}/objects/item-4/text.txt",
+          "out": "{library}/thumbs/item-4.png",
+          "maxPx": 800
+        }
+      ],
+      "snapshotCalls": [],
+      "fetchCalls": [],
+      "desktopCalls": [],
+      "pushes": []
+    }
+  ]
+}

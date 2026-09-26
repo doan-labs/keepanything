@@ -1,0 +1,14 @@
+{
+  "rules": [
+    { "path": "$..latencyMs", "rule": "ignore" },
+    { "path": "$..durationMs", "rule": "ignore" },
+    { "path": "$..iterations", "rule": "ignore" },
+    { "path": "$..absolutePath", "rule": "ignore" },
+    { "path": "$..original_path", "rule": "ignore" },
+    { "path": "$..score", "rule": "float:1e-4" },
+    { "path": "$..cosine", "rule": "float:1e-4" },
+    { "path": "$..confidence", "rule": "float:1e-4" },
+    { "path": "$..extracted_text", "rule": "tokens:0.95" },
+    { "path": "$..extractedText", "rule": "tokens:0.95" }
+  ]
+}

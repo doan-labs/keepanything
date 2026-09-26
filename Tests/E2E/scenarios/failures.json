@@ -1,0 +1,53 @@
+{
+  "name": "failures",
+  "runs_on": "linux",
+  "ai": "off",
+  "embeddings": "hash",
+  "replies": [
+    {
+      "throw": {
+        "code": "AI_UNAVAILABLE",
+        "message": "provider unreachable"
+      }
+    }
+  ],
+  "steps": [
+    {
+      "op": "capture.files",
+      "paths": [
+        "folder-serving-benchmark/prompts.jsonl"
+      ]
+    },
+    {
+      "op": "capture.url",
+      "url": "{fixture}/missing.html"
+    },
+    {
+      "op": "capture.text",
+      "text": "A note that needs no extraction."
+    },
+    {
+      "op": "settle"
+    },
+    {
+      "op": "snapshot"
+    },
+    {
+      "op": "settings.update",
+      "ai": "on"
+    },
+    {
+      "op": "settle"
+    },
+    {
+      "op": "settings.update",
+      "ai": "on"
+    },
+    {
+      "op": "settle"
+    },
+    {
+      "op": "snapshot"
+    }
+  ]
+}

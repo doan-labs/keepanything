@@ -1,0 +1,812 @@
+{
+  "name": "collections",
+  "runsOn": "linux",
+  "ai": "mock",
+  "embeddings": "hash",
+  "steps": [
+    {
+      "op": "capture.text",
+      "input": {
+        "text": "Notes on low-cost LLM inference providers."
+      },
+      "result": {
+        "ok": true,
+        "data": {
+          "items": [
+            {
+              "id": "item-2",
+              "status": "created",
+              "title": "Notes on low-cost LLM inference providers."
+            }
+          ],
+          "batchId": "item-1"
+        }
+      }
+    },
+    {
+      "op": "capture.text",
+      "input": {
+        "text": "More notes: vLLM continuous batching and paged KV cache."
+      },
+      "result": {
+        "ok": true,
+        "data": {
+          "items": [
+            {
+              "id": "item-4",
+              "status": "created",
+              "title": "More notes: vLLM continuous batching and paged KV cache."
+            }
+          ],
+          "batchId": "item-3"
+        }
+      }
+    },
+    {
+      "op": "capture.text",
+      "input": {
+        "text": "MiniMax-M3 vs GPT-4o-mini pricing comparison."
+      },
+      "result": {
+        "ok": true,
+        "data": {
+          "items": [
+            {
+              "id": "item-6",
+              "status": "created",
+              "title": "MiniMax-M3 vs GPT-4o-mini pricing comparison."
+            }
+          ],
+          "batchId": "item-5"
+        }
+      }
+    },
+    {
+      "op": "settle",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": null
+      }
+    },
+    {
+      "op": "collections.create",
+      "input": {
+        "name": "Inference research",
+        "description": "Cheap inference providers and batching."
+      },
+      "result": {
+        "ok": true,
+        "data": {
+          "id": "collection-1",
+          "name": "Inference research",
+          "nameKey": "inference research",
+          "description": "Cheap inference providers and batching.",
+          "createdBy": "user",
+          "color": null,
+          "pinned": false,
+          "createdAt": "2026-09-01T00:00:05.000Z",
+          "updatedAt": "2026-09-01T00:00:05.000Z"
+        }
+      }
+    },
+    {
+      "op": "collections.rename",
+      "input": {
+        "id": "collection-1",
+        "name": "Inference notes"
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "op": "collections.addItems",
+      "input": {
+        "id": "collection-1",
+        "itemIds": [
+          "item-2",
+          "item-4"
+        ]
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "op": "collections.removeItem",
+      "input": {
+        "id": "collection-1",
+        "itemId": "item-4"
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "op": "collections.delete",
+      "input": {
+        "id": "collection-1"
+      },
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "op": "settle",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": null
+      }
+    },
+    {
+      "op": "snapshot",
+      "input": {},
+      "result": {
+        "ok": true,
+        "data": null
+      }
+    }
+  ],
+  "results": [
+    {
+      "items": [
+        {
+          "id": "item-2",
+          "type": "text",
+          "subtype": null,
+          "kind": "article",
+          "title": "Notes on low-cost LLM inference providers.",
+          "original_path": null,
+          "managed_path": "item-2/text.txt",
+          "url": null,
+          "canonical_url": null,
+          "domain": null,
+          "mime_type": "text/plain",
+          "size": 42,
+          "content_hash": "07f7d060df3845ed240294bc690a5af677ab0999a7a639e9b653c0263265f208",
+          "width": null,
+          "height": null,
+          "duration_ms": null,
+          "page_count": null,
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "captured_at": "2026-09-01T00:00:01.000Z",
+          "modified_at": "2026-09-01T00:00:04.000Z",
+          "last_kept_at": "2026-09-01T00:00:01.000Z",
+          "capture_batch_id": "item-1",
+          "processing_status": "READY",
+          "processing_error": null,
+          "understanding": "Article titled \"Notes on low-cost LLM inference providers.\". Notes on low-cost LLM inference providers.",
+          "why_useful": "Worth keeping as a article reference on notes; reach for it when that comes up again.",
+          "topics": "[\"notes\",\"low-cost\",\"llm\",\"inference\",\"providers\"]",
+          "entities": "[\"Notes\",\"LLM\"]",
+          "vision_text": null,
+          "retrieval_hints": "[\"notes on low-cost llm inference providers.\",\"article about notes\",\"notes low-cost\"]",
+          "suggested_actions": "[]",
+          "ai_confidence": 0.55,
+          "metadata": "{\"source\":\"paste\",\"wordCount\":6,\"extractor\":\"text\",\"truncated\":false}",
+          "extracted_text": "Notes on low-cost LLM inference providers.",
+          "excerpt": "Notes on low-cost LLM inference providers.",
+          "thumbnail_path": null,
+          "snapshot_path": null,
+          "favicon_path": null,
+          "dominant_color": null,
+          "media_version": 1,
+          "parent_item_id": null,
+          "user_overrides": "{}",
+          "is_missing": 0,
+          "missing_checked_at": null,
+          "deleted_at": null
+        },
+        {
+          "id": "item-4",
+          "type": "text",
+          "subtype": null,
+          "kind": "article",
+          "title": "More notes: vLLM continuous batching and paged KV cache.",
+          "original_path": null,
+          "managed_path": "item-4/text.txt",
+          "url": null,
+          "canonical_url": null,
+          "domain": null,
+          "mime_type": "text/plain",
+          "size": 56,
+          "content_hash": "05bf2bda340e2463cf0c85b7f2e1bd279446894fd967b42003be055d54cefc0d",
+          "width": null,
+          "height": null,
+          "duration_ms": null,
+          "page_count": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "captured_at": "2026-09-01T00:00:02.000Z",
+          "modified_at": "2026-09-01T00:00:04.000Z",
+          "last_kept_at": "2026-09-01T00:00:02.000Z",
+          "capture_batch_id": "item-3",
+          "processing_status": "READY",
+          "processing_error": null,
+          "understanding": "Article titled \"More notes: vLLM continuous batching and paged KV cache.\". More notes: vLLM continuous batching and paged KV cache.",
+          "why_useful": "Worth keeping as a article reference on notes; reach for it when that comes up again.",
+          "topics": "[\"notes\",\"vllm\",\"continuous\",\"batching\",\"paged\",\"cache\"]",
+          "entities": "[]",
+          "vision_text": null,
+          "retrieval_hints": "[\"more notes: vllm continuous batching and paged kv cache.\",\"article about notes\",\"notes vllm\"]",
+          "suggested_actions": "[]",
+          "ai_confidence": 0.55,
+          "metadata": "{\"source\":\"paste\",\"wordCount\":9,\"extractor\":\"text\",\"truncated\":false}",
+          "extracted_text": "More notes: vLLM continuous batching and paged KV cache.",
+          "excerpt": "More notes: vLLM continuous batching and paged KV cache.",
+          "thumbnail_path": null,
+          "snapshot_path": null,
+          "favicon_path": null,
+          "dominant_color": null,
+          "media_version": 1,
+          "parent_item_id": null,
+          "user_overrides": "{}",
+          "is_missing": 0,
+          "missing_checked_at": null,
+          "deleted_at": null
+        },
+        {
+          "id": "item-6",
+          "type": "text",
+          "subtype": null,
+          "kind": "article",
+          "title": "MiniMax-M3 vs GPT-4o-mini pricing comparison.",
+          "original_path": null,
+          "managed_path": "item-6/text.txt",
+          "url": null,
+          "canonical_url": null,
+          "domain": null,
+          "mime_type": "text/plain",
+          "size": 45,
+          "content_hash": "5028d6649de711f09ba3d6ef589a4bf6f763a9b5a76ebc63964d66737af03776",
+          "width": null,
+          "height": null,
+          "duration_ms": null,
+          "page_count": null,
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "captured_at": "2026-09-01T00:00:03.000Z",
+          "modified_at": "2026-09-01T00:00:04.000Z",
+          "last_kept_at": "2026-09-01T00:00:03.000Z",
+          "capture_batch_id": "item-5",
+          "processing_status": "READY",
+          "processing_error": null,
+          "understanding": "Article titled \"MiniMax-M3 vs GPT-4o-mini pricing comparison.\". MiniMax-M3 vs GPT-4o-mini pricing comparison.",
+          "why_useful": "Worth keeping as a article reference on minimax-m3; reach for it when that comes up again.",
+          "topics": "[\"minimax-m3\",\"gpt-4o-mini\",\"pricing\",\"comparison\"]",
+          "entities": "[\"MiniMax-M3\",\"GPT\"]",
+          "vision_text": null,
+          "retrieval_hints": "[\"minimax-m3 vs gpt-4o-mini pricing comparison.\",\"article about minimax-m3\",\"minimax-m3 gpt-4o-mini\"]",
+          "suggested_actions": "[]",
+          "ai_confidence": 0.55,
+          "metadata": "{\"source\":\"paste\",\"wordCount\":5,\"extractor\":\"text\",\"truncated\":false}",
+          "extracted_text": "MiniMax-M3 vs GPT-4o-mini pricing comparison.",
+          "excerpt": "MiniMax-M3 vs GPT-4o-mini pricing comparison.",
+          "thumbnail_path": null,
+          "snapshot_path": null,
+          "favicon_path": null,
+          "dominant_color": null,
+          "media_version": 1,
+          "parent_item_id": null,
+          "user_overrides": "{}",
+          "is_missing": 0,
+          "missing_checked_at": null,
+          "deleted_at": null
+        }
+      ],
+      "fts": [
+        {
+          "item_id": "item-2",
+          "title": "Notes on low-cost LLM inference providers.",
+          "retrieval_hints": "notes on low-cost llm inference providers. article about notes notes low-cost",
+          "topics": "notes low-cost llm inference providers",
+          "entities": "Notes LLM",
+          "understanding": "Article titled \"Notes on low-cost LLM inference providers.\". Notes on low-cost LLM inference providers.",
+          "why_useful": "Worth keeping as a article reference on notes; reach for it when that comes up again.",
+          "vision_text": "",
+          "meta_text": "",
+          "extracted_text": "Notes on low-cost LLM inference providers.",
+          "domain": "",
+          "kind": "article"
+        },
+        {
+          "item_id": "item-4",
+          "title": "More notes: vLLM continuous batching and paged KV cache.",
+          "retrieval_hints": "more notes: vllm continuous batching and paged kv cache. article about notes notes vllm",
+          "topics": "notes vllm continuous batching paged cache",
+          "entities": "",
+          "understanding": "Article titled \"More notes: vLLM continuous batching and paged KV cache.\". More notes: vLLM continuous batching and paged KV cache.",
+          "why_useful": "Worth keeping as a article reference on notes; reach for it when that comes up again.",
+          "vision_text": "",
+          "meta_text": "",
+          "extracted_text": "More notes: vLLM continuous batching and paged KV cache.",
+          "domain": "",
+          "kind": "article"
+        },
+        {
+          "item_id": "item-6",
+          "title": "MiniMax-M3 vs GPT-4o-mini pricing comparison.",
+          "retrieval_hints": "minimax-m3 vs gpt-4o-mini pricing comparison. article about minimax-m3 minimax-m3 gpt-4o-mini",
+          "topics": "minimax-m3 gpt-4o-mini pricing comparison",
+          "entities": "MiniMax-M3 GPT",
+          "understanding": "Article titled \"MiniMax-M3 vs GPT-4o-mini pricing comparison.\". MiniMax-M3 vs GPT-4o-mini pricing comparison.",
+          "why_useful": "Worth keeping as a article reference on minimax-m3; reach for it when that comes up again.",
+          "vision_text": "",
+          "meta_text": "",
+          "extracted_text": "MiniMax-M3 vs GPT-4o-mini pricing comparison.",
+          "domain": "",
+          "kind": "article"
+        }
+      ],
+      "collections": [],
+      "collectionItems": [],
+      "relationships": [],
+      "suppressions": [
+        {
+          "kind": "collection_member",
+          "key": "collection-1:item-4",
+          "created_at": "2026-09-01T00:00:08.000Z"
+        },
+        {
+          "kind": "collection_member",
+          "key": "name:inference notes:item-4",
+          "created_at": "2026-09-01T00:00:08.000Z"
+        }
+      ],
+      "audit": [
+        {
+          "id": "audit-1",
+          "actor": "user",
+          "action": "create_collection",
+          "entity": "collection",
+          "entity_id": "collection-1",
+          "before": null,
+          "after": "{\"collection\":{\"id\":\"collection-1\",\"name\":\"Inference research\",\"nameKey\":\"inference research\",\"description\":\"Cheap inference providers and batching.\",\"createdBy\":\"user\",\"color\":null,\"pinned\":false,\"createdAt\":\"2026-09-01T00:00:05.000Z\",\"updatedAt\":\"2026-09-01T00:00:05.000Z\"}}",
+          "agent_run_id": null,
+          "created_at": "2026-09-01T00:00:05.000Z",
+          "undone_at": null
+        },
+        {
+          "id": "audit-2",
+          "actor": "user",
+          "action": "rename_collection",
+          "entity": "collection",
+          "entity_id": "collection-1",
+          "before": "{\"name\":\"Inference research\",\"nameKey\":\"inference research\",\"description\":\"Cheap inference providers and batching.\"}",
+          "after": "{\"name\":\"Inference notes\",\"nameKey\":\"inference notes\",\"description\":\"Cheap inference providers and batching.\"}",
+          "agent_run_id": null,
+          "created_at": "2026-09-01T00:00:06.000Z",
+          "undone_at": null
+        },
+        {
+          "id": "audit-3",
+          "actor": "user",
+          "action": "add_to_collection",
+          "entity": "collection_item",
+          "entity_id": "collection-1:item-2",
+          "before": null,
+          "after": "{\"collectionId\":\"collection-1\",\"itemId\":\"item-2\",\"confidence\":null,\"reason\":null,\"addedBy\":\"user\",\"agentRunId\":null,\"addedAt\":\"2026-09-01T00:00:07.000Z\"}",
+          "agent_run_id": null,
+          "created_at": "2026-09-01T00:00:07.000Z",
+          "undone_at": null
+        },
+        {
+          "id": "audit-4",
+          "actor": "user",
+          "action": "add_to_collection",
+          "entity": "collection_item",
+          "entity_id": "collection-1:item-4",
+          "before": null,
+          "after": "{\"collectionId\":\"collection-1\",\"itemId\":\"item-4\",\"confidence\":null,\"reason\":null,\"addedBy\":\"user\",\"agentRunId\":null,\"addedAt\":\"2026-09-01T00:00:07.000Z\"}",
+          "agent_run_id": null,
+          "created_at": "2026-09-01T00:00:07.000Z",
+          "undone_at": null
+        },
+        {
+          "id": "audit-5",
+          "actor": "user",
+          "action": "remove_from_collection",
+          "entity": "collection_item",
+          "entity_id": "collection-1:item-4",
+          "before": "{\"collectionId\":\"collection-1\",\"itemId\":\"item-4\",\"confidence\":null,\"reason\":null,\"addedBy\":\"user\",\"agentRunId\":null,\"addedAt\":\"2026-09-01T00:00:07.000Z\"}",
+          "after": null,
+          "agent_run_id": null,
+          "created_at": "2026-09-01T00:00:08.000Z",
+          "undone_at": null
+        },
+        {
+          "id": "audit-6",
+          "actor": "user",
+          "action": "delete_collection",
+          "entity": "collection",
+          "entity_id": "collection-1",
+          "before": "{\"collection\":{\"id\":\"collection-1\",\"name\":\"Inference notes\",\"nameKey\":\"inference notes\",\"description\":\"Cheap inference providers and batching.\",\"createdBy\":\"user\",\"color\":null,\"pinned\":false,\"createdAt\":\"2026-09-01T00:00:05.000Z\",\"updatedAt\":\"2026-09-01T00:00:08.000Z\"},\"members\":[{\"collectionId\":\"collection-1\",\"itemId\":\"item-2\",\"confidence\":null,\"reason\":null,\"addedBy\":\"user\",\"agentRunId\":null,\"addedAt\":\"2026-09-01T00:00:07.000Z\"}]}",
+          "after": null,
+          "agent_run_id": null,
+          "created_at": "2026-09-01T00:00:09.000Z",
+          "undone_at": null
+        }
+      ],
+      "agentRuns": [
+        {
+          "id": "uuid-1",
+          "item_id": "item-2",
+          "batch_id": null,
+          "task": "understand",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:04.000Z",
+          "completed_at": "2026-09-01T00:00:04.000Z",
+          "steps": "[{\"tool\":\"inspect_item\",\"kind\":\"inspect\",\"label\":\"Reading \\\"Notes on low-cost LLM inference providers.\\\"\",\"itemIds\":[\"item-2\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"understand\",\"itemId\":\"item-2\",\"understanding\":{\"kind\":\"article\",\"title\":\"Notes on low-cost LLM inference providers.\",\"summary\":\"Article titled \\\"Notes on low-cost LLM inference providers.\\\". Notes on low-cost LLM inference providers.\",\"whyUseful\":\"Worth keeping as a article reference on notes; reach for it when that comes up again.\",\"topics\":[\"notes\",\"low-cost\",\"llm\",\"inference\",\"providers\"],\"entities\":[\"Notes\",\"LLM\"],\"retrievalHints\":[\"notes on low-cost llm inference providers.\",\"article about notes\",\"notes low-cost\"],\"confidence\":0.55},\"skippedFields\":[]}",
+          "error": null,
+          "usage": "{\"promptTokens\":1120,\"completionTokens\":125,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-2",
+          "item_id": "item-4",
+          "batch_id": null,
+          "task": "understand",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:04.000Z",
+          "completed_at": "2026-09-01T00:00:04.000Z",
+          "steps": "[{\"tool\":\"inspect_item\",\"kind\":\"inspect\",\"label\":\"Reading \\\"More notes: vLLM continuous batching and paged KV cache.\\\"\",\"itemIds\":[\"item-4\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"understand\",\"itemId\":\"item-4\",\"understanding\":{\"kind\":\"article\",\"title\":\"More notes: vLLM continuous batching and paged KV cache.\",\"summary\":\"Article titled \\\"More notes: vLLM continuous batching and paged KV cache.\\\". More notes: vLLM continuous batching and paged KV cache.\",\"whyUseful\":\"Worth keeping as a article reference on notes; reach for it when that comes up again.\",\"topics\":[\"notes\",\"vllm\",\"continuous\",\"batching\",\"paged\",\"cache\"],\"entities\":[],\"retrievalHints\":[\"more notes: vllm continuous batching and paged kv cache.\",\"article about notes\",\"notes vllm\"],\"confidence\":0.55},\"skippedFields\":[]}",
+          "error": null,
+          "usage": "{\"promptTokens\":1127,\"completionTokens\":136,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-3",
+          "item_id": "item-6",
+          "batch_id": null,
+          "task": "understand",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:04.000Z",
+          "completed_at": "2026-09-01T00:00:04.000Z",
+          "steps": "[{\"tool\":\"inspect_item\",\"kind\":\"inspect\",\"label\":\"Reading \\\"MiniMax-M3 vs GPT-4o-mini pricing comparison.\\\"\",\"itemIds\":[\"item-6\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"understand\",\"itemId\":\"item-6\",\"understanding\":{\"kind\":\"article\",\"title\":\"MiniMax-M3 vs GPT-4o-mini pricing comparison.\",\"summary\":\"Article titled \\\"MiniMax-M3 vs GPT-4o-mini pricing comparison.\\\". MiniMax-M3 vs GPT-4o-mini pricing comparison.\",\"whyUseful\":\"Worth keeping as a article reference on minimax-m3; reach for it when that comes up again.\",\"topics\":[\"minimax-m3\",\"gpt-4o-mini\",\"pricing\",\"comparison\"],\"entities\":[\"MiniMax-M3\",\"GPT\"],\"retrievalHints\":[\"minimax-m3 vs gpt-4o-mini pricing comparison.\",\"article about minimax-m3\",\"minimax-m3 gpt-4o-mini\"],\"confidence\":0.55},\"skippedFields\":[]}",
+          "error": null,
+          "usage": "{\"promptTokens\":1121,\"completionTokens\":134,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-4",
+          "item_id": "item-4",
+          "batch_id": null,
+          "task": "organize",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:04.000Z",
+          "completed_at": "2026-09-01T00:00:04.000Z",
+          "steps": "[{\"tool\":\"find_candidates\",\"kind\":\"search\",\"label\":\"Checking 2 similar things\",\"itemIds\":[\"item-2\",\"item-6\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"organize\",\"itemId\":\"item-4\",\"relationshipIds\":[],\"collectionIds\":[],\"summary\":\"Kept on its own for now; nothing else in the library is about this yet.\"}",
+          "error": null,
+          "usage": "{\"promptTokens\":1902,\"completionTokens\":48,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-5",
+          "item_id": "item-6",
+          "batch_id": null,
+          "task": "organize",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:04.000Z",
+          "completed_at": "2026-09-01T00:00:04.000Z",
+          "steps": "[{\"tool\":\"find_candidates\",\"kind\":\"search\",\"label\":\"Checking 2 similar things\",\"itemIds\":[\"item-2\",\"item-4\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"organize\",\"itemId\":\"item-6\",\"relationshipIds\":[],\"collectionIds\":[],\"summary\":\"Kept on its own for now; nothing else in the library is about this yet.\"}",
+          "error": null,
+          "usage": "{\"promptTokens\":1902,\"completionTokens\":48,\"calls\":1,\"latencyMs\":0}"
+        },
+        {
+          "id": "uuid-6",
+          "item_id": "item-2",
+          "batch_id": null,
+          "task": "organize",
+          "status": "succeeded",
+          "model": "mock-minimax",
+          "started_at": "2026-09-01T00:00:04.000Z",
+          "completed_at": "2026-09-01T00:00:04.000Z",
+          "steps": "[{\"tool\":\"find_candidates\",\"kind\":\"search\",\"label\":\"Checking 2 similar things\",\"itemIds\":[\"item-4\",\"item-6\"],\"status\":\"ok\",\"n\":1,\"durationMs\":0}]",
+          "result": "{\"task\":\"organize\",\"itemId\":\"item-2\",\"relationshipIds\":[],\"collectionIds\":[],\"summary\":\"Kept on its own for now; nothing else in the library is about this yet.\"}",
+          "error": null,
+          "usage": "{\"promptTokens\":1905,\"completionTokens\":48,\"calls\":1,\"latencyMs\":0}"
+        }
+      ],
+      "jobs": [
+        {
+          "id": "job-1",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "extract",
+          "lane": "io",
+          "priority": 25,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-10",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "understand",
+          "lane": "ai",
+          "priority": 30,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-11",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "index",
+          "lane": "embed",
+          "priority": 20,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-12",
+          "item_id": "item-6",
+          "batch_id": "item-5",
+          "stage": "embed",
+          "lane": "embed",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-13",
+          "item_id": "item-6",
+          "batch_id": "item-5",
+          "stage": "understand",
+          "lane": "ai",
+          "priority": 30,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-14",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "relate",
+          "lane": "ai",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-15",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "index",
+          "lane": "embed",
+          "priority": 20,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-16",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "relate",
+          "lane": "ai",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-17",
+          "item_id": "item-6",
+          "batch_id": "item-5",
+          "stage": "index",
+          "lane": "embed",
+          "priority": 20,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-18",
+          "item_id": "item-6",
+          "batch_id": "item-5",
+          "stage": "relate",
+          "lane": "ai",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-2",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "thumbnail",
+          "lane": "io",
+          "priority": 15,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": "No preview could be made",
+          "created_at": "2026-09-01T00:00:01.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-3",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "extract",
+          "lane": "io",
+          "priority": 25,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-4",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "thumbnail",
+          "lane": "io",
+          "priority": 15,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": "No preview could be made",
+          "created_at": "2026-09-01T00:00:02.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-5",
+          "item_id": "item-6",
+          "batch_id": "item-5",
+          "stage": "extract",
+          "lane": "io",
+          "priority": 25,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-6",
+          "item_id": "item-6",
+          "batch_id": "item-5",
+          "stage": "thumbnail",
+          "lane": "io",
+          "priority": 15,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": "No preview could be made",
+          "created_at": "2026-09-01T00:00:03.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-7",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "embed",
+          "lane": "embed",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-8",
+          "item_id": "item-2",
+          "batch_id": "item-1",
+          "stage": "understand",
+          "lane": "ai",
+          "priority": 30,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        },
+        {
+          "id": "job-9",
+          "item_id": "item-4",
+          "batch_id": "item-3",
+          "stage": "embed",
+          "lane": "embed",
+          "priority": 10,
+          "status": "done",
+          "attempts": 1,
+          "run_after": null,
+          "last_error": null,
+          "created_at": "2026-09-01T00:00:04.000Z",
+          "updated_at": "2026-09-01T00:00:04.000Z"
+        }
+      ],
+      "settings": {
+        "aiMode": "mock",
+        "provider": "gmi",
+        "model": "MiniMaxAI/MiniMax-M3",
+        "baseUrl": "https://api.gmi-serving.com/v1",
+        "hasApiKey": true,
+        "apiKeyMasked": "sce…-key",
+        "importMode": "copy",
+        "theme": "system",
+        "libraryPath": "{library}",
+        "embeddings": {
+          "provider": "none",
+          "modelPresent": false,
+          "dims": 384
+        }
+      },
+      "thumbnailCalls": [
+        {
+          "op": "thumbnail",
+          "file": "{library}/objects/item-2/text.txt",
+          "out": "{library}/thumbs/item-2.png",
+          "maxPx": 800
+        },
+        {
+          "op": "thumbnail",
+          "file": "{library}/objects/item-4/text.txt",
+          "out": "{library}/thumbs/item-4.png",
+          "maxPx": 800
+        },
+        {
+          "op": "thumbnail",
+          "file": "{library}/objects/item-6/text.txt",
+          "out": "{library}/thumbs/item-6.png",
+          "maxPx": 800
+        }
+      ],
+      "snapshotCalls": [],
+      "fetchCalls": [],
+      "desktopCalls": [],
+      "pushes": []
+    }
+  ]
+}

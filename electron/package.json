@@ -38,7 +38,9 @@
     "eval:retrieval": "node scripts/eval-retrieval.mjs",
     "seed:library": "pnpm run build && node scripts/seed-library.mjs",
     "audit:comments": "node scripts/audit-comments.mjs",
-    "parity:export": "KEEPANYTHING_PARITY_EXPORT=1 vitest run tests/parity/export.test.ts"
+    "parity:export": "KEEPANYTHING_PARITY_EXPORT=1 vitest run tests/parity/export.test.ts",
+    "scenarios:export": "KEEPANYTHING_SCENARIOS=1 vitest run tests/scenarios/run.test.ts",
+    "scenarios:keep": "KEEPANYTHING_SCENARIOS=1 KEEPANYTHING_KEEP_LIBRARY=../Tests/E2E/library vitest run tests/scenarios/run.test.ts"
   },
   "simple-git-hooks": {
     "pre-commit": "cd electron && pnpm exec lint-staged"

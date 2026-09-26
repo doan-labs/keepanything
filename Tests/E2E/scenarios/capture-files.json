@@ -1,0 +1,25 @@
+{
+  "name": "capture-files",
+  "runs_on": "linux",
+  "ai": "mock",
+  "embeddings": "hash",
+  "steps": [
+    {
+      "op": "capture.files",
+      "paths": [
+        "snippets/hyperliquid-snippet.txt",
+        "snippets/resend-alternatives.txt",
+        "notes/inference-providers-notes.md",
+        "screenshots/terminal-pnpm-test.png",
+        "folder-serving-benchmark/run_bench.py",
+        "folder-serving-benchmark/config.yaml"
+      ]
+    },
+    {
+      "op": "settle"
+    },
+    {
+      "op": "snapshot"
+    }
+  ]
+}
