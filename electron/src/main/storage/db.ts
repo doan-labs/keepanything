@@ -141,6 +141,8 @@ export function openDatabase(file: string, options: OpenDatabaseOptions = {}): D
   const migrate = (): void => {
     raw.exec('CREATE TABLE IF NOT EXISTS schema_migrations (version INTEGER PRIMARY KEY, applied_at TEXT NOT NULL)')
     const applied = schemaVersion()
+    const supported = MIGRATIONS[MIGRATIONS.length - 1]?.version ?? 0
+    if (applied > supported) throw new SchemaTooNewError(applied, supported)
     for (const migration of MIGRATIONS) {
       if (migration.version <= applied) continue
       transaction(() => {

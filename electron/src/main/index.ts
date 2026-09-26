@@ -43,6 +43,7 @@ import { createThumbnailer } from './previews/thumbnails'
 import { createRetrieval } from './retrieval'
 import { denyUnexpectedWebContents, installContentSecurityPolicy } from './security'
 import { type Db, openDatabase } from './storage/db'
+import { acquireLibraryLock } from './storage/library-lock'
 import { createObjectStore } from './storage/object-store'
 import { buildPaths, ensureLibraryDirs } from './storage/paths'
 import { createRepositories } from './storage/repositories'
@@ -106,9 +107,12 @@ async function bootstrap(): Promise<void> {
   const envMode = envAiMode()
   const settings = createConfig(paths, envMode ? { ...envDefaults, aiMode: envMode } : envDefaults, logger)
 
-  const db: Db = openDatabase(paths.dbFile)
-  db.migrate()
-  logger.info('database ready', { schemaVersion: db.schemaVersion() })
+  // Another live app (Electron or Swift) on the same library keeps the lock; we read but never write.
+  const lock = acquireLibraryLock(paths.userData, { app: 'electron', version: appVersion })
+  if (lock.readOnly) logger.warn('library is open elsewhere, running read-only', { owner: lock.owner })
+  const db: Db = openDatabase(paths.dbFile, { readOnly: lock.readOnly })
+  if (!lock.readOnly) db.migrate()
+  logger.info('database ready', { schemaVersion: db.schemaVersion(), readOnly: lock.readOnly })
   const clock = systemClock
   const repos = createRepositories(db)
   const events = createEventBus(logger)
@@ -392,7 +396,7 @@ async function bootstrap(): Promise<void> {
   // The shelf has to exist before the first drag: a window born mid-drag is not a drop target yet.
   windows.prewarmShelf()
   syncAiLane()
-  scheduler.start()
+  if (!lock.readOnly) scheduler.start()
   reportEmbeddings()
   void embeddings
     .ready()
@@ -424,6 +428,7 @@ async function bootstrap(): Promise<void> {
     worker.terminate()
     windows.destroyAll()
     db.close()
+    lock.release()
     fileSink.close()
   }
 }
