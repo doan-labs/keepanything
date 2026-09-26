@@ -61,6 +61,10 @@ async function replayToKeep(
       }
       rmSync(parityRoot, { recursive: true, force: true })
       cpSync(userData, parityRoot, { recursive: true })
+      // `close()` can recreate -wal/-shm before the copy; scrub them in the fixture too.
+      for (const stray of ['library.lock', 'library.db-wal', 'library.db-shm']) {
+        rmSync(join(parityRoot, stray), { force: true })
+      }
       // The Swift compat test normalizes against these recorded prefixes (same order as the runner).
       writeFileSync(
         join(parityRoot, 'markers.json'),
