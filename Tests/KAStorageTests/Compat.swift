@@ -87,11 +87,12 @@ import Testing
     let reader = try openDatabase(file: file, options: .init(readOnly: true))
     defer { reader.close() }
     #expect(try reader.schemaVersion() == 3)
-    #expect(throws: (any Error).self) {
-      try reader.raw.writeWithoutTransaction { d in
+    #expect(throws: DbError.self) {
+      try reader.run { d in
         try d.execute(sql: "INSERT INTO suppressions (kind, key, created_at) VALUES ('x', 'y', 'now')")
       }
     }
+    #expect(throws: DbError.self) { try reader.migrate() }
   }
 
   @Test func staleLockIsTakenOver() throws {

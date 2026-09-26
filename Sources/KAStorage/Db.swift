@@ -9,6 +9,9 @@ import KAModel
 public final class Db: Sendable {
   /// The underlying writer (`DatabasePool` for files, `DatabaseQueue` for `:memory:`).
   public let raw: any DatabaseWriter
+  /// False when opened with `readOnly`: `run`/`transaction`/`migrate` refuse before touching
+  /// SQLite, so writes are rejected even when the fallback below had to open read-write.
+  public let canWrite: Bool
 
   private struct State {
     var depth = 0
@@ -19,14 +22,16 @@ public final class Db: Sendable {
   }
   private let state = Mutex(State())
 
-  init(raw: any DatabaseWriter) {
+  init(raw: any DatabaseWriter, canWrite: Bool = true) {
     self.raw = raw
+    self.canWrite = canWrite
   }
 
   /// Run `body` atomically. Nested calls become savepoints. Rethrows after rolling back.
   /// The body must not suspend: GRDB writers are reentrant on the writer thread, so a nested
   /// `write` runs inline exactly like the TS `transaction()`.
   public func transaction<T>(_ body: (GRDB.Database) throws -> T) throws -> T {
+    guard canWrite else { throw DbError.readOnly }
     if let db = state.withLock({ $0.db }) {
       return try runTransaction(on: db, body)
     }
@@ -77,6 +82,7 @@ public final class Db: Sendable {
   /// fresh writer access. Repos go through this so service-level `transaction` wraps several
   /// repo calls, exactly like the TS `db.prepare` inside `transaction()`.
   public func run<T>(_ body: (GRDB.Database) throws -> T) throws -> T {
+    guard canWrite else { throw DbError.readOnly }
     if let db = state.withLock({ $0.db }) { return try body(db) }
     return try raw.writeWithoutTransaction(body)
   }
@@ -106,6 +112,7 @@ public final class Db: Sendable {
   /// Apply pending migrations. Throws `SchemaTooNewError` when the database was written by a
   /// newer app, so an older build never touches a schema it does not know.
   public func migrate() throws {
+    guard canWrite else { throw DbError.readOnly }
     try raw.write { db in
       try db.execute(sql: "CREATE TABLE IF NOT EXISTS schema_migrations (version INTEGER PRIMARY KEY, applied_at TEXT NOT NULL)")
     }
@@ -204,24 +211,43 @@ public struct OpenDatabaseOptions: Sendable {
   }
 }
 
+/// `run`/`transaction`/`migrate` on a read-only `Db`.
+public enum DbError: Error, Equatable {
+  case readOnly
+}
+
 /// Open (creating if needed) the library database with the production PRAGMAs. Does not migrate.
 public func openDatabase(file: String, options: OpenDatabaseOptions = OpenDatabaseOptions()) throws -> Db {
-  var config = Configuration()
-  config.readonly = options.readOnly
-  config.prepareDatabase { db in
-    if file != ":memory:", !options.readOnly {
-      try db.execute(sql: "PRAGMA journal_mode = WAL")
+  func configuration(readOnly: Bool) -> Configuration {
+    var config = Configuration()
+    config.readonly = readOnly
+    config.prepareDatabase { db in
+      if file != ":memory:", !readOnly {
+        try db.execute(sql: "PRAGMA journal_mode = WAL")
+      }
+      try db.execute(sql: "PRAGMA busy_timeout = \(max(0, options.busyTimeoutMs))")
+      try db.execute(sql: "PRAGMA foreign_keys = ON")
+      try db.execute(sql: "PRAGMA synchronous = NORMAL")
+      try db.execute(sql: "PRAGMA temp_store = MEMORY")
     }
-    try db.execute(sql: "PRAGMA busy_timeout = \(max(0, options.busyTimeoutMs))")
-    try db.execute(sql: "PRAGMA foreign_keys = ON")
-    try db.execute(sql: "PRAGMA synchronous = NORMAL")
-    try db.execute(sql: "PRAGMA temp_store = MEMORY")
+    return config
   }
-  let raw: any DatabaseWriter =
-    file == ":memory:"
-    ? try DatabaseQueue(path: file, configuration: config)
-    : try DatabasePool(path: file, configuration: config)
-  return Db(raw: raw)
+  if file == ":memory:" {
+    return Db(raw: try DatabaseQueue(path: file, configuration: configuration(readOnly: false)))
+  }
+  if options.readOnly {
+    do {
+      return Db(raw: try DatabasePool(path: file, configuration: configuration(readOnly: true)),
+                canWrite: false)
+    } catch let error as DatabaseError where error.resultCode == .SQLITE_CANTOPEN {
+      // Read-only open of a WAL library needs the lock holder's -shm; when none exists (live
+      // lock, db not open yet — a startup race) SQLite refuses with CANTOPEN. Fall back to a
+      // writable handle and refuse writes in `run`/`transaction`/`migrate` instead.
+      return Db(raw: try DatabasePool(path: file, configuration: configuration(readOnly: false)),
+                canWrite: false)
+    }
+  }
+  return Db(raw: try DatabasePool(path: file, configuration: configuration(readOnly: false)))
 }
 
 /// Minimal lock wrapper (no new deps; NSLock is fine too but Mutex is free on this toolchain).
