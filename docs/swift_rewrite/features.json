@@ -14,7 +14,7 @@
       "docs/swift_rewrite/PLAN.md#repo-layout"
     ],
     "gate": "cd electron && pnpm install --frozen-lockfile && pnpm run typecheck && pnpm run test",
-    "passes": false,
+    "passes": true,
     "blocked": null,
     "notes": ""
   },
